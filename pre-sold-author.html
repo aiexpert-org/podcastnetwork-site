@@ -1,332 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.className+=' js'</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Pre-Sold Author | The Podcast Network</title>
-<meta name="description" content="Publish your next book in 20 weeks with a built-in audience before it ships. 15-podcast tour, professional ghostwriting, pre-order page live from day one. 5 founding member spots.">
+<title>The Pre-Sold Author Package: full scope and pricing | The Podcast Network</title>
+<meta name="description" content="The full scope of the Pre-Sold Author Package: discovery, a podcast and relationship-engine pre-sell sequence, interview-based ghostwriting, a five-pass edit, cover and interior design, a launch plan, and a publishing handoff to Legacy. One price: $30,000.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-<meta name="author" content="The Podcast Network">
-<meta name="theme-color" content="#000000">
-<meta name="color-scheme" content="dark">
-<link rel="canonical" href="https://podcastnetwork.org/author">
+<meta name="author" content="Brett K Moore, The Podcast Network">
+<meta name="theme-color" content="#faf8f3">
+<meta name="color-scheme" content="light">
+<link rel="canonical" href="https://podcastnetwork.org/pre-sold-author.html">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://podcastnetwork.org/author">
-<meta property="og:title" content="The Pre-Sold Author | Publish Your Next Book in 20 Weeks">
-<meta property="og:description" content="Podcasts are the #1 mover of books. 15-show podcast tour + professional ghostwriting + pre-order page. 5 founding spots at $10,000.">
+<meta property="og:url" content="https://podcastnetwork.org/pre-sold-author.html">
+<meta property="og:title" content="The Pre-Sold Author Package: full scope and pricing">
+<meta property="og:description" content="Pre-sell your book to an audience that already wants it, then publish with Legacy. One price: $30,000.">
 <meta property="og:site_name" content="The Podcast Network">
-<meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://podcastnetwork.org/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The Pre-Sold Author | Publish Your Next Book in 20 Weeks">
-<meta name="twitter:description" content="Podcasts are the #1 mover of books. 15-show podcast tour + professional ghostwriting + pre-order page. 5 founding spots at $10,000.">
+<meta name="twitter:title" content="The Pre-Sold Author Package: full scope and pricing">
+<meta name="twitter:description" content="Pre-sell your book to an audience that already wants it, then publish with Legacy. One price: $30,000.">
 <meta name="twitter:image" content="https://podcastnetwork.org/og-image.png">
 
-<!-- Structured Data -->
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "The Pre-Sold Author",
-  "description": "Publish your next book in 20 weeks with a built-in audience",
-  "provider": {
-    "@type": "Organization",
-    "name": "The Podcast Network",
-    "url": "https://podcastnetwork.org"
-  },
-  "areaServed": "US",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Pre-Sold Author Program",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "name": "Founding Member",
-        "price": "10000",
-        "priceCurrency": "USD"
-      }
-    ]
-  }
+  "@context":"https://schema.org",
+  "@type":"Service",
+  "name":"The Pre-Sold Author Package",
+  "serviceType":"Book pre-sell and publishing program",
+  "description":"A productized sequence that pre-sells an author's book to a defined audience before launch, including interview-based ghostwriting, a five-pass edit, cover and interior layout, a production-ready manuscript, and a launch plan, with publication through Legacy Publishing under a joint venture.",
+  "provider":{"@type":"Organization","name":"The Podcast Network","url":"https://podcastnetwork.org"},
+  "offers":{"@type":"Offer","price":"30000","priceCurrency":"USD","description":"One-time, paid to The Podcast Network"}
 }
 </script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="pn.css">
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  color: #ffffff;
-  background-color: #000000;
-  line-height: 1.6;
-}
-
-header {
-  background-color: #1a1a1a;
-  padding: 20px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid #333;
-}
-
-.header-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-size: 24px;
-  font-weight: bold;
-  color: #d4af37;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-  align-items: center;
-}
-
-nav a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 14px;
-  transition: color 0.3s;
-}
-
-nav a:hover {
-  color: #d4af37;
-}
-
-.hero {
-  background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
-  padding: 100px 20px;
-  text-align: center;
-}
-
-.hero-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.hero-eyebrow {
-  font-size: 14px;
-  color: #d4af37;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
-}
-
-.hero h1 {
-  font-size: 48px;
-  margin-bottom: 20px;
-  font-weight: 700;
-}
-
-.hero p {
-  font-size: 18px;
-  color: #cccccc;
-  margin-bottom: 30px;
-}
-
-.cta-button {
-  display: inline-block;
-  background-color: #d4af37;
-  color: #000000;
-  padding: 15px 40px;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 600;
-  transition: background-color 0.3s;
-  border: none;
-  cursor: pointer;
-}
-
-.cta-button:hover {
-  background-color: #e5c158;
-}
-
-.gold-line {
-  height: 2px;
-  background-color: #d4af37;
-  margin: 60px 0;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-section {
-  padding: 80px 20px;
-}
-
-section h2 {
-  font-size: 36px;
-  margin-bottom: 40px;
-  text-align: center;
-}
-
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  margin-bottom: 40px;
-}
-
-.feature-card {
-  background-color: #1a1a1a;
-  padding: 30px;
-  border: 1px solid #333;
-  border-radius: 8px;
-}
-
-.feature-card h3 {
-  font-size: 20px;
-  margin-bottom: 15px;
-  color: #d4af37;
-}
-
-.feature-card p {
-  color: #cccccc;
-  line-height: 1.8;
-}
-
-footer {
-  background-color: #1a1a1a;
-  padding: 40px 20px;
-  text-align: center;
-  border-top: 1px solid #333;
-  color: #999;
-}
-
-@media (max-width: 768px) {
-  .header-content {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  nav ul {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
-  }
-
-  .hero h1 {
-    font-size: 32px;
-  }
-
-  .features {
-    grid-template-columns: 1fr;
-  }
-}
+  .detail-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; margin-top:52px; }
+  .detail-card { background:var(--bone); border:1px solid var(--stone-line); padding:36px 32px; }
+  .detail-card .n { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em; color:var(--accent-dark); }
+  .detail-card h3 { font-family:var(--font-body); font-weight:700; letter-spacing:0; font-size:1.2rem; margin:12px 0 10px; }
+  .detail-card p { font-size:.95rem; color:var(--ink-2); }
+  .jv .jv-grid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,5vw,64px); align-items:start; margin-top:8px; }
+  .jv .jv-col h3 { font-family:var(--font-body); font-weight:700; letter-spacing:0; font-size:1.15rem; margin-bottom:10px; }
+  .jv .jv-col p { color:var(--ink-2); font-size:.96rem; }
+  .faq-list { margin-top:44px; max-width:820px; }
+  .faq-item { border-top:1px solid var(--stone-line); }
+  .faq-item:last-child { border-bottom:1px solid var(--stone-line); }
+  .faq-item summary { font-family:var(--font-body); font-weight:600; font-size:1.05rem; padding:22px 0; cursor:pointer; list-style:none; display:flex; justify-content:space-between; gap:20px; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::after { content:"+"; font-family:var(--font-mono); color:var(--accent); }
+  .faq-item[open] summary::after { content:"\2013"; }
+  .faq-item p { padding:0 0 22px; color:var(--ink-2); font-size:.96rem; max-width:70ch; }
+  @media(max-width:900px){ .detail-grid,.jv .jv-grid{grid-template-columns:1fr;} }
 </style>
 </head>
 <body>
+<a href="#scope" class="skip-link">Skip to main content</a>
 
-<!-- Navigation -->
-<header>
-  <div class="header-content">
-    <div class="logo">Podcast Network</div>
-    <nav>
-      <ul>
-        <li><a href="/for-hosts.html">For Hosts</a></li>
-        <li><a href="/for-guests.html">For Guests</a></li>
-        <li><a href="/#pentatype">Pentatype</a></li>
-        <li><a href="/pre-sold-author.html">Book Program</a></li>
-        <li><a href="https://www.skool.com/thepodcastnetwork/about">Join Free</a></li>
-      </ul>
-    </nav>
-  </div>
+<header id="navbar">
+  <nav>
+    <div class="container">
+      <a href="/" class="nav-logo"><span class="the">the</span>Podcast Network</a>
+      <div class="nav-links" id="nav-menu">
+        <a href="#scope">What's included</a>
+        <a href="#jv">The Legacy JV</a>
+        <a href="#faq">FAQ</a>
+        <a href="/#apply" class="nav-cta">Apply</a>
+      </div>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
 </header>
 
-<!-- Hero Section -->
+<main>
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-eyebrow">Publishing Your Book Your Way</div>
-    <p style="font-size: 12px; color: #d4af37; margin-top: 10px;">Last Updated: March 2026</p>
-    <h1>The Pre-Sold Author Program</h1>
-    <p>Publish your next book in 20 weeks with a built-in audience before it ships. Get a 15-podcast tour, professional ghostwriting, and a pre-order page live from day one.</p>
-    <a href="mailto:brett@apexpodcast.co?subject=Pre-Sold%20Author%20-%20Founding%20Member%20Inquiry" class="cta-button">Schedule a Call</a>
-  </div>
-</section>
-
-<div class="gold-line"></div>
-
-<!-- Program Features Section -->
-<section class="container">
-  <h2>What's Included</h2>
-  <div class="features">
-    <div class="feature-card">
-      <h3>15-Show Podcast Tour</h3>
-      <p>Get featured on 15 hand-selected podcasts in your niche. We handle all the outreach, scheduling, and promotion to ensure maximum reach and impact.</p>
+  <div class="container">
+    <span class="eyebrow">The Pre-Sold Author Package</span>
+    <h1>The full scope, start to finish.</h1>
+    <p class="lead">A productized path that pre-sells your book to a defined audience, writes it from your own conversations, and publishes it through Legacy. Here is everything inside the package and how the publishing partnership works.</p>
+    <div class="hero-ctas">
+      <a href="/#apply" class="btn btn-primary">Apply now</a>
+      <a href="#scope" class="btn btn-ghost">See the scope</a>
     </div>
-    <div class="feature-card">
-      <h3>Professional Ghostwriting</h3>
-      <p>Work with a professional ghostwriter to craft your book. We provide the writing service, editing, and refinement to ensure your book is publication-ready.</p>
-    </div>
-    <div class="feature-card">
-      <h3>Pre-Order Page</h3>
-      <p>Launch your pre-order page on day one. Build momentum and capture emails from your growing audience before your book ships.</p>
-    </div>
-    <div class="feature-card">
-      <h3>Marketing Support</h3>
-      <p>We provide ongoing marketing support to help you reach your target audience and maximize book sales before and after launch.</p>
-    </div>
-    <div class="feature-card">
-      <h3>20-Week Timeline</h3>
-      <p>Compress your book launch into 20 weeks. Our proven process has helped multiple authors move faster than traditional publishing.</p>
-    </div>
-    <div class="feature-card">
-      <h3>Audience Building</h3>
-      <p>Start building your audience from day one. By the time your book launches, you'll have a community ready to purchase and promote your work.</p>
+    <div class="hero-meta">
+      <div class="hero-price">$30,000<small>One price, paid up front</small></div>
+      <span class="hero-tag">One conversation can change everything.</span>
     </div>
   </div>
 </section>
 
-<div class="gold-line"></div>
-
-<!-- Pricing Section -->
-<section class="container">
-  <h2>Founding Member Pricing</h2>
-  <div style="text-align: center; margin: 40px 0;">
-    <p style="font-size: 48px; color: #d4af37; margin-bottom: 10px;"><strong>$10,000</strong></p>
-    <p style="color: #cccccc; margin-bottom: 30px;">Limited to 5 founding member spots</p>
-    <a href="mailto:brett@apexpodcast.co?subject=Pre-Sold%20Author%20-%20Founding%20Member%20Inquiry" class="cta-button">Schedule a Call</a>
+<section id="scope">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal">What's included</span>
+      <h2 class="reveal reveal-d1">Six parts, one outcome: a book that lands on a pre-sold audience.</h2>
+    </div>
+    <div class="detail-grid">
+      <div class="detail-card reveal"><div class="n">01 / Discovery</div><h3>Voice, audience, and direction</h3><p>We start by mapping your voice, the audience you are writing for, the direction of the book, and the pre-sell strategy that fits both.</p></div>
+      <div class="detail-card reveal reveal-d1"><div class="n">02 / Pre-sell sequence</div><h3>A structured arc that builds the list</h3><p>A podcast and relationship-engine sequence puts you and the book in front of a defined audience over a fixed window, captures interest, and builds the launch list before the book exists.</p></div>
+      <div class="detail-card reveal"><div class="n">03 / Manuscript</div><h3>Ghostwritten from your own words</h3><p>Interview-based ghostwriting across your podcast catalog and source material, written in your voice, so the book carries ideas you already proved on air.</p></div>
+      <div class="detail-card reveal reveal-d1"><div class="n">04 / Edit and design</div><h3>A five-pass edit, cover, and interior</h3><p>Professional editing across five passes, plus cover and interior layout, delivered as a production-ready manuscript.</p></div>
+      <div class="detail-card reveal"><div class="n">05 / Launch plan</div><h3>A launch into demand you built</h3><p>A coordinated launch designed to land the book on the audience you pre-sold rather than a cold list bought at the last minute.</p></div>
+      <div class="detail-card reveal reveal-d1"><div class="n">06 / Handoff to Legacy</div><h3>A real publisher takes it home</h3><p>The finished manuscript and launch plan transfer to Legacy Publishing for publication and distribution under the joint venture.</p></div>
+    </div>
   </div>
 </section>
 
-<div class="gold-line"></div>
+<div class="rule"></div>
 
-<!-- CTA Section -->
-<section class="container" style="text-align: center;">
-  <h2>Ready to Publish Your Book?</h2>
-  <p style="font-size: 18px; color: #cccccc; margin: 20px 0 30px;">Join the Pre-Sold Author program and launch your book with confidence.</p>
-  <a href="mailto:brett@apexpodcast.co?subject=Pre-Sold%20Author%20-%20Founding%20Member%20Inquiry" class="cta-button">Schedule a Call</a>
+<section class="why jv" id="jv">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal">The Legacy JV</span>
+      <h2 class="reveal reveal-d1">One price to us. The publish handled by Legacy.</h2>
+    </div>
+    <div class="jv-grid">
+      <div class="jv-col reveal">
+        <h3>What you pay</h3>
+        <p>$30,000, one time, paid to The Podcast Network. That covers the pre-sell sequence and the manuscript production, start to finish. There is one price and one relationship to manage on your side.</p>
+      </div>
+      <div class="jv-col reveal reveal-d1">
+        <h3>How Legacy fits</h3>
+        <p>Legacy Publishing handles publication and distribution under its standing structure: 10% of net book sales, with no separate upfront fee. Legacy is named as the publishing partner, and the royalty share is disclosed in the contract.</p>
+      </div>
+    </div>
+    <p class="lead reveal" style="margin-top:40px;max-width:74ch">The two sides point at the same book from opposite ends of the timeline. We own the pre-sell and the audience. Legacy owns the publish and the long-term distribution. You get a pre-sold launch and a real publisher behind the finished book.</p>
+  </div>
 </section>
 
-<div class="gold-line"></div>
+<div class="rule"></div>
 
-<!-- Footer -->
-<footer>
-  <p>&copy; 2026 The Podcast Network. All rights reserved.</p>
-  <p style="margin-top: 10px; font-size: 12px;">Questions? Email us at <a href="mailto:brett@apexpodcast.co" style="color: #d4af37; text-decoration: none;">brett@apexpodcast.co</a></p>
+<section id="faq">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal">FAQ</span>
+      <h2 class="reveal reveal-d1">The questions authors ask first.</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item"><summary>Who is the package for?</summary><p>Authors who have a defined audience or a clear path to one, who want a pre-sold launch rather than a cold release, and who want the book to start a longer relationship-engine play rather than be a one-off artifact.</p></details>
+      <details class="faq-item"><summary>What exactly does the $30,000 cover?</summary><p>The pre-sell sequence and the full manuscript production: discovery, the podcast and relationship-engine arc, interview-based ghostwriting, a five-pass edit, cover and interior design, a production-ready manuscript, and a launch plan. Legacy handles the publish under the joint venture at 10% of net book sales with no separate upfront fee.</p></details>
+      <details class="faq-item"><summary>Do I have to write the book myself?</summary><p>No. We ghostwrite the manuscript from your podcast catalog and source material so it reads in your voice. You show up for the conversations and the discovery work. We handle the writing, editing, and design.</p></details>
+      <details class="faq-item"><summary>What if I do not have a podcast yet?</summary><p>That is fine. The pre-sell sequence is built around getting you in front of a defined audience, whether that starts from a show, a community, an organization, or from scratch. We map the right path in discovery.</p></details>
+      <details class="faq-item"><summary>How do I start?</summary><p>Apply through the form on the home page. We review every application and follow up to schedule a discovery call.</p></details>
+    </div>
+    <div style="margin-top:48px">
+      <a href="/#apply" class="btn btn-primary">Apply for the Pre-Sold Author Package</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="nav-logo"><span class="the">the</span>Podcast Network</a>
+        <p>One conversation can change everything.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>The package</h4>
+          <a href="#scope">What's included</a>
+          <a href="#jv">The Legacy JV</a>
+          <a href="/#apply">Apply</a>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <a href="/how-to-turn-podcast-into-book.html">Turn a podcast into a book</a>
+          <a href="/roi-of-publishing-a-book.html">The ROI of publishing a book</a>
+          <a href="/cost-to-publish-a-book-2026.html">What it costs to publish</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="mailto:hello@podcastnetwork.org">hello@podcastnetwork.org</a>
+          <a href="https://www.skool.com/thepodcastnetwork/about" target="_blank" rel="noopener">Free community</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 The Podcast Network</p>
+      <a href="/#apply">Apply for the Pre-Sold Author Package</a>
+    </div>
+  </div>
 </footer>
 
+<script>
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+const toggle = document.querySelector('.menu-toggle');
+const menu = document.getElementById('nav-menu');
+toggle.addEventListener('click', () => {
+  const open = menu.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', open);
+  toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+});
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menu.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); toggle.setAttribute('aria-label','Open menu'); }));
+</script>
 </body>
 </html>
