@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "pn-dev",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["dev"],
+      "port": 3000
+    },
+    {
+      "name": "pn-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8088"],
+      "port": 8088
+    }
+  ]
+}

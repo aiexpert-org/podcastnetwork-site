@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Coaches cover art">
+  <rect width="600" height="600" fill="#14140F"/>
+  <rect x="0" y="280" width="600" height="36" fill="#BFD93B"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">
+    <text x="40" y="56" font-size="20" fill="#BFD93B" letter-spacing="3">APX-NET-05</text>
+    <text x="40" y="84" font-size="14" fill="#FAF8F3" opacity="0.65" letter-spacing="2">APEX PODCAST NETWORK</text>
+  </g>
+  <text x="40" y="320" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="88" fill="#FAF8F3">Coaches</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">
+    <text x="40" y="556" font-size="14" fill="#FAF8F3" opacity="0.6" letter-spacing="2">NARRATED WITH AI VOICE</text>
+    <text x="560" y="556" text-anchor="end" font-size="14" fill="#BFD93B" letter-spacing="3">STRUCTURE</text>
+  </g>
+</svg>
