@@ -184,13 +184,13 @@ function Problem() {
             <p className="font-display text-sm font-semibold tracking-wider text-neutral-500 uppercase">
               Without Us
             </p>
-            <ul role="list" className="mt-6 space-y-3 text-neutral-700">
+            <ul
+              role="list"
+              className="mt-6 divide-y divide-neutral-200 text-neutral-700"
+            >
               {without.map((item) => (
-                <li key={item} className="flex gap-3">
-                  <span aria-hidden="true" className="text-neutral-400">
-                    ×
-                  </span>
-                  <span>{item}</span>
+                <li key={item} className="py-3 first:pt-0 last:pb-0">
+                  {item}
                 </li>
               ))}
             </ul>
@@ -201,16 +201,13 @@ function Problem() {
             <p className="font-display text-sm font-semibold tracking-wider text-[var(--color-brand-yellow)] uppercase">
               With Us
             </p>
-            <ul role="list" className="mt-6 space-y-3 text-neutral-200">
+            <ul
+              role="list"
+              className="mt-6 divide-y divide-neutral-800 text-neutral-200"
+            >
               {withUs.map((item) => (
-                <li key={item} className="flex gap-3">
-                  <span
-                    aria-hidden="true"
-                    className="text-[var(--color-brand-yellow)]"
-                  >
-                    ✓
-                  </span>
-                  <span>{item}</span>
+                <li key={item} className="py-3 first:pt-0 last:pb-0">
+                  {item}
                 </li>
               ))}
             </ul>
@@ -321,16 +318,13 @@ function Pricing() {
             <p className="mt-2 text-sm text-neutral-300">
               One-time payment. Best value.
             </p>
-            <ul role="list" className="mt-8 space-y-3 text-neutral-200">
+            <ul
+              role="list"
+              className="mt-8 divide-y divide-neutral-800 text-neutral-200"
+            >
               {payInFull.map((item) => (
-                <li key={item} className="flex gap-3">
-                  <span
-                    aria-hidden="true"
-                    className="text-[var(--color-brand-yellow)]"
-                  >
-                    ✓
-                  </span>
-                  <span>{item}</span>
+                <li key={item} className="py-3 first:pt-0 last:pb-0">
+                  {item}
                 </li>
               ))}
             </ul>
@@ -359,13 +353,13 @@ function Pricing() {
             <p className="mt-2 text-sm text-neutral-600">
               12-month commitment. Same deliverables.
             </p>
-            <ul role="list" className="mt-8 space-y-3 text-neutral-700">
+            <ul
+              role="list"
+              className="mt-8 divide-y divide-neutral-200 text-neutral-700"
+            >
               {monthly.map((item) => (
-                <li key={item} className="flex gap-3">
-                  <span aria-hidden="true" className="text-neutral-950">
-                    ✓
-                  </span>
-                  <span>{item}</span>
+                <li key={item} className="py-3 first:pt-0 last:pb-0">
+                  {item}
                 </li>
               ))}
             </ul>
