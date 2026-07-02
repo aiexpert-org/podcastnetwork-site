@@ -288,6 +288,60 @@
   }
 }
 
+/* Dual-direction marquee logo cloud (CCM parallax pattern). Two rows scroll
+ * opposite ways at a slow, even pace; content is duplicated once so the
+ * -50% translate loops seamlessly. Hover pauses both rows. */
+.pn-marquee {
+  --pn-marquee-duration: 135s;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.pn-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: pn-marquee-left var(--pn-marquee-duration) linear infinite;
+}
+
+.pn-marquee-track--reverse {
+  animation-name: pn-marquee-right;
+}
+
+.pn-marquee:hover .pn-marquee-track,
+.pn-marquee:focus-within .pn-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes pn-marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pn-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pn-marquee-track {
+    animation: none !important;
+  }
+}
+
 /* Transform-only hero entrance. The homepage H1 is the LCP element; an
  * opacity fade would hold LCP hostage to hydration, so it rises without
  * fading. Dropped under prefers-reduced-motion. */

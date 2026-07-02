@@ -8,6 +8,7 @@ import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { GridListItem } from '@/components/GridList'
 import { SectionIntro } from '@/components/SectionIntro'
 import { HeroBand } from '@/components/home/HeroBand'
+import { LogoMarquee, type MarqueeItem } from '@/components/home/LogoMarquee'
 import {
   LiveCaseStudyCard,
   type CaseStudyStatic,
@@ -169,6 +170,43 @@ function CaseStudiesPreview({ studies }: { studies: CaseStudyStatic[] }) {
   )
 }
 
+/* Roster note: this deliberately lists surfaces and shows we can prove
+ * (entity graph nodes, live metrics, the network itself), not aspirational
+ * press logos. Swap in outlet wordmarks here once real placements exist. */
+const SIGNAL_SURFACES: MarqueeItem[] = [
+  { name: 'Google Knowledge Graph', href: '/the-method/' },
+  { name: 'Wikidata', href: '/the-method/' },
+  { name: 'Amazon', href: '/case-studies/ai-or-die/' },
+  { name: 'Goodreads', href: '/case-studies/ai-or-die/' },
+  { name: 'Spotify', href: '/case-studies/ai-or-die/' },
+  { name: 'Apple Podcasts', href: '/the-package/' },
+  { name: 'LinkedIn', href: '/founders/' },
+  { name: 'X', href: '/founders/' },
+]
+
+const NETWORK_ROSTER: MarqueeItem[] = [
+  { name: 'AI or Die', href: '/case-studies/ai-or-die/' },
+  { name: 'Legacy Publishing', href: '/legal/legacy-jv/' },
+  { name: 'Apex Podcast Co', href: '/founders/' },
+  { name: 'AI Expert', href: '/founders/' },
+  { name: 'In a Moment', href: '/case-studies/michele-okimura/' },
+  { name: 'The Next Episode', href: '/the-package/' },
+  { name: 'The Buddy Buck Show', href: '/the-package/' },
+  { name: 'The Play Free Sports Podcast', href: '/the-package/' },
+]
+
+function SignalCloud() {
+  return (
+    <LogoMarquee
+      className="mt-24 sm:mt-32 lg:mt-40"
+      eyebrow="Live surfaces in the graph"
+      caption="Hover to pause. Every wordmark links to the proof."
+      topRow={SIGNAL_SURFACES}
+      bottomRow={NETWORK_ROSTER}
+    />
+  )
+}
+
 function Compression() {
   return (
     <>
@@ -294,6 +332,8 @@ export default function Home() {
       <YouSearchBand />
 
       <CaseStudiesPreview studies={studies} />
+
+      <SignalCloud />
 
       <Compression />
 
