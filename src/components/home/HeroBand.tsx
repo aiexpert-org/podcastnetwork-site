@@ -1,7 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 import pnGraph from '../../../data/pn-entity-graph.json'
 import pnKeyframes from '../../../data/pn-playhead-keyframes.json'
@@ -65,10 +65,36 @@ function GraphPane() {
  * Ink ground + Papyrus text per the Editorial Premium palette lock.
  */
 export function HeroBand() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const [nearView, setNearView] = useState(false)
+
+  // The React Flow chunk is heavy; keep it off the critical path until the
+  // band approaches the viewport so the hero text LCP never waits on it.
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el || nearView) return
+    if (!('IntersectionObserver' in window)) {
+      setNearView(true)
+      return
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setNearView(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '100% 0px' },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [nearView])
+
   return (
     <Container className="mt-16 sm:mt-20">
       <FadeIn>
         <section
+          ref={sectionRef}
           aria-label="PodcastNetwork.org entity graph"
           className="-mx-6 overflow-hidden bg-viz-ink text-papyrus sm:mx-0 sm:rounded-4xl"
         >
@@ -83,7 +109,18 @@ export function HeroBand() {
           </div>
           <PlayheadProvider>
             <div className="h-[55vh] min-h-[440px] md:h-[60vh] md:min-h-[520px]">
-              <GraphPane />
+              {nearView ? (
+                <GraphPane />
+              ) : (
+                <div
+                  className="flex h-full w-full items-center justify-center"
+                  style={{ minHeight: 440 }}
+                >
+                  <span className="text-caption text-fog">
+                    Rendering the entity graph
+                  </span>
+                </div>
+              )}
             </div>
             <div className="border-t border-viz-border px-6 py-8 md:px-12">
               <SixMonthPlayhead keyframes={keyframes} variant="controller" />

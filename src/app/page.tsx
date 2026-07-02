@@ -271,7 +271,9 @@ export default function Home() {
       <SchemaGraph schema={homeSchema()} />
 
       <Container className="mt-24 sm:mt-32 md:mt-44">
-        <FadeIn className="max-w-3xl">
+        {/* Transform-only entrance: this block holds the LCP headline, so it
+            must be visible before hydration. */}
+        <div className="pn-rise max-w-3xl">
           <h1 className="font-display text-5xl font-medium tracking-tight text-balance text-neutral-950 sm:text-7xl">
             This is what a Knowledge Panel looks like from the inside.
           </h1>
@@ -282,7 +284,7 @@ export default function Home() {
             live. Drag the playhead to watch six months of authority
             architecture assemble itself.
           </p>
-        </FadeIn>
+        </div>
       </Container>
 
       <HeroBand />

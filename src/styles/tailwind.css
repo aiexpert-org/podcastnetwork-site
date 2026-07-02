@@ -43,13 +43,16 @@
 
   --radius-4xl: 2.5rem;
 
+  /* Mona Sans is injected by next/font in app/layout.tsx (preloaded, swap). */
   --font-sans:
-    Mona Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    var(--font-mona-sans), ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
 
   --font-display:
-    Mona Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    var(--font-mona-sans), ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
 
   --font-display--font-variation-settings: 'wdth' 125;
 
@@ -282,6 +285,28 @@
 @layer utilities {
   .measure {
     max-width: 68ch;
+  }
+}
+
+/* Transform-only hero entrance. The homepage H1 is the LCP element; an
+ * opacity fade would hold LCP hostage to hydration, so it rises without
+ * fading. Dropped under prefers-reduced-motion. */
+@keyframes pn-rise-loop {
+  from {
+    transform: translateY(24px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.pn-rise {
+  animation: pn-rise-loop 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pn-rise {
+    animation: none !important;
   }
 }
 
