@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## v0.6.1 — Signal marquee (2026-07-02)
+
+- **Dual-direction marquee logo cloud** added to the homepage between the
+  case studies preview and the compression section, after the
+  createchurchmedia.com parallax pattern Brett flagged: two rows drifting
+  opposite directions, 135s per loop, linear infinite, hover + keyboard
+  focus pause, soft edge-fade mask, duplicate set aria-hidden, static under
+  prefers-reduced-motion. Pure CSS, no JS library.
+- **Speed decision.** 135s kept (~13 to 17 px/s at current content widths).
+  90s reads visibly animated against Studio's otherwise-still pages; 180s
+  stops reading as motion. The two rows differ slightly in px/s because the
+  tracks differ in width at equal duration, which strengthens the parallax
+  read.
+- **Roster decision (flagged for Brett).** The dispatch listed NYT / WSJ /
+  HBR / Inc. / Fast Company / TechCrunch / Wired as the top row. Shipping
+  unverifiable press logos under "Featured In" contradicts the site's
+  honest-signals frame and invites exactly one bad question in the Seth
+  pitch. Shipped roster: top row = signal surfaces the entities actually
+  index on (Google Knowledge Graph, Wikidata, Amazon, Goodreads, Spotify,
+  Apple Podcasts, LinkedIn, X), bottom row = the real network and cohort
+  (AI or Die, Legacy Publishing, Apex Podcast Co, AI Expert, In a Moment,
+  network shows). Every wordmark links to its proof page. To restore the
+  press list once real placements exist: edit SIGNAL_SURFACES in
+  src/app/page.tsx; the component takes image wordmarks through
+  GrayscaleTransitionImage.
+- Wordmarks are typographic (Mona Sans display, muted slate, darken to Ink
+  on hover) until real SVG logo assets exist; the text treatment is the
+  grayscale-logo analog.
+
 ## v0.6 — Studio-fork rebuild (2026-07-02, Fable 5 max mode)
 
 Brett's verdict on the v0.5 shell ("cheap, ugly stock Claude website") triggered
