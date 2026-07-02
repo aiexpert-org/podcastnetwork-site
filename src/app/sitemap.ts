@@ -1,30 +1,27 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site-config";
 
-/**
- * Generates /sitemap.xml at build time.
- *
- * Each new top-level route added to the site should be added here.
- * For MDX blog/content collections, generate entries dynamically by
- * reading the content folder and mapping each item to a sitemap entry.
- */
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
   const now = new Date();
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 1.0,
-    },
-    // Add more entries here as new pages/routes are added:
-    // {
-    //   url: `${baseUrl}/about`,
-    //   lastModified: now,
-    //   changeFrequency: "monthly",
-    //   priority: 0.8,
-    // },
+  const routes: { path: string; priority: number }[] = [
+    { path: "/", priority: 1.0 },
+    { path: "/the-method/", priority: 0.9 },
+    { path: "/the-package/", priority: 0.9 },
+    { path: "/case-studies/", priority: 0.8 },
+    { path: "/case-studies/ai-or-die/", priority: 0.8 },
+    { path: "/case-studies/michele-okimura/", priority: 0.6 },
+    { path: "/case-studies/dominic-jones/", priority: 0.6 },
+    { path: "/case-studies/rob-okimura/", priority: 0.6 },
+    { path: "/founders/", priority: 0.8 },
+    { path: "/apply/", priority: 0.9 },
   ];
+
+  return routes.map(({ path, priority }) => ({
+    url: `${baseUrl}${path}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority,
+  }));
 }

@@ -1,0 +1,31 @@
+{
+  "$comment": "Founder static data. Wikidata Q-numbers pending (NEXT-STEPS.md); sameAs ships with LinkedIn + X only until the Q-numbers resolve.",
+  "brett-k-moore": {
+    "id": "brett-k-moore",
+    "name": "Brett K Moore",
+    "role": "Co-founder + CEO, PodcastNetwork.org",
+    "coRole": "Co-author, AI or Die",
+    "bio": "Multi-business operator. AI Expert co-founder. Apex Podcast Co operator. Fifteen years building networks between operators and the audiences they need.",
+    "photoUrl": "/founders/brett-k-moore.jpg",
+    "linkedIn": "https://www.linkedin.com/in/brettkmoore/",
+    "x": "https://x.com/brettkmoore",
+    "sameAs": [
+      "https://www.linkedin.com/in/brettkmoore/",
+      "https://x.com/brettkmoore"
+    ]
+  },
+  "mike-partners": {
+    "id": "mike-partners",
+    "name": "Mike Partners",
+    "role": "Co-founder, PodcastNetwork.org",
+    "coRole": "Co-author, AI or Die",
+    "bio": "Career operator turned author. Legacy Publishing partner. AI or Die is the playbook he wishes he had ten years ago.",
+    "photoUrl": "/founders/mike-partners.jpg",
+    "linkedIn": "https://www.linkedin.com/in/mikepartners/",
+    "x": "https://x.com/mikepartners",
+    "sameAs": [
+      "https://www.linkedin.com/in/mikepartners/",
+      "https://x.com/mikepartners"
+    ]
+  }
+}

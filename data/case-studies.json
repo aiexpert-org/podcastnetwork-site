@@ -1,0 +1,71 @@
+{
+  "$comment": "Static config per case study. Live metrics come from /api/case-study-data. amazonAsin, goodreadsId, spotifyShowId are filled when credentials/IDs land (NEXT-STEPS.md); empty string means that source is stubbed.",
+  "ai-or-die": {
+    "slug": "ai-or-die",
+    "variant": "featured",
+    "title": "AI or Die",
+    "authors": ["Brett K Moore", "Mike Partners"],
+    "publisher": "Legacy Publishing",
+    "publishedDate": "2026-06-24",
+    "coverImageUrl": "/case-studies/ai-or-die-cover.jpg",
+    "amazonAsin": "",
+    "goodreadsId": "",
+    "spotifyShowId": "",
+    "spotifyDownloadsManual": {
+      "value": null,
+      "lastUpdated": "2026-07-02"
+    },
+    "blurb": "We ran the six-month arc on ourselves. Book launched 2026-06-24. Live metrics refresh hourly. This is the case study we can prove because we still own it."
+  },
+  "michele-okimura": {
+    "slug": "michele-okimura",
+    "variant": "in-launch",
+    "title": "Michele Okimura",
+    "workingTitle": "In development",
+    "authors": ["Michele Okimura"],
+    "publisher": "Legacy Publishing",
+    "startedDate": "2026-04-15",
+    "currentMonth": 3,
+    "totalMonths": 6,
+    "currentPhase": "Podcast arc live",
+    "blurb": "In production. Podcast arc live. Manuscript on schedule. Full case study lands at launch.",
+    "nextMilestone": {
+      "label": "Pre-sell sequence begins",
+      "targetDate": "2026-08-01"
+    }
+  },
+  "dominic-jones": {
+    "slug": "dominic-jones",
+    "variant": "in-launch",
+    "title": "Dominic Jones",
+    "workingTitle": "A Heart That Says Yes",
+    "authors": ["Dominic Jones"],
+    "publisher": "Legacy Publishing",
+    "startedDate": "2026-05-15",
+    "currentMonth": 2,
+    "totalMonths": 6,
+    "currentPhase": "Manuscript kickoff underway",
+    "blurb": "Discovery complete. Manuscript kickoff underway. Podcast arc begins next month.",
+    "nextMilestone": {
+      "label": "Podcast arc begins",
+      "targetDate": "2026-08-01"
+    }
+  },
+  "rob-okimura": {
+    "slug": "rob-okimura",
+    "variant": "in-launch",
+    "title": "Rob Okimura",
+    "workingTitle": "In development",
+    "authors": ["Rob Okimura"],
+    "publisher": "Legacy Publishing",
+    "startedDate": "2026-03-15",
+    "currentMonth": 4,
+    "totalMonths": 6,
+    "currentPhase": "Pre-sell sequence live",
+    "blurb": "Pre-sell sequence live. Knowledge panel indexing. Launch window in Q3.",
+    "nextMilestone": {
+      "label": "Knowledge Panel resolution",
+      "targetDate": "2026-08-15"
+    }
+  }
+}
