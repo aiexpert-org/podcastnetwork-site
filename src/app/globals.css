@@ -24,7 +24,9 @@
 
   /* Accents */
   --color-foil: #c4a365;
-  --color-foil-dark: #8b7343;
+  /* Darkened from the palette doc's #8b7343 to clear WCAG AA (4.5:1) for
+   * eyebrow-size text on Vellum; still reads warm gold. */
+  --color-foil-dark: #7a6539;
   --color-foil-bright: #e5c88e;
   --color-signal: #1e40af;
   --color-signal-dark: #152f80;

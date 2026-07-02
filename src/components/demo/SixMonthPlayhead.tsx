@@ -235,7 +235,7 @@ export function SixMonthPlayhead({
               key={label}
               onClick={() => setDay(monthDay)}
               className={`text-caption text-left transition-colors focus-visible:outline-2 focus-visible:outline-foil ${
-                passed ? "text-papyrus" : "text-fog/60"
+                passed ? "text-papyrus" : "text-fog"
               } hover:text-foil-bright`}
             >
               {label}

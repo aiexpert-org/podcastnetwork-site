@@ -174,6 +174,7 @@ export function ApplicationDiagnostic({
         <div
           className="h-1.5 w-40 overflow-hidden rounded-full bg-ink/10"
           role="progressbar"
+          aria-label="Application progress"
           aria-valuemin={0}
           aria-valuemax={STEPS.length}
           aria-valuenow={step + 1}

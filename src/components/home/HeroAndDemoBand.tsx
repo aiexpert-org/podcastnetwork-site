@@ -65,9 +65,11 @@ export function HeroAndDemoBand() {
         </div>
 
         <Container className="pt-6 pb-20 text-center md:pb-24">
+          {/* Transform-only entrance: an opacity fade here would delay LCP
+              (this block holds the LCP headline). */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 16 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.6, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
           >
             <Eyebrow className="!text-foil">

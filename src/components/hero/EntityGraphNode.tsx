@@ -51,6 +51,11 @@ function EntityGraphNodeInner({ data, selected }: NodeProps<EntityNodeData>) {
       className="group pn-float flex flex-col items-center"
       style={{
         cursor: "pointer",
+        // 24px minimum interactive footprint (WCAG target-size) even for
+        // the smallest periphery nodes.
+        minWidth: 24,
+        minHeight: 24,
+        justifyContent: "flex-start",
         animationDelay: `${(order % 7) * 0.9}s`,
         animationDuration: `${5.5 + (order % 5) * 0.7}s`,
       }}

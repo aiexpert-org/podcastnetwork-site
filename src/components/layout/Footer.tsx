@@ -51,12 +51,12 @@ export function Footer() {
 
           <nav aria-label="Footer">
             <p className="text-eyebrow text-slate">Site</p>
-            <ul className="mt-3 space-y-2">
+            <ul className="mt-2">
               {NAV.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-body-sm text-ink hover:text-signal"
+                    className="text-body-sm inline-flex items-center py-1.5 text-ink hover:text-signal"
                   >
                     {item.label}
                   </Link>
@@ -94,13 +94,22 @@ export function Footer() {
             Application-only intake. Serious authors only.
           </p>
           <p className="text-caption space-x-3 text-slate">
-            <Link href="/legal/privacy/" className="hover:text-signal">
+            <Link
+              href="/legal/privacy/"
+              className="inline-flex items-center py-2 hover:text-signal"
+            >
               Privacy
             </Link>
-            <Link href="/legal/terms/" className="hover:text-signal">
+            <Link
+              href="/legal/terms/"
+              className="inline-flex items-center py-2 hover:text-signal"
+            >
               Terms
             </Link>
-            <Link href="/legal/legacy-jv/" className="hover:text-signal">
+            <Link
+              href="/legal/legacy-jv/"
+              className="inline-flex items-center py-2 hover:text-signal"
+            >
               Legacy JV Disclosure
             </Link>
           </p>

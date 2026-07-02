@@ -55,12 +55,12 @@ export function FounderProfile({
         <p className={`text-body-sm mt-2 ${dark ? "text-fog" : "text-slate"}`}>
           {founder.bio}
         </p>
-        <p className="mt-2 flex gap-4">
+        <p className="mt-1 flex gap-4">
           <a
             href={founder.linkedIn}
             rel="me noopener noreferrer"
             target="_blank"
-            className="text-caption text-signal underline underline-offset-2 hover:decoration-foil"
+            className="text-caption inline-flex items-center py-2 pr-1 text-signal underline underline-offset-2 hover:decoration-foil"
           >
             LinkedIn
             <span className="sr-only">{founder.name} on LinkedIn</span>
@@ -69,7 +69,7 @@ export function FounderProfile({
             href={founder.x}
             rel="me noopener noreferrer"
             target="_blank"
-            className="text-caption text-signal underline underline-offset-2 hover:decoration-foil"
+            className="text-caption inline-flex items-center px-1 py-2 text-signal underline underline-offset-2 hover:decoration-foil"
           >
             X<span className="sr-only">{founder.name} on X</span>
           </a>

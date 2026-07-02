@@ -113,7 +113,7 @@ export function SchemaValidator({
           onChange={(e) => setUrl(e.target.value)}
           placeholder="https://your-site.com or LinkedIn profile URL"
           disabled={phase === "loading"}
-          className="w-full rounded-md border border-ink/15 bg-white px-4 py-3.5 text-ink placeholder:text-slate/70 focus:border-foil focus:outline-none disabled:opacity-60"
+          className="w-full rounded-md border border-ink/15 bg-white px-4 py-3.5 text-ink placeholder:text-slate focus:border-foil focus:outline-none disabled:opacity-60"
         />
         <Button
           type="submit"

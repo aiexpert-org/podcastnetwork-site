@@ -98,7 +98,7 @@ export function EntityNodeDetail({
         <p className="text-body-sm mt-2 text-fog">{node.description}</p>
       )}
 
-      <p className="text-micro mt-3 font-mono break-all text-fog/70" data-mono>
+      <p className="text-micro mt-3 font-mono break-all text-fog" data-mono>
         {node.id}
       </p>
 

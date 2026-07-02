@@ -130,7 +130,7 @@ export default function TheMethodPage() {
                       {m.title}
                     </h3>
                     <p className="measure mt-4 text-slate">{m.body}</p>
-                    <p className="text-caption mt-4 text-slate/80">
+                    <p className="text-caption mt-4 text-slate">
                       Artifacts: {m.artifacts}
                     </p>
                   </div>

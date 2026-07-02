@@ -129,7 +129,7 @@ export function AiOrDieMetrics({
               #<CountUp value={data.amazon.rank} />
             </>
           ) : (
-            <span className="text-fog/60">—</span>
+            <span className="text-fog">—</span>
           )}
         </Metric>
 
@@ -150,7 +150,7 @@ export function AiOrDieMetrics({
               </span>
             </>
           ) : (
-            <span className="text-fog/60">—</span>
+            <span className="text-fog">—</span>
           )}
         </Metric>
 
@@ -169,7 +169,7 @@ export function AiOrDieMetrics({
           {data?.spotify ? (
             <CountUp value={data.spotify.episodeCount} />
           ) : (
-            <span className="text-fog/60">—</span>
+            <span className="text-fog">—</span>
           )}
         </Metric>
       </div>
@@ -183,7 +183,7 @@ export function AiOrDieMetrics({
         </p>
       )}
 
-      <p className="text-micro mt-4 text-fog/70">
+      <p className="text-micro mt-4 text-fog">
         {data
           ? `Updated ${new Date(data.fetchedAt).toLocaleTimeString("en-US", {
               hour: "numeric",
