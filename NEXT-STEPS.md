@@ -79,11 +79,21 @@ intentional on July 7, or as broken.
   `content/schema/10-person-brett.json` / `11-person-mike.json` /
   `01-organization.json`.
 
-### 9. GHL wiring (application → CRM)
-- **What:** deferred by design. Applications go to email + log only.
-- **Fix (post-launch):** GHL PAT into `GHL_API_KEY`, pipeline + stage IDs,
-  then extend `/api/apply/route.ts` with the contact + opportunity POSTs
-  (payload shapes documented in dream-site-tech/07).
+### 9. GHL wiring (application → CRM) — CODE COMPLETE, awaiting your go
+- **What:** the parallel GHL setup task (2026-07-02) shipped the PAT,
+  Application Funnel pipeline, and custom fields, so the sync is now fully
+  implemented in `src/app/api/apply/ghl.ts`: contact upsert + full intake
+  note + opportunity in New Application at $30,000. Per your "GHL wiring is
+  post-launch" directive, the `GHL_API_KEY` was NOT added to Vercel; without
+  it the route skips GHL cleanly (`crm_pending_ghl_key` warning) and the
+  email + log path carries the submission.
+- **To go live:** add `GHL_API_KEY` (the PAT from
+  operations/ghl-ids-reference.md) to Vercel env. Pipeline/stage/location
+  IDs are already defaulted in code. One env var, no code changes.
+- **Field-group note:** the GHL custom fields were scaffolded for the older
+  12-question diagnostic; the v0.5 six-question answers that have no
+  matching field (situation, KP status, audience band, timeline, budget)
+  land in the contact note. Reconcile the field group when convenient.
 
 ### 10. Vercel KV (cross-instance caching)
 - In-memory cache works per instance; a KV store would share the SerpAPI

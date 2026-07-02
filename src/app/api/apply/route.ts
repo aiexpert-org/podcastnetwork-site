@@ -13,6 +13,7 @@ import {
   TIMELINES,
 } from "@/lib/application-schema";
 import { rateLimit } from "@/lib/server-cache";
+import { syncApplicationToGhl } from "./ghl";
 
 export const runtime = "nodejs";
 
@@ -83,6 +84,35 @@ export async function POST(req: Request) {
   }
 
   const warnings: string[] = [];
+
+  // 2. GHL: contact + intake note + opportunity in New Application. Never
+  // fails the applicant; degrades to a warning for the ops log.
+  const noteBody = [
+    `Pre-Sold Author Package application (${submittedAt})`,
+    ``,
+    `Situation: ${labelFor(SITUATIONS, app.situation)}`,
+    `Knowledge Panel today: ${labelFor(KP_STATUS, app.kpStatus)}`,
+    `Audience size: ${labelFor(AUDIENCE_BANDS, app.audience)}`,
+    `Timeline: ${labelFor(TIMELINES, app.timeline)}`,
+    `Budget ($30,000): ${labelFor(BUDGET_ANSWERS, app.budget)}`,
+    `Scanned URL: ${app.scannedUrl || "(not scanned)"}`,
+    `Schema score: ${app.schemaScore ?? "n/a"}/100`,
+    `Readiness score: ${readinessScore}/100 (${band})`,
+    `What would it change: ${app.openText || "(blank)"}`,
+  ].join("\n");
+
+  const ghl = await syncApplicationToGhl({
+    name: app.name,
+    email: app.email,
+    scannedUrl: app.scannedUrl ?? "",
+    schemaScore: app.schemaScore ?? null,
+    readinessScore,
+    band,
+    noteBody,
+  });
+  if (ghl.status === "failed") warnings.push("crm_sync_pending");
+  if (ghl.status === "skipped") warnings.push("crm_pending_ghl_key");
+
   const resendKey = process.env.RESEND_API_KEY;
 
   if (resendKey) {
