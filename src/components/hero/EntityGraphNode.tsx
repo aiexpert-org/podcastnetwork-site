@@ -48,8 +48,12 @@ function EntityGraphNodeInner({ data, selected }: NodeProps<EntityNodeData>) {
               },
             }
       }
-      className="group flex flex-col items-center"
-      style={{ cursor: "pointer" }}
+      className="group pn-float flex flex-col items-center"
+      style={{
+        cursor: "pointer",
+        animationDelay: `${(order % 7) * 0.9}s`,
+        animationDuration: `${5.5 + (order % 5) * 0.7}s`,
+      }}
     >
       <Handle
         type="target"

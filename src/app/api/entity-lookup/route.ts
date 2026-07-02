@@ -63,14 +63,24 @@ function buildGraph(query: string, results: SourceEntity[]): EntityGraph {
       .filter(Boolean)
       .sort((a, b) => (b?.length ?? 0) - (a?.length ?? 0))[0] ?? undefined;
 
+  // Canonicalize before dedup so twitter.com/x.com and www/apex variants of
+  // the same profile collapse into one node.
+  const canonical = (url: string) =>
+    url
+      .toLowerCase()
+      .replace(/\/$/, "")
+      .replace("://www.", "://")
+      .replace("://twitter.com/", "://x.com/")
+      .replace("://mobile.twitter.com/", "://x.com/");
+
   const sameAsMap = new Map<string, { label: string; url: string }>();
   for (const r of results) {
     for (const link of r.sameAs) {
-      const key = link.url.replace(/\/$/, "").toLowerCase();
+      const key = canonical(link.url);
       if (!sameAsMap.has(key)) sameAsMap.set(key, link);
     }
     if (r.website) {
-      const key = r.website.replace(/\/$/, "").toLowerCase();
+      const key = canonical(r.website);
       if (!sameAsMap.has(key)) {
         sameAsMap.set(key, { label: "Official website", url: r.website });
       }

@@ -9,8 +9,10 @@ import {
 } from "react";
 import ReactFlow, {
   ReactFlowProvider,
+  applyNodeChanges,
   type Edge,
   type Node,
+  type NodeChange,
   type NodeTypes,
   type ReactFlowInstance,
   type NodeMouseHandler,
@@ -151,9 +153,9 @@ function GraphInner({
       .map((e) => ({ source: e.source, target: e.target }));
 
     const cfg = {
-      linkDistance: simulationConfig?.linkDistance ?? 120,
-      chargeStrength: simulationConfig?.chargeStrength ?? -400,
-      centerStrength: simulationConfig?.centerStrength ?? 0.06,
+      linkDistance: simulationConfig?.linkDistance ?? 110,
+      chargeStrength: simulationConfig?.chargeStrength ?? -320,
+      centerStrength: simulationConfig?.centerStrength ?? 0.08,
     };
 
     const sim = forceSimulation<SimNode>(simNodes)
@@ -167,32 +169,49 @@ function GraphInner({
       .force(
         "charge",
         forceManyBody<SimNode>().strength(
-          (d) => cfg.chargeStrength * ((d.entity.weight ?? 5) / 5),
+          (d) => cfg.chargeStrength * Math.sqrt((d.entity.weight ?? 5) / 5),
         ),
       )
       .force("center", forceCenter(0, 0).strength(cfg.centerStrength))
       .force(
         "collide",
-        forceCollide<SimNode>((d) => nodeSize(d.entity) / 2 + 34),
-      )
-      .on("tick", () => {
-        cancelAnimationFrame(rafRef.current);
-        rafRef.current = requestAnimationFrame(syncPositions);
-      });
+        forceCollide<SimNode>((d) => nodeSize(d.entity) / 2 + 28),
+      );
 
+    // Compute the layout synchronously instead of relying on d3-timer's
+    // requestAnimationFrame loop (throttled to zero in background tabs, and
+    // avoids five seconds of 60fps re-renders on load). ~300 ticks converges
+    // the 30-node graph in well under a frame budget.
+    sim.stop();
+    sim.tick(300);
     simRef.current = sim;
-
-    // Idle ambient drift: keep a whisper of alpha so the graph never fully
-    // freezes. Dropped under prefers-reduced-motion.
-    if (!reducedMotion) {
-      sim.alphaTarget(0.012);
-    }
+    syncPositions();
 
     return () => {
       cancelAnimationFrame(rafRef.current);
       sim.stop();
     };
   }, [graphKey, reducedMotion, simulationConfig, syncPositions]);
+
+  /** Manual reheat loop for drag interactions: step the simulation one tick
+   * per animation frame until it cools. */
+  const kick = useCallback(
+    (alpha: number) => {
+      const sim = simRef.current;
+      if (!sim) return;
+      sim.alpha(Math.max(sim.alpha(), alpha));
+      cancelAnimationFrame(rafRef.current);
+      const step = () => {
+        const s = simRef.current;
+        if (!s || s.alpha() < 0.02) return;
+        s.tick();
+        syncPositions();
+        rafRef.current = requestAnimationFrame(step);
+      };
+      rafRef.current = requestAnimationFrame(step);
+    },
+    [syncPositions],
+  );
 
   /** Project sim nodes into React Flow nodes whenever visibility, hover, or
    * the graph changes. */
@@ -300,6 +319,12 @@ function GraphInner({
     ? (graph.nodes.find((n) => n.id === selectedId) ?? null)
     : null;
 
+  /** Controlled-mode requirement: apply RF's dimension/position changes so
+   * node measurements land and edges can render. */
+  const handleNodesChange = useCallback((changes: NodeChange[]) => {
+    setRfNodes((nds) => applyNodeChanges(changes, nds) as Node<EntityNodeData>[]);
+  }, []);
+
   const handleNodeClick: NodeMouseHandler = useCallback(
     (_, node) => {
       if (!interactive) return;
@@ -310,23 +335,29 @@ function GraphInner({
     [interactive, onNodeClick],
   );
 
-  const handleNodeDrag: NodeMouseHandler = useCallback((_, node) => {
-    const sim = simNodesRef.current.get(node.id);
-    if (sim) {
-      sim.fx = node.position.x;
-      sim.fy = node.position.y;
-      simRef.current?.alpha(0.25).restart();
-    }
-  }, []);
+  const handleNodeDrag: NodeMouseHandler = useCallback(
+    (_, node) => {
+      const sim = simNodesRef.current.get(node.id);
+      if (sim) {
+        sim.fx = node.position.x;
+        sim.fy = node.position.y;
+        kick(0.25);
+      }
+    },
+    [kick],
+  );
 
-  const handleNodeDragStop: NodeMouseHandler = useCallback((_, node) => {
-    const sim = simNodesRef.current.get(node.id);
-    if (sim) {
-      sim.fx = null;
-      sim.fy = null;
-      simRef.current?.alpha(0.3).restart();
-    }
-  }, []);
+  const handleNodeDragStop: NodeMouseHandler = useCallback(
+    (_, node) => {
+      const sim = simNodesRef.current.get(node.id);
+      if (sim) {
+        sim.fx = null;
+        sim.fy = null;
+        kick(0.3);
+      }
+    },
+    [kick],
+  );
 
   return (
     <div
@@ -342,6 +373,7 @@ function GraphInner({
         nodes={rfNodes}
         edges={rfEdges}
         nodeTypes={nodeTypes}
+        onNodesChange={handleNodesChange}
         onInit={(instance) => {
           flowRef.current = instance;
           instance.fitView({ padding: 0.18, maxZoom: 1.0 });

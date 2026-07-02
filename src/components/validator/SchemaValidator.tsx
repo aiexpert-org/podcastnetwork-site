@@ -70,7 +70,7 @@ export function SchemaValidator({
 
       try {
         const res = await fetch(
-          `/api/schema-scan?url=${encodeURIComponent(url.trim())}`,
+          `/api/schema-scan/?url=${encodeURIComponent(url.trim())}`,
         );
         const json = await res.json();
         if (!res.ok) {

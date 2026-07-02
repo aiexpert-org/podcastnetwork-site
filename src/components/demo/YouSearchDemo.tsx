@@ -102,7 +102,9 @@ export function YouSearchDemo() {
       track("you_search_submit");
 
       try {
-        const res = await fetch(`/api/entity-lookup?q=${encodeURIComponent(q)}`);
+        const res = await fetch(
+          `/api/entity-lookup/?q=${encodeURIComponent(q)}`,
+        );
         if (!res.ok) throw new Error(`lookup failed: ${res.status}`);
         const json = (await res.json()) as EntityLookupResponse;
         setResult(json);

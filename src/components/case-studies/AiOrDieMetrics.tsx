@@ -78,7 +78,7 @@ export function AiOrDieMetrics({
   className?: string;
 }) {
   const { data, error } = useSWR<CaseStudyLiveData>(
-    "/api/case-study-data?slug=ai-or-die",
+    "/api/case-study-data/?slug=ai-or-die",
     fetcher,
     { refreshInterval: 15 * 60 * 1000, revalidateOnFocus: false },
   );

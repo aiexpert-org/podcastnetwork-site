@@ -113,7 +113,7 @@ export function ApplicationDiagnostic({
   const onSubmit = handleSubmit(async (data) => {
     setSubmitState("submitting");
     try {
-      const res = await fetch("/api/apply", {
+      const res = await fetch("/api/apply/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, schemaScore, scannedUrl }),

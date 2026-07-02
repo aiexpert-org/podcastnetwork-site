@@ -238,6 +238,30 @@
   }
 }
 
+/* Idle ambient drift on graph nodes: gentle vertical float, phase-offset per
+ * node via inline animation-delay. Dropped under prefers-reduced-motion. */
+@keyframes pn-float-loop {
+  0%,
+  100% {
+    translate: 0 -3px;
+  }
+  50% {
+    translate: 0 3px;
+  }
+}
+
+.pn-float {
+  animation-name: pn-float-loop;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pn-float {
+    animation: none !important;
+  }
+}
+
 /* React Flow overrides for the dark viz surfaces. */
 .react-flow__node {
   cursor: pointer;
