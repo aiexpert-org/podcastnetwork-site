@@ -17,9 +17,11 @@ export function Button({
   className = clsx(
     className,
     'inline-flex rounded-full px-4 py-1.5 text-sm font-semibold transition',
+    // Foil is the single CTA accent per the Editorial Premium palette lock.
+    // Ink text on Foil clears AA for button-size bold text.
     invert
-      ? 'bg-white text-neutral-950 hover:bg-neutral-200'
-      : 'bg-neutral-950 text-white hover:bg-neutral-800',
+      ? 'bg-foil text-neutral-950 hover:bg-foil-bright'
+      : 'bg-foil text-neutral-950 hover:bg-foil-dark hover:text-white',
   )
 
   let inner = <span className="relative top-px">{children}</span>

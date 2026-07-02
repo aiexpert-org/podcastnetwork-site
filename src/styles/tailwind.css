@@ -13,7 +13,10 @@
  * rebuild-2026-07-01/path-b-v0.5/03-cinematic-dark-palette-override.md
  */
 
-@theme {
+/* `static` forces every token to emit as a :root custom property; the entity
+ * graph reads its node colors via inline var(--color-entity-*) references
+ * Tailwind cannot see, so tree-shaking would strip them. */
+@theme static {
   --text-*: initial;
   --text-xs: 0.75rem;
   --text-xs--line-height: 1rem;

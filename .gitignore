@@ -36,3 +36,4 @@ coverage/
 # IDE
 .idea/
 .vscode/
+.gstack/
