@@ -94,10 +94,32 @@ intentional on July 7, or as broken.
   buffer + PA API. All deferred with the Amazon stub. v1.5 item unless the
   credentials land before the pitch.
 
-## Verification still owed (needs deployed URL)
+## Verification still owed
 
-- Lighthouse desktop + mobile against the Vercel preview (local dev-mode
-  numbers are not representative).
-- Google Rich Results Test on all six page types (needs a public URL).
-- Brett's manual desktop + mobile walk before cutover, per the definition of
-  done.
+- **Rich Results Test needs a public URL.** Preview deployments are behind
+  Vercel SSO (project setting: "all except custom domains"). I was not
+  authorized to loosen that setting. Two options: (a) you disable Deployment
+  Protection for this project (Vercel dashboard → podcastnetwork-site →
+  Settings → Deployment Protection) and I run Rich Results against staging,
+  or (b) run it against production right after cutover. The JSON-LD on every
+  page was structurally validated locally (single @graph, all payloads
+  parse, zero unresolved placeholders).
+- **Brett's staging walk.** You can view the preview while logged into
+  Vercel: https://podcastnetwork-site-git-rebuild-path-b-v05-aiexpert-org.vercel.app
+  Desktop + mobile walk before cutover, per the definition of done.
+- **Production cutover** = merge `rebuild/path-b-v0.5` into `main` (Vercel
+  auto-deploys podcastnetwork.org). Held for your walk per the locked
+  timeline (staging QA 07-05, cutover 07-06). Say the word and I merge.
+
+## Lighthouse notes (local production build, documented tradeoffs)
+
+- Desktop: perf 100, SEO 100, CLS 0, TBT 0ms, LCP 0.6-0.7s on all pages.
+  A11y 96-100 (the method page's 96 is React Flow node tap-targets when the
+  inset graph is zoomed out; nodes are keyboard-focusable and the content is
+  supplemental).
+- Mobile: perf 89-93 (target 85+ met). LCP 3.2-3.8s on simulated slow-4G vs
+  the 3.0s aspiration; the residual is web-font paint + the JS graph being
+  the largest viewport element. Real production (Vercel edge + real devices)
+  should land under; re-measure after cutover before optimizing further.
+- The one "errors-in-console" flag locally is `/_vercel/insights/script.js`
+  404, which only exists on Vercel infrastructure. Not present in production.
