@@ -1,3 +1,61 @@
+# CHANGELOG
+
+## v0.6 — Studio-fork rebuild (2026-07-02, Fable 5 max mode)
+
+Brett's verdict on the v0.5 shell ("cheap, ugly stock Claude website") triggered
+a full chassis swap. The six killer components survived unchanged; everything
+around them is now Tailwind Plus Studio.
+
+- **Chassis.** Studio (TS variant) forked wholesale: `RootLayout` with the
+  signature `key={pathname}` page transition + border-radius animation
+  (mounted once in `app/layout.tsx`), Container/FadeIn/SectionIntro/PageIntro/
+  GridList/StatList/Border/GridPattern/Testimonial/Blockquote patterns,
+  Studio's Tailwind v4 CSS config, Studio's MDX pipeline (`@next/mdx` +
+  shiki + recma-import-images + the work-wrapper layout injection, repointed
+  from /work to /case-studies).
+- **Palette.** Editorial Premium overlaid on Studio's neutral scale in
+  `src/styles/tailwind.css`: white → Papyrus, neutral-950 → Publisher Ink,
+  neutral-600 → Slate, light neutrals → warm cream steps, Vellum page ground,
+  Foil as the single CTA accent (Studio Button recolored), Signal Blue links.
+  Dark viz surfaces (hero graph band, playhead, validator output, AI or Die
+  metrics) stay on Ink per the palette lock. `@theme static` because the
+  entity graph reads node colors via inline `var()` Tailwind can't see.
+- **Fonts.** Mona Sans kept as body + display, now loaded via next/font/local
+  (preload, `display: optional`) so the hero-text LCP never waits on it.
+  Playfair Display reserved for the founder pullquote; JetBrains Mono for
+  validator/metrics readouts. Both skip preload.
+- **Pages.** Homepage rebuilt on Studio's rhythm: light PageIntro-style hero,
+  rounded-4xl dark band (entity graph + playhead, shared state), GridList
+  pillars, dark You Search band (Clients-slot pattern), live case study
+  cards, compression prose, FounderAnchorLive, FAQ, ContactSection CTA.
+  /case-studies = Studio work-list + live cards; the four case studies are
+  MDX on Studio's `caseStudy` wrapper pattern. /founders, /the-method,
+  /apply, /the-package, /legal rebuilt on PageIntro/SectionIntro patterns.
+- **Brand shell.** PN entity-graph logomark (center Person node fills Foil on
+  hover, echoing Studio's logo fill), PN nav (Case Studies / The Method /
+  The Package / Founders + Apply CTA), footer with diagnostic callout,
+  X + LinkedIn only.
+- **Next pinned to 16.1.6.** Next 16.2.x has an MDX regression: every
+  page.mdx gets flagged "attempting to export metadata from a component
+  marked with use client" even with zero client imports. 16.1.6 is the
+  version Studio ships against and builds clean. Revisit on a later 16.2.x.
+- **Perf.** Transform-only hero entrance (LCP block never opacity-hidden),
+  React Flow chunk gated behind an IntersectionObserver. Lighthouse desktop:
+  100 perf, LCP 0.8s, CLS 0. Mobile-throttled: 87 perf, LCP 3.9s simulated
+  (lantern ties LCP to the JS graph; observed unthrottled LCP ~150ms) —
+  known tradeoff of Studio's motion + the interactive hero. A11y 100,
+  SEO 100, best-practices 96 on both.
+- **Voice.** Em dashes removed everywhere (AiOrDieMetrics placeholder glyphs
+  became mono `--`); no banned vocabulary.
+- **Unchanged.** All four API routes, data files, JSON-LD schema stack
+  (validated on every route post-rebuild), killer component internals,
+  redirects (plus /work → /case-studies), robots, sitemap.
+
+Staging: https://podcastnetwork-site-git-rebuild-v06-studio-fork-aiexpert-org.vercel.app
+(Vercel SSO preview, same access model as v0.5 staging.) Main untouched.
+
+---
+
 # CHANGELOG — Path B v0.5 rebuild
 
 Build session: 2026-07-02, Fable 5 max mode. Every autonomous decision Brett

@@ -133,3 +133,20 @@ intentional on July 7, or as broken.
   should land under; re-measure after cutover before optimizing further.
 - The one "errors-in-console" flag locally is `/_vercel/insights/script.js`
   404, which only exists on Vercel infrastructure. Not present in production.
+
+## v0.6 addendum (2026-07-02, Studio-fork rebuild)
+
+Everything above still applies (env keys, metrics IDs, GHL). New items:
+
+- **Walk the v0.6 staging build:** the Studio-fork preview is at
+  https://podcastnetwork-site-git-rebuild-v06-studio-fork-aiexpert-org.vercel.app
+  (log into Vercel to pass the SSO gate). v0.5 staging remains untouched on
+  its own branch for comparison.
+- **Rich Results Test** needs a publicly fetchable URL, so it runs at
+  cutover (or temporarily disable deployment protection on the preview).
+  The JSON-LD graph was validated locally on every route in this build.
+- **Next 16.2.x upgrade blocked** by an MDX metadata regression (see
+  CHANGELOG). Pinned 16.1.6. Re-test before any Next upgrade.
+- **Studio license note:** chassis is Tailwind Plus Studio under Brett's
+  Tailwind Plus license; fine for company sites, don't open-source the repo
+  without stripping the template.
