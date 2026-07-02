@@ -1,0 +1,195 @@
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "@id": "https://podcastnetwork.org/glossary/#glossary",
+  "name": "The Premium Authority Launch Glossary",
+  "url": "https://podcastnetwork.org/glossary/",
+  "description": "The vocabulary of the six-month authority launch. Every term the Pre-Sold Author Package uses, defined once, cited across the site and in the Wikidata Entity Home reference set.",
+  "inLanguage": "en-US",
+  "publisher": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "hasDefinedTerm": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#entity-home",
+      "name": "Entity Home",
+      "termCode": "entity-home",
+      "url": "https://podcastnetwork.org/glossary/entity-home/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "The canonical, author-owned URL that Google Knowledge Graph treats as the ground-truth reference for an entity. For an author, the Entity Home is typically a page on the author's own domain that contains full JSON-LD Person schema, sameAs links to every verifiable public profile, a full biography, and links to owned works. The Entity Home is the single most important schema surface for Knowledge Panel acquisition."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#knowledge-panel",
+      "name": "Knowledge Panel",
+      "termCode": "knowledge-panel",
+      "url": "https://podcastnetwork.org/glossary/knowledge-panel/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "The information box Google surfaces on the right side of desktop search results (and at the top of mobile results) for recognized entities. A Knowledge Panel indicates that Google's Knowledge Graph has accepted the entity as verified. For an author, a live Knowledge Panel is the strongest signal to Google and to AI answer surfaces that the person is an authority in their category."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#wikidata-q-number",
+      "name": "Wikidata Q-number",
+      "termCode": "wikidata-q-number",
+      "url": "https://podcastnetwork.org/glossary/wikidata-q-number/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "The unique identifier Wikidata assigns to every entity (person, organization, book, podcast) in its knowledge base, in the format Q followed by digits (Q42 for Douglas Adams, for example). Wikidata is the primary structured data source Google Knowledge Graph consumes. Seeding an accurate, well-cited Wikidata Q-number is the first structural step in a Knowledge Panel acquisition."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#pre-sold-audience",
+      "name": "Pre-Sold Audience",
+      "termCode": "pre-sold-audience",
+      "url": "https://podcastnetwork.org/glossary/pre-sold-audience/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "A verified opt-in list of readers who have signaled intent to buy a book before it launches. Distinct from a cold marketing list. On the Pre-Sold Author Package, the target is 5,000+ pre-orders locked before launch day, driven by a sequenced 12-to-15 podcast guest tour into a waitlist landing page with a book-preview lead magnet."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#author-platform",
+      "name": "Author Platform",
+      "termCode": "author-platform",
+      "url": "https://podcastnetwork.org/glossary/author-platform/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "The combined audience, distribution channels, and authority signals an author brings to a book launch. Traditionally measured by mailing list size, podcast downloads, social following, speaking calendar, and retail relationships. Elite publishers today evaluate platform first and manuscript second."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#publisher-match",
+      "name": "Publisher Match",
+      "termCode": "publisher-match",
+      "url": "https://podcastnetwork.org/glossary/publisher-match/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "The pairing of an author with the publishing house whose editorial and distribution strengths align with the book's category and the author's platform. Under the Pre-Sold Author Package Legacy Publishing JV, the publisher match is pre-selected. Every book that runs through the package publishes under Legacy Publishing's 10% of net structure."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#ghostwriting-partnership",
+      "name": "Ghostwriting Partnership",
+      "termCode": "ghostwriting-partnership",
+      "url": "https://podcastnetwork.org/glossary/ghostwriting-partnership/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "An arrangement in which a writer produces a manuscript in the author's voice under the author's byline, working from source material (interviews, podcast catalog, keynotes, articles). Inside the Pre-Sold Author Package, the ghostwriting partnership runs against a Day 90 manuscript-ready milestone with the editorial team folded into Legacy Publishing's production track."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#podcast-tour",
+      "name": "Podcast Tour",
+      "termCode": "podcast-tour",
+      "url": "https://podcastnetwork.org/glossary/podcast-tour/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "A sequenced set of guest appearances on other podcasts, structured to drive a specific outcome (audience build, pre-orders, list growth, authority signal). Inside the Pre-Sold Author Package, the podcast tour is 12 to 15 top-tier appearances in the author's category, sequenced across Days 30 to 150 with waitlist mechanics converting listeners into pre-orders."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#amplification-cascade",
+      "name": "Amplification Cascade",
+      "termCode": "amplification-cascade",
+      "url": "https://podcastnetwork.org/glossary/amplification-cascade/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "The compounding effect that emerges when the book, the podcast, the knowledge panel, and the guest tour produce signal for each other. Podcast episodes cite the book. Guest appearances feed the launch list. Knowledge panel authority makes the guest bookings easier. The launch list drives the retail rank. Each pillar's output becomes the next pillar's input, and the whole system runs faster than the sum of its parts."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#authority-launch",
+      "name": "Authority Launch",
+      "termCode": "authority-launch",
+      "url": "https://podcastnetwork.org/glossary/authority-launch/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "A book launch designed to establish the author as a recognized authority in a category, not just to sell copies in launch week. The deliverables include a Knowledge Panel, an owned podcast, and a pre-sold audience that can compound the author's platform for years after launch day. The Pre-Sold Author Package is the productized form of an authority launch."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#json-ld",
+      "name": "JSON-LD",
+      "termCode": "json-ld",
+      "url": "https://podcastnetwork.org/glossary/json-ld/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "JSON for Linked Data. The structured data format Google recommends for embedding Schema.org markup in web pages. JSON-LD sits inside a script tag in a page's HTML and describes the entities on the page in a form search engines and AI answer surfaces can parse. Every page on PodcastNetwork.org emits validated JSON-LD."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#schema-org",
+      "name": "Schema.org",
+      "termCode": "schema-org",
+      "url": "https://podcastnetwork.org/glossary/schema-org/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "The shared vocabulary for structured data on the web, maintained by a consortium including Google, Microsoft, Yahoo, and Yandex. Schema.org defines the entity types (Book, Person, Organization, PodcastEpisode, FAQPage, and many others) that search engines recognize when embedded in JSON-LD. Correct Schema.org markup is the primary vehicle for Rich Results and Knowledge Panel signals."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#rich-results",
+      "name": "Rich Results",
+      "termCode": "rich-results",
+      "url": "https://podcastnetwork.org/glossary/rich-results/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "Enhanced search result formats Google surfaces for pages with valid structured data. FAQ Rich Results show expandable questions inline in SERP. HowTo Rich Results show step-by-step guides. Review Rich Results show ratings. Every valid Rich Result increases SERP real estate and click-through rate."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#ai-overview",
+      "name": "AI Overview",
+      "termCode": "ai-overview",
+      "url": "https://podcastnetwork.org/glossary/ai-overview/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "Google's AI-generated answer that appears at the top of many SERPs, synthesized from cited web sources. Pages with valid structured data, verified entities, and authority signals are more likely to be cited in AI Overviews. AI Overview citation is a stronger authority signal in 2026 than a top-3 organic ranking was in 2020."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#legacy-jv",
+      "name": "Legacy JV",
+      "termCode": "legacy-jv",
+      "url": "https://podcastnetwork.org/glossary/legacy-jv/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "The joint venture between PodcastNetwork.org and Legacy Publishing that publishes every book produced through the Pre-Sold Author Package. Under the JV, the author's $30,000 payment covers the pre-sell sequence run by PodcastNetwork.org, and Legacy Publishing publishes the resulting book under its standing 10% of net book sales structure with no upfront fee. Application-only in both directions."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#waitlist-mechanic",
+      "name": "Waitlist Mechanic",
+      "termCode": "waitlist-mechanic",
+      "url": "https://podcastnetwork.org/glossary/waitlist-mechanic/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "The sequence that converts list signups into pre-orders. Warmup emails, milestone announcements, a cover reveal, a chapter drop, a pre-order call to action tied to a bonus. Inside the Pre-Sold Author Package, the waitlist mechanic runs the final 60 days and produces the 5,000+ pre-order target."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#five-pass-edit",
+      "name": "Five-Pass Edit",
+      "termCode": "five-pass-edit",
+      "url": "https://podcastnetwork.org/glossary/five-pass-edit/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "The editorial sequence Legacy Publishing runs on every manuscript in the Pre-Sold Author Package: developmental edit, structural edit, line edit, copy edit, proof. Five distinct passes with distinct editors. Runs in-package for both the ghostwriting path and the manuscript-in-hand path."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#network-operating-system",
+      "name": "Network Operating System",
+      "alternateName": "NOS",
+      "termCode": "nos",
+      "url": "https://podcastnetwork.org/glossary/network-operating-system/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "The templated, redeployable playbook PodcastNetwork.org installs inside every partner network. Guest sequencing rules, Podroll cross-promotion mechanics, matched-show placement heuristics, and the per-network relationship graph the operator uses to run the pre-sell tour. The NOS is the moat."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#relationship-engine",
+      "name": "Relationship Engine",
+      "termCode": "relationship-engine",
+      "url": "https://podcastnetwork.org/glossary/relationship-engine/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "PodcastNetwork.org's underlying capability that compounds every guest appearance, podcast conversation, and speaking event into signal that feeds the next introduction. The relationship engine is the infrastructure that makes the 12-to-15 podcast tour bookable in a defined 120-day window and the pre-sell target of 5,000+ pre-orders achievable at scale."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://podcastnetwork.org/glossary/#anchor-case-study",
+      "name": "Anchor Case Study",
+      "termCode": "anchor-case-study",
+      "url": "https://podcastnetwork.org/glossary/anchor-case-study/",
+      "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
+      "description": "The case study PodcastNetwork.org ran on itself before selling the Pre-Sold Author Package externally. AI or Die, co-authored by Brett K Moore and Mike Partners, is the anchor case study. The founder-eating-own-cooking positioning is a required trust signal for a premium-priced authority launch."
+    }
+  ]
+}

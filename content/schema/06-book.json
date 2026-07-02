@@ -1,0 +1,154 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "@id": "https://podcastnetwork.org/book/#book",
+  "name": "AI or Die",
+  "alternateName": "AI or Die: The Playbook for AI-Native Business",
+  "url": "https://podcastnetwork.org/book/",
+  "description": "The co-authored book by Brett K Moore and Mike Partners on building AI-native businesses. Anchor case study for the Pre-Sold Author Package, published under the Legacy Publishing JV.",
+  "abstract": "AI or Die argues that the businesses that survive the next decade are the ones that rebuild themselves as AI-native from the operator layer down. Written by two operators running seven businesses under one AI-native architecture, the book documents the playbook that got them there.",
+  "isbn": "{{ISBN_13}}",
+  "identifier": [
+    {
+      "@type": "PropertyValue",
+      "propertyID": "ISBN-13",
+      "value": "{{ISBN_13}}"
+    },
+    {
+      "@type": "PropertyValue",
+      "propertyID": "ISBN-10",
+      "value": "{{ISBN_10}}"
+    },
+    {
+      "@type": "PropertyValue",
+      "propertyID": "ASIN",
+      "value": "{{ASIN}}"
+    }
+  ],
+  "bookFormat": "https://schema.org/Hardcover",
+  "numberOfPages": 288,
+  "inLanguage": "en-US",
+  "author": [
+    {
+      "@id": "https://podcastnetwork.org/about/#brett-k-moore"
+    },
+    {
+      "@id": "https://podcastnetwork.org/about/#mike-partners"
+    }
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://legacypublishing.com/#organization",
+    "name": "Legacy Publishing",
+    "url": "https://legacypublishing.com/",
+    "sameAs": [
+      "https://www.wikidata.org/wiki/{{WIKIDATA_Q_NUMBER_LEGACY}}"
+    ]
+  },
+  "datePublished": "{{PUBLICATION_DATE_ISO_8601}}",
+  "copyrightYear": 2026,
+  "copyrightHolder": [
+    { "@id": "https://podcastnetwork.org/about/#brett-k-moore" },
+    { "@id": "https://podcastnetwork.org/about/#mike-partners" }
+  ],
+  "image": [
+    "https://podcastnetwork.org/book/cover-3x4.jpg",
+    "https://podcastnetwork.org/book/cover-1x1.jpg",
+    "https://podcastnetwork.org/book/cover-16x9.jpg"
+  ],
+  "genre": [
+    "Business",
+    "Artificial Intelligence",
+    "Entrepreneurship"
+  ],
+  "keywords": "AI-native operator, AI business, Claude, GPT, agentic workflow, seven businesses, portfolio operator, Pentatype, AI Expert OS",
+  "workExample": [
+    {
+      "@type": "Book",
+      "@id": "https://podcastnetwork.org/book/#hardcover",
+      "bookFormat": "https://schema.org/Hardcover",
+      "isbn": "{{ISBN_13_HARDCOVER}}",
+      "potentialAction": {
+        "@type": "ReadAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.amazon.com/dp/{{ASIN_HARDCOVER}}",
+          "actionPlatform": [
+            "http://schema.org/DesktopWebPlatform",
+            "http://schema.org/MobileWebPlatform"
+          ]
+        },
+        "expectsAcceptanceOf": {
+          "@type": "Offer",
+          "eligibleRegion": [
+            { "@type": "Country", "name": "US" },
+            { "@type": "Country", "name": "CA" },
+            { "@type": "Country", "name": "GB" }
+          ],
+          "category": "purchase"
+        }
+      }
+    },
+    {
+      "@type": "Book",
+      "@id": "https://podcastnetwork.org/book/#ebook",
+      "bookFormat": "https://schema.org/EBook",
+      "isbn": "{{ISBN_13_EBOOK}}",
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "Book",
+      "@id": "https://podcastnetwork.org/book/#audiobook",
+      "bookFormat": "https://schema.org/AudiobookFormat",
+      "readBy": [
+        { "@id": "https://podcastnetwork.org/about/#brett-k-moore" },
+        { "@id": "https://podcastnetwork.org/about/#mike-partners" }
+      ],
+      "duration": "PT8H30M"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "@id": "https://podcastnetwork.org/book/#rating",
+    "ratingValue": "{{AGGREGATE_RATING_VALUE}}",
+    "reviewCount": "{{AGGREGATE_REVIEW_COUNT}}",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "@id": "https://podcastnetwork.org/book/#review-{{REVIEW_SLUG}}",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "{{REVIEW_RATING}}",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "{{REVIEWER_NAME}}",
+        "jobTitle": "{{REVIEWER_JOB_TITLE}}",
+        "url": "{{REVIEWER_URL}}"
+      },
+      "reviewBody": "{{REVIEW_BODY}}",
+      "datePublished": "{{REVIEW_DATE_ISO_8601}}",
+      "publisher": {
+        "@id": "https://podcastnetwork.org/#organization"
+      }
+    }
+  ],
+  "sameAs": [
+    "https://www.wikidata.org/wiki/{{WIKIDATA_Q_NUMBER_BOOK}}",
+    "https://www.goodreads.com/book/show/{{GOODREADS_ID}}",
+    "https://www.amazon.com/dp/{{ASIN}}"
+  ],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://podcastnetwork.org/book/"
+  },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Founders, executives, operators, and independent professionals building or rebuilding businesses as AI-native"
+  }
+}

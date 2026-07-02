@@ -1,0 +1,120 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://podcastnetwork.org/#organization",
+  "name": "PodcastNetwork.org",
+  "legalName": "PodcastNetwork.org",
+  "alternateName": [
+    "PodcastNetwork",
+    "PN.org",
+    "The Podcast Network"
+  ],
+  "url": "https://podcastnetwork.org/",
+  "logo": {
+    "@type": "ImageObject",
+    "@id": "https://podcastnetwork.org/#logo",
+    "url": "https://podcastnetwork.org/brand/logo-primary.png",
+    "contentUrl": "https://podcastnetwork.org/brand/logo-primary.png",
+    "width": 1200,
+    "height": 1200,
+    "caption": "PodcastNetwork.org logo"
+  },
+  "image": {
+    "@id": "https://podcastnetwork.org/#logo"
+  },
+  "description": "PodcastNetwork.org runs the Pre-Sold Author Package, a productized six-month build that ships a book, a podcast, a Google Knowledge Panel, and a pre-sold audience of 5,000+ readers on a single 180-day clock. Application-only. Published in partnership with Legacy Publishing.",
+  "slogan": "The premium authority launch, delivered in six months.",
+  "foundingDate": "2025-01-15",
+  "founder": [
+    {
+      "@type": "Person",
+      "@id": "https://podcastnetwork.org/about/#brett-k-moore",
+      "name": "Brett K Moore"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://podcastnetwork.org/about/#mike-partners",
+      "name": "Mike Partners"
+    }
+  ],
+  "knowsAbout": [
+    "Authority marketing",
+    "Book launch strategy",
+    "Podcast networks",
+    "Google Knowledge Panel",
+    "Wikidata entity seeding",
+    "Pre-sold audience building",
+    "Ghostwriting",
+    "Podcast guest booking",
+    "Entity Home construction",
+    "AI answer engine optimization"
+  ],
+  "areaServed": [
+    { "@type": "Country", "name": "United States" },
+    { "@type": "Country", "name": "Canada" },
+    { "@type": "Country", "name": "United Kingdom" },
+    { "@type": "Country", "name": "Australia" }
+  ],
+  "brand": {
+    "@type": "Brand",
+    "name": "PodcastNetwork.org",
+    "logo": { "@id": "https://podcastnetwork.org/#logo" }
+  },
+  "makesOffer": {
+    "@id": "https://podcastnetwork.org/the-package/#offer"
+  },
+  "hasOfferCatalog": {
+    "@id": "https://podcastnetwork.org/the-package/#catalog"
+  },
+  "publishingPrinciples": "https://podcastnetwork.org/legal/editorial-standards/",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "email": "hello@podcastnetwork.org",
+      "url": "https://podcastnetwork.org/apply/",
+      "availableLanguage": ["English"],
+      "areaServed": ["US", "CA", "GB", "AU"]
+    },
+    {
+      "@type": "ContactPoint",
+      "contactType": "press",
+      "email": "press@podcastnetwork.org",
+      "url": "https://podcastnetwork.org/contact/",
+      "availableLanguage": ["English"]
+    },
+    {
+      "@type": "ContactPoint",
+      "contactType": "partnerships",
+      "email": "partners@podcastnetwork.org",
+      "url": "https://podcastnetwork.org/contact/",
+      "availableLanguage": ["English"]
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Honolulu",
+    "addressRegion": "HI",
+    "addressCountry": "US"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/podcastnetworkorg/",
+    "https://x.com/podcastnetwork",
+    "https://www.facebook.com/podcastnetworkorg",
+    "https://www.youtube.com/@podcastnetworkorg",
+    "https://www.instagram.com/podcastnetworkorg/",
+    "https://www.wikidata.org/wiki/{{WIKIDATA_Q_NUMBER_ORG}}"
+  ],
+  "parentOrganization": null,
+  "subOrganization": [
+    {
+      "@type": "Organization",
+      "name": "Legacy Publishing",
+      "url": "https://legacypublishing.com/",
+      "description": "Elite application-only traditional publisher. JV partner on the Pre-Sold Author Package.",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/{{WIKIDATA_Q_NUMBER_LEGACY}}"
+      ]
+    }
+  ]
+}

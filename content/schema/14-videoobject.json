@@ -1,0 +1,87 @@
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "@id": "https://podcastnetwork.org/{{PAGE_PATH}}/#video-{{VIDEO_SLUG}}",
+  "name": "{{VIDEO_TITLE}}",
+  "alternateName": "{{VIDEO_SHORT_TITLE}}",
+  "description": "{{VIDEO_DESCRIPTION_UNDER_500_CHARS}}",
+  "thumbnailUrl": [
+    "https://podcastnetwork.org/{{PAGE_PATH}}/{{VIDEO_SLUG}}-thumb-16x9.jpg",
+    "https://podcastnetwork.org/{{PAGE_PATH}}/{{VIDEO_SLUG}}-thumb-4x3.jpg",
+    "https://podcastnetwork.org/{{PAGE_PATH}}/{{VIDEO_SLUG}}-thumb-1x1.jpg"
+  ],
+  "uploadDate": "{{UPLOAD_DATE_ISO_8601}}",
+  "duration": "{{DURATION_ISO_8601}}",
+  "contentUrl": "https://media.podcastnetwork.org/{{VIDEO_SLUG}}.mp4",
+  "embedUrl": "https://www.youtube.com/embed/{{YOUTUBE_VIDEO_ID}}",
+  "encodingFormat": "video/mp4",
+  "width": {
+    "@type": "QuantitativeValue",
+    "value": 1920,
+    "unitCode": "E37"
+  },
+  "height": {
+    "@type": "QuantitativeValue",
+    "value": 1080,
+    "unitCode": "E37"
+  },
+  "inLanguage": "en-US",
+  "isFamilyFriendly": true,
+  "genre": ["Business", "Entrepreneurship"],
+  "keywords": "{{KEYWORDS_COMMA_SEPARATED}}",
+  "creator": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "publisher": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "productionCompany": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "actor": [
+    {
+      "@id": "https://podcastnetwork.org/about/#brett-k-moore"
+    },
+    {
+      "@id": "https://podcastnetwork.org/about/#mike-partners"
+    }
+  ],
+  "transcript": "{{TRANSCRIPT_URL}}",
+  "hasPart": [
+    {
+      "@type": "Clip",
+      "@id": "https://podcastnetwork.org/{{PAGE_PATH}}/#video-{{VIDEO_SLUG}}-chapter-1",
+      "name": "{{CHAPTER_1_NAME}}",
+      "startOffset": 0,
+      "endOffset": "{{CHAPTER_1_END_SECONDS}}",
+      "url": "https://podcastnetwork.org/{{PAGE_PATH}}/#t={{CHAPTER_1_START_SECONDS}}"
+    },
+    {
+      "@type": "Clip",
+      "@id": "https://podcastnetwork.org/{{PAGE_PATH}}/#video-{{VIDEO_SLUG}}-chapter-2",
+      "name": "{{CHAPTER_2_NAME}}",
+      "startOffset": "{{CHAPTER_2_START_SECONDS}}",
+      "endOffset": "{{CHAPTER_2_END_SECONDS}}",
+      "url": "https://podcastnetwork.org/{{PAGE_PATH}}/#t={{CHAPTER_2_START_SECONDS}}"
+    }
+  ],
+  "potentialAction": {
+    "@type": "SeekToAction",
+    "target": "https://podcastnetwork.org/{{PAGE_PATH}}/#t={seek_to_second_number}",
+    "startOffset-input": "required name=seek_to_second_number"
+  },
+  "regionsAllowed": ["US", "CA", "GB", "AU"],
+  "interactionStatistic": {
+    "@type": "InteractionCounter",
+    "interactionType": "https://schema.org/WatchAction",
+    "userInteractionCount": "{{VIEW_COUNT}}"
+  },
+  "sameAs": [
+    "https://www.youtube.com/watch?v={{YOUTUBE_VIDEO_ID}}",
+    "https://vimeo.com/{{VIMEO_ID}}"
+  ],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://podcastnetwork.org/{{PAGE_PATH}}/"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://podcastnetwork.org/about/#mike-partners",
+  "name": "Mike Partners",
+  "givenName": "Mike",
+  "familyName": "Partners",
+  "url": "https://mike.partners/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://podcastnetwork.org/about/"
+  },
+  "image": [
+    "https://podcastnetwork.org/about/mike-partners-1x1.jpg",
+    "https://podcastnetwork.org/about/mike-partners-3x4.jpg",
+    "https://podcastnetwork.org/about/mike-partners-16x9.jpg"
+  ],
+  "description": "Co-founder of PodcastNetwork.org and AI Expert. AI-native operator, co-author of AI or Die, and the operational anchor across Brett K Moore's joint companies. Runs the AI tooling and outreach surface across CCM, PodcastNetwork.org, Legacy Publishing, and AI Expert.",
+  "jobTitle": "Co-founder",
+  "worksFor": [
+    {
+      "@id": "https://podcastnetwork.org/#organization"
+    },
+    {
+      "@type": "Organization",
+      "name": "AI Expert",
+      "url": "https://aiexpert.org/",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/{{WIKIDATA_Q_NUMBER_AI_EXPERT}}"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "RealExpert Inc",
+      "url": "https://realexpert.io/"
+    },
+    {
+      "@type": "Organization",
+      "name": "CCM",
+      "alternateName": "Create Church Media"
+    }
+  ],
+  "founder": [
+    { "@id": "https://podcastnetwork.org/#organization" }
+  ],
+  "colleague": [
+    { "@id": "https://podcastnetwork.org/about/#brett-k-moore" }
+  ],
+  "knowsAbout": [
+    "AI orchestration",
+    "Multi-LLM operations",
+    "Airtable systems",
+    "Cold outreach engineering",
+    "GHL automation",
+    "AI-native business operations",
+    "Podcast networks",
+    "Book publishing",
+    "Relationship engineering"
+  ],
+  "knowsLanguage": [
+    { "@type": "Language", "name": "English", "alternateName": "en" }
+  ],
+  "alumniOf": [
+    {
+      "@type": "EducationalOrganization",
+      "name": "{{UNIVERSITY_NAME}}",
+      "url": "{{UNIVERSITY_URL}}",
+      "sameAs": "https://www.wikidata.org/wiki/{{WIKIDATA_Q_NUMBER_UNIVERSITY_MIKE}}"
+    }
+  ],
+  "award": [
+    "{{AWARD_1}}"
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Certification",
+      "name": "{{CREDENTIAL_NAME}}",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "{{RECOGNIZED_BY_ORG}}"
+      }
+    }
+  ],
+  "author": [
+    { "@id": "https://podcastnetwork.org/book/#book" }
+  ],
+  "performerIn": [
+    { "@id": "https://podcastnetwork.org/podcast/#series" }
+  ],
+  "brand": [
+    {
+      "@type": "Brand",
+      "name": "Mike Partners",
+      "url": "https://mike.partners/"
+    }
+  ],
+  "owns": [
+    { "@id": "https://podcastnetwork.org/#organization" }
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/in/mikepartners/",
+    "https://x.com/mikepartners",
+    "https://www.facebook.com/mikepartners",
+    "https://www.instagram.com/mikepartners/",
+    "https://www.youtube.com/@mikepartners",
+    "https://github.com/mikepartners",
+    "https://mike.partners/",
+    "https://www.crunchbase.com/person/mike-partners",
+    "https://muckrack.com/mike-partners",
+    "https://en.wikipedia.org/wiki/{{WIKIPEDIA_ARTICLE_SLUG_MIKE}}",
+    "https://www.wikidata.org/wiki/{{WIKIDATA_Q_NUMBER_MIKE}}"
+  ]
+}

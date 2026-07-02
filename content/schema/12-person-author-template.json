@@ -1,0 +1,118 @@
+{
+  "$comment": "Person template for the in-launch author case studies. One instance per author (Michele Okimura, Dominic Jones, Rob Okimura, future). All {{VARIABLE}} tokens get injected by the case-study page builder from the author intake record. Ships alongside the author's Book, PodcastSeries, and Review schemas inside a @graph on /case-studies/{{AUTHOR_SLUG}}/.",
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/#person",
+  "name": "{{AUTHOR_FULL_NAME}}",
+  "givenName": "{{AUTHOR_GIVEN_NAME}}",
+  "additionalName": "{{AUTHOR_MIDDLE_NAME}}",
+  "familyName": "{{AUTHOR_FAMILY_NAME}}",
+  "alternateName": ["{{AUTHOR_ALTERNATE_NAME_1}}"],
+  "honorificPrefix": "{{AUTHOR_HONORIFIC_PREFIX}}",
+  "honorificSuffix": "{{AUTHOR_HONORIFIC_SUFFIX}}",
+  "url": "{{AUTHOR_HOMEPAGE_URL}}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/"
+  },
+  "image": [
+    "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/headshot-1x1.jpg",
+    "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/headshot-3x4.jpg",
+    "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/headshot-16x9.jpg"
+  ],
+  "description": "{{AUTHOR_BIO_TWO_SENTENCES}}",
+  "jobTitle": "{{AUTHOR_JOB_TITLE}}",
+  "worksFor": [
+    {
+      "@type": "Organization",
+      "name": "{{AUTHOR_PRIMARY_ORG_NAME}}",
+      "url": "{{AUTHOR_PRIMARY_ORG_URL}}"
+    }
+  ],
+  "knowsAbout": [
+    "{{TOPIC_1}}",
+    "{{TOPIC_2}}",
+    "{{TOPIC_3}}",
+    "{{TOPIC_4}}",
+    "{{TOPIC_5}}"
+  ],
+  "knowsLanguage": [
+    { "@type": "Language", "name": "English", "alternateName": "en" }
+  ],
+  "alumniOf": [
+    {
+      "@type": "EducationalOrganization",
+      "name": "{{AUTHOR_UNIVERSITY_NAME}}",
+      "url": "{{AUTHOR_UNIVERSITY_URL}}",
+      "sameAs": "https://www.wikidata.org/wiki/{{AUTHOR_UNIVERSITY_WIKIDATA_Q}}"
+    }
+  ],
+  "award": [
+    "{{AWARD_1}}",
+    "{{AWARD_2}}"
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Certification",
+      "name": "{{CREDENTIAL_NAME}}",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "{{RECOGNIZED_BY_ORG}}"
+      }
+    }
+  ],
+  "author": [
+    {
+      "@id": "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/#book"
+    }
+  ],
+  "performerIn": [
+    {
+      "@id": "https://podcastnetwork.org/network/{{AUTHOR_PODCAST_SLUG}}/#series"
+    }
+  ],
+  "sameAs": [
+    "{{AUTHOR_LINKEDIN_URL}}",
+    "{{AUTHOR_X_URL}}",
+    "{{AUTHOR_FACEBOOK_URL}}",
+    "{{AUTHOR_INSTAGRAM_URL}}",
+    "{{AUTHOR_YOUTUBE_URL}}",
+    "{{AUTHOR_TIKTOK_URL}}",
+    "{{AUTHOR_HOMEPAGE_URL}}",
+    "https://en.wikipedia.org/wiki/{{AUTHOR_WIKIPEDIA_SLUG}}",
+    "https://www.wikidata.org/wiki/{{AUTHOR_WIKIDATA_Q_NUMBER}}",
+    "https://www.crunchbase.com/person/{{AUTHOR_CRUNCHBASE_SLUG}}",
+    "https://muckrack.com/{{AUTHOR_MUCKRACK_SLUG}}",
+    "https://www.goodreads.com/author/show/{{AUTHOR_GOODREADS_ID}}",
+    "https://www.amazon.com/author/{{AUTHOR_AMAZON_SLUG}}"
+  ],
+  "$populated_examples": {
+    "michele-okimura": {
+      "@id": "https://podcastnetwork.org/case-studies/michele-okimura/#person",
+      "name": "Michele Okimura",
+      "url": "https://micheleokimura.com/",
+      "performerIn": [
+        {
+          "@id": "https://podcastnetwork.org/network/in-a-moment/#series"
+        }
+      ],
+      "colleague": [
+        { "@id": "https://podcastnetwork.org/about/#brett-k-moore" }
+      ]
+    },
+    "dominic-jones": {
+      "@id": "https://podcastnetwork.org/case-studies/dominic-jones/#person",
+      "name": "Dominic Jones"
+    },
+    "rob-okimura": {
+      "@id": "https://podcastnetwork.org/case-studies/rob-okimura/#person",
+      "name": "Rob Okimura",
+      "relatedTo": [
+        {
+          "@id": "https://podcastnetwork.org/case-studies/michele-okimura/#person"
+        }
+      ]
+    }
+  }
+}

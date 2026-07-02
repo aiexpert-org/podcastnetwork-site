@@ -1,0 +1,145 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://podcastnetwork.org/about/#brett-k-moore",
+  "name": "Brett K Moore",
+  "givenName": "Brett",
+  "additionalName": "K",
+  "familyName": "Moore",
+  "alternateName": ["Brett Moore", "Brett K. Moore"],
+  "url": "https://brettkmoore.com/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://podcastnetwork.org/about/"
+  },
+  "image": [
+    "https://podcastnetwork.org/about/brett-k-moore-1x1.jpg",
+    "https://podcastnetwork.org/about/brett-k-moore-3x4.jpg",
+    "https://podcastnetwork.org/about/brett-k-moore-16x9.jpg"
+  ],
+  "description": "Co-founder and CEO of PodcastNetwork.org. AI-native operator running a portfolio of businesses from Hawaii. Co-author of AI or Die. Co-founder of AI Expert and Apex Podcast Co. Owner of Brett K Moore (personal brand), Legacy Publishing, and The Brand Spine.",
+  "jobTitle": "Co-founder and CEO",
+  "worksFor": [
+    {
+      "@id": "https://podcastnetwork.org/#organization"
+    },
+    {
+      "@type": "Organization",
+      "name": "AI Expert",
+      "url": "https://aiexpert.org/",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/{{WIKIDATA_Q_NUMBER_AI_EXPERT}}"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "Apex Podcast Co",
+      "url": "https://apexpodcast.co/"
+    },
+    {
+      "@type": "Organization",
+      "name": "Legacy Publishing",
+      "url": "https://legacypublishing.com/"
+    },
+    {
+      "@type": "Organization",
+      "name": "The Brand Spine",
+      "url": "https://thebrandspine.com/"
+    }
+  ],
+  "founder": [
+    { "@id": "https://podcastnetwork.org/#organization" }
+  ],
+  "colleague": [
+    { "@id": "https://podcastnetwork.org/about/#mike-partners" }
+  ],
+  "homeLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Honolulu",
+      "addressRegion": "HI",
+      "addressCountry": "US"
+    }
+  },
+  "birthPlace": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "US"
+    }
+  },
+  "nationality": {
+    "@type": "Country",
+    "name": "United States"
+  },
+  "knowsAbout": [
+    "Authority marketing",
+    "Podcast networks",
+    "Book publishing",
+    "Google Knowledge Panel",
+    "Wikidata entity seeding",
+    "AI-native business operations",
+    "Portfolio operator strategy",
+    "Podcast production",
+    "Guest booking",
+    "Relationship engineering"
+  ],
+  "knowsLanguage": [
+    { "@type": "Language", "name": "English", "alternateName": "en" }
+  ],
+  "alumniOf": [
+    {
+      "@type": "EducationalOrganization",
+      "name": "{{UNIVERSITY_NAME}}",
+      "url": "{{UNIVERSITY_URL}}",
+      "sameAs": "https://www.wikidata.org/wiki/{{WIKIDATA_Q_NUMBER_UNIVERSITY}}"
+    }
+  ],
+  "award": [
+    "{{AWARD_1}}",
+    "{{AWARD_2}}"
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Certification",
+      "name": "{{CREDENTIAL_NAME}}",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "{{RECOGNIZED_BY_ORG}}"
+      }
+    }
+  ],
+  "author": [
+    { "@id": "https://podcastnetwork.org/book/#book" }
+  ],
+  "performerIn": [
+    { "@id": "https://podcastnetwork.org/podcast/#series" }
+  ],
+  "brand": [
+    {
+      "@type": "Brand",
+      "name": "Brett K Moore",
+      "url": "https://brettkmoore.com/"
+    }
+  ],
+  "owns": [
+    { "@id": "https://podcastnetwork.org/#organization" }
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/in/brettkmoore/",
+    "https://x.com/brettkmoore",
+    "https://www.facebook.com/brettkmoore",
+    "https://www.instagram.com/brettkmoore/",
+    "https://www.youtube.com/@brettkmoore",
+    "https://www.tiktok.com/@brettkmoore",
+    "https://github.com/brettkmoore",
+    "https://brettkmoore.com/",
+    "https://www.crunchbase.com/person/brett-k-moore",
+    "https://muckrack.com/brett-k-moore",
+    "https://www.f6s.com/brettkmoore",
+    "https://en.wikipedia.org/wiki/{{WIKIPEDIA_ARTICLE_SLUG_BRETT}}",
+    "https://www.wikidata.org/wiki/{{WIKIDATA_Q_NUMBER_BRETT}}"
+  ]
+}

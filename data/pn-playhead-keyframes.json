@@ -1,0 +1,382 @@
+{
+  "$comment": "Seven keyframes across the 180-day PN.org engagement journey. Each keyframe references node/edge IDs from pn-entity-graph.json. The six-month playhead uses this to compute the visible graph state at any scrubbed day. `visibleNodes` and `visibleEdges` are cumulative sets (not delta sets), for O(1) lookup.",
+  "keyframes": [
+    {
+      "day": 1,
+      "label": "Kickoff",
+      "milestone": {
+        "type": "Person",
+        "description": "Author entity claimed, book entity registered, LinkedIn + X sameAs anchored."
+      },
+      "addedNodes": [
+        "https://podcastnetwork.org/case-studies/michele-okimura/#person",
+        "https://podcastnetwork.org/case-studies/michele-okimura/#book",
+        "https://www.linkedin.com/in/mikepartners/"
+      ],
+      "addedEdges": [
+        "michele-authorOf-book",
+        "mike-sameAs-linkedin"
+      ],
+      "visibleNodes": [
+        "https://podcastnetwork.org/case-studies/michele-okimura/#person",
+        "https://podcastnetwork.org/case-studies/michele-okimura/#book",
+        "https://www.linkedin.com/in/mikepartners/"
+      ],
+      "visibleEdges": [
+        "michele-authorOf-book",
+        "mike-sameAs-linkedin"
+      ]
+    },
+    {
+      "day": 30,
+      "label": "Wikidata + first 5 podcast bookings",
+      "milestone": {
+        "type": "WebPage",
+        "description": "Wikidata Q-number claimed. First 5 podcast appearances scheduled."
+      },
+      "addedNodes": [
+        "https://www.wikidata.org/wiki/Q_MIKE_PLACEHOLDER",
+        "https://podcastnetwork.org/network/in-a-moment/#series"
+      ],
+      "addedEdges": [
+        "mike-sameAs-wikidata",
+        "michele-appearedOn-in-a-moment"
+      ],
+      "visibleNodes": [
+        "https://podcastnetwork.org/case-studies/michele-okimura/#person",
+        "https://podcastnetwork.org/case-studies/michele-okimura/#book",
+        "https://www.linkedin.com/in/mikepartners/",
+        "https://www.wikidata.org/wiki/Q_MIKE_PLACEHOLDER",
+        "https://podcastnetwork.org/network/in-a-moment/#series"
+      ],
+      "visibleEdges": [
+        "michele-authorOf-book",
+        "mike-sameAs-linkedin",
+        "mike-sameAs-wikidata",
+        "michele-appearedOn-in-a-moment"
+      ]
+    },
+    {
+      "day": 60,
+      "label": "PodcastSeries live + Google KG pickup",
+      "milestone": {
+        "type": "PodcastSeries",
+        "description": "Michele's podcast live, first 3 episodes published. Google Knowledge Graph picks up the entity."
+      },
+      "addedNodes": [
+        "https://podcastnetwork.org/#organization",
+        "https://podcastnetwork.org/network/buddy-buck-show/#series",
+        "https://podcastnetwork.org/network/next-episode/#series"
+      ],
+      "addedEdges": [
+        "in-a-moment-publishedBy-pn",
+        "buddy-buck-publishedBy-pn",
+        "next-episode-publishedBy-pn"
+      ],
+      "visibleNodes": [
+        "https://podcastnetwork.org/case-studies/michele-okimura/#person",
+        "https://podcastnetwork.org/case-studies/michele-okimura/#book",
+        "https://www.linkedin.com/in/mikepartners/",
+        "https://www.wikidata.org/wiki/Q_MIKE_PLACEHOLDER",
+        "https://podcastnetwork.org/network/in-a-moment/#series",
+        "https://podcastnetwork.org/#organization",
+        "https://podcastnetwork.org/network/buddy-buck-show/#series",
+        "https://podcastnetwork.org/network/next-episode/#series"
+      ],
+      "visibleEdges": [
+        "michele-authorOf-book",
+        "mike-sameAs-linkedin",
+        "mike-sameAs-wikidata",
+        "michele-appearedOn-in-a-moment",
+        "in-a-moment-publishedBy-pn",
+        "buddy-buck-publishedBy-pn",
+        "next-episode-publishedBy-pn"
+      ]
+    },
+    {
+      "day": 90,
+      "label": "15 appearances + first press + Amazon pre-order",
+      "milestone": {
+        "type": "WebPage",
+        "description": "15 podcast appearances complete. First press mention. Amazon pre-order page live."
+      },
+      "addedNodes": [
+        "https://podcastnetwork.org/network/play-free-sports/#series",
+        "https://www.amazon.com/dp/AI_OR_DIE_ASIN_PLACEHOLDER",
+        "https://podcastnetwork.org/podcast/#series"
+      ],
+      "addedEdges": [
+        "play-free-publishedBy-pn",
+        "michele-appearedOn-flagship",
+        "flagship-publishedBy-pn"
+      ],
+      "visibleNodes": [
+        "https://podcastnetwork.org/case-studies/michele-okimura/#person",
+        "https://podcastnetwork.org/case-studies/michele-okimura/#book",
+        "https://www.linkedin.com/in/mikepartners/",
+        "https://www.wikidata.org/wiki/Q_MIKE_PLACEHOLDER",
+        "https://podcastnetwork.org/network/in-a-moment/#series",
+        "https://podcastnetwork.org/#organization",
+        "https://podcastnetwork.org/network/buddy-buck-show/#series",
+        "https://podcastnetwork.org/network/next-episode/#series",
+        "https://podcastnetwork.org/network/play-free-sports/#series",
+        "https://www.amazon.com/dp/AI_OR_DIE_ASIN_PLACEHOLDER",
+        "https://podcastnetwork.org/podcast/#series"
+      ],
+      "visibleEdges": [
+        "michele-authorOf-book",
+        "mike-sameAs-linkedin",
+        "mike-sameAs-wikidata",
+        "michele-appearedOn-in-a-moment",
+        "in-a-moment-publishedBy-pn",
+        "buddy-buck-publishedBy-pn",
+        "next-episode-publishedBy-pn",
+        "play-free-publishedBy-pn",
+        "michele-appearedOn-flagship",
+        "flagship-publishedBy-pn"
+      ]
+    },
+    {
+      "day": 120,
+      "label": "Knowledge Panel appears + 25 total appearances",
+      "milestone": {
+        "type": "WebPage",
+        "description": "Google Knowledge Panel appears in SERP. 25 speaking + podcast appearances complete."
+      },
+      "addedNodes": [
+        "https://podcastnetwork.org/about/#brett-k-moore",
+        "https://podcastnetwork.org/about/#mike-partners"
+      ],
+      "addedEdges": [
+        "brett-appearedOn-in-a-moment",
+        "brett-appearedOn-buddy-buck",
+        "brett-appearedOn-next-episode",
+        "brett-appearedOn-play-free",
+        "brett-appearedOn-flagship",
+        "mike-appearedOn-flagship"
+      ],
+      "visibleNodes": [
+        "https://podcastnetwork.org/case-studies/michele-okimura/#person",
+        "https://podcastnetwork.org/case-studies/michele-okimura/#book",
+        "https://www.linkedin.com/in/mikepartners/",
+        "https://www.wikidata.org/wiki/Q_MIKE_PLACEHOLDER",
+        "https://podcastnetwork.org/network/in-a-moment/#series",
+        "https://podcastnetwork.org/#organization",
+        "https://podcastnetwork.org/network/buddy-buck-show/#series",
+        "https://podcastnetwork.org/network/next-episode/#series",
+        "https://podcastnetwork.org/network/play-free-sports/#series",
+        "https://www.amazon.com/dp/AI_OR_DIE_ASIN_PLACEHOLDER",
+        "https://podcastnetwork.org/podcast/#series",
+        "https://podcastnetwork.org/about/#brett-k-moore",
+        "https://podcastnetwork.org/about/#mike-partners"
+      ],
+      "visibleEdges": [
+        "michele-authorOf-book",
+        "mike-sameAs-linkedin",
+        "mike-sameAs-wikidata",
+        "michele-appearedOn-in-a-moment",
+        "in-a-moment-publishedBy-pn",
+        "buddy-buck-publishedBy-pn",
+        "next-episode-publishedBy-pn",
+        "play-free-publishedBy-pn",
+        "michele-appearedOn-flagship",
+        "flagship-publishedBy-pn",
+        "brett-appearedOn-in-a-moment",
+        "brett-appearedOn-buddy-buck",
+        "brett-appearedOn-next-episode",
+        "brett-appearedOn-play-free",
+        "brett-appearedOn-flagship",
+        "mike-appearedOn-flagship"
+      ]
+    },
+    {
+      "day": 150,
+      "label": "Launch week",
+      "milestone": {
+        "type": "Book",
+        "description": "5,000 pre-sold audience. Book publishes. Goodreads + Spotify entities live."
+      },
+      "addedNodes": [
+        "https://legacypublishing.com/#organization",
+        "https://podcastnetwork.org/book/#book",
+        "https://www.goodreads.com/book/show/AI_OR_DIE_GOODREADS_ID_PLACEHOLDER",
+        "https://open.spotify.com/show/AI_OR_DIE_SHOW_ID_PLACEHOLDER"
+      ],
+      "addedEdges": [
+        "michele-book-publishedBy-legacy",
+        "book-publishedBy-legacy",
+        "brett-authorOf-book",
+        "mike-authorOf-book",
+        "book-knownFor-goodreads",
+        "series-knownFor-spotify",
+        "book-knownFor-amazon"
+      ],
+      "visibleNodes": [
+        "https://podcastnetwork.org/case-studies/michele-okimura/#person",
+        "https://podcastnetwork.org/case-studies/michele-okimura/#book",
+        "https://www.linkedin.com/in/mikepartners/",
+        "https://www.wikidata.org/wiki/Q_MIKE_PLACEHOLDER",
+        "https://podcastnetwork.org/network/in-a-moment/#series",
+        "https://podcastnetwork.org/#organization",
+        "https://podcastnetwork.org/network/buddy-buck-show/#series",
+        "https://podcastnetwork.org/network/next-episode/#series",
+        "https://podcastnetwork.org/network/play-free-sports/#series",
+        "https://www.amazon.com/dp/AI_OR_DIE_ASIN_PLACEHOLDER",
+        "https://podcastnetwork.org/podcast/#series",
+        "https://podcastnetwork.org/about/#brett-k-moore",
+        "https://podcastnetwork.org/about/#mike-partners",
+        "https://legacypublishing.com/#organization",
+        "https://podcastnetwork.org/book/#book",
+        "https://www.goodreads.com/book/show/AI_OR_DIE_GOODREADS_ID_PLACEHOLDER",
+        "https://open.spotify.com/show/AI_OR_DIE_SHOW_ID_PLACEHOLDER"
+      ],
+      "visibleEdges": [
+        "michele-authorOf-book",
+        "mike-sameAs-linkedin",
+        "mike-sameAs-wikidata",
+        "michele-appearedOn-in-a-moment",
+        "in-a-moment-publishedBy-pn",
+        "buddy-buck-publishedBy-pn",
+        "next-episode-publishedBy-pn",
+        "play-free-publishedBy-pn",
+        "michele-appearedOn-flagship",
+        "flagship-publishedBy-pn",
+        "brett-appearedOn-in-a-moment",
+        "brett-appearedOn-buddy-buck",
+        "brett-appearedOn-next-episode",
+        "brett-appearedOn-play-free",
+        "brett-appearedOn-flagship",
+        "mike-appearedOn-flagship",
+        "michele-book-publishedBy-legacy",
+        "book-publishedBy-legacy",
+        "brett-authorOf-book",
+        "mike-authorOf-book",
+        "book-knownFor-goodreads",
+        "series-knownFor-spotify",
+        "book-knownFor-amazon"
+      ]
+    },
+    {
+      "day": 180,
+      "label": "Full entity graph, month 6",
+      "milestone": {
+        "type": "Organization",
+        "description": "Full graph: author + book + podcast + Knowledge Panel + press + speaking calendar + JV publisher."
+      },
+      "addedNodes": [
+        "https://aiordie.com/#organization",
+        "https://aiexpert.com/#organization",
+        "https://apexpodcastco.com/#organization",
+        "https://www.linkedin.com/in/brettkmoore/",
+        "https://www.linkedin.com/company/podcastnetworkorg/",
+        "https://x.com/podcastnetwork",
+        "https://www.wikidata.org/wiki/Q_BRETT_PLACEHOLDER",
+        "https://podcastnetwork.org/case-studies/dominic/#person",
+        "https://podcastnetwork.org/case-studies/dominic/#book",
+        "https://podcastnetwork.org/case-studies/rob/#person",
+        "https://podcastnetwork.org/case-studies/rob/#book",
+        "https://exprealty.com/team/russ-laggan/#person",
+        "https://exprealty.com/pilot/#speakingevent"
+      ],
+      "addedEdges": [
+        "brett-founderOf-pn",
+        "mike-founderOf-pn",
+        "brett-founderOf-aiordie",
+        "mike-founderOf-aiordie",
+        "brett-founderOf-aiexpert",
+        "brett-founderOf-apex",
+        "pn-sameAs-linkedin",
+        "pn-sameAs-x",
+        "brett-sameAs-linkedin",
+        "brett-sameAs-wikidata",
+        "book-knownFor-aiordie-org",
+        "series-knownFor-aiordie-org",
+        "dominic-authorOf-book",
+        "dominic-book-publishedBy-legacy",
+        "dominic-appearedOn-flagship",
+        "rob-authorOf-book",
+        "rob-book-publishedBy-legacy",
+        "rob-appearedOn-flagship",
+        "russ-appearedOn-exp-pilot",
+        "brett-appearedOn-exp-pilot"
+      ],
+      "visibleNodes": [
+        "https://podcastnetwork.org/about/#brett-k-moore",
+        "https://podcastnetwork.org/about/#mike-partners",
+        "https://podcastnetwork.org/#organization",
+        "https://aiordie.com/#organization",
+        "https://legacypublishing.com/#organization",
+        "https://aiexpert.com/#organization",
+        "https://apexpodcastco.com/#organization",
+        "https://podcastnetwork.org/book/#book",
+        "https://podcastnetwork.org/podcast/#series",
+        "https://podcastnetwork.org/case-studies/michele-okimura/#person",
+        "https://podcastnetwork.org/case-studies/dominic/#person",
+        "https://podcastnetwork.org/case-studies/rob/#person",
+        "https://exprealty.com/team/russ-laggan/#person",
+        "https://podcastnetwork.org/case-studies/michele-okimura/#book",
+        "https://podcastnetwork.org/case-studies/dominic/#book",
+        "https://podcastnetwork.org/case-studies/rob/#book",
+        "https://podcastnetwork.org/network/in-a-moment/#series",
+        "https://podcastnetwork.org/network/buddy-buck-show/#series",
+        "https://podcastnetwork.org/network/next-episode/#series",
+        "https://podcastnetwork.org/network/play-free-sports/#series",
+        "https://www.linkedin.com/in/brettkmoore/",
+        "https://www.linkedin.com/in/mikepartners/",
+        "https://www.linkedin.com/company/podcastnetworkorg/",
+        "https://x.com/podcastnetwork",
+        "https://www.wikidata.org/wiki/Q_BRETT_PLACEHOLDER",
+        "https://www.wikidata.org/wiki/Q_MIKE_PLACEHOLDER",
+        "https://www.amazon.com/dp/AI_OR_DIE_ASIN_PLACEHOLDER",
+        "https://www.goodreads.com/book/show/AI_OR_DIE_GOODREADS_ID_PLACEHOLDER",
+        "https://open.spotify.com/show/AI_OR_DIE_SHOW_ID_PLACEHOLDER",
+        "https://exprealty.com/pilot/#speakingevent"
+      ],
+      "visibleEdges": [
+        "brett-founderOf-pn",
+        "mike-founderOf-pn",
+        "brett-founderOf-aiordie",
+        "mike-founderOf-aiordie",
+        "brett-founderOf-aiexpert",
+        "brett-founderOf-apex",
+        "brett-authorOf-book",
+        "mike-authorOf-book",
+        "book-publishedBy-legacy",
+        "book-knownFor-amazon",
+        "book-knownFor-goodreads",
+        "series-knownFor-spotify",
+        "pn-sameAs-linkedin",
+        "pn-sameAs-x",
+        "brett-sameAs-linkedin",
+        "brett-sameAs-wikidata",
+        "mike-sameAs-linkedin",
+        "mike-sameAs-wikidata",
+        "brett-appearedOn-flagship",
+        "mike-appearedOn-flagship",
+        "flagship-publishedBy-pn",
+        "michele-authorOf-book",
+        "michele-appearedOn-in-a-moment",
+        "michele-book-publishedBy-legacy",
+        "in-a-moment-publishedBy-pn",
+        "dominic-authorOf-book",
+        "dominic-book-publishedBy-legacy",
+        "rob-authorOf-book",
+        "rob-book-publishedBy-legacy",
+        "brett-appearedOn-buddy-buck",
+        "brett-appearedOn-in-a-moment",
+        "brett-appearedOn-next-episode",
+        "brett-appearedOn-play-free",
+        "buddy-buck-publishedBy-pn",
+        "next-episode-publishedBy-pn",
+        "play-free-publishedBy-pn",
+        "russ-appearedOn-exp-pilot",
+        "brett-appearedOn-exp-pilot",
+        "book-knownFor-aiordie-org",
+        "series-knownFor-aiordie-org",
+        "michele-appearedOn-flagship",
+        "dominic-appearedOn-flagship",
+        "rob-appearedOn-flagship"
+      ]
+    }
+  ]
+}

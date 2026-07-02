@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+  /* Theme tokens go here. Override per-client in their own globals.css. */
+}
+
+body {
+  background: #ffffff;
+  color: #111827;
+}

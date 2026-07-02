@@ -1,0 +1,284 @@
+{
+  "$comment": "Hardcoded entity graph for the EntityGraphHero on the PN.org homepage. 30 nodes, ~42 edges. Every @id matches the shipped JSON-LD schema stack in rebuild-2026-07-01/schema/. Weight drives node size + force-simulation gravity (10 = anchor, 3 = periphery). Update this file when the underlying schema entities change.",
+  "nodes": [
+    {
+      "id": "https://podcastnetwork.org/about/#brett-k-moore",
+      "type": "Person",
+      "label": "Brett K Moore",
+      "imageUrl": "/founders/brett-k-moore.jpg",
+      "description": "Co-founder, PodcastNetwork.org. Co-author of AI or Die. Fifteen years building networks between operators and the audiences they need.",
+      "sameAs": [
+        "https://www.linkedin.com/in/brettkmoore/",
+        "https://x.com/brettkmoore"
+      ],
+      "weight": 10
+    },
+    {
+      "id": "https://podcastnetwork.org/about/#mike-partners",
+      "type": "Person",
+      "label": "Mike Partners",
+      "imageUrl": "/founders/mike-partners.jpg",
+      "description": "Co-founder, PodcastNetwork.org. Co-author of AI or Die. Career operator turned author.",
+      "sameAs": [
+        "https://www.linkedin.com/in/mikepartners/",
+        "https://x.com/mikepartners"
+      ],
+      "weight": 10
+    },
+    {
+      "id": "https://podcastnetwork.org/#organization",
+      "type": "Organization",
+      "label": "PodcastNetwork.org",
+      "imageUrl": "/brand/logo-primary.png",
+      "description": "Premium authority launch. Six months. One package. $30,000.",
+      "sameAs": [
+        "https://www.linkedin.com/company/podcastnetworkorg/",
+        "https://x.com/podcastnetwork"
+      ],
+      "weight": 10
+    },
+    {
+      "id": "https://aiordie.com/#organization",
+      "type": "Organization",
+      "label": "AI or Die",
+      "imageUrl": "/brand/aiordie-logo.png",
+      "description": "The AI or Die brand. Book, podcast, movement.",
+      "weight": 7
+    },
+    {
+      "id": "https://legacypublishing.com/#organization",
+      "type": "Organization",
+      "label": "Legacy Publishing",
+      "imageUrl": "/brand/legacy-logo.png",
+      "description": "Elite traditional publisher. Application-only. 10% of net book sales. No upfront fee.",
+      "weight": 7
+    },
+    {
+      "id": "https://aiexpert.com/#organization",
+      "type": "Organization",
+      "label": "AI Expert",
+      "imageUrl": "/brand/aiexpert-logo.png",
+      "description": "Brett's AI education platform. Sister brand to PN.org.",
+      "weight": 6
+    },
+    {
+      "id": "https://apexpodcastco.com/#organization",
+      "type": "Organization",
+      "label": "Apex Podcast Co",
+      "imageUrl": "/brand/apex-logo.png",
+      "description": "Brett's podcast production business. Perk feed for PN.org clients.",
+      "weight": 6
+    },
+    {
+      "id": "https://podcastnetwork.org/book/#book",
+      "type": "Book",
+      "label": "AI or Die",
+      "imageUrl": "/case-studies/ai-or-die/cover.jpg",
+      "description": "The book. Published by Legacy Publishing. Launched 2026-06-24.",
+      "weight": 8
+    },
+    {
+      "id": "https://podcastnetwork.org/podcast/#series",
+      "type": "PodcastSeries",
+      "label": "The Podcast Network",
+      "imageUrl": "/podcast/flagship-cover.jpg",
+      "description": "PN.org's flagship podcast series. Anchored by Brett + Mike.",
+      "weight": 8
+    },
+    {
+      "id": "https://podcastnetwork.org/case-studies/michele-okimura/#person",
+      "type": "Person",
+      "label": "Michele Okimura",
+      "imageUrl": "/case-studies/michele-okimura/photo.jpg",
+      "description": "Case study author. In launch, Day 30 of 180.",
+      "weight": 6
+    },
+    {
+      "id": "https://podcastnetwork.org/case-studies/dominic/#person",
+      "type": "Person",
+      "label": "Dominic",
+      "imageUrl": "/case-studies/dominic/photo.jpg",
+      "description": "Case study author. In launch.",
+      "weight": 6
+    },
+    {
+      "id": "https://podcastnetwork.org/case-studies/rob/#person",
+      "type": "Person",
+      "label": "Rob",
+      "imageUrl": "/case-studies/rob/photo.jpg",
+      "description": "Case study author. In launch.",
+      "weight": 6
+    },
+    {
+      "id": "https://exprealty.com/team/russ-laggan/#person",
+      "type": "Person",
+      "label": "Russ Laggan",
+      "description": "eXp Realty champion. PN.org pilot proposal in review.",
+      "weight": 5
+    },
+    {
+      "id": "https://podcastnetwork.org/case-studies/michele-okimura/#book",
+      "type": "Book",
+      "label": "Michele's book (working title TBD)",
+      "description": "In development. Legacy Publishing.",
+      "weight": 4
+    },
+    {
+      "id": "https://podcastnetwork.org/case-studies/dominic/#book",
+      "type": "Book",
+      "label": "Dominic's book (in development)",
+      "description": "In development. Legacy Publishing.",
+      "weight": 4
+    },
+    {
+      "id": "https://podcastnetwork.org/case-studies/rob/#book",
+      "type": "Book",
+      "label": "Rob's book (in development)",
+      "description": "In development. Legacy Publishing.",
+      "weight": 4
+    },
+    {
+      "id": "https://podcastnetwork.org/network/in-a-moment/#series",
+      "type": "PodcastSeries",
+      "label": "In a Moment",
+      "description": "Michele Okimura + Brett. PN.org network show.",
+      "weight": 4
+    },
+    {
+      "id": "https://podcastnetwork.org/network/buddy-buck-show/#series",
+      "type": "PodcastSeries",
+      "label": "The Buddy Buck Show",
+      "description": "PN.org network show.",
+      "weight": 4
+    },
+    {
+      "id": "https://podcastnetwork.org/network/next-episode/#series",
+      "type": "PodcastSeries",
+      "label": "The Next Episode",
+      "description": "Terry Hollimon. PN.org network show.",
+      "weight": 4
+    },
+    {
+      "id": "https://podcastnetwork.org/network/play-free-sports/#series",
+      "type": "PodcastSeries",
+      "label": "The Play Free Sports Podcast",
+      "description": "Tim Kuykendall. PN.org network show.",
+      "weight": 4
+    },
+    {
+      "id": "https://www.linkedin.com/in/brettkmoore/",
+      "type": "WebPage",
+      "label": "Brett on LinkedIn",
+      "description": "Brett K Moore's LinkedIn profile.",
+      "weight": 3
+    },
+    {
+      "id": "https://www.linkedin.com/in/mikepartners/",
+      "type": "WebPage",
+      "label": "Mike on LinkedIn",
+      "description": "Mike Partners' LinkedIn profile.",
+      "weight": 3
+    },
+    {
+      "id": "https://www.linkedin.com/company/podcastnetworkorg/",
+      "type": "WebPage",
+      "label": "PN.org on LinkedIn",
+      "description": "PodcastNetwork.org LinkedIn company page.",
+      "weight": 3
+    },
+    {
+      "id": "https://x.com/podcastnetwork",
+      "type": "WebPage",
+      "label": "PN.org on X",
+      "description": "PodcastNetwork.org X (formerly Twitter) profile.",
+      "weight": 3
+    },
+    {
+      "id": "https://www.wikidata.org/wiki/Q_BRETT_PLACEHOLDER",
+      "type": "WebPage",
+      "label": "Brett on Wikidata",
+      "description": "Brett K Moore's Wikidata Q-number entry.",
+      "weight": 3
+    },
+    {
+      "id": "https://www.wikidata.org/wiki/Q_MIKE_PLACEHOLDER",
+      "type": "WebPage",
+      "label": "Mike on Wikidata",
+      "description": "Mike Partners' Wikidata Q-number entry.",
+      "weight": 3
+    },
+    {
+      "id": "https://www.amazon.com/dp/AI_OR_DIE_ASIN_PLACEHOLDER",
+      "type": "WebPage",
+      "label": "AI or Die on Amazon",
+      "description": "The book's Amazon product page.",
+      "weight": 4
+    },
+    {
+      "id": "https://www.goodreads.com/book/show/AI_OR_DIE_GOODREADS_ID_PLACEHOLDER",
+      "type": "WebPage",
+      "label": "AI or Die on Goodreads",
+      "description": "The book's Goodreads page.",
+      "weight": 4
+    },
+    {
+      "id": "https://open.spotify.com/show/AI_OR_DIE_SHOW_ID_PLACEHOLDER",
+      "type": "WebPage",
+      "label": "AI or Die on Spotify",
+      "description": "The podcast's Spotify show page.",
+      "weight": 4
+    },
+    {
+      "id": "https://exprealty.com/pilot/#speakingevent",
+      "type": "SpeakingEvent",
+      "label": "eXp Realty pilot",
+      "description": "PN.org's live wedge deal. Alignment call scheduled.",
+      "weight": 4
+    }
+  ],
+  "edges": [
+    { "id": "brett-founderOf-pn", "source": "https://podcastnetwork.org/about/#brett-k-moore", "target": "https://podcastnetwork.org/#organization", "type": "founderOf" },
+    { "id": "mike-founderOf-pn", "source": "https://podcastnetwork.org/about/#mike-partners", "target": "https://podcastnetwork.org/#organization", "type": "founderOf" },
+    { "id": "brett-founderOf-aiordie", "source": "https://podcastnetwork.org/about/#brett-k-moore", "target": "https://aiordie.com/#organization", "type": "founderOf" },
+    { "id": "mike-founderOf-aiordie", "source": "https://podcastnetwork.org/about/#mike-partners", "target": "https://aiordie.com/#organization", "type": "founderOf" },
+    { "id": "brett-founderOf-aiexpert", "source": "https://podcastnetwork.org/about/#brett-k-moore", "target": "https://aiexpert.com/#organization", "type": "founderOf" },
+    { "id": "brett-founderOf-apex", "source": "https://podcastnetwork.org/about/#brett-k-moore", "target": "https://apexpodcastco.com/#organization", "type": "founderOf" },
+    { "id": "brett-authorOf-book", "source": "https://podcastnetwork.org/about/#brett-k-moore", "target": "https://podcastnetwork.org/book/#book", "type": "authorOf" },
+    { "id": "mike-authorOf-book", "source": "https://podcastnetwork.org/about/#mike-partners", "target": "https://podcastnetwork.org/book/#book", "type": "authorOf" },
+    { "id": "book-publishedBy-legacy", "source": "https://podcastnetwork.org/book/#book", "target": "https://legacypublishing.com/#organization", "type": "publishedBy" },
+    { "id": "book-knownFor-amazon", "source": "https://podcastnetwork.org/book/#book", "target": "https://www.amazon.com/dp/AI_OR_DIE_ASIN_PLACEHOLDER", "type": "knownFor" },
+    { "id": "book-knownFor-goodreads", "source": "https://podcastnetwork.org/book/#book", "target": "https://www.goodreads.com/book/show/AI_OR_DIE_GOODREADS_ID_PLACEHOLDER", "type": "knownFor" },
+    { "id": "series-knownFor-spotify", "source": "https://podcastnetwork.org/podcast/#series", "target": "https://open.spotify.com/show/AI_OR_DIE_SHOW_ID_PLACEHOLDER", "type": "knownFor" },
+    { "id": "pn-sameAs-linkedin", "source": "https://podcastnetwork.org/#organization", "target": "https://www.linkedin.com/company/podcastnetworkorg/", "type": "sameAs" },
+    { "id": "pn-sameAs-x", "source": "https://podcastnetwork.org/#organization", "target": "https://x.com/podcastnetwork", "type": "sameAs" },
+    { "id": "brett-sameAs-linkedin", "source": "https://podcastnetwork.org/about/#brett-k-moore", "target": "https://www.linkedin.com/in/brettkmoore/", "type": "sameAs" },
+    { "id": "brett-sameAs-wikidata", "source": "https://podcastnetwork.org/about/#brett-k-moore", "target": "https://www.wikidata.org/wiki/Q_BRETT_PLACEHOLDER", "type": "sameAs" },
+    { "id": "mike-sameAs-linkedin", "source": "https://podcastnetwork.org/about/#mike-partners", "target": "https://www.linkedin.com/in/mikepartners/", "type": "sameAs" },
+    { "id": "mike-sameAs-wikidata", "source": "https://podcastnetwork.org/about/#mike-partners", "target": "https://www.wikidata.org/wiki/Q_MIKE_PLACEHOLDER", "type": "sameAs" },
+    { "id": "brett-appearedOn-flagship", "source": "https://podcastnetwork.org/about/#brett-k-moore", "target": "https://podcastnetwork.org/podcast/#series", "type": "appearedOn" },
+    { "id": "mike-appearedOn-flagship", "source": "https://podcastnetwork.org/about/#mike-partners", "target": "https://podcastnetwork.org/podcast/#series", "type": "appearedOn" },
+    { "id": "flagship-publishedBy-pn", "source": "https://podcastnetwork.org/podcast/#series", "target": "https://podcastnetwork.org/#organization", "type": "publishedBy" },
+    { "id": "michele-authorOf-book", "source": "https://podcastnetwork.org/case-studies/michele-okimura/#person", "target": "https://podcastnetwork.org/case-studies/michele-okimura/#book", "type": "authorOf" },
+    { "id": "michele-appearedOn-in-a-moment", "source": "https://podcastnetwork.org/case-studies/michele-okimura/#person", "target": "https://podcastnetwork.org/network/in-a-moment/#series", "type": "appearedOn" },
+    { "id": "michele-book-publishedBy-legacy", "source": "https://podcastnetwork.org/case-studies/michele-okimura/#book", "target": "https://legacypublishing.com/#organization", "type": "publishedBy" },
+    { "id": "in-a-moment-publishedBy-pn", "source": "https://podcastnetwork.org/network/in-a-moment/#series", "target": "https://podcastnetwork.org/#organization", "type": "publishedBy" },
+    { "id": "dominic-authorOf-book", "source": "https://podcastnetwork.org/case-studies/dominic/#person", "target": "https://podcastnetwork.org/case-studies/dominic/#book", "type": "authorOf" },
+    { "id": "dominic-book-publishedBy-legacy", "source": "https://podcastnetwork.org/case-studies/dominic/#book", "target": "https://legacypublishing.com/#organization", "type": "publishedBy" },
+    { "id": "rob-authorOf-book", "source": "https://podcastnetwork.org/case-studies/rob/#person", "target": "https://podcastnetwork.org/case-studies/rob/#book", "type": "authorOf" },
+    { "id": "rob-book-publishedBy-legacy", "source": "https://podcastnetwork.org/case-studies/rob/#book", "target": "https://legacypublishing.com/#organization", "type": "publishedBy" },
+    { "id": "brett-appearedOn-buddy-buck", "source": "https://podcastnetwork.org/about/#brett-k-moore", "target": "https://podcastnetwork.org/network/buddy-buck-show/#series", "type": "appearedOn" },
+    { "id": "brett-appearedOn-in-a-moment", "source": "https://podcastnetwork.org/about/#brett-k-moore", "target": "https://podcastnetwork.org/network/in-a-moment/#series", "type": "appearedOn" },
+    { "id": "brett-appearedOn-next-episode", "source": "https://podcastnetwork.org/about/#brett-k-moore", "target": "https://podcastnetwork.org/network/next-episode/#series", "type": "appearedOn" },
+    { "id": "brett-appearedOn-play-free", "source": "https://podcastnetwork.org/about/#brett-k-moore", "target": "https://podcastnetwork.org/network/play-free-sports/#series", "type": "appearedOn" },
+    { "id": "buddy-buck-publishedBy-pn", "source": "https://podcastnetwork.org/network/buddy-buck-show/#series", "target": "https://podcastnetwork.org/#organization", "type": "publishedBy" },
+    { "id": "next-episode-publishedBy-pn", "source": "https://podcastnetwork.org/network/next-episode/#series", "target": "https://podcastnetwork.org/#organization", "type": "publishedBy" },
+    { "id": "play-free-publishedBy-pn", "source": "https://podcastnetwork.org/network/play-free-sports/#series", "target": "https://podcastnetwork.org/#organization", "type": "publishedBy" },
+    { "id": "russ-appearedOn-exp-pilot", "source": "https://exprealty.com/team/russ-laggan/#person", "target": "https://exprealty.com/pilot/#speakingevent", "type": "appearedOn" },
+    { "id": "brett-appearedOn-exp-pilot", "source": "https://podcastnetwork.org/about/#brett-k-moore", "target": "https://exprealty.com/pilot/#speakingevent", "type": "appearedOn" },
+    { "id": "book-knownFor-aiordie-org", "source": "https://podcastnetwork.org/book/#book", "target": "https://aiordie.com/#organization", "type": "knownFor" },
+    { "id": "series-knownFor-aiordie-org", "source": "https://podcastnetwork.org/podcast/#series", "target": "https://aiordie.com/#organization", "type": "knownFor" },
+    { "id": "michele-appearedOn-flagship", "source": "https://podcastnetwork.org/case-studies/michele-okimura/#person", "target": "https://podcastnetwork.org/podcast/#series", "type": "appearedOn" },
+    { "id": "dominic-appearedOn-flagship", "source": "https://podcastnetwork.org/case-studies/dominic/#person", "target": "https://podcastnetwork.org/podcast/#series", "type": "appearedOn" },
+    { "id": "rob-appearedOn-flagship", "source": "https://podcastnetwork.org/case-studies/rob/#person", "target": "https://podcastnetwork.org/podcast/#series", "type": "appearedOn" }
+  ]
+}

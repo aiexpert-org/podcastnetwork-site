@@ -1,0 +1,104 @@
+{
+  "@context": "https://schema.org",
+  "@type": "PodcastSeries",
+  "@id": "https://podcastnetwork.org/podcast/#series",
+  "url": "https://podcastnetwork.org/podcast/",
+  "name": "{{PODCAST_NAME}}",
+  "alternateName": "The AI or Die Podcast",
+  "description": "The anchor podcast for the AI or Die book launch and the PodcastNetwork.org network. Weekly episodes with the operators, authors, and executives rebuilding their businesses as AI-native.",
+  "image": [
+    "https://podcastnetwork.org/podcast/cover-3000x3000.jpg",
+    "https://podcastnetwork.org/podcast/cover-1400x1400.jpg"
+  ],
+  "inLanguage": "en-US",
+  "webFeed": "https://podcastnetwork.org/podcast/rss.xml",
+  "author": [
+    { "@id": "https://podcastnetwork.org/about/#brett-k-moore" },
+    { "@id": "https://podcastnetwork.org/about/#mike-partners" }
+  ],
+  "creator": [
+    { "@id": "https://podcastnetwork.org/about/#brett-k-moore" },
+    { "@id": "https://podcastnetwork.org/about/#mike-partners" }
+  ],
+  "publisher": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "productionCompany": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "actor": [
+    {
+      "@id": "https://podcastnetwork.org/about/#brett-k-moore",
+      "roleName": "Co-host"
+    },
+    {
+      "@id": "https://podcastnetwork.org/about/#mike-partners",
+      "roleName": "Co-host"
+    }
+  ],
+  "genre": [
+    "Business",
+    "Entrepreneurship",
+    "Artificial Intelligence"
+  ],
+  "keywords": "AI-native business, operator, founder, portfolio operator, Pre-Sold Author Package, book launch, knowledge panel",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Founders, executives, and operators building or rebuilding businesses as AI-native"
+  },
+  "sameAs": [
+    "https://podcasts.apple.com/us/podcast/{{APPLE_PODCASTS_ID}}",
+    "https://open.spotify.com/show/{{SPOTIFY_SHOW_ID}}",
+    "https://music.amazon.com/podcasts/{{AMAZON_MUSIC_ID}}",
+    "https://podcastindex.org/podcast/{{PODCASTINDEX_ID}}",
+    "https://www.wikidata.org/wiki/{{WIKIDATA_Q_NUMBER_PODCAST}}"
+  ],
+  "isPartOf": {
+    "@type": "PodcastSeries",
+    "@id": "https://podcastnetwork.org/#network",
+    "name": "The PodcastNetwork.org Network",
+    "url": "https://podcastnetwork.org/"
+  },
+  "hasPart": [
+    {
+      "@id": "https://podcastnetwork.org/podcast/episode-1/#episode"
+    }
+  ],
+  "networkShows": {
+    "$comment": "Companion PodcastSeries entities for the other shows in the PodcastNetwork.org network. Emit these on their own pages when the shows have dedicated network pages.",
+    "in-a-moment": {
+      "@type": "PodcastSeries",
+      "@id": "https://podcastnetwork.org/network/in-a-moment/#series",
+      "name": "In a Moment",
+      "url": "https://podcastnetwork.org/network/in-a-moment/",
+      "description": "Co-hosted by Michele Okimura and Brett K Moore. Part of the PodcastNetwork.org network.",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Michele Okimura",
+          "@id": "https://podcastnetwork.org/case-studies/michele-okimura/#person"
+        },
+        {
+          "@id": "https://podcastnetwork.org/about/#brett-k-moore"
+        }
+      ],
+      "publisher": { "@id": "https://podcastnetwork.org/#organization" },
+      "inLanguage": "en-US",
+      "webFeed": "https://podcastnetwork.org/network/in-a-moment/rss.xml"
+    },
+    "the-next-episode": {
+      "@type": "PodcastSeries",
+      "@id": "https://podcastnetwork.org/network/the-next-episode/#series",
+      "name": "The Next Episode",
+      "url": "https://podcastnetwork.org/network/the-next-episode/",
+      "description": "Hosted by Terry Hollimon. Part of the PodcastNetwork.org network.",
+      "author": {
+        "@type": "Person",
+        "name": "Terry Hollimon"
+      },
+      "publisher": { "@id": "https://podcastnetwork.org/#organization" },
+      "inLanguage": "en-US",
+      "webFeed": "https://podcastnetwork.org/network/the-next-episode/rss.xml"
+    }
+  }
+}

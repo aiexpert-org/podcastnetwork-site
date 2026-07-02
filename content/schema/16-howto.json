@@ -1,0 +1,121 @@
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "@id": "https://podcastnetwork.org/the-method/#howto",
+  "name": "How to launch a book in 6 months into a pre-sold audience of 5,000+",
+  "description": "The six-step method PodcastNetwork.org uses to deliver a book, a podcast, a Google Knowledge Panel, and a pre-sold audience on a single 180-day clock. Structured so Google can feature the framework in AI Overviews and Rich Results.",
+  "url": "https://podcastnetwork.org/the-method/",
+  "image": [
+    "https://podcastnetwork.org/the-method/hero-16x9.jpg",
+    "https://podcastnetwork.org/the-method/timeline-3x1.jpg"
+  ],
+  "inLanguage": "en-US",
+  "totalTime": "P180D",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "USD",
+    "value": "30000"
+  },
+  "supply": [
+    {
+      "@type": "HowToSupply",
+      "name": "Existing platform (5,000+ mailing list, 25,000+ monthly podcast downloads, or activated retail channel)"
+    },
+    {
+      "@type": "HowToSupply",
+      "name": "Source material for ghostwriting (existing podcast catalog, keynotes, articles, or manuscript in hand)"
+    },
+    {
+      "@type": "HowToSupply",
+      "name": "90 to 180 days of runway before target launch"
+    }
+  ],
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": "PodcastNetwork.org network infrastructure"
+    },
+    {
+      "@type": "HowToTool",
+      "name": "Legacy Publishing editorial and production team"
+    },
+    {
+      "@type": "HowToTool",
+      "name": "Wikidata Q-number seeding and Entity Home construction"
+    },
+    {
+      "@type": "HowToTool",
+      "name": "GHL for contract, payment, and intake"
+    }
+  ],
+  "performer": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "@id": "https://podcastnetwork.org/the-method/#step-1",
+      "position": 1,
+      "name": "Days 1 to 30: Foundation",
+      "text": "Kickoff, discovery, and voice work happen in the first week. Podcast launches inside the PodcastNetwork.org network by Day 30 with branding, cover art, hosting, and distribution to Apple Podcasts and Spotify. Wikidata Q-number is seeded on Day 1. Entity Home is built Day 14 to 30 with full JSON-LD Person and Book schema live. Ghostwriting interviews begin, or the manuscript enters the five-pass edit. Guest-booking outreach starts for the pre-sell tour.",
+      "url": "https://podcastnetwork.org/the-method/#month-1",
+      "image": "https://podcastnetwork.org/the-method/step-1-foundation.jpg",
+      "timeRequired": "P30D"
+    },
+    {
+      "@type": "HowToStep",
+      "@id": "https://podcastnetwork.org/the-method/#step-2",
+      "position": 2,
+      "name": "Days 30 to 60: Manuscript Kickoff and Podcast Cadence",
+      "text": "Podcast in-market with weekly episodes. Manuscript first draft in production (Chapter 1 landed by end of Month 2 on the ghostwriting path). Knowledge panel signals accumulating through structured markup and citation build. First tranche of top-tier podcast guest appearances confirmed and recorded. Audience-capture landing page live with a book-preview lead magnet.",
+      "url": "https://podcastnetwork.org/the-method/#month-2",
+      "image": "https://podcastnetwork.org/the-method/step-2-kickoff.jpg",
+      "timeRequired": "P30D"
+    },
+    {
+      "@type": "HowToStep",
+      "@id": "https://podcastnetwork.org/the-method/#step-3",
+      "position": 3,
+      "name": "Days 60 to 90: Podcast Arc and Manuscript Handoff",
+      "text": "Podcast arc hits stride with matched-show placements and Podroll cross-promotion inside the network. Ghostwriting draft complete by Day 90 (or manuscript-in-hand edit complete Day 60 to 75). Manuscript handoff to Legacy Publishing at Day 90 for cover design, interior layout, ARC copies, blurb sourcing, and retail distribution. Guest appearances hit second tranche.",
+      "url": "https://podcastnetwork.org/the-method/#month-3",
+      "image": "https://podcastnetwork.org/the-method/step-3-handoff.jpg",
+      "timeRequired": "P30D"
+    },
+    {
+      "@type": "HowToStep",
+      "@id": "https://podcastnetwork.org/the-method/#step-4",
+      "position": 4,
+      "name": "Days 90 to 120: Pre-Sell Sequence Intensifies",
+      "text": "Pre-sell sequence hits peak volume. Podcast guest appearances convert listeners into waitlist signups at scale. Launch-list growth accelerates through the middle third. Community activation begins. Cover reveal moment. Knowledge panel typically starts to index on Google in this window.",
+      "url": "https://podcastnetwork.org/the-method/#month-4",
+      "image": "https://podcastnetwork.org/the-method/step-4-presell.jpg",
+      "timeRequired": "P30D"
+    },
+    {
+      "@type": "HowToStep",
+      "@id": "https://podcastnetwork.org/the-method/#step-5",
+      "position": 5,
+      "name": "Days 120 to 150: Knowledge Panel Maturity and Launch List",
+      "text": "Google Knowledge Panel matures and typically surfaces in SERP in this window. Launch list warm-up sequence runs. Waitlist opens for pre-orders. Retail placement locked with Legacy. Media hits scheduled for launch week. Podcast catalog continues to fill.",
+      "url": "https://podcastnetwork.org/the-method/#month-5",
+      "image": "https://podcastnetwork.org/the-method/step-5-panel.jpg",
+      "timeRequired": "P30D"
+    },
+    {
+      "@type": "HowToStep",
+      "@id": "https://podcastnetwork.org/the-method/#step-6",
+      "position": 6,
+      "name": "Days 150 to 180: Book Launch and Post-Launch Handoff",
+      "text": "Launch week executes. Book goes on sale into the 5,000+ pre-sold list. Knowledge panel live. Podcast at scale. Legacy runs retail. PodcastNetwork.org runs launch-week coordination and produces the 30-day post-launch report. Handoff at Day 180 leaves the author with a fully-owned authority platform that continues to compound without PodcastNetwork.org running it.",
+      "url": "https://podcastnetwork.org/the-method/#month-6",
+      "image": "https://podcastnetwork.org/the-method/step-6-launch.jpg",
+      "timeRequired": "P30D"
+    }
+  ],
+  "yield": "A published book, a live podcast, a live Google Knowledge Panel, and a pre-sold audience of 5,000+ readers already opted in on launch day.",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://podcastnetwork.org/the-method/"
+  }
+}

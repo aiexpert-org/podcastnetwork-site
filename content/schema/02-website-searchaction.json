@@ -1,0 +1,56 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://podcastnetwork.org/#website",
+  "url": "https://podcastnetwork.org/",
+  "name": "PodcastNetwork.org",
+  "alternateName": "The Pre-Sold Author Package",
+  "description": "The premium authority launch. Book, podcast, knowledge panel, and a pre-sold audience of 5,000+ readers, delivered in six months.",
+  "inLanguage": "en-US",
+  "copyrightYear": 2026,
+  "copyrightHolder": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "publisher": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "potentialAction": [
+    {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://podcastnetwork.org/search/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    },
+    {
+      "@type": "ApplyAction",
+      "name": "Apply for the Pre-Sold Author Package",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://podcastnetwork.org/apply/",
+        "inLanguage": "en-US",
+        "actionPlatform": [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/MobileWebPlatform"
+        ]
+      },
+      "result": {
+        "@type": "Reservation",
+        "reservationStatus": "https://schema.org/ReservationHold"
+      }
+    }
+  ],
+  "isFamilyFriendly": true,
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Non-fiction authors with existing platform",
+    "geographicArea": [
+      { "@type": "Country", "name": "United States" },
+      { "@type": "Country", "name": "Canada" },
+      { "@type": "Country", "name": "United Kingdom" },
+      { "@type": "Country", "name": "Australia" }
+    ]
+  },
+  "keywords": "pre-sold author package, book launch, knowledge panel, podcast launch, authority marketing, ghostwriting, Legacy Publishing, entity home, Wikidata seeding"
+}
