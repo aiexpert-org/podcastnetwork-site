@@ -1,0 +1,39 @@
+import { CaseStudyLiveState } from '@/components/case-studies/CaseStudyLiveState'
+import { SchemaGraph } from '@/components/seo/SchemaGraph'
+import { inLaunchCaseStudySchema } from '@/lib/schema-graph'
+
+export const caseStudy = {
+  client: 'Dominic Jones',
+  title: 'Dominic Jones',
+  description:
+    'Discovery complete. Manuscript kickoff underway. Podcast arc begins next month.',
+  summary: [
+    'Dominic Jones is a non-fiction author inside the current PodcastNetwork.org cohort, writing A Heart That Says Yes through the Legacy Publishing pipeline.',
+    'Month 2 of 6. Discovery complete, manuscript kickoff underway, podcast arc begins next month.',
+  ],
+  date: '2026-05-15',
+  service: 'Pre-Sold Author Package',
+  status: 'In launch. Month 2 of 6',
+}
+
+export const metadata = {
+  title: 'Dominic Jones. In launch, Month 2 of 6',
+  description: caseStudy.description,
+  alternates: { canonical: '/case-studies/dominic-jones/' },
+}
+
+<SchemaGraph schema={inLaunchCaseStudySchema('dominic-jones', 'Dominic Jones', 'A Heart That Says Yes')} />
+
+## Why this author
+
+Dominic Jones is a non-fiction author inside the current PodcastNetwork.org cohort, writing A Heart That Says Yes through the Legacy Publishing pipeline. Discovery is complete and manuscript kickoff is underway; his podcast arc begins next month inside the network.
+
+## Live state
+
+<CaseStudyLiveState slug="dominic-jones" />
+
+<TopTip>
+  This page reports honest state only. If a metric is not on the page, that
+  metric does not yet exist in defensible form. The full case study lands at
+  launch, and the page updates as each verified milestone clears.
+</TopTip>

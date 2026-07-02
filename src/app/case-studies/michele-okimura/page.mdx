@@ -1,0 +1,39 @@
+import { CaseStudyLiveState } from '@/components/case-studies/CaseStudyLiveState'
+import { SchemaGraph } from '@/components/seo/SchemaGraph'
+import { inLaunchCaseStudySchema } from '@/lib/schema-graph'
+
+export const caseStudy = {
+  client: 'Michele Okimura',
+  title: 'Michele Okimura',
+  description:
+    'In production. Podcast arc live. Manuscript on schedule. Full case study lands at launch.',
+  summary: [
+    'Michele Okimura is building a category-defining book alongside an existing professional platform. She co-hosts In a Moment with Brett K Moore inside the PN.org network, the primary audience-building engine for her launch.',
+    'Month 3 of 6. Podcast arc live, manuscript on schedule through the Legacy Publishing JV rails.',
+  ],
+  date: '2026-04-15',
+  service: 'Pre-Sold Author Package',
+  status: 'In launch. Month 3 of 6',
+}
+
+export const metadata = {
+  title: 'Michele Okimura. In launch, Month 3 of 6',
+  description: caseStudy.description,
+  alternates: { canonical: '/case-studies/michele-okimura/' },
+}
+
+<SchemaGraph schema={inLaunchCaseStudySchema('michele-okimura', 'Michele Okimura', null)} />
+
+## Why this author
+
+Michele Okimura fits the Pre-Sold Author Package ICP because she is building a category-defining book alongside an existing professional platform. She co-hosts In a Moment with Brett K Moore inside the PN.org network, which serves as the primary audience-building engine for her launch. Her book pipeline runs directly on the Legacy Publishing JV rails.
+
+## Live state
+
+<CaseStudyLiveState slug="michele-okimura" />
+
+<TopTip>
+  This page reports honest state only. If a metric is not on the page, that
+  metric does not yet exist in defensible form. The full case study lands at
+  launch, and the page updates as each verified milestone clears.
+</TopTip>

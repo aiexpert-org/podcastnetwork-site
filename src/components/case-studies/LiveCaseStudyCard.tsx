@@ -88,7 +88,7 @@ export function LiveCaseStudyCard({
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <Heading className="text-h3 font-(family-name:--font-display) font-bold">
             {data.title}
-            <span className="text-slate"> — {data.authors.join(" + ")}</span>
+            <span className="text-slate"> · {data.authors.join(" + ")}</span>
           </Heading>
           <span className="text-caption text-slate">
             Published by {data.publisher} · Launched {data.publishedDate}

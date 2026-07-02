@@ -129,7 +129,7 @@ export function AiOrDieMetrics({
               #<CountUp value={data.amazon.rank} />
             </>
           ) : (
-            <span className="text-fog">—</span>
+            <span className="text-fog" data-mono>--</span>
           )}
         </Metric>
 
@@ -150,7 +150,7 @@ export function AiOrDieMetrics({
               </span>
             </>
           ) : (
-            <span className="text-fog">—</span>
+            <span className="text-fog" data-mono>--</span>
           )}
         </Metric>
 
@@ -169,7 +169,7 @@ export function AiOrDieMetrics({
           {data?.spotify ? (
             <CountUp value={data.spotify.episodeCount} />
           ) : (
-            <span className="text-fog">—</span>
+            <span className="text-fog" data-mono>--</span>
           )}
         </Metric>
       </div>

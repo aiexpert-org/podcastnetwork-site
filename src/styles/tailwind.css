@@ -1,0 +1,325 @@
+@import 'tailwindcss';
+@import './base.css';
+@import './typography.css' layer(components);
+
+/*
+ * PodcastNetwork.org v0.6 — Studio chassis with the Editorial Premium palette
+ * overlaid on Studio's monochrome baseline.
+ *
+ * Studio ships neutral-950 text on white. We remap the neutral scale to the
+ * locked Editorial Premium tokens (Vellum ground, Papyrus surfaces, Publisher
+ * Ink text, Slate muted) so every Studio component picks up the palette
+ * without per-component edits. Source of truth:
+ * rebuild-2026-07-01/path-b-v0.5/03-cinematic-dark-palette-override.md
+ */
+
+@theme {
+  --text-*: initial;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.5rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.75rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 2rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2.25rem;
+  --text-3xl: 1.75rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-4xl: 2rem;
+  --text-4xl--line-height: 2.5rem;
+  --text-5xl: 2.5rem;
+  --text-5xl--line-height: 3rem;
+  --text-6xl: 3rem;
+  --text-6xl--line-height: 3.5rem;
+  --text-7xl: 4rem;
+  --text-7xl--line-height: 4.5rem;
+
+  --radius-4xl: 2.5rem;
+
+  --font-sans:
+    Mona Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --font-display:
+    Mona Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --font-display--font-variation-settings: 'wdth' 125;
+
+  --font-display-length: 2;
+
+  /* Playfair Display: reserved editorial serif accent (pullquotes, select
+   * moments). Injected by next/font in app/layout.tsx. */
+  --font-serif: var(--font-playfair), 'Iowan Old Style', Georgia, serif;
+
+  /* JetBrains Mono: technical readouts in the schema validator + live
+   * metrics. Injected by next/font in app/layout.tsx. */
+  --font-mono:
+    var(--font-jetbrains), 'SF Mono', 'Cascadia Code', Menlo, Consolas,
+    monospace;
+
+  /* ------------------------------------------------------------------ */
+  /* Editorial Premium overlay on Studio's neutral scale                 */
+  /* ------------------------------------------------------------------ */
+
+  /* "White" surfaces become Papyrus: elevated cards on the light side,
+   * body text on the dark viz surfaces. */
+  --color-white: #faf8f5;
+
+  /* Warm cream steps replace the cool neutral light end. neutral-50 sits
+   * one step below Vellum so GridPattern fills + tinted bands read as
+   * deeper cream on the Vellum page ground. */
+  --color-neutral-50: #efe9de;
+  --color-neutral-100: #e7dfd0;
+  --color-neutral-200: #d9cfba;
+  --color-neutral-300: #c2b89f;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #2a3352;
+  --color-neutral-900: #1a2138;
+  --color-neutral-950: #0f172a;
+
+  /* Named palette tokens (killer components + page code reference these) */
+  --color-vellum: #f5f1ea;
+  --color-papyrus: #faf8f5;
+
+  /* Dark viz surface ground */
+  --color-viz-ink: #12172a;
+  --color-viz-ink-raised: #1a2138;
+  --color-viz-border: #2a3352;
+
+  /* Text */
+  --color-ink: #0f172a;
+  --color-slate: #475569;
+  --color-fog: #94a3b8;
+
+  /* Accents */
+  --color-foil: #c4a365;
+  /* Darkened from the palette doc's #8b7343 to clear WCAG AA (4.5:1) for
+   * eyebrow-size text on Vellum; still reads warm gold. */
+  --color-foil-dark: #7a6539;
+  --color-foil-bright: #e5c88e;
+  --color-signal: #1e40af;
+  --color-signal-dark: #152f80;
+
+  /* Entity graph node colors — light ground variants */
+  --color-entity-person: #c4a365;
+  --color-entity-person-border: #8b7343;
+  --color-entity-org: #1e40af;
+  --color-entity-org-border: #152f80;
+  --color-entity-book: #b91c1c;
+  --color-entity-book-border: #7f1313;
+  --color-entity-podcast: #4d7c0f;
+  --color-entity-podcast-border: #365409;
+  --color-entity-event: #b45309;
+  --color-entity-event-border: #7c3a06;
+  --color-entity-webpage: #6b21a8;
+  --color-entity-webpage-border: #4a1774;
+  --color-entity-award: #0f766e;
+  --color-entity-award-border: #0a5551;
+
+  /* Entity graph node colors — dark ground variants (hero, validator output) */
+  --color-entity-dark-person: #c4a365;
+  --color-entity-dark-person-glow: #e5c88e;
+  --color-entity-dark-org: #4a90e2;
+  --color-entity-dark-org-glow: #7fb3eb;
+  --color-entity-dark-book: #ef4444;
+  --color-entity-dark-book-glow: #f87171;
+  --color-entity-dark-podcast: #10b981;
+  --color-entity-dark-podcast-glow: #34d399;
+  --color-entity-dark-event: #f59e0b;
+  --color-entity-dark-event-glow: #fbbf24;
+  --color-entity-dark-webpage: #a855f7;
+  --color-entity-dark-webpage-glow: #c084fc;
+  --color-entity-dark-award: #14b8a6;
+  --color-entity-dark-award-glow: #5eead4;
+
+  /* Status */
+  --color-success: #059669;
+  --color-success-bright: #10b981;
+  --color-warning: #d97706;
+  --color-warning-bright: #f59e0b;
+  --color-error: #dc2626;
+  --color-error-bright: #ef4444;
+  --color-info: #1e40af;
+}
+
+@layer base {
+  body {
+    font-feature-settings: 'ss01', 'kern';
+    text-rendering: optimizeLegibility;
+  }
+
+  code,
+  pre,
+  [data-mono] {
+    font-family: var(--font-mono);
+    font-variant-ligatures: none;
+    font-feature-settings: 'tnum', 'zero';
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-foil);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  /* Killer-component type helpers carried over from v0.5. Display classes
+   * inherit Studio's Mona Sans display voice (wdth 125). */
+  .text-display-2 {
+    font-family: var(--font-display);
+    font-variation-settings: 'wdth' 125;
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  .text-h1 {
+    font-family: var(--font-display);
+    font-variation-settings: 'wdth' 125;
+    font-size: clamp(2rem, 3.75vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  .text-h2 {
+    font-family: var(--font-display);
+    font-variation-settings: 'wdth' 125;
+    font-size: clamp(1.625rem, 2.8vw, 2.25rem);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    font-weight: 500;
+  }
+
+  .text-h3 {
+    font-size: 1.5rem;
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+    font-weight: 600;
+  }
+
+  .text-h4 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
+  .text-eyebrow {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .text-lead {
+    font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    font-weight: 400;
+  }
+
+  .text-body-sm {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .text-caption {
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    letter-spacing: 0.01em;
+    font-weight: 500;
+  }
+
+  .text-micro {
+    font-size: 0.75rem;
+    line-height: 1.45;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+  }
+
+  .text-mono-body {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .text-mono-tab {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    line-height: 1.4;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .text-pullquote {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    font-weight: 400;
+    font-style: italic;
+  }
+}
+
+@layer utilities {
+  .measure {
+    max-width: 68ch;
+  }
+}
+
+/* Entity graph edge entry animation (dark viz surfaces). */
+@keyframes pn-edge-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Idle ambient drift on graph nodes: gentle vertical float, phase-offset per
+ * node via inline animation-delay. Dropped under prefers-reduced-motion. */
+@keyframes pn-float-loop {
+  0%,
+  100% {
+    translate: 0 -3px;
+  }
+  50% {
+    translate: 0 3px;
+  }
+}
+
+.pn-float {
+  animation-name: pn-float-loop;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pn-float {
+    animation: none !important;
+  }
+}
+
+/* React Flow overrides for the dark viz surfaces. */
+.react-flow__node {
+  cursor: pointer;
+}
+
+.react-flow__node:focus-visible {
+  outline: 2px solid var(--color-foil);
+  outline-offset: 4px;
+  border-radius: 8px;
+}

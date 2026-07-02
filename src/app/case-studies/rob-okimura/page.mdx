@@ -1,0 +1,39 @@
+import { CaseStudyLiveState } from '@/components/case-studies/CaseStudyLiveState'
+import { SchemaGraph } from '@/components/seo/SchemaGraph'
+import { inLaunchCaseStudySchema } from '@/lib/schema-graph'
+
+export const caseStudy = {
+  client: 'Rob Okimura',
+  title: 'Rob Okimura',
+  description:
+    'Pre-sell sequence live. Knowledge panel indexing. Launch window in Q3.',
+  summary: [
+    'Rob Okimura is in the current PodcastNetwork.org cohort with the pre-sell sequence live. Knowledge panel indexing is in motion and the launch window lands in Q3.',
+    'Month 4 of 6. His case study page updates as each verified milestone clears.',
+  ],
+  date: '2026-03-15',
+  service: 'Pre-Sold Author Package',
+  status: 'In launch. Month 4 of 6',
+}
+
+export const metadata = {
+  title: 'Rob Okimura. In launch, Month 4 of 6',
+  description: caseStudy.description,
+  alternates: { canonical: '/case-studies/rob-okimura/' },
+}
+
+<SchemaGraph schema={inLaunchCaseStudySchema('rob-okimura', 'Rob Okimura', null)} />
+
+## Why this author
+
+Rob Okimura is in the current PodcastNetwork.org cohort with the pre-sell sequence live. Knowledge panel indexing is in motion and the launch window lands in Q3. His case study page updates as each verified milestone clears.
+
+## Live state
+
+<CaseStudyLiveState slug="rob-okimura" />
+
+<TopTip>
+  This page reports honest state only. If a metric is not on the page, that
+  metric does not yet exist in defensible form. The full case study lands at
+  launch, and the page updates as each verified milestone clears.
+</TopTip>

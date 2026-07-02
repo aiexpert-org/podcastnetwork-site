@@ -1,31 +1,28 @@
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { Section } from "@/components/layout/Section";
-import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Button } from "@/components/ui/Button";
+import Link from 'next/link'
+
+import { Container } from '@/components/Container'
+import { FadeIn } from '@/components/FadeIn'
 
 export default function NotFound() {
   return (
-    <>
-      <Header />
-      <main>
-        <Section className="text-center">
-          <Eyebrow>404</Eyebrow>
-          <h1 className="text-display-2 mt-4">
-            This page isn&apos;t in the graph.
-          </h1>
-          <p className="text-lead mx-auto mt-5 max-w-xl text-slate">
-            The URL you followed doesn&apos;t resolve to an entity on this
-            site. The homepage graph is the best place to start.
-          </p>
-          <div className="mt-8">
-            <Button href="/" variant="primary">
-              Back to the graph →
-            </Button>
-          </div>
-        </Section>
-      </main>
-      <Footer />
-    </>
-  );
+    <Container className="flex h-full items-center pt-24 sm:pt-32 lg:pt-40">
+      <FadeIn className="flex max-w-xl flex-col items-center text-center">
+        <p className="font-display text-4xl font-semibold text-neutral-950 sm:text-5xl">
+          404
+        </p>
+        <h1 className="mt-4 font-display text-2xl font-semibold text-neutral-950">
+          Page not found
+        </h1>
+        <p className="mt-2 text-sm text-neutral-600">
+          Sorry, we couldn’t find the page you’re looking for.
+        </p>
+        <Link
+          href="/"
+          className="mt-4 text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
+        >
+          Go to the home page
+        </Link>
+      </FadeIn>
+    </Container>
+  )
 }

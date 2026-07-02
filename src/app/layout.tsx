@@ -1,49 +1,44 @@
-import type { Metadata } from "next";
-import { Playfair_Display, Inter, JetBrains_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
-import { PostHogInit } from "@/components/analytics/PostHogInit";
-import { siteConfig } from "@/lib/site-config";
-import "./globals.css";
+import { type Metadata } from 'next'
+import { Playfair_Display, JetBrains_Mono } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react'
+
+import { RootLayout } from '@/components/RootLayout'
+import { PostHogInit } from '@/components/analytics/PostHogInit'
+import { siteConfig } from '@/lib/site-config'
+
+import '@/styles/tailwind.css'
 
 const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "500", "700", "900"],
-  style: ["normal", "italic"],
-  variable: "--font-playfair",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-inter",
-  display: "swap",
-});
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-playfair',
+  display: 'swap',
+})
 
 const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-jetbrains",
-  display: "swap",
-});
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-jetbrains',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — Authority Architecture, Engineered`,
+    default: `${siteConfig.name}. Authority Architecture, Engineered`,
     template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  // The OG image comes from src/app/opengraph-image.tsx (file convention).
   openGraph: {
-    type: "website",
+    type: 'website',
     url: siteConfig.url,
     siteName: siteConfig.name,
     title: siteConfig.name,
     description: siteConfig.description,
   },
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
     title: siteConfig.name,
     description: siteConfig.description,
   },
@@ -53,28 +48,24 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      "max-snippet": -1,
-      "max-image-preview": "large",
-      "max-video-preview": -1,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
     },
   },
-};
+}
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${inter.variable} ${jetbrains.variable}`}
+      className={`h-full bg-neutral-950 text-base antialiased ${playfair.variable} ${jetbrains.variable}`}
     >
-      <body className="bg-vellum text-ink antialiased">
-        {children}
+      <body className="flex min-h-full flex-col">
+        <RootLayout>{children}</RootLayout>
         <Analytics />
         <PostHogInit />
       </body>
     </html>
-  );
+  )
 }
