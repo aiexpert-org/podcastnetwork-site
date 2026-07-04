@@ -4,8 +4,8 @@
   "@id": "https://podcastnetwork.org/#website",
   "url": "https://podcastnetwork.org/",
   "name": "PodcastNetwork.org",
-  "alternateName": "The Pre-Sold Author Package",
-  "description": "The premium authority launch. Book, podcast, knowledge panel, and a pre-sold audience of 5,000+ readers, delivered in six months.",
+  "alternateName": "Two paths to Google authority",
+  "description": "Google authority for executives, authors, and entrepreneurs. Two standalone packages: the Knowledge Panel Install ($10,000, 12 months) and the Pre-Sold Author Package ($36,000, 6 months). Application only.",
   "inLanguage": "en-US",
   "copyrightYear": 2026,
   "copyrightHolder": {
@@ -25,7 +25,7 @@
     },
     {
       "@type": "ApplyAction",
-      "name": "Apply for the Pre-Sold Author Package",
+      "name": "Apply to PodcastNetwork.org",
       "target": {
         "@type": "EntryPoint",
         "urlTemplate": "https://podcastnetwork.org/apply/",
@@ -44,7 +44,7 @@
   "isFamilyFriendly": true,
   "audience": {
     "@type": "Audience",
-    "audienceType": "Non-fiction authors with existing platform",
+    "audienceType": "Executives, authors, and entrepreneurs building a Google-recognized personal brand",
     "geographicArea": [
       { "@type": "Country", "name": "United States" },
       { "@type": "Country", "name": "Canada" },
@@ -52,5 +52,5 @@
       { "@type": "Country", "name": "Australia" }
     ]
   },
-  "keywords": "pre-sold author package, book launch, knowledge panel, podcast launch, authority marketing, ghostwriting, Legacy Publishing, entity home, Wikidata seeding"
+  "keywords": "knowledge panel install, pre-sold author package, google knowledge panel, AI answer engines, book launch, podcast launch, personal brand, Wikidata, IMDb, Legacy Publishing"
 }
