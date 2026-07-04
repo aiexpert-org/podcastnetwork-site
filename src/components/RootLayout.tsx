@@ -267,7 +267,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
       <motion.div
         layout
         style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}
-        className="relative flex flex-auto overflow-hidden bg-vellum pt-14"
+        className="relative flex flex-auto overflow-hidden bg-solar pt-14"
       >
         <motion.div
           layout

@@ -17,11 +17,13 @@ export function Button({
   className = clsx(
     className,
     'inline-flex rounded-full px-4 py-1.5 text-sm font-semibold transition',
-    // Foil is the single CTA accent per the Editorial Premium palette lock.
-    // Ink text on Foil clears AA for button-size bold text.
+    // Bronze CTA accent. On the Solar ground the light foil disappears
+    // (1.8:1 boundary), so the light-surface variant fills with the darker
+    // bronze (5.1:1 boundary, 5.3:1 text) and brightens to foil on hover.
+    // On dark panels foil-on-ink still reads best.
     invert
       ? 'bg-foil text-neutral-950 hover:bg-foil-bright'
-      : 'bg-foil text-neutral-950 hover:bg-foil-dark hover:text-white',
+      : 'bg-foil-dark text-white hover:bg-foil hover:text-neutral-950',
   )
 
   let inner = <span className="relative top-px">{children}</span>

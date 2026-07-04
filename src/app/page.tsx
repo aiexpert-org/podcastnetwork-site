@@ -237,14 +237,14 @@ function SharedFloor() {
             className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2"
           >
             {SHARED_FLOOR.map((item) => (
-              <FadeIn key={item}>
-                <li className="flex gap-3 text-base text-neutral-600">
+              <li key={item}>
+                <FadeIn className="flex gap-3 text-base text-neutral-600">
                   <span aria-hidden="true" className="mt-1 text-foil-dark">
                     &#8226;
                   </span>
                   <span>{item}</span>
-                </li>
-              </FadeIn>
+                </FadeIn>
+              </li>
             ))}
           </ul>
         </FadeInStagger>
@@ -327,11 +327,11 @@ export default function Home() {
             This is what a Knowledge Panel looks like from the inside.
           </h1>
           <p className="mt-6 text-xl text-neutral-600">
-            PodcastNetwork.org builds Google authority for executives, authors,
-            and entrepreneurs who want to be recognized as a real entity. Two
-            paths, real signals, application only. The graph below is ours, and
-            it&apos;s live. Drag the playhead to watch authority architecture
-            assemble itself.
+            PodcastNetwork.org builds live entity graphs for executives,
+            authors, and entrepreneurs who want Google to know exactly who they
+            are. Two packages, one architecture. Real signals. The graph below
+            is ours, and it&apos;s live. Drag the playhead to watch it assemble
+            itself.
           </p>
         </div>
       </Container>
