@@ -1,5 +1,43 @@
 # CHANGELOG
 
+## v0.6.3 — White ground, traditional nav, Presence Score hero (2026-07-04)
+
+- **White ground restored** per Brett's correction: the actual Studio DNA.
+  Solar Yellow #FFDD05 is the CTA/accent color only (Apply pill, submit
+  buttons, score check-dots, logo hover node). Neutral scale back to warm
+  stone; the yellow token pass from v0.6.2 is retired.
+- **Traditional header nav.** Inline links on desktop (Knowledge Panel,
+  Pre-Sold Author, The Method, Case Studies, Founders + Apply). The Studio
+  drawer remains as the mobile menu below lg.
+- **Hero pivot.** "This is what a Knowledge Panel looks like from the
+  inside" is gone. New hook: "Your online presence is lacking. We can prove
+  it." with the Google Knowledge Presence Score tool in the hero: enter a
+  website or LinkedIn URL, get a 0-10 score across five checks (Google
+  Knowledge Graph 3, Wikidata 2, structured data you own 2, citation
+  surfaces 2, Entity Home 1), each miss labeled with the package that fixes
+  it, CTA into /apply.
+- **/api/presence-score.** Node route reusing the schema-scan extractor,
+  entity-lookup source adapters, SSRF guard, rate limiting (30/hr/IP), and
+  15-minute cache. LinkedIn profiles resolve their display name via SerpAPI
+  search over the profile URL, tolerant of near-miss slugs typed live in a
+  demo. LinkedIn scores honestly reflect that a rented profile exposes no
+  structured data and is not an Entity Home.
+- **eXp demo verification (for Tuesday).** exprealty.com scores 9/10 (all
+  green except a partial citation check). linkedin.com/in/glennsanford AND
+  the real slug /in/glenndsanford both resolve to Glenn Sanford at 4/10:
+  Google KG recognizes him, Wikidata/schema/Entity Home missing. That is
+  the pitch in one screen. Note: expworld.com has no website A record
+  (mail-only domain) and correctly returns "Domain did not resolve," so
+  demo with exprealty.com or expworldholdings.com.
+- **DEMO DEPENDENCY:** the score tool needs SERPAPI_KEY and
+  GOOGLE_KG_API_KEY set in the Vercel project env. Both exist in the local
+  .env.local; if the Vercel preview shows "Knowledge Graph lookup was
+  unavailable," add the keys in Vercel and redeploy before Tuesday.
+- Homepage reordered: score hero > the two fixes > shared floor > entity
+  graph band ("the end state") > marquee > case studies > founders > FAQ.
+  The You Search band is retired from the homepage (the score tool
+  supersedes it; the component remains in the tree). OG image copy updated.
+
 ## v0.6.2 — Solar Yellow splash (2026-07-04)
 
 - **Page ground flips from Vellum cream to Solar Yellow `#FFDD05`** per
