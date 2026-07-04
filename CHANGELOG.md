@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## v0.6.2 — Solar Yellow splash (2026-07-04)
+
+- **Page ground flips from Vellum cream to Solar Yellow `#FFDD05`** per
+  Brett's clarification: the network's own identity color from the catalog
+  design tokens, distinct from individual show colors. Dark viz surfaces
+  (hero graph, playhead, validator output, AI or Die metrics) stay on Ink
+  navy; Papyrus stays as the card surface, which now pops hard against the
+  yellow.
+- **Contrast-driven token pass, not a find-and-replace.** Every text step
+  was checked against #FFDD05: ink moved to the warm near-black #14140F
+  (13.7:1), muted grays moved from cool slate to warm stone (5.7:1 body),
+  eyebrow bronze darkened to #6B5830 (5.1:1), light neutral steps became
+  deeper yellows so GridPattern and tint bands read as shade-of-sun.
+  Lighthouse a11y 100 with zero color-contrast failures on home, apply,
+  the-package, and knowledge-panel-install.
+- **Buttons.** Foil fill was a 1.8:1 invisible boundary on yellow, so
+  light-surface Studio buttons now fill bronze (#6B5830, 5.1:1 boundary)
+  and brighten to foil on hover; dark-panel buttons keep foil. The logo's
+  accent node and ".org" run bronze on light, foil on dark.
+- **Hero copy** updated to Brett's two-package line: "Two packages, one
+  architecture. Real signals." (headline unchanged). Rides on the
+  two-package restructure that landed in the parallel commits.
+- Fixed a listitem nesting violation in the shared-floor grid (li now wraps
+  FadeIn) that was holding homepage a11y at 97.
+
 ## v0.6.1 — Signal marquee (2026-07-02)
 
 - **Dual-direction marquee logo cloud** added to the homepage between the
