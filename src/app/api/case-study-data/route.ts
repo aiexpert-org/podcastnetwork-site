@@ -3,26 +3,28 @@ import caseStudies from "../../../../data/case-studies.json";
 import { cacheGet, cacheSet } from "@/lib/server-cache";
 import {
   dayInMarket,
-  fetchAmazonMetrics,
   fetchGoodreadsMetrics,
-  fetchSpotifyMetrics,
-  type AmazonMetrics,
   type GoodreadsMetrics,
-  type SpotifyMetrics,
 } from "@/lib/live-metrics";
 
 export const runtime = "nodejs";
 
+/**
+ * Live case-study data. v0.6:
+ *   - dayInMarket: always live.
+ *   - goodreads: live when a Goodreads id is configured, otherwise pending.
+ *   - amazon: permanently "publisher metrics pending". Amazon PA API auto-fetch
+ *     was retired 2026-07-03; the honest pending text ships permanently rather
+ *     than blocking on credentials that are not coming.
+ *   - Spotify was removed entirely: AI or Die is a book, not a podcast.
+ */
+
 export type CaseStudyLiveData = {
   slug: string;
   dayInMarket: number;
-  amazon: AmazonMetrics;
-  amazonStatus: "live" | "pending-credentials" | "error";
   goodreads: GoodreadsMetrics;
   goodreadsStatus: "live" | "pending-id" | "error";
-  spotify: SpotifyMetrics;
-  spotifyStatus: "live" | "pending-id" | "error";
-  spotifyDownloadsManual: { value: number | null; lastUpdated: string } | null;
+  amazonStatus: "pending";
   fetchedAt: string;
   cached: boolean;
 };
@@ -30,10 +32,7 @@ export type CaseStudyLiveData = {
 type CaseStudyConfig = {
   slug: string;
   variant: string;
-  amazonAsin?: string;
   goodreadsId?: string;
-  spotifyShowId?: string;
-  spotifyDownloadsManual?: { value: number | null; lastUpdated: string };
 };
 
 const CACHE_TTL_SECONDS = 3600;
@@ -58,29 +57,14 @@ export async function GET(req: Request) {
     return NextResponse.json({ ...cached, cached: true });
   }
 
-  const hasAmazonCreds = Boolean(
-    process.env.AMAZON_PA_ACCESS_KEY &&
-      process.env.AMAZON_PA_SECRET_KEY &&
-      process.env.AMAZON_PA_PARTNER_TAG &&
-      config.amazonAsin,
-  );
-
-  const [amazon, goodreads, spotify] = await Promise.all([
-    fetchAmazonMetrics(config.amazonAsin ?? ""),
-    fetchGoodreadsMetrics(config.goodreadsId ?? ""),
-    fetchSpotifyMetrics(config.spotifyShowId ?? ""),
-  ]);
+  const goodreads = await fetchGoodreadsMetrics(config.goodreadsId ?? "");
 
   const data: CaseStudyLiveData = {
     slug,
     dayInMarket: dayInMarket(),
-    amazon,
-    amazonStatus: amazon ? "live" : hasAmazonCreds ? "error" : "pending-credentials",
     goodreads,
     goodreadsStatus: goodreads ? "live" : config.goodreadsId ? "error" : "pending-id",
-    spotify,
-    spotifyStatus: spotify ? "live" : config.spotifyShowId ? "error" : "pending-id",
-    spotifyDownloadsManual: config.spotifyDownloadsManual ?? null,
+    amazonStatus: "pending",
     fetchedAt: new Date().toISOString(),
     cached: false,
   };

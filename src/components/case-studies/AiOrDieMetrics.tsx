@@ -67,8 +67,9 @@ function Metric({
 /**
  * The AI or Die live metrics module. Bloomberg-terminal-style dark panel
  * inside otherwise light cards (per the hybrid palette lock). Day counter is
- * always live; each metric degrades independently to an em-dash-free
- * "pending" state, never a fabricated number.
+ * always live; Goodreads degrades to an em-dash-free "pending" state, never a
+ * fabricated number. Amazon ships a permanent "publisher metrics pending"
+ * line (no auto-fetch). AI or Die is a book, so there is no podcast metric.
  */
 export function AiOrDieMetrics({
   variant = "full",
@@ -103,7 +104,7 @@ export function AiOrDieMetrics({
       </div>
 
       <div
-        className={`mt-6 grid gap-6 ${variant === "full" ? "grid-cols-2 lg:grid-cols-4" : "grid-cols-2"}`}
+        className={`mt-6 grid gap-6 ${variant === "full" ? "grid-cols-1 sm:grid-cols-3" : "grid-cols-2"}`}
       >
         <Metric label="Day in market">
           {day !== undefined ? (
@@ -118,19 +119,9 @@ export function AiOrDieMetrics({
 
         <Metric
           label="Amazon Best Sellers Rank"
-          note={
-            data?.amazonStatus === "pending-credentials"
-              ? "Pending publisher data connection"
-              : undefined
-          }
+          note="Publisher metrics pending"
         >
-          {data?.amazon ? (
-            <>
-              #<CountUp value={data.amazon.rank} />
-            </>
-          ) : (
-            <span className="text-fog" data-mono>--</span>
-          )}
+          <span className="text-fog" data-mono>--</span>
         </Metric>
 
         <Metric
@@ -153,33 +144,14 @@ export function AiOrDieMetrics({
             <span className="text-fog" data-mono>--</span>
           )}
         </Metric>
-
-        <Metric
-          label={
-            data?.spotify
-              ? "Podcast episodes live"
-              : "Podcast (Spotify)"
-          }
-          note={
-            data && !data.spotify && data.spotifyStatus !== "live"
-              ? "Show linking in progress"
-              : undefined
-          }
-        >
-          {data?.spotify ? (
-            <CountUp value={data.spotify.episodeCount} />
-          ) : (
-            <span className="text-fog" data-mono>--</span>
-          )}
-        </Metric>
       </div>
 
       {variant === "full" && (
         <p className="text-body-sm measure mt-6 border-t border-viz-border pt-5 text-fog">
-          Book launched June 24. Metrics update hourly. What you&apos;re seeing
-          is the launch, happening now, not a retrospective. Sparse numbers on
-          day {day ?? "nine-plus"} are what a real launch looks like at this
-          stage.
+          Book launched June 24. What you&apos;re seeing is the launch,
+          happening now, not a retrospective. Publisher sales metrics are
+          reported by the publisher and stay pending here. Sparse numbers on day{' '}
+          {day ?? "nine-plus"} are what a real launch looks like at this stage.
         </p>
       )}
 
