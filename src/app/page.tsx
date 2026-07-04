@@ -7,12 +7,12 @@ import { Container } from '@/components/Container'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { SectionIntro } from '@/components/SectionIntro'
 import { HeroBand } from '@/components/home/HeroBand'
+import { PresenceScoreHero } from '@/components/home/PresenceScoreHero'
 import { LogoMarquee, type MarqueeItem } from '@/components/home/LogoMarquee'
 import {
   LiveCaseStudyCard,
   type CaseStudyStatic,
 } from '@/components/case-studies/LiveCaseStudyCard'
-import { YouSearchDemo } from '@/components/demo/YouSearchDemo'
 import { FounderAnchorLive } from '@/components/founders/FounderAnchorLive'
 import { FAQBlock } from '@/components/ui/FAQBlock'
 import { HOME_FAQ } from '@/content/home-faq'
@@ -27,10 +27,9 @@ import {
 } from '@/content/packages'
 
 export const metadata: Metadata = {
-  title:
-    'PodcastNetwork.org. Two paths to Google authority',
+  title: 'PodcastNetwork.org. Get your Google Knowledge Presence Score',
   description:
-    'PodcastNetwork.org builds Google authority for executives, authors, and entrepreneurs. Two standalone paths: a Knowledge Panel Install and a Pre-Sold Author Package. Real signals, application only.',
+    'Enter your website or LinkedIn and see what Google actually knows about you. Then see the two builds that fix what is missing: the Knowledge Panel Install and the Pre-Sold Author Package.',
   alternates: { canonical: '/' },
 }
 
@@ -38,7 +37,7 @@ function PathCard({ pkg }: { pkg: PackageMeta }) {
   return (
     <FadeIn className="flex">
       <div className="flex w-full flex-col rounded-4xl border border-neutral-950/10 bg-white p-8 sm:p-10">
-        <p className="font-display text-sm font-semibold tracking-wider text-foil-dark uppercase">
+        <p className="font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
           {pkg.name}
         </p>
         <p className="mt-4 font-display text-4xl font-medium tracking-tight text-neutral-950">
@@ -51,7 +50,7 @@ function PathCard({ pkg }: { pkg: PackageMeta }) {
         <ul role="list" className="mt-6 space-y-3 text-sm text-neutral-600">
           {pkg.differentiators.map((d) => (
             <li key={d} className="flex gap-3">
-              <span aria-hidden="true" className="mt-1 text-foil-dark">
+              <span aria-hidden="true" className="mt-1 text-neutral-950">
                 &#8226;
               </span>
               <span>{d}</span>
@@ -75,15 +74,18 @@ function TwoPaths() {
   return (
     <>
       <SectionIntro
-        eyebrow="Two paths to Google authority"
-        title="Pick the build that fits what you are trying to become."
+        eyebrow="The fixes"
+        title="Two builds. Each one closes gaps the score just showed you."
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          Two standalone packages. Take the one that matches the goal, or take
-          both. An executive who wants both pays {BOTH_PACKAGES_PRICE_DISPLAY}{' '}
-          and runs them in parallel on their own timelines. No bundle discount,
-          because each one stands on its own.
+          The Knowledge Panel Install is for executives who need Google to
+          recognize them as an entity: schema, entity graph, citation signals,
+          verified monthly for a year. The Pre-Sold Author Package produces a
+          finished book from your own voice on top of that authority build.
+          Both standalone, both application only. Take both and it&apos;s{' '}
+          {BOTH_PACKAGES_PRICE_DISPLAY}, run in parallel on their own
+          timelines. No bundle discount, because each one stands on its own.
         </p>
       </SectionIntro>
       <Container className="mt-16">
@@ -95,39 +97,6 @@ function TwoPaths() {
         </FadeInStagger>
       </Container>
     </>
-  )
-}
-
-function YouSearchBand() {
-  return (
-    <Container className="mt-24 sm:mt-32 lg:mt-40">
-      <FadeIn>
-        <section
-          aria-label="See your own entity graph"
-          className="-mx-6 bg-viz-ink px-6 py-20 text-papyrus sm:mx-0 sm:rounded-4xl sm:py-28 md:px-12"
-        >
-          <div className="mx-auto max-w-2xl text-center">
-            <h2>
-              <span className="mb-6 block font-display text-base font-semibold text-foil">
-                See yours
-              </span>
-              <span className="block font-display text-4xl font-medium tracking-tight text-balance text-white sm:text-5xl">
-                Type your name. See what Google sees.
-              </span>
-            </h2>
-            <p className="mt-6 text-xl text-neutral-300">
-              We fan out to the same public sources Google reads, in real time,
-              and render whatever&apos;s there. For most people, most of
-              it&apos;s empty. That&apos;s the honest answer, and it&apos;s the
-              starting line.
-            </p>
-          </div>
-          <div className="mx-auto mt-10 max-w-4xl">
-            <YouSearchDemo />
-          </div>
-        </section>
-      </FadeIn>
-    </Container>
   )
 }
 
@@ -239,7 +208,7 @@ function SharedFloor() {
             {SHARED_FLOOR.map((item) => (
               <li key={item}>
                 <FadeIn className="flex gap-3 text-base text-neutral-600">
-                  <span aria-hidden="true" className="mt-1 text-foil-dark">
+                  <span aria-hidden="true" className="mt-1 text-neutral-950">
                     &#8226;
                   </span>
                   <span>{item}</span>
@@ -319,34 +288,44 @@ export default function Home() {
     <>
       <SchemaGraph schema={homeSchema()} />
 
-      <Container className="mt-24 sm:mt-32 md:mt-44">
+      <Container className="mt-24 sm:mt-32 md:mt-40">
         {/* Transform-only entrance: this block holds the LCP headline, so it
             must be visible before hydration. */}
         <div className="pn-rise max-w-3xl">
           <h1 className="font-display text-5xl font-medium tracking-tight text-balance text-neutral-950 sm:text-7xl">
-            This is what a Knowledge Panel looks like from the inside.
+            Your online presence is lacking. We can prove it.
           </h1>
           <p className="mt-6 text-xl text-neutral-600">
-            PodcastNetwork.org builds live entity graphs for executives,
-            authors, and entrepreneurs who want Google to know exactly who they
-            are. Two packages, one architecture. Real signals. The graph below
-            is ours, and it&apos;s live. Drag the playhead to watch it assemble
-            itself.
+            Enter your website or LinkedIn profile and get your Google
+            Knowledge Presence Score in seconds: what Google actually knows
+            about you, what&apos;s missing, and which of our two builds fixes
+            it.
           </p>
         </div>
+        <PresenceScoreHero />
       </Container>
-
-      <HeroBand />
 
       <TwoPaths />
 
-      <YouSearchBand />
+      <SharedFloor />
 
-      <CaseStudiesPreview studies={studies} />
+      <SectionIntro
+        eyebrow="The end state"
+        title="This is what a complete Google presence looks like."
+        className="mt-24 sm:mt-32 lg:mt-40"
+      >
+        <p>
+          Our own entity graph, live from the same data Google reads. Every
+          node is a real, indexed signal. Drag the playhead to watch six months
+          of authority architecture assemble itself.
+        </p>
+      </SectionIntro>
+
+      <HeroBand />
 
       <SignalCloud />
 
-      <SharedFloor />
+      <CaseStudiesPreview studies={studies} />
 
       <Founders />
 

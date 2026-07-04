@@ -5,6 +5,7 @@
 export function track(
   event:
     | "you_search_submit"
+    | "presence_score_run"
     | "playhead_drag"
     | "schema_validator_run"
     | "case_study_open"

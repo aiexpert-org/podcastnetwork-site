@@ -43,6 +43,37 @@ function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
+const NAV_ITEMS = [
+  { title: 'Knowledge Panel', href: '/knowledge-panel-install' },
+  { title: 'Pre-Sold Author', href: '/the-package' },
+  { title: 'The Method', href: '/the-method' },
+  { title: 'Case Studies', href: '/case-studies' },
+  { title: 'Founders', href: '/founders' },
+]
+
+/* Traditional inline nav on desktop (Brett, 2026-07-04: no drop-down). The
+ * Studio drawer survives below lg as the mobile menu. */
+function DesktopNavigation({ invert = false }: { invert?: boolean }) {
+  return (
+    <nav className="hidden items-center gap-x-7 lg:flex" aria-label="Main">
+      {NAV_ITEMS.map((item) => (
+        <Link
+          key={item.href}
+          href={item.href}
+          className={clsx(
+            'text-sm font-medium transition',
+            invert
+              ? 'text-neutral-200 hover:text-white'
+              : 'text-neutral-700 hover:text-neutral-950',
+          )}
+        >
+          {item.title}
+        </Link>
+      ))}
+    </nav>
+  )
+}
+
 function Header({
   panelId,
   icon: Icon,
@@ -80,7 +111,8 @@ function Header({
             filled={logoHovered}
           />
         </Link>
-        <div className="flex items-center gap-x-8">
+        <div className="flex items-center gap-x-7">
+          <DesktopNavigation invert={invert} />
           <Button href="/apply" invert={invert}>
             Apply
           </Button>
@@ -91,7 +123,7 @@ function Header({
             aria-expanded={expanded ? 'true' : 'false'}
             aria-controls={panelId}
             className={clsx(
-              'group -m-2.5 rounded-full p-2.5 transition',
+              'group -m-2.5 rounded-full p-2.5 transition lg:hidden',
               invert ? 'hover:bg-white/10' : 'hover:bg-neutral-950/10',
             )}
             aria-label="Toggle navigation"
@@ -267,7 +299,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
       <motion.div
         layout
         style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}
-        className="relative flex flex-auto overflow-hidden bg-solar pt-14"
+        className="relative flex flex-auto overflow-hidden bg-white pt-14"
       >
         <motion.div
           layout

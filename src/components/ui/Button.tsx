@@ -14,13 +14,13 @@ type ButtonProps = {
 
 const variantClasses: Record<NonNullable<ButtonProps["variant"]>, string> = {
   primary:
-    "bg-foil text-ink font-semibold hover:bg-foil-dark hover:text-papyrus transition-colors",
+    "bg-solar text-ink font-semibold hover:bg-ink hover:text-white transition-colors",
   secondary:
     "border border-signal text-signal font-semibold hover:bg-signal hover:text-papyrus transition-colors",
   ghost:
-    "text-slate font-medium hover:text-ink underline-offset-4 hover:underline decoration-foil",
+    "text-slate font-medium hover:text-ink underline-offset-4 hover:underline decoration-solar",
   "dark-primary":
-    "bg-foil text-ink font-semibold hover:bg-foil-bright transition-colors",
+    "bg-solar text-ink font-semibold hover:bg-white transition-colors",
   "dark-ghost":
     "text-fog font-medium hover:text-papyrus underline-offset-4 hover:underline decoration-foil",
 };

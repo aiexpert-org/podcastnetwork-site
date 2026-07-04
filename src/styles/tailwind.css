@@ -72,32 +72,26 @@
   /* Editorial Premium overlay on Studio's neutral scale                 */
   /* ------------------------------------------------------------------ */
 
-  /* "White" surfaces become Papyrus: elevated cards on the light side,
-   * body text on the dark viz surfaces. */
-  --color-white: #faf8f5;
-
-  /* Solar Yellow ground (locked 2026-07-03: the network's own identity
-   * color, from the network catalog tokens). The light neutral steps are
-   * deeper yellows so GridPattern fills, tint bands, and card hovers read
-   * as shade-of-sun on the yellow page ground. The gray steps run warm
-   * (stone, not slate) so muted copy sits correctly on yellow; every text
-   * step was contrast-checked against #FFDD05 (see CHANGELOG v0.6.2). */
-  --color-neutral-50: #efcb00;
-  --color-neutral-100: #e8c400;
-  --color-neutral-200: #d9b81c;
-  --color-neutral-300: #bfa027;
-  --color-neutral-400: #78716c;
-  --color-neutral-500: #6f695f;
+  /* White ground, per Brett 2026-07-04: the actual Studio DNA. Solar Yellow
+   * #FFDD05 is the CTA/accent color only; everything else runs neutral. The
+   * gray ramp stays warm (stone) so it sits with the warm ink and the
+   * yellow accent. */
+  --color-neutral-50: #fafaf9;
+  --color-neutral-100: #f5f5f4;
+  --color-neutral-200: #e7e5e4;
+  --color-neutral-300: #d6d3d1;
+  --color-neutral-400: #a8a29e;
+  --color-neutral-500: #78716c;
   --color-neutral-600: #57534e;
   --color-neutral-700: #44403c;
-  --color-neutral-800: #33312a;
-  --color-neutral-900: #23211b;
+  --color-neutral-800: #292524;
+  --color-neutral-900: #1c1917;
   --color-neutral-950: #14140f;
 
   /* Named palette tokens (killer components + page code reference these) */
   --color-solar: #ffdd05;
-  /* Legacy alias: pre-solar code referenced the cream ground as vellum. */
-  --color-vellum: #ffdd05;
+  /* Legacy alias from the cream-era code; now the white ground. */
+  --color-vellum: #ffffff;
   --color-papyrus: #faf8f5;
 
   /* Dark viz surface ground */

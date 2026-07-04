@@ -50,22 +50,18 @@ export function Logomark({
           invert ? 'stroke-white' : 'stroke-neutral-950',
         )}
       />
-      {/* Light foil disappears on the Solar ground, so the accent node runs
-          bronze on light surfaces and foil on dark. */}
+      {/* The accent node carries the Solar CTA color: ink-stroked so it
+          holds its edge on white, filling solar on hover. */}
       <circle
         cx="16"
         cy="17"
         r="4.75"
         className={clsx(
           'stroke-[1.5] transition-all duration-300',
-          invert ? 'stroke-foil' : 'stroke-foil-dark',
+          invert ? 'stroke-white' : 'stroke-neutral-950',
           filled
-            ? invert
-              ? 'fill-foil'
-              : 'fill-foil-dark'
-            : invert
-              ? 'fill-transparent group-hover/logo:fill-foil'
-              : 'fill-transparent group-hover/logo:fill-foil-dark',
+            ? 'fill-solar'
+            : 'fill-transparent group-hover/logo:fill-solar',
         )}
       />
     </svg>
@@ -104,7 +100,9 @@ export function Logo({
         )}
       >
         PodcastNetwork
-        <span className={invert ? 'text-foil' : 'text-foil-dark'}>.org</span>
+        <span className={invert ? 'text-neutral-400' : 'text-neutral-500'}>
+          .org
+        </span>
       </span>
     </div>
   )

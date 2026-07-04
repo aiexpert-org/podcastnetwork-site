@@ -122,7 +122,7 @@ export default function TheMethodPage() {
                 id={m.anchor}
                 className="grid grid-cols-1 gap-6 py-14 md:grid-cols-[180px_1fr] md:gap-12"
               >
-                <p className="font-display pt-2 text-sm font-semibold tracking-wider text-foil-dark uppercase">
+                <p className="font-display pt-2 text-sm font-semibold tracking-wider text-neutral-950 uppercase">
                   {m.label}
                 </p>
                 <div>

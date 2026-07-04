@@ -142,7 +142,7 @@ export default function ThePackagePage() {
               <FadeIn key={item.title}>
                 <Border className="grid grid-cols-1 gap-6 pt-12 first:border-t-0 first:pt-0 md:grid-cols-[200px_1fr] md:gap-12">
                   <div>
-                    <p className="font-display text-sm font-semibold tracking-wider text-foil-dark uppercase">
+                    <p className="font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
                       0{i + 1}
                     </p>
                     <h3 className="mt-1 font-display text-2xl font-semibold text-neutral-950">
@@ -178,7 +178,7 @@ export default function ThePackagePage() {
                 key={d}
                 className="flex gap-3 text-base text-neutral-600"
               >
-                <span aria-hidden="true" className="mt-1 text-foil-dark">
+                <span aria-hidden="true" className="mt-1 text-neutral-950">
                   &#8226;
                 </span>
                 <span>{d}</span>
@@ -288,7 +288,7 @@ export default function ThePackagePage() {
         <FadeIn>
           <div className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2">
             <div>
-              <p className="font-display text-sm font-semibold tracking-wider text-foil-dark uppercase">
+              <p className="font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
                 Who it&apos;s for
               </p>
               <h2 className="mt-4 font-display text-3xl font-medium tracking-tight text-neutral-950">
@@ -303,7 +303,7 @@ export default function ThePackagePage() {
               </p>
             </div>
             <div>
-              <p className="font-display text-sm font-semibold tracking-wider text-foil-dark uppercase">
+              <p className="font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
                 What we are honest about
               </p>
               <h2 className="mt-4 font-display text-3xl font-medium tracking-tight text-neutral-950">
@@ -336,7 +336,7 @@ export default function ThePackagePage() {
               <li key={s.title}>
                 <FadeIn>
                   <Border position="left" className="pl-8">
-                    <p className="font-display text-sm font-semibold tracking-wider text-foil-dark uppercase">
+                    <p className="font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
                       Step {i + 1}
                     </p>
                     <h3 className="mt-2 text-base font-semibold text-neutral-950">

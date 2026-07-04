@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 export const alt =
-  "PodcastNetwork.org. This is what a Knowledge Panel looks like from the inside.";
+  "PodcastNetwork.org. Get your Google Knowledge Presence Score.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -62,7 +62,7 @@ export default function OgImage() {
               maxWidth: 980,
             }}
           >
-            This is what a Knowledge Panel looks like from the inside.
+            Your online presence is lacking. We can prove it.
           </div>
           <div
             style={{
