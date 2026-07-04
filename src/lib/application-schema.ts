@@ -123,7 +123,7 @@ export function readinessInterpretation(score: number): string {
     return "You are in the right place. This is exactly the client we serve.";
   }
   if (band === "mid") {
-    return "You're building. The Pre-Sold Author Package accelerates you into the top decile.";
+    return "You're building. Either package accelerates you into the top decile.";
   }
   return "You're ahead. We would apply to work with you.";
 }

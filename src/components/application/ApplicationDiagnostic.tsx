@@ -59,7 +59,7 @@ const STEPS: StepField[] = [
     kind: "final",
     key: "budget",
     question:
-      "The Pre-Sold Author Package is $30,000, delivered over six months. Are you ready to invest at that level?",
+      "Our packages run from $10,000 for the Knowledge Panel Install to $36,000 for the Pre-Sold Author Package. Are you ready to invest at that level?",
     options: BUDGET_ANSWERS,
   },
 ];
@@ -155,8 +155,8 @@ export function ApplicationDiagnostic({
         </p>
         <p className="text-body-sm mt-4 text-slate">
           We review within 3 business days. If we&apos;re a fit, Brett or Mike
-          will email to schedule a 20-minute discovery call. A confirmation is
-          on its way to your inbox.
+          will email to schedule a 20-minute discovery call. Keep an eye on your
+          inbox.
         </p>
       </div>
     );

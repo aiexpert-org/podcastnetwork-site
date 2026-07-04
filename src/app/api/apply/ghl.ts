@@ -97,8 +97,8 @@ export async function syncApplicationToGhl(input: {
     firstName,
     lastName,
     email: input.email,
-    source: "dream-site-application",
-    tags: ["dream-site-application", `readiness-band-${input.band}`],
+    source: "podcastnetwork-application",
+    tags: ["podcastnetwork-application", `readiness-band-${input.band}`],
     customFields,
   });
 
@@ -121,8 +121,10 @@ export async function syncApplicationToGhl(input: {
     pipelineId,
     pipelineStageId: stageId,
     contactId,
-    name: `${input.name} - Pre-Sold Author Package application`,
-    monetaryValue: 30000,
+    name: `${input.name} - PodcastNetwork.org application`,
+    // Package (and therefore deal value) is set by sales after the discovery
+    // call; the application does not capture which path the applicant wants.
+    monetaryValue: 0,
     status: "open",
   });
 

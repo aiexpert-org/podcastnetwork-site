@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { appendFile, mkdir } from "node:fs/promises";
-import { Resend } from "resend";
 import {
   ApplicationSchema,
   AUDIENCE_BANDS,
@@ -8,7 +7,6 @@ import {
   computeReadinessScore,
   KP_STATUS,
   readinessBand,
-  readinessInterpretation,
   SITUATIONS,
   TIMELINES,
 } from "@/lib/application-schema";
@@ -18,21 +16,18 @@ import { syncApplicationToGhl } from "./ghl";
 export const runtime = "nodejs";
 
 /**
- * Application intake. v0.5 pipeline:
+ * Application intake. v0.6 pipeline:
  *   1. Validate with zod.
  *   2. Append to a JSON log (survives in Vercel function logs via console
  *      output; local file is best-effort).
- *   3. Email the full submission to brett@brettkmoore.com via Resend, plus a
- *      confirmation email to the applicant.
+ *   3. Sync directly to GHL: contact upsert + intake note + opportunity in the
+ *      Application Funnel pipeline (fTGbqmb1APZ7IRrQpzvP). GHL owns the
+ *      applicant confirmation and follow-up via its own workflow automations.
  *
- * GHL contact/opportunity creation is deferred (no PAT staged). See
- * NEXT-STEPS.md. The applicant NEVER sees an error after a valid submit;
- * downstream failures degrade to warnings.
+ * Resend was retired 2026-07-03; GHL is the single downstream. The applicant
+ * NEVER sees an error after a valid submit; downstream failures degrade to
+ * warnings for the ops log.
  */
-
-const NOTIFY_TO = "brett@brettkmoore.com";
-const FROM_ADDRESS =
-  process.env.RESEND_FROM ?? "PodcastNetwork.org <onboarding@resend.dev>";
 
 function labelFor(map: Record<string, string>, key: string): string {
   return map[key] ?? key;
@@ -85,16 +80,16 @@ export async function POST(req: Request) {
 
   const warnings: string[] = [];
 
-  // 2. GHL: contact + intake note + opportunity in New Application. Never
-  // fails the applicant; degrades to a warning for the ops log.
+  // 2. GHL: contact + intake note + opportunity in the Application Funnel.
+  // Never fails the applicant; degrades to a warning for the ops log.
   const noteBody = [
-    `Pre-Sold Author Package application (${submittedAt})`,
+    `PodcastNetwork.org application (${submittedAt})`,
     ``,
     `Situation: ${labelFor(SITUATIONS, app.situation)}`,
     `Knowledge Panel today: ${labelFor(KP_STATUS, app.kpStatus)}`,
     `Audience size: ${labelFor(AUDIENCE_BANDS, app.audience)}`,
     `Timeline: ${labelFor(TIMELINES, app.timeline)}`,
-    `Budget ($30,000): ${labelFor(BUDGET_ANSWERS, app.budget)}`,
+    `Budget fit: ${labelFor(BUDGET_ANSWERS, app.budget)}`,
     `Scanned URL: ${app.scannedUrl || "(not scanned)"}`,
     `Schema score: ${app.schemaScore ?? "n/a"}/100`,
     `Readiness score: ${readinessScore}/100 (${band})`,
@@ -112,67 +107,6 @@ export async function POST(req: Request) {
   });
   if (ghl.status === "failed") warnings.push("crm_sync_pending");
   if (ghl.status === "skipped") warnings.push("crm_pending_ghl_key");
-
-  const resendKey = process.env.RESEND_API_KEY;
-
-  if (resendKey) {
-    const resend = new Resend(resendKey);
-    const summaryHtml = `
-      <h2>New Pre-Sold Author Package application</h2>
-      <table cellpadding="6" style="border-collapse: collapse; font-family: sans-serif;">
-        <tr><td><strong>Name</strong></td><td>${app.name}</td></tr>
-        <tr><td><strong>Email</strong></td><td>${app.email}</td></tr>
-        <tr><td><strong>Situation</strong></td><td>${labelFor(SITUATIONS, app.situation)}</td></tr>
-        <tr><td><strong>Knowledge Panel today</strong></td><td>${labelFor(KP_STATUS, app.kpStatus)}</td></tr>
-        <tr><td><strong>Audience size</strong></td><td>${labelFor(AUDIENCE_BANDS, app.audience)}</td></tr>
-        <tr><td><strong>Timeline</strong></td><td>${labelFor(TIMELINES, app.timeline)}</td></tr>
-        <tr><td><strong>Budget ($30,000)</strong></td><td>${labelFor(BUDGET_ANSWERS, app.budget)}</td></tr>
-        <tr><td><strong>Scanned URL</strong></td><td>${app.scannedUrl || "(not scanned)"}</td></tr>
-        <tr><td><strong>Schema score</strong></td><td>${app.schemaScore ?? "n/a"}/100</td></tr>
-        <tr><td><strong>Readiness score</strong></td><td>${readinessScore}/100 (${band})</td></tr>
-        <tr><td><strong>What would it change</strong></td><td>${app.openText || "(blank)"}</td></tr>
-        <tr><td><strong>Submitted</strong></td><td>${submittedAt}</td></tr>
-      </table>`;
-
-    try {
-      const { error } = await resend.emails.send({
-        from: FROM_ADDRESS,
-        to: NOTIFY_TO,
-        replyTo: app.email,
-        subject: `Application: ${app.name} (readiness ${readinessScore}/100)`,
-        html: summaryHtml,
-      });
-      if (error) warnings.push("notify_email_failed");
-    } catch {
-      warnings.push("notify_email_failed");
-    }
-
-    try {
-      const firstName = app.name.split(" ")[0];
-      const { error } = await resend.emails.send({
-        from: FROM_ADDRESS,
-        to: app.email,
-        replyTo: "brett@podcastnetwork.org",
-        subject: `Application received: ${app.name}`,
-        html: `
-          <p>Hi ${firstName},</p>
-          <p>We received your Pre-Sold Author Package application. Here's what happens next:</p>
-          <ol>
-            <li>Our team reviews within 3 business days</li>
-            <li>If we're a fit, Brett or Mike will email to schedule a 20-minute discovery call</li>
-            <li>The discovery call happens within a week of that email</li>
-          </ol>
-          <p>Your readiness score came in at ${readinessScore}/100. ${readinessInterpretation(readinessScore)}</p>
-          <p>Questions in the meantime: reply to this email.</p>
-          <p>Brett + Mike<br/>PodcastNetwork.org</p>`,
-      });
-      if (error) warnings.push("confirmation_email_failed");
-    } catch {
-      warnings.push("confirmation_email_failed");
-    }
-  } else {
-    warnings.push("email_pending_resend_key");
-  }
 
   return NextResponse.json({
     status: "submitted",
