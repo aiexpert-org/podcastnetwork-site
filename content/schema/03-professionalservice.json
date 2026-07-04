@@ -3,16 +3,15 @@
   "@type": "ProfessionalService",
   "@id": "https://podcastnetwork.org/the-package/#service",
   "name": "Pre-Sold Author Package",
-  "alternateName": "The Premium Authority Launch",
   "url": "https://podcastnetwork.org/the-package/",
-  "description": "A productized six-month sequence that delivers four coordinated deliverables against a single 180-day clock: a book published through Legacy Publishing, a launched podcast inside the PodcastNetwork.org network, a live Google Knowledge Panel, and a pre-sold audience of 5,000+ opted-in readers. Application-only.",
-  "serviceType": "Authority launch",
+  "description": "A six-month build that produces a finished book from the client's own voice, plus a launched podcast, an audio voice clone, and the author authority infrastructure to position the book for pre-sales. Application only. Pre-sales depend on execution and market fit and are not guaranteed.",
+  "serviceType": "Authority and book launch",
   "category": [
     "Book publishing",
     "Podcast production",
-    "Authority marketing",
-    "Google Knowledge Panel",
-    "Wikidata entity seeding"
+    "Author authority",
+    "Voice cloning",
+    "Personal brand"
   ],
   "brand": {
     "@id": "https://podcastnetwork.org/#organization"
@@ -28,52 +27,51 @@
   ],
   "audience": {
     "@type": "BusinessAudience",
-    "audienceType": "Non-fiction authors 90 to 180 days from launch with an existing 5,000+ mailing list, 25,000+ monthly podcast downloads, or an activated retail channel"
+    "audienceType": "Executives, authors, entrepreneurs, and professionals who want a finished book and the author authority infrastructure around it"
   },
   "offers": {
     "@type": "Offer",
     "@id": "https://podcastnetwork.org/the-package/#offer",
     "name": "Pre-Sold Author Package",
     "url": "https://podcastnetwork.org/the-package/",
-    "price": "30000.00",
+    "price": "36000",
     "priceCurrency": "USD",
     "priceValidUntil": "2026-12-31",
-    "availability": "https://schema.org/LimitedAvailability",
+    "availability": "https://schema.org/InStock",
+    "eligibleDuration": {
+      "@type": "QuantitativeValue",
+      "value": 6,
+      "unitCode": "MON"
+    },
     "eligibleQuantity": {
       "@type": "QuantitativeValue",
       "value": 1,
-      "unitText": "author engagement"
+      "unitText": "engagement"
     },
     "priceSpecification": {
       "@type": "PriceSpecification",
-      "price": "30000.00",
+      "price": "36000",
       "priceCurrency": "USD",
       "valueAddedTaxIncluded": false,
-      "description": "One-time payment. Paid up front to PodcastNetwork.org. Legacy Publishing takes 10% of net book sales as royalty on the resulting title. No additional upfront fee to Legacy."
+      "description": "One-time payment to PodcastNetwork.org. If the client takes the Legacy Publishing option, Legacy earns 10% of net book sales as royalty with no upfront fee."
     },
     "seller": {
       "@id": "https://podcastnetwork.org/#organization"
-    },
-    "eligibleRegion": [
-      { "@type": "Country", "name": "US" },
-      { "@type": "Country", "name": "CA" },
-      { "@type": "Country", "name": "GB" },
-      { "@type": "Country", "name": "AU" }
-    ]
+    }
   },
   "priceRange": "$$$$",
   "termsOfService": "https://podcastnetwork.org/legal/terms/",
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "@id": "https://podcastnetwork.org/the-package/#catalog",
-    "name": "The Four Pillars",
+    "name": "What the Pre-Sold Author Package includes",
     "itemListElement": [
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
           "name": "The Book",
-          "description": "Ghostwriting from your podcast catalog and source material, or a five-pass edit on a manuscript in hand. Cover, interior, ARC copies, blurbs, and retail distribution through Legacy Publishing. Manuscript handoff at Day 90. Published at Day 180."
+          "description": "Eight private interviews become a finished manuscript delivered by month three. Publishing option through Legacy Publishing at 10% of net royalties, with cover, interior layout, ARC copies, and retail distribution."
         }
       },
       {
@@ -81,45 +79,32 @@
         "itemOffered": {
           "@type": "Service",
           "name": "The Podcast",
-          "description": "A 30-day launch inside the PodcastNetwork.org network. Show branding, cover art, hosting, distribution to Apple Podcasts and Spotify, and a sequenced launch cadence. In-market by Day 30 and compounding throughout the six months."
+          "description": "A launched show, recorded with guests or produced from the client's voice clone, which earns an IMDb Person page through the podcast credit. Setup, branding, hosting, and distribution handled."
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "The Knowledge Panel",
-          "description": "Entity Home construction, Wikidata Q-number seeding, structured data markup, and Google Knowledge Graph indexing. Wikidata seed Day 1. Entity Home Day 14 to 30. Live Google Knowledge Panel by Day 180."
+          "name": "The Voice Clone",
+          "description": "An audio voice clone and a voice corpus, both exclusive to this package, used to produce audio in the client's voice and kept by the client."
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "The Pre-Sold Audience",
-          "description": "12 to 15 top-tier podcast guest appearances in the author's category, booked and sequenced across Days 30 to 150. Waitlist landing page with a book-preview lead magnet. Target 5,000+ pre-orders locked before launch day."
+          "name": "The Authority Build",
+          "description": "Bio pages, contributor citation surfaces, a Wikidata Person entry, author profiles across major platforms, a full website if needed, podcast tour placements, and a coordinated launch sequence positioning the book for pre-sales."
         }
       }
     ]
   },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "@id": "https://podcastnetwork.org/the-package/#rating",
-    "ratingValue": "{{AGGREGATE_RATING_VALUE}}",
-    "reviewCount": "{{AGGREGATE_REVIEW_COUNT}}",
-    "bestRating": "5",
-    "worstRating": "1",
-    "itemReviewed": {
-      "@id": "https://podcastnetwork.org/the-package/#service"
-    }
-  },
-  "additionalType": [
-    "https://schema.org/Service"
-  ],
+  "additionalType": ["https://schema.org/Service"],
   "duration": "P6M",
   "estimatedDuration": {
     "@type": "QuantitativeValue",
-    "value": 180,
-    "unitText": "days"
+    "value": 6,
+    "unitText": "months"
   }
 }

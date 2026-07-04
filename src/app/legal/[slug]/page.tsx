@@ -21,12 +21,12 @@ const PAGES: Record<string, { name: string; summary: string }> = {
   terms: {
     name: 'Terms of Service',
     summary:
-      'Use of PodcastNetwork.org is subject to our terms of service, which cover application submission, engagement scope, and payment terms for the Pre-Sold Author Package.',
+      'Use of PodcastNetwork.org is subject to our terms of service, which cover application submission, engagement scope, and payment terms for the Knowledge Panel Install and the Pre-Sold Author Package.',
   },
   'legacy-jv': {
     name: 'Legacy Publishing JV Disclosure',
     summary:
-      'PodcastNetwork.org operates a joint venture with Legacy Publishing. The $30,000 Pre-Sold Author Package fee is paid to PodcastNetwork.org and covers the pre-sell sequence. Legacy Publishing publishes the resulting title and earns 10 percent of net book sales as royalty, with no upfront fee to the author. Brett K Moore and Mike Partners hold ownership positions in both entities.',
+      'PodcastNetwork.org operates a joint venture with Legacy Publishing. The $36,000 Pre-Sold Author Package fee is paid to PodcastNetwork.org and covers the book production and authority build. Publishing through Legacy Publishing is an option for the resulting title; Legacy earns 10 percent of net book sales as royalty, with no upfront fee to the author. Brett K Moore and Mike Partners hold ownership positions in both entities.',
   },
 }
 

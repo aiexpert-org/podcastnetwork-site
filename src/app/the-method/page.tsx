@@ -14,7 +14,7 @@ import { methodSchema } from '@/lib/schema-graph'
 export const metadata: Metadata = {
   title: 'The Method. Six months. Six moves. One entity',
   description:
-    'The 180-day arc PodcastNetwork.org runs on every client: discovery, manuscript, podcast, pre-sell, knowledge panel, launch. Four pillars in parallel from Day 1.',
+    'The 180-day arc behind the Pre-Sold Author Package: discovery, manuscript, podcast, author authority, and launch, run in parallel from Day 1.',
   alternates: { canonical: '/the-method/' },
 }
 
@@ -39,9 +39,9 @@ const MONTHS = [
     anchor: 'month-3',
     label: 'Month 3',
     title: 'Podcast arc begins',
-    body: 'The show is in-market with weekly episodes and the download curve builds. The first tranche of top-tier guest appearances lands. Google Knowledge Graph pickup from the Wikidata seed typically arrives in this window (60 to 120 days from submission), which is the early signal the Day 180 panel target is on track.',
+    body: 'The show is in-market with weekly episodes and the download curve builds. The first tranche of top-tier guest appearances lands. Google Knowledge Graph pickup of your author entity from the Wikidata Person seed typically arrives in this window, which is the early signal your author authority is compounding. A standalone Google Knowledge Panel is its own twelve-month build, the Knowledge Panel Install, and can run alongside this one.',
     artifacts:
-      'Weekly episodes · First guest appearances · Google KG entity pickup',
+      'Weekly episodes · First guest appearances · Author entity pickup',
   },
   {
     anchor: 'month-4',
@@ -53,18 +53,18 @@ const MONTHS = [
   {
     anchor: 'month-5',
     label: 'Month 5',
-    title: 'Knowledge Panel and launch list',
-    body: 'Manuscript handoff to Legacy Publishing at Day 90 kicks off cover design, interior layout, ARC copies, and blurb outreach. The Google Knowledge Panel matures (live in most cases by Day 150 to 180). Pre-order conversion runs, and the final guest appearances drive the last surge of list growth toward the 5,000+ target.',
+    title: 'Author authority and launch list',
+    body: 'Manuscript handoff to Legacy Publishing at Day 90 kicks off cover design, interior layout, ARC copies, and blurb outreach. The author authority surfaces mature: bio pages, contributor citations, and the Wikidata Person entry corroborate each other. Pre-order conversion runs, and the final guest appearances drive the last surge of list growth into launch.',
     artifacts:
-      'Legacy production pipeline · Live Knowledge Panel · Scaling pre-order list',
+      'Legacy production pipeline · Author entity surfaces · Scaling pre-order list',
   },
   {
     anchor: 'month-6',
     label: 'Month 6',
     title: 'Book launch and handoff',
-    body: 'Retail placement locks. Media hits schedule across launch week. The book launches at Day 180 into a pre-sold audience of 5,000+ opted-in readers, onto a live Knowledge Panel, with a running podcast that keeps compounding after launch. You own the show, the entity, and the audience.',
+    body: 'Retail placement locks. Media hits schedule across launch week. The book launches at Day 180 into the audience you have been building, with a recognized author entity and a running podcast that keeps compounding after launch. You own the show, the entity, and the audience. How the launch performs depends on your execution and market fit.',
     artifacts:
-      'Launch-week cadence · 5,000+ pre-orders · Live panel · Published book',
+      'Launch-week cadence · Pre-order list · Author entity · Published book',
   },
 ] as const
 
@@ -103,9 +103,9 @@ export default function TheMethodPage() {
               audience-building work is stale.
             </p>
             <p>
-              The 180-day timeline works because the four pillars run in
+              The 180-day timeline works because the workstreams run in
               parallel from Day 1. The book is being written while the podcast
-              is launching while the knowledge panel is seeding while the
+              is launching while the author entity is seeding while the
               audience is being pre-sold. Nothing waits on anything else until
               Day 90, when the finished manuscript hands off to Legacy
               Publishing and the launch machinery locks into its final 90 days.
@@ -156,7 +156,7 @@ export default function TheMethodPage() {
               the package. Manuscript handoff happens at Day 90. Legacy runs
               cover design, interior layout, ARC copies, blurb sourcing, and
               retail distribution, and earns 10 percent of net book sales as
-              royalty. There is no upfront fee to Legacy beyond your $30,000
+              royalty. There is no upfront fee to Legacy beyond your $36,000
               payment to PodcastNetwork.org, and you retain author rights.
             </p>
             <p>

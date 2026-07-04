@@ -42,7 +42,7 @@ function SkeletonGraph() {
     <div
       className="relative h-full w-full"
       role="status"
-      aria-label="Searching SerpAPI, Wikidata, and Google Knowledge Graph"
+      aria-label="Searching the public sources Google reads"
     >
       <svg className="absolute inset-0 h-full w-full opacity-30">
         {positions.slice(1).map((p, i) => (
@@ -73,7 +73,7 @@ function SkeletonGraph() {
         />
       ))}
       <p className="text-caption absolute bottom-3 left-1/2 -translate-x-1/2 text-fog">
-        Fanning out to SerpAPI, Wikidata, and Google Knowledge Graph…
+        Fanning out to the public sources Google reads…
       </p>
     </div>
   );

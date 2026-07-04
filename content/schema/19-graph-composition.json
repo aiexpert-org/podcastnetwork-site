@@ -96,7 +96,7 @@
           "@id": "https://podcastnetwork.org/the-package/#service",
           "name": "Pre-Sold Author Package",
           "url": "https://podcastnetwork.org/the-package/",
-          "description": "One package. One price. $30,000. Six months. Four pillars.",
+          "description": "A finished book, a podcast, a voice clone, and author authority. $36,000. Six months. Application only.",
           "provider": { "@id": "https://podcastnetwork.org/#organization" },
           "offers": { "@id": "https://podcastnetwork.org/the-package/#offer" },
           "hasOfferCatalog": { "@id": "https://podcastnetwork.org/the-package/#catalog" },
@@ -106,9 +106,9 @@
         {
           "@type": "Offer",
           "@id": "https://podcastnetwork.org/the-package/#offer",
-          "price": "30000.00",
+          "price": "36000",
           "priceCurrency": "USD",
-          "availability": "https://schema.org/LimitedAvailability",
+          "availability": "https://schema.org/InStock",
           "seller": { "@id": "https://podcastnetwork.org/#organization" }
         },
         {
@@ -155,7 +155,7 @@
         {
           "@type": "HowTo",
           "@id": "https://podcastnetwork.org/the-method/#howto",
-          "name": "How to launch a book in 6 months into a pre-sold audience of 5,000+",
+          "name": "How to produce a book and author authority in 6 months",
           "$comment_hydrate_from": "16-howto.json"
         },
         {

@@ -143,11 +143,16 @@ function Navigation() {
   return (
     <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
-        <NavigationItem href="/case-studies">Case Studies</NavigationItem>
-        <NavigationItem href="/the-method">The Method</NavigationItem>
+        <NavigationItem href="/knowledge-panel-install">
+          Knowledge Panel
+        </NavigationItem>
+        <NavigationItem href="/the-package">Pre-Sold Author</NavigationItem>
       </NavigationRow>
       <NavigationRow>
-        <NavigationItem href="/the-package">The Package</NavigationItem>
+        <NavigationItem href="/the-method">The Method</NavigationItem>
+        <NavigationItem href="/case-studies">Case Studies</NavigationItem>
+      </NavigationRow>
+      <NavigationRow>
         <NavigationItem href="/founders">Founders</NavigationItem>
       </NavigationRow>
     </nav>

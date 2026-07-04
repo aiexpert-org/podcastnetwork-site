@@ -44,7 +44,7 @@
       "termCode": "pre-sold-audience",
       "url": "https://podcastnetwork.org/glossary/pre-sold-audience/",
       "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
-      "description": "A verified opt-in list of readers who have signaled intent to buy a book before it launches. Distinct from a cold marketing list. On the Pre-Sold Author Package, the target is 5,000+ pre-orders locked before launch day, driven by a sequenced 12-to-15 podcast guest tour into a waitlist landing page with a book-preview lead magnet."
+      "description": "A verified opt-in list of readers who have signaled intent to buy a book before it launches. Distinct from a cold marketing list. On the Pre-Sold Author Package, the audience is built through a sequenced podcast guest tour into a waitlist landing page with a book-preview lead magnet. The package positions for pre-sales; it does not guarantee a pre-order number, which depends on execution and market fit."
     },
     {
       "@type": "DefinedTerm",
@@ -143,7 +143,7 @@
       "termCode": "legacy-jv",
       "url": "https://podcastnetwork.org/glossary/legacy-jv/",
       "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
-      "description": "The joint venture between PodcastNetwork.org and Legacy Publishing that publishes every book produced through the Pre-Sold Author Package. Under the JV, the author's $30,000 payment covers the pre-sell sequence run by PodcastNetwork.org, and Legacy Publishing publishes the resulting book under its standing 10% of net book sales structure with no upfront fee. Application-only in both directions."
+      "description": "The joint venture between PodcastNetwork.org and Legacy Publishing available to books produced through the Pre-Sold Author Package. The author's $36,000 payment covers the book production and authority build run by PodcastNetwork.org. Publishing through Legacy is an option; when taken, Legacy publishes the book under its standing 10% of net book sales structure with no upfront fee. Application-only in both directions."
     },
     {
       "@type": "DefinedTerm",
@@ -152,7 +152,7 @@
       "termCode": "waitlist-mechanic",
       "url": "https://podcastnetwork.org/glossary/waitlist-mechanic/",
       "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
-      "description": "The sequence that converts list signups into pre-orders. Warmup emails, milestone announcements, a cover reveal, a chapter drop, a pre-order call to action tied to a bonus. Inside the Pre-Sold Author Package, the waitlist mechanic runs the final 60 days and produces the 5,000+ pre-order target."
+      "description": "The sequence that converts list signups into pre-orders. Warmup emails, milestone announcements, a cover reveal, a chapter drop, a pre-order call to action tied to a bonus. Inside the Pre-Sold Author Package, the waitlist mechanic runs the final stretch into launch. Actual pre-orders depend on execution and market fit."
     },
     {
       "@type": "DefinedTerm",
@@ -180,7 +180,7 @@
       "termCode": "relationship-engine",
       "url": "https://podcastnetwork.org/glossary/relationship-engine/",
       "inDefinedTermSet": "https://podcastnetwork.org/glossary/#glossary",
-      "description": "PodcastNetwork.org's underlying capability that compounds every guest appearance, podcast conversation, and speaking event into signal that feeds the next introduction. The relationship engine is the infrastructure that makes the 12-to-15 podcast tour bookable in a defined 120-day window and the pre-sell target of 5,000+ pre-orders achievable at scale."
+      "description": "PodcastNetwork.org's underlying capability that compounds every guest appearance, podcast conversation, and speaking event into signal that feeds the next introduction. The relationship engine is the infrastructure that makes the podcast tour bookable in a defined window and positions the launch for pre-sales."
     },
     {
       "@type": "DefinedTerm",

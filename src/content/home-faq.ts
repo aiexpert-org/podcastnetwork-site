@@ -1,35 +1,36 @@
 import type { FaqItem } from "@/components/ui/FAQBlock";
 
-/** Six inline homepage FAQs, answers condensed from copy/faq-page.md. */
+/** Condensed homepage FAQs for the two-package structure. Full answers live in
+ * content/schema/05-faqpage.json and render on the two package pages. */
 export const HOME_FAQ: FaqItem[] = [
   {
-    question: "What's included in the $30,000?",
+    question: "What are the two packages?",
     answer:
-      "The full 6-month sequence across all four pillars. Book production coordination with Legacy Publishing, podcast launch and six months of production support, knowledge panel entity build and indexing, the guest-booking sequence for your pre-sold audience, and Brett and Mike as the coordinating operators for the whole engagement. No add-ons required to hit the deliverables.",
+      "The Knowledge Panel Install ($10,000, 12 months) makes Google and the AI answer engines recognize you as a real entity, then verifies it monthly for a year. The Pre-Sold Author Package ($36,000, 6 months) produces a finished book from your own voice plus the podcast, voice clone, and author authority to launch it. Both are standalone and application only.",
   },
   {
-    question: "Who's the Pre-Sold Author Package for?",
+    question: "Can I do both?",
     answer:
-      "Non-fiction authors, 90 to 180+ days before launch, with real platform in play. Qualifying signals include a mailing list of 5,000+, a podcast doing 25,000+ monthly downloads, a built-in retail channel, or a platform in progress with real traction. Application-only; not every applicant gets in.",
+      "Yes. Both are standalone, so an executive who wants both pays $46,000 total with no bundle discount. They run in parallel on their own timelines: six months for the Pre-Sold Author Package, twelve months for the Knowledge Panel Install.",
   },
   {
-    question: "What if I already have a manuscript?",
+    question: "Is this only for real estate?",
     answer:
-      "Same package, same price, same timeline. The manuscript-in-hand path runs the five-pass edit with Legacy's editorial team, then straight into production. You typically have a finished manuscript earlier (Day 60 to 75 instead of Day 90).",
+      "No. Both packages are for any executive, author, entrepreneur, or professional who wants a formal, Google-recognized personal brand. There is no industry requirement.",
   },
   {
-    question: "How does the Legacy JV work?",
+    question: "Do both include a podcast?",
     answer:
-      "Legacy Publishing is our elite publishing partner. Manuscript handoff happens at Day 90. Legacy handles cover, interior layout, ARC copies, blurbs, and retail distribution, and takes 10 percent of net book sales as royalty. There is no upfront fee to Legacy beyond your $30,000 payment to PodcastNetwork.org.",
+      "Yes. Both include podcast setup, branding, hosting, and distribution as part of the price, with no premium tier. The podcast is how you earn your IMDb Person page, so it is built into both, along with a full website if you do not already have one.",
   },
   {
-    question: "Do I need a podcast already?",
+    question: "Does the Pre-Sold Author Package guarantee pre-orders?",
     answer:
-      "No. The package includes the podcast pillar: we launch your show inside the PodcastNetwork.org network in the first 30 days. If you already have a podcast, we work with the existing show rather than launch a new one.",
+      "No. The name describes the goal. The package builds the authority and audience infrastructure that positions you for pre-sales. Actual pre-sales depend on your execution and market fit, and we do not guarantee a number.",
   },
   {
-    question: "What if I don't have a defined audience yet?",
+    question: "What makes the two packages different?",
     answer:
-      "Not automatically disqualifying. The list threshold is one of several qualifying signals. If you have a strong podcast audience, an existing retail channel, or a platform-in-progress with real momentum, apply and we will look at the full picture.",
+      "The Pre-Sold Author Package goes deep on content: a finished book, an audio voice clone, and a voice corpus, all exclusive to it. The Knowledge Panel Install goes deep on discovery: the Google Knowledge Panel, AI answer engine coverage, Wikipedia and Wikidata, and a full year of monthly verification.",
   },
 ];

@@ -15,24 +15,26 @@ import { FAQBlock } from '@/components/ui/FAQBlock'
 import { SchemaGraph } from '@/components/seo/SchemaGraph'
 import { faqItemsForUi, packageSchema } from '@/lib/schema-graph'
 import type { Keyframe } from '@/lib/entity-graph'
+import { PRE_SOLD_AUTHOR } from '@/content/packages'
 
 export const metadata: Metadata = {
-  title: 'The Pre-Sold Author Package. $30,000, 180 days',
+  title: 'The Pre-Sold Author Package. $36,000, 6 months',
   description:
-    'A book, a podcast, a knowledge panel, and a pre-sold audience of 5,000+ readers. Delivered in 180 days. One package. One price. Application-only.',
+    'A finished book from your own voice, plus the podcast, the voice clone, and the authority infrastructure to position it for pre-sales. Six months. Application only. Pre-sales depend on execution and market fit.',
   alternates: { canonical: '/the-package/' },
 }
 
 const keyframes = (pnKeyframes as { keyframes: Keyframe[] }).keyframes
 
 const PACKAGE_FAQ_IDS = [
-  'what-does-30k-cover',
+  'what-does-pre-sold-author-cover',
   'six-months-not-24',
   'manuscript-in-hand',
   'no-podcast-yet',
   'legacy-jv',
-  'knowledge-panel-mechanics',
   'pre-sold-audience-mechanics',
+  'both-packages-together',
+  'is-this-just-for-real-estate',
   'payment-terms',
   'refund',
   'what-if-i-slip',
@@ -43,23 +45,23 @@ const PACKAGE_FAQ_IDS = [
 const INCLUDED = [
   {
     title: 'The Book',
-    body: "Two paths in, same price, same timeline. Ghostwriting path: we interview you across your existing podcast catalog, keynotes, and articles; our editorial team shapes the raw voice into a manuscript, draft complete by Day 90. Manuscript-in-hand path: you bring the draft, we run the five-pass edit (developmental, structural, line, copy, proof) with Legacy Publishing's editorial team, complete Day 60 to 75. From Day 90, Legacy takes the handoff: cover, interior layout, ARC copies, blurbs, retail distribution.",
+    body: 'Eight private interviews become the raw material for your book. Our editorial team shapes your voice into a finished manuscript, delivered by month three. From there you have a publishing option through Legacy Publishing at 10 percent of net royalties, so you keep roughly 90 percent, with cover, interior layout, ARC copies, and retail distribution handled for you.',
   },
   {
     title: 'The Podcast',
-    body: 'A 30-day launch inside the PodcastNetwork.org network. Show branding, cover art, hosting setup, distribution across Apple Podcasts, Spotify, and the major directories, and a sequenced launch cadence. The podcast is in-market by Day 30 and compounds throughout the six months, driving list growth and pre-orders into launch week.',
+    body: 'A launched show, either four episodes recorded with guests or three to five audio-only episodes produced from your voice clone. Branding, hosting, and distribution to the major directories are handled for you. The podcast earns your IMDb Person page through the podcast credit and feeds the authority build.',
   },
   {
-    title: 'The Knowledge Panel',
-    body: 'A live Google Knowledge Panel by Day 180. The mechanics: Entity Home construction, Wikidata Q-number seeding, structured data markup, and Google Knowledge Graph indexing. Wikidata seeding starts Day 1. Entity Home built Day 14 to 30. Google pickup typically 60 to 120 days from seed. The industry standard treats this as a 12 to 24 month standalone engagement.',
+    title: 'The Voice Clone',
+    body: 'An audio voice clone and a voice corpus, both exclusive to this package. The voice clone lets us produce audio in your voice for the podcast and beyond, and the corpus is yours to keep. This is the differentiator that makes the book and podcast pipeline move at six-month speed.',
   },
   {
-    title: 'The Pre-Sold Audience',
-    body: '12 to 15 top-tier podcast guest appearances in your category, booked and sequenced across Days 30 to 150. Each appearance drives traffic to a waitlist landing page with a book-preview lead magnet. Waitlist mechanics convert signups into pre-orders in the final 60 days. Target: 5,000+ pre-orders locked before launch day.',
+    title: 'The Authority Build',
+    body: 'Bio pages, contributor citation surfaces, a Wikidata Person entry, author profiles across the major distribution platforms, and a full website if you do not already have one. Podcast tour placements and a coordinated launch sequence position the book for pre-sales in its launch window.',
   },
   {
     title: 'The Operators',
-    body: 'Brett and Mike hold the through-line for all four pillars across the full 180 days. One operator, one contract, one price. No add-ons required to hit the deliverables.',
+    body: 'Brett and Mike hold the through-line across the full six months. One team, one contract, one price. No add-ons required to hit the deliverables.',
   },
 ]
 
@@ -86,13 +88,14 @@ export default function ThePackagePage() {
       <SchemaGraph schema={packageSchema()} />
 
       <PageIntro
-        eyebrow="The package"
-        title="A book, a podcast, a knowledge panel, and a pre-sold audience. Delivered in 180 days."
+        eyebrow="The Pre-Sold Author Package"
+        title="A finished book from your own voice, plus the authority infrastructure to launch it."
       >
         <p>
-          One package. One price. $30,000. Application-only. The industry
-          standard for a knowledge panel alone runs 12 to 24 months. We ship
-          all four pillars in six.
+          One package. One price. {PRE_SOLD_AUTHOR.priceDisplay}. Six months.
+          Application only. You bring the expertise. We produce the book, the
+          podcast, the voice clone, and the author authority around it, and
+          position all of it for pre-sales in the launch window.
         </p>
         <div className="mt-8 flex">
           <Button href="/apply">Start your application</Button>
@@ -108,23 +111,20 @@ export default function ThePackagePage() {
         <FadeIn>
           <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base text-neutral-600 lg:grid-cols-2">
             <p>
-              The Pre-Sold Author Package is a productized six-month sequence
-              that produces four coordinated deliverables on a single timeline:
-              a finished book published through Legacy Publishing, a launched
-              podcast inside the PodcastNetwork.org network, a live Google
-              Knowledge Panel, and a pre-sold audience of 5,000+ opted-in
-              readers ready on launch day.
+              The Pre-Sold Author Package is a six-month sequence that produces
+              a finished book from your own voice, a launched podcast, an audio
+              voice clone, and the author authority infrastructure around all of
+              it. Eight private interviews feed the manuscript. The manuscript
+              is delivered by month three. The publishing option runs through
+              Legacy Publishing at 10 percent of net royalties.
             </p>
             <p>
-              Coaching, courses, and standalone ghostwriting all leave the
-              author holding the coordination problem: write the book, then
-              figure out the audience, then chase the knowledge panel, then
-              hope the launch lands. Every one of those decisions gets made in
-              sequence, and the calendar stretches to two or three years. This
-              package runs the four pillars in parallel from Day 1 against the
-              same 180-day clock, under one operator, with a single handoff to
-              Legacy Publishing at Day 90. Day 180 the book launches into an
-              audience that already said yes.
+              The name is the goal. The package is built to position you for
+              pre-sales through authority and audience infrastructure: a real
+              podcast, a recognized author entity, launch-window amplification,
+              and a coordinated launch sequence. Actual pre-sales depend on
+              execution and market fit. We do not guarantee a pre-order number,
+              and any operator who does is selling you a story.
             </p>
           </div>
         </FadeIn>
@@ -158,28 +158,59 @@ export default function ThePackagePage() {
       </Container>
 
       <SectionIntro
-        eyebrow="The Legacy JV"
-        title="The publishing partner is built in."
+        eyebrow="Every deliverable"
+        title="The full sixteen."
+        className="mt-24 sm:mt-32 lg:mt-40"
+      >
+        <p>
+          {PRE_SOLD_AUTHOR.priceDisplay} over {PRE_SOLD_AUTHOR.timelineDisplay}.
+          Time investment is {PRE_SOLD_AUTHOR.timeInvestment.toLowerCase()}
+        </p>
+      </SectionIntro>
+      <Container className="mt-16">
+        <FadeIn>
+          <ul
+            role="list"
+            className="grid max-w-4xl grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2"
+          >
+            {PRE_SOLD_AUTHOR.deliverables.map((d) => (
+              <li
+                key={d}
+                className="flex gap-3 text-base text-neutral-600"
+              >
+                <span aria-hidden="true" className="mt-1 text-foil-dark">
+                  &#8226;
+                </span>
+                <span>{d}</span>
+              </li>
+            ))}
+          </ul>
+        </FadeIn>
+      </Container>
+
+      <SectionIntro
+        eyebrow="The Legacy option"
+        title="The publishing partner is built in, and optional."
         className="mt-24 sm:mt-32 lg:mt-40"
       />
       <Container className="mt-10">
         <FadeIn>
           <div className="max-w-3xl space-y-6 text-base text-neutral-600">
             <p>
-              Legacy Publishing is our elite publishing partner. Manuscript
-              handoff happens at Day 90. Legacy handles cover, interior layout,
-              ARC copies, blurb sourcing, retail distribution, and the publish.
-              Legacy takes 10 percent of net book sales as royalty. There is no
-              upfront fee to Legacy beyond your $30,000 payment to
-              PodcastNetwork.org. Legacy is application-only in its own right,
-              and admission to the Pre-Sold Author Package includes admission
-              to Legacy for the resulting title.
+              Legacy Publishing is our elite publishing partner. Once your
+              manuscript is finished, you have the option to publish through
+              Legacy. Legacy handles cover, interior layout, ARC copies, blurb
+              sourcing, and retail distribution, and takes 10 percent of net
+              book sales as royalty. There is no upfront fee to Legacy beyond
+              your {PRE_SOLD_AUTHOR.priceDisplay} payment to PodcastNetwork.org.
+              Publishing through Legacy is an option for the book, not a
+              required step.
             </p>
             <div className="rounded-3xl border border-foil/40 bg-foil/10 p-6">
               <p className="text-sm text-neutral-950">
                 You own the book rights. Legacy operates on the 10 percent net
-                royalty structure with no advance and no upfront fee. Full
-                disclosure at{' '}
+                royalty structure with no advance and no upfront fee, so you
+                keep roughly 90 percent. Full disclosure at{' '}
                 <Link
                   href="/legal/legacy-jv/"
                   className="font-semibold text-signal transition hover:text-signal-dark"
@@ -233,27 +264,21 @@ export default function ThePackagePage() {
         <FadeIn>
           <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base text-neutral-600 lg:grid-cols-2">
             <p>
-              The DIY path runs 24 to 36 months from first draft to shelf. A
-              freelance five-pass edit runs $8,000 to $15,000. Cover and
-              interior design runs $3,000 to $7,000. A standalone knowledge
-              panel engagement with the industry-standard vendor runs 12 to 24
-              months at $30,000 to $80,000. A launch PR retainer runs $8,000 to
-              $15,000 per month. Guest-booking services run $3,000 to $7,000
-              per month with mixed results. At the low end, that lands north of
-              $50,000 in vendor costs, takes two to three years, and produces
-              four disconnected deliverables that were never designed to
-              compound against each other.
+              The do-it-yourself path runs two to three years from first draft
+              to shelf and stacks up vendor costs along the way: developmental
+              and line editing, cover and interior design, a launch publicist,
+              and a guest-booking service, each hired separately, each on its
+              own clock. At the low end that lands north of $50,000 and produces
+              disconnected pieces that were never designed to compound against
+              each other.
             </p>
             <p>
-              Three things compress the clock. The podcast catalog compresses
-              discovery: your voice is already on tape, and ghostwriting
-              interviews mine it directly. Parallel workstreams remove the
-              waiting: entity work starts on day one while the manuscript and
-              the pre-sell run concurrently. Entity-first sequencing means
-              Google&apos;s indexing clock (the slowest external dependency)
-              starts at the earliest possible moment instead of after the book
-              ships. One operator holding the through-line is what makes the
-              parallelism hold.
+              Three things compress the clock. The interviews and the voice
+              clone mean the book is built from your voice at speed instead of
+              months of blank-page drafting. Parallel workstreams remove the
+              waiting: the podcast, the manuscript, and the authority build all
+              run at once. And one team holding the through-line is what keeps
+              the parallelism from falling apart.
             </p>
           </div>
         </FadeIn>
@@ -267,29 +292,29 @@ export default function ThePackagePage() {
                 Who it&apos;s for
               </p>
               <h2 className="mt-4 font-display text-3xl font-medium tracking-tight text-neutral-950">
-                Authors with existing signal.
+                Anyone with something worth a book.
               </h2>
               <p className="mt-5 text-base text-neutral-600">
-                Non-fiction authors, 90 to 180+ days before launch, with real
-                platform in play: a mailing list of 5,000+, a podcast doing
-                25,000+ monthly downloads, a built-in retail channel, or a
-                platform in progress with real traction and a clear trajectory.
+                Executives, authors, entrepreneurs, and professionals who have
+                real expertise and want it turned into a published book and the
+                author authority around it. You do not need an existing audience
+                to qualify. You need something worth saying and the willingness
+                to sit for the interviews.
               </p>
             </div>
             <div>
               <p className="font-display text-sm font-semibold tracking-wider text-foil-dark uppercase">
-                Who we turn down
+                What we are honest about
               </p>
               <h2 className="mt-4 font-display text-3xl font-medium tracking-tight text-neutral-950">
-                Authors starting from zero.
+                We build the infrastructure. Sales are earned.
               </h2>
               <p className="mt-5 text-base text-neutral-600">
-                We turn down applicants who have not put the reps in on their
-                own audience yet. This package takes an author with existing
-                signal and produces a coordinated launch machine around that
-                signal in six months. It does not build an author from nothing,
-                and pretending otherwise would break the cohort for everyone
-                else.
+                This package positions you for pre-sales through authority and
+                audience infrastructure. It does not guarantee pre-orders. How
+                the launch performs depends on your execution, the strength of
+                your existing platform, and market fit. We tell you that up
+                front because it is true.
               </p>
             </div>
           </div>
@@ -338,7 +363,8 @@ export default function ThePackagePage() {
           </div>
           <div className="mt-14 text-center">
             <p className="font-display text-xl font-medium text-neutral-950">
-              Application-only. $30,000. 180 days from Day 1 to book launch.
+              Application only. {PRE_SOLD_AUTHOR.priceDisplay}. Six months from
+              Day 1 to launch window.
             </p>
             <div className="mt-6 flex justify-center">
               <Button href="/apply">Start your application</Button>

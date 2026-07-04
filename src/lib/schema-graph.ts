@@ -12,6 +12,7 @@
 import orgPayload from "../../content/schema/01-organization.json";
 import websitePayload from "../../content/schema/02-website-searchaction.json";
 import servicePayload from "../../content/schema/03-professionalservice.json";
+import kpServicePayload from "../../content/schema/20-knowledge-panel-service.json";
 import faqPayload from "../../content/schema/05-faqpage.json";
 import bookPayload from "../../content/schema/06-book.json";
 import podcastPayload from "../../content/schema/07-podcastseries.json";
@@ -104,11 +105,11 @@ export function faqItemsForUi(
 
 export function homeSchema(): SchemaNode {
   const questions = faqQuestions([
-    "what-does-30k-cover",
-    "manuscript-in-hand",
-    "do-you-take-all-applicants",
+    "what-does-pre-sold-author-cover",
+    "what-does-knowledge-panel-install-cover",
+    "both-packages-together",
+    "is-this-just-for-real-estate",
     "no-podcast-yet",
-    "legacy-jv",
     "versus-diy",
   ]);
 
@@ -119,7 +120,7 @@ export function homeSchema(): SchemaNode {
       "@type": "WebPage",
       "@id": `${BASE}/#webpage`,
       url: `${BASE}/`,
-      name: "PodcastNetwork.org: the premium authority launch, delivered in six months",
+      name: "PodcastNetwork.org: two paths to Google authority",
       isPartOf: { "@id": `${BASE}/#website` },
       breadcrumb: { "@id": `${BASE}/#breadcrumb` },
       about: { "@id": `${BASE}/the-package/#service` },
@@ -127,6 +128,7 @@ export function homeSchema(): SchemaNode {
     },
     breadcrumb(`${BASE}/#breadcrumb`, [HOME_CRUMB]),
     node(servicePayload),
+    node(kpServicePayload),
     node(brettPayload),
     node(mikePayload),
     node(bookPayload),
@@ -153,13 +155,14 @@ export function methodSchema(): SchemaNode {
 
 export function packageSchema(): SchemaNode {
   const questions = faqQuestions([
-    "what-does-30k-cover",
+    "what-does-pre-sold-author-cover",
     "six-months-not-24",
     "manuscript-in-hand",
     "no-podcast-yet",
     "legacy-jv",
-    "knowledge-panel-mechanics",
     "pre-sold-audience-mechanics",
+    "both-packages-together",
+    "is-this-just-for-real-estate",
     "payment-terms",
     "refund",
     "what-if-i-slip",
@@ -178,6 +181,39 @@ export function packageSchema(): SchemaNode {
     breadcrumb(`${BASE}/the-package/#breadcrumb`, [
       HOME_CRUMB,
       { name: "The Pre-Sold Author Package", item: `${BASE}/the-package/` },
+    ]),
+  ]);
+}
+
+export function knowledgePanelSchema(): SchemaNode {
+  const questions = faqQuestions([
+    "what-does-knowledge-panel-install-cover",
+    "twelve-months-not-24",
+    "knowledge-panel-mechanics",
+    "no-podcast-yet",
+    "optional-podcast-setup",
+    "both-packages-together",
+    "is-this-just-for-real-estate",
+    "payment-terms",
+    "refund",
+    "knowledge-panel-versus-diy",
+    "application-timeline",
+  ]);
+
+  return graph([
+    node(orgPayload),
+    node(kpServicePayload),
+    {
+      "@type": "FAQPage",
+      "@id": `${BASE}/knowledge-panel-install/#faq-knowledge-panel`,
+      mainEntity: questions,
+    },
+    breadcrumb(`${BASE}/knowledge-panel-install/#breadcrumb`, [
+      HOME_CRUMB,
+      {
+        name: "The Knowledge Panel Install",
+        item: `${BASE}/knowledge-panel-install/`,
+      },
     ]),
   ]);
 }

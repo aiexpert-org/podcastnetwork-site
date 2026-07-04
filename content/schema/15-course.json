@@ -1,12 +1,12 @@
 {
-  "$comment": "Course schema for the Pre-Sold Author Package's methodology component. The package itself is a ProfessionalService (see 03-professionalservice.json), not a course, so the Course entity here represents the METHODOLOGY page (/the-method) as a structured educational program that visitors can learn from. This is a legitimate use of Course: Google recognizes Course markup on methodology pages as long as the entity is educational content the visitor can consume, even if the actual buyable product is a service. If the Course rendering feels forced during a final review, ship this schema only inside the @graph for /the-method and drop it elsewhere. Do not attach Course markup to the /the-package product page — that would be a Google structured data violation.",
+  "$comment": "Course schema for the Pre-Sold Author Package methodology. The package itself is a ProfessionalService (03-professionalservice.json); this Course entity represents the METHODOLOGY page (/the-method) as structured educational content. Ship this only inside the @graph for /the-method. Do not attach Course markup to /the-package (that would be a Google structured data violation).",
   "@context": "https://schema.org",
   "@type": "Course",
   "@id": "https://podcastnetwork.org/the-method/#course",
-  "name": "The 180-Day Premium Authority Launch Method",
-  "alternateName": "The Six-Month Pre-Sold Author Method",
+  "name": "The 180-Day Pre-Sold Author Method",
+  "alternateName": "The Six-Month Book and Authority Method",
   "url": "https://podcastnetwork.org/the-method/",
-  "description": "The documented methodology PodcastNetwork.org uses to deliver a book, a podcast, a Google Knowledge Panel, and a pre-sold audience of 5,000+ readers on a single 180-day clock. Six months, four workstreams, one operator, one manuscript handoff at Day 90, one launch at Day 180.",
+  "description": "The documented methodology behind the Pre-Sold Author Package: how a finished book, a podcast, an audio voice clone, and author authority get built in parallel on a single 180-day clock, with one manuscript delivered by month three and a coordinated launch at Day 180.",
   "image": [
     "https://podcastnetwork.org/the-method/hero-16x9.jpg",
     "https://podcastnetwork.org/the-method/timeline-3x1.jpg"
@@ -16,20 +16,20 @@
   "educationalLevel": "Professional",
   "audience": {
     "@type": "EducationalAudience",
-    "educationalRole": "Non-fiction author with existing platform"
+    "educationalRole": "Executive, author, or entrepreneur building a book and personal brand"
   },
   "teaches": [
-    "How the four pillars of a premium authority launch (book, podcast, knowledge panel, pre-sold audience) compound when built in parallel",
-    "How to compress a knowledge panel from a 12-to-24-month standalone engagement to a 180-day parallel workstream",
-    "How to build a pre-sold audience of 5,000+ through a sequenced 12-to-15 podcast guest tour",
-    "How to run the Legacy Publishing JV handoff at Day 90 without stalling the pre-sell sequence"
+    "How a book, a podcast, a voice clone, and author authority compound when built in parallel instead of in sequence",
+    "How interviews and a voice corpus compress a manuscript from months of drafting to a delivery by month three",
+    "How author authority surfaces (bio pages, contributor citations, a Wikidata Person entry) corroborate each other",
+    "How the Legacy Publishing option runs after the manuscript is finished without stalling the launch sequence"
   ],
   "about": [
     { "@type": "Thing", "name": "Book publishing" },
     { "@type": "Thing", "name": "Podcast production" },
-    { "@type": "Thing", "name": "Google Knowledge Panel" },
-    { "@type": "Thing", "name": "Wikidata entity seeding" },
-    { "@type": "Thing", "name": "Authority marketing" }
+    { "@type": "Thing", "name": "Author authority" },
+    { "@type": "Thing", "name": "Voice cloning" },
+    { "@type": "Thing", "name": "Personal brand" }
   ],
   "provider": {
     "@id": "https://podcastnetwork.org/#organization"
@@ -61,28 +61,28 @@
       "@type": "Course",
       "@id": "https://podcastnetwork.org/the-method/#module-1-foundation",
       "name": "Module 1: Foundation (Days 1 to 30)",
-      "description": "Kickoff, editorial planning, brand and positioning work. Podcast launches inside the network by Day 30. Knowledge panel seeding begins on Day 1. Guest-booking outreach starts.",
+      "description": "Kickoff, voice work, and editorial planning. The podcast launches by Day 30. The Wikidata Person entry seeds and author authority surfaces begin. Interviews start.",
       "position": 1
     },
     {
       "@type": "Course",
       "@id": "https://podcastnetwork.org/the-method/#module-2-build",
       "name": "Module 2: Build (Days 30 to 90)",
-      "description": "Manuscript in production with Legacy. Podcast episodes shipping weekly. Knowledge panel signals accumulating. First wave of guest appearances confirmed and recorded, feeding the list build.",
+      "description": "The manuscript takes shape from the interviews and voice corpus. Podcast episodes ship. Author authority signals accumulate. The first wave of guest appearances feeds the list build.",
       "position": 2
     },
     {
       "@type": "Course",
       "@id": "https://podcastnetwork.org/the-method/#module-3-pre-sell",
       "name": "Module 3: The Pre-Sell (Days 90 to 180)",
-      "description": "Manuscript through five-pass edit. Cover and interior layout finalized. Knowledge panel typically indexed and maturing on Google. Guest appearances peak, list crosses target, waitlist opens for pre-orders.",
+      "description": "The finished manuscript moves into cover, interior layout, and production through the Legacy Publishing option. Author authority surfaces mature. Guest appearances peak and the waitlist opens for pre-orders.",
       "position": 3
     },
     {
       "@type": "Course",
       "@id": "https://podcastnetwork.org/the-method/#module-4-launch",
       "name": "Module 4: Launch (Day 180)",
-      "description": "Book on sale. Podcast at scale. Knowledge panel live. Audience already opted in and already paying. Legacy runs retail. PodcastNetwork.org runs launch-week metrics and the 30-day post-launch report.",
+      "description": "Book on sale. Podcast at scale. A recognized author entity. The audience opted in. Legacy runs retail. PodcastNetwork.org runs launch-week coordination and a post-launch report.",
       "position": 4
     }
   ],

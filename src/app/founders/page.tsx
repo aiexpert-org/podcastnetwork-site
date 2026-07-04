@@ -75,14 +75,14 @@ export default function FoundersPage() {
               not tended. The book fades in 90 days.
             </p>
             <p>
-              The alternative is not more marketing. More marketing after a
-              cold launch does not fix a cold launch. The alternative is a
-              coordinated six-month sequence that produces the book, the
-              podcast, the knowledge panel, and the pre-sold audience in
-              parallel. All four pillars mature together. By the time the book
-              lists, the audience has already opted in, the podcast has already
-              been running, and Google already knows who the author is.
-              PodcastNetwork.org is the operator of that sequence.
+              The alternative is more coordination, earlier. A build that
+              produces the book, the podcast, the voice clone, and the author
+              authority in parallel, so they mature together. By the time the
+              book lists, the audience has already opted in, the podcast has
+              already been running, and Google already recognizes the author.
+              That is the Pre-Sold Author Package. Making Google recognize you
+              in the first place, and keeping it accurate for a year, is the
+              Knowledge Panel Install. PodcastNetwork.org runs both.
             </p>
           </div>
         </FadeIn>
@@ -94,9 +94,8 @@ export default function FoundersPage() {
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          PodcastNetwork.org sits in the middle. Authors talk to one operator,
-          sign one contract, pay one price, and get four pillars delivered in
-          parallel.
+          PodcastNetwork.org sits in the middle. You talk to one operator, pick
+          the package that fits, and get it delivered by one team.
         </p>
       </SectionIntro>
       <Container className="mt-16">
@@ -109,8 +108,8 @@ export default function FoundersPage() {
           </GridListItem>
           <GridListItem title="Legacy Publishing">
             Publishing partner. Application-only elite publisher operating at
-            10 percent of net book sales with no upfront fee. Every book in the
-            package publishes through Legacy under the JV.
+            10 percent of net book sales with no upfront fee. Books produced in
+            the Pre-Sold Author Package can publish through Legacy as an option.
           </GridListItem>
           <GridListItem title="Apex Podcast Co">
             Production partner. Ongoing white-glove podcast production after

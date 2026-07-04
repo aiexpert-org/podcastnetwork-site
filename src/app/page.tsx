@@ -5,7 +5,6 @@ import caseStudies from '../../data/case-studies.json'
 import { ContactSection } from '@/components/ContactSection'
 import { Container } from '@/components/Container'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
-import { GridListItem } from '@/components/GridList'
 import { SectionIntro } from '@/components/SectionIntro'
 import { HeroBand } from '@/components/home/HeroBand'
 import { LogoMarquee, type MarqueeItem } from '@/components/home/LogoMarquee'
@@ -19,71 +18,81 @@ import { FAQBlock } from '@/components/ui/FAQBlock'
 import { HOME_FAQ } from '@/content/home-faq'
 import { SchemaGraph } from '@/components/seo/SchemaGraph'
 import { homeSchema } from '@/lib/schema-graph'
+import {
+  BOTH_PACKAGES_PRICE_DISPLAY,
+  KNOWLEDGE_PANEL_INSTALL,
+  PRE_SOLD_AUTHOR,
+  SHARED_FLOOR,
+  type PackageMeta,
+} from '@/content/packages'
 
 export const metadata: Metadata = {
   title:
-    'PodcastNetwork.org. This is what a Knowledge Panel looks like from the inside',
+    'PodcastNetwork.org. Two paths to Google authority',
   description:
-    'PodcastNetwork.org builds live entity graphs for executives and authors who want Google to know exactly who they are. Six months. One package. Real signals.',
+    'PodcastNetwork.org builds Google authority for executives, authors, and entrepreneurs. Two standalone paths: a Knowledge Panel Install and a Pre-Sold Author Package. Real signals, application only.',
   alternates: { canonical: '/' },
 }
 
-const PILLARS = [
-  {
-    title: 'The Book',
-    body: 'Legacy Publishing produces your book under the JV. Ghostwrite from your podcast catalog, or a five-pass edit on a manuscript you bring. Cover, layout, production files, all delivered by day 180.',
-  },
-  {
-    title: 'The Podcast',
-    body: 'Your show launches inside our network in the first 30 days. Artwork, distribution, launch sequence. The podcast is the engine that feeds the book, the entity, and the audience.',
-  },
-  {
-    title: 'The Knowledge Panel',
-    body: 'Entity Home, Wikidata Q-number, and Google Knowledge Graph indexing. We start on day one and finish inside the six months. The industry standard for this alone is twelve to twenty-four months.',
-  },
-  {
-    title: 'The Pre-Sold Audience',
-    body: 'Twelve to fifteen top-tier guest appearances in your category, sequenced into a list build. Five thousand pre-orders is the target, locked in before your book is on shelves.',
-  },
-]
+function PathCard({ pkg }: { pkg: PackageMeta }) {
+  return (
+    <FadeIn className="flex">
+      <div className="flex w-full flex-col rounded-4xl border border-neutral-950/10 bg-white p-8 sm:p-10">
+        <p className="font-display text-sm font-semibold tracking-wider text-foil-dark uppercase">
+          {pkg.name}
+        </p>
+        <p className="mt-4 font-display text-4xl font-medium tracking-tight text-neutral-950">
+          {pkg.priceDisplay}
+        </p>
+        <p className="mt-1 text-sm text-neutral-600">
+          {pkg.timelineDisplay}, application only
+        </p>
+        <p className="mt-6 text-base text-neutral-600">{pkg.tagline}</p>
+        <ul role="list" className="mt-6 space-y-3 text-sm text-neutral-600">
+          {pkg.differentiators.map((d) => (
+            <li key={d} className="flex gap-3">
+              <span aria-hidden="true" className="mt-1 text-foil-dark">
+                &#8226;
+              </span>
+              <span>{d}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-8 pt-2">
+          <Link
+            href={pkg.url}
+            className="text-base font-semibold text-signal transition hover:text-signal-dark"
+          >
+            See {pkg.name} <span aria-hidden="true">&rarr;</span>
+          </Link>
+        </div>
+      </div>
+    </FadeIn>
+  )
+}
 
-function Package() {
+function TwoPaths() {
   return (
     <>
       <SectionIntro
-        eyebrow="One package"
-        title="Four workstreams. One clock. One team."
+        eyebrow="Two paths to Google authority"
+        title="Pick the build that fits what you are trying to become."
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          The Pre-Sold Author Package is a single integrated build. Book,
-          podcast, entity, audience. Delivered in six months. Priced at
-          $30,000.
+          Two standalone packages. Take the one that matches the goal, or take
+          both. An executive who wants both pays {BOTH_PACKAGES_PRICE_DISPLAY}{' '}
+          and runs them in parallel on their own timelines. No bundle discount,
+          because each one stands on its own.
         </p>
       </SectionIntro>
       <Container className="mt-16">
         <FadeInStagger>
-          <ul
-            role="list"
-            className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2"
-          >
-            {PILLARS.map((pillar) => (
-              <GridListItem key={pillar.title} title={pillar.title}>
-                {pillar.body}
-              </GridListItem>
-            ))}
-          </ul>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+            <PathCard pkg={KNOWLEDGE_PANEL_INSTALL} />
+            <PathCard pkg={PRE_SOLD_AUTHOR} />
+          </div>
         </FadeInStagger>
-        <FadeIn>
-          <p className="mt-12">
-            <Link
-              href="/the-package"
-              className="text-base font-semibold text-signal transition hover:text-signal-dark"
-            >
-              See the full package <span aria-hidden="true">&rarr;</span>
-            </Link>
-          </p>
-        </FadeIn>
       </Container>
     </>
   )
@@ -107,10 +116,10 @@ function YouSearchBand() {
               </span>
             </h2>
             <p className="mt-6 text-xl text-neutral-300">
-              We fan out to SerpAPI, Wikidata, and Google&apos;s Knowledge
-              Graph in real time and render whatever&apos;s there. For most
-              people, most of it&apos;s empty. That&apos;s the honest answer,
-              and it&apos;s the starting line.
+              We fan out to the same public sources Google reads, in real time,
+              and render whatever&apos;s there. For most people, most of
+              it&apos;s empty. That&apos;s the honest answer, and it&apos;s the
+              starting line.
             </p>
           </div>
           <div className="mx-auto mt-10 max-w-4xl">
@@ -176,10 +185,10 @@ function CaseStudiesPreview({ studies }: { studies: CaseStudyStatic[] }) {
 const SIGNAL_SURFACES: MarqueeItem[] = [
   { name: 'Google Knowledge Graph', href: '/the-method/' },
   { name: 'Wikidata', href: '/the-method/' },
+  { name: 'Wikipedia', href: '/knowledge-panel-install/' },
+  { name: 'IMDb', href: '/knowledge-panel-install/' },
   { name: 'Amazon', href: '/case-studies/ai-or-die/' },
   { name: 'Goodreads', href: '/case-studies/ai-or-die/' },
-  { name: 'Spotify', href: '/case-studies/ai-or-die/' },
-  { name: 'Apple Podcasts', href: '/the-package/' },
   { name: 'LinkedIn', href: '/founders/' },
   { name: 'X', href: '/founders/' },
 ]
@@ -207,36 +216,38 @@ function SignalCloud() {
   )
 }
 
-function Compression() {
+function SharedFloor() {
   return (
     <>
       <SectionIntro
-        eyebrow="The compression"
-        title="Six months. Not eighteen. Not twenty-four."
+        eyebrow="The shared floor"
+        title="Every client walks away with the same base."
         className="mt-24 sm:mt-32 lg:mt-40"
-      />
-      <Container className="mt-10">
-        <FadeIn>
-          <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base text-neutral-600 lg:grid-cols-2">
-            <p>
-              The industry standard for a Google Knowledge Panel is twelve to
-              twenty-four months. That&apos;s the baseline number. It assumes a
-              specialist agency working sequentially: write the book, then
-              launch a podcast, then submit entity data, then start the
-              guest-booking sequence. Each workstream waits for the one before
-              it to finish. The clock stretches because the workflow is serial.
-            </p>
-            <p>
-              We parallelize. The podcast catalog compresses discovery.
-              Ghostwriting runs concurrent with the pre-sell sequence. Entity
-              work starts on day one, not day one-hundred. Guest bookings begin
-              as soon as the podcast has three episodes, not thirty. Every
-              workstream feeds the others in the same six-month clock.
-              That&apos;s the compression, and it&apos;s the reason the pricing
-              works at a single flat number.
-            </p>
-          </div>
-        </FadeIn>
+      >
+        <p>
+          Both packages launch a podcast, earn an IMDb page through the podcast
+          credit, and build a full website if you do not already have one. That
+          is the floor. Each package adds its own depth on top of it.
+        </p>
+      </SectionIntro>
+      <Container className="mt-16">
+        <FadeInStagger>
+          <ul
+            role="list"
+            className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2"
+          >
+            {SHARED_FLOOR.map((item) => (
+              <FadeIn key={item}>
+                <li className="flex gap-3 text-base text-neutral-600">
+                  <span aria-hidden="true" className="mt-1 text-foil-dark">
+                    &#8226;
+                  </span>
+                  <span>{item}</span>
+                </li>
+              </FadeIn>
+            ))}
+          </ul>
+        </FadeInStagger>
       </Container>
     </>
   )
@@ -316,18 +327,18 @@ export default function Home() {
             This is what a Knowledge Panel looks like from the inside.
           </h1>
           <p className="mt-6 text-xl text-neutral-600">
-            PodcastNetwork.org builds live entity graphs for executives and
-            authors who want Google to know exactly who they are. Six months.
-            One package. Real signals. The graph below is ours, and it&apos;s
-            live. Drag the playhead to watch six months of authority
-            architecture assemble itself.
+            PodcastNetwork.org builds Google authority for executives, authors,
+            and entrepreneurs who want to be recognized as a real entity. Two
+            paths, real signals, application only. The graph below is ours, and
+            it&apos;s live. Drag the playhead to watch authority architecture
+            assemble itself.
           </p>
         </div>
       </Container>
 
       <HeroBand />
 
-      <Package />
+      <TwoPaths />
 
       <YouSearchBand />
 
@@ -335,7 +346,7 @@ export default function Home() {
 
       <SignalCloud />
 
-      <Compression />
+      <SharedFloor />
 
       <Founders />
 
