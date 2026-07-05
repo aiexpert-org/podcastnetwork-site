@@ -6,8 +6,9 @@
  * File name retained through the v0.6.4 pivot to keep the diff reviewable;
  * rename to InstantReport.tsx in the post-pitch cleanup. The 0-to-10
  * aggregate score is gone per Brett's 2026-07-04 evening lock: real findings
- * only, no email gate, each miss labeled with the package that fixes it.
- * Fix labels follow the 2026-07-05 rename: Brand SERP Install.
+ * only, no email gate, each miss labeled with the build that fixes it.
+ * Fix labels follow the 2026-07-05 final naming lock: Brand SERP Build and
+ * Pre-Sold Author Build.
  */
 
 import { useCallback, useRef, useState } from 'react'
@@ -31,9 +32,9 @@ const LOADING_PHASES = [
 ]
 
 const FIX_LABELS: Record<NonNullable<PresenceFinding['fix']>, string> = {
-  kp: 'Fixed by the Brand SERP Install',
-  psa: 'Fixed by the Pre-Sold Author Package',
-  both: 'Fixed by both packages',
+  kp: 'Fixed by the Brand SERP Build',
+  psa: 'Fixed by the Pre-Sold Author Build',
+  both: 'Fixed by both builds',
 }
 
 type SeoState =
@@ -348,7 +349,7 @@ export function InstantReport() {
                   href="/#packages"
                   className="text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
                 >
-                  See the packages <span aria-hidden="true">&rarr;</span>
+                  See the builds <span aria-hidden="true">&rarr;</span>
                 </Link>
               </div>
             </div>
