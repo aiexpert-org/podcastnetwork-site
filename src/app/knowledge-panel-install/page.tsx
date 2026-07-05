@@ -13,9 +13,9 @@ import { faqItemsForUi, knowledgePanelSchema } from '@/lib/schema-graph'
 import { KNOWLEDGE_PANEL_INSTALL } from '@/content/packages'
 
 export const metadata: Metadata = {
-  title: 'The Knowledge Panel Install. $12,000, 12 months',
+  title: 'The Knowledge Panel Install. $10,000, 12 months',
   description:
-    'A twelve-month build that makes Google and the AI answer engines recognize you as a real entity. Knowledge Panel, Wikipedia and Wikidata, podcast, press, and a year of monthly verification. $1,000 a month, or $10,000 up front. Application only.',
+    'A twelve-month build that makes Google and the AI answer engines recognize you as a real entity. Knowledge Panel, Wikipedia and Wikidata, podcast, press, and a year of monthly verification. Paid up front or split into twelve equal monthly payments. Application only.',
   alternates: { canonical: '/knowledge-panel-install/' },
 }
 
@@ -84,10 +84,8 @@ export default function KnowledgePanelInstallPage() {
         title="Make Google recognize you as a real entity, and keep proving it for a year."
       >
         <p>
-          One package. {KP.priceDisplay} over twelve months
-          {PAY
-            ? `, paid as ${PAY.planDisplay}, or ${PAY.payInFullDisplay} up front to save ${PAY.savingsDisplay}`
-            : ''}
+          One package. One price. {KP.priceDisplay} over twelve months
+          {PAY ? `, ${PAY.planDisplay.charAt(0).toLowerCase()}${PAY.planDisplay.slice(1)}` : ''}
           . Application only. A Google Knowledge Panel, coverage across the AI
           answer engines, a Wikipedia and Wikidata attempt, a launched podcast,
           and a full year of monthly verification and reporting.
@@ -258,9 +256,8 @@ export default function KnowledgePanelInstallPage() {
           </div>
           <div className="mt-14 text-center">
             <p className="font-display text-xl font-medium text-neutral-950">
-              Application only. {KP.priceDisplay}
-              {PAY ? ` (or ${PAY.payInFullDisplay} up front)` : ''}. Twelve
-              months from Day 1.
+              Application only. {KP.priceDisplay}, up front or split monthly.
+              Twelve months from Day 1.
             </p>
             <div className="mt-6 flex justify-center">
               <Button href="/apply">Start your application</Button>

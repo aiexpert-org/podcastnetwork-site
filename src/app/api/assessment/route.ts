@@ -55,11 +55,9 @@ type Recommendation = {
 }
 
 const KP_PAY = KNOWLEDGE_PANEL_INSTALL.payment
-const KP_PRICE_LINE = `${KNOWLEDGE_PANEL_INSTALL.priceDisplay} over ${KNOWLEDGE_PANEL_INSTALL.timelineDisplay}${
-  KP_PAY
-    ? ` (${KP_PAY.planDisplay}, or ${KP_PAY.payInFullDisplay} paid up front)`
-    : ''
-}. Application only.`
+const KP_PRICE_LINE = `${KNOWLEDGE_PANEL_INSTALL.priceDisplay} over ${KNOWLEDGE_PANEL_INSTALL.timelineDisplay}.${
+  KP_PAY ? ` ${KP_PAY.planDisplay}.` : ''
+} Application only.`
 
 function recommend(a: Answers): Recommendation {
   const psaSignal =
@@ -74,7 +72,7 @@ function recommend(a: Answers): Recommendation {
     return {
       packageId: 'both',
       headline: 'Both builds, run in parallel',
-      priceLine: `${BOTH_PACKAGES_PRICE_DISPLAY} total on standard terms. ${PRE_SOLD_AUTHOR.name} over ${PRE_SOLD_AUTHOR.timelineDisplay}, ${KNOWLEDGE_PANEL_INSTALL.name} over ${KNOWLEDGE_PANEL_INSTALL.timelineDisplay}. No bundle discount, because each stands on its own.`,
+      priceLine: `${BOTH_PACKAGES_PRICE_DISPLAY} total. ${PRE_SOLD_AUTHOR.name} over ${PRE_SOLD_AUTHOR.timelineDisplay}, ${KNOWLEDGE_PANEL_INSTALL.name} over ${KNOWLEDGE_PANEL_INSTALL.timelineDisplay}. No bundle discount, because each stands on its own.`,
       whyLines: [
         'You have a book in motion and you want the machine layer of Google to recognize you. Those are two different problems, and each package solves one of them.',
         `The ${PRE_SOLD_AUTHOR.name} produces the finished book from your own voice and positions it for pre-sales in the launch window.`,
