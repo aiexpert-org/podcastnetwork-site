@@ -29,7 +29,8 @@ import {
  * Tier order (Brett, 2026-07-05 late): the two distinct products sit
  * adjacent for the side-by-side read, and the bundle lands featured on
  * the right as the conclusion. Middle-featured suits linear ladders;
- * this is A, B, then A+B.
+ * this is A, B, then A+B. Names come from packages.ts (Brand SERP
+ * Install and Both Packages Bundle per the 2026-07-05 Dispatch sync).
  */
 
 function CheckIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -60,6 +61,7 @@ type Tier = {
   monthly: string
   upfront: string
   monthlyNote: string
+  note?: string
   featured: boolean
   saveChip?: string
   highlights: string[]
@@ -85,6 +87,7 @@ const TIERS: Tier[] = [
     monthly: PRE_SOLD_AUTHOR.payment.monthlyDisplay,
     upfront: PRE_SOLD_AUTHOR.priceDisplay,
     monthlyNote: `12 payments, ${PRE_SOLD_AUTHOR.priceDisplay} total`,
+    note: PRE_SOLD_AUTHOR.payment.note,
     featured: false,
     highlights: [...PRE_SOLD_AUTHOR.differentiators],
   },
@@ -143,9 +146,9 @@ export function PricingSection() {
               Two builds, one bundle.
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-center text-lg font-medium text-pretty text-neutral-400 sm:text-xl/8">
-              The Google Authority Install, the Pre-Sold Author Package, or
-              both together at 10 percent off. Application only, and the
-              total is the same whichever way you pay.
+              The Brand SERP Install, the Pre-Sold Author Package, or both
+              together at 10 percent off. Application only, and the total is
+              the same whichever way you pay.
             </p>
             <div className="mt-12 flex justify-center">
               <fieldset aria-label="How you would pay">
@@ -297,6 +300,16 @@ export function PricingSection() {
                   >
                     {tier.description}
                   </p>
+                  {tier.note && (
+                    <p
+                      className={clsx(
+                        tier.featured ? 'text-neutral-500' : 'text-neutral-400',
+                        'mt-2 text-xs/5',
+                      )}
+                    >
+                      {tier.note}
+                    </p>
+                  )}
                   <div className="mt-6 flow-root">
                     <ul
                       role="list"
