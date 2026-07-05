@@ -130,3 +130,50 @@ export async function syncApplicationToGhl(input: {
 
   return { status: opp ? "synced" : "failed", contactId };
 }
+
+/**
+ * Tier 2 assessment sync (v0.6.4). Contact + tags + full-answer note. No
+ * opportunity: an assessment is a diagnostic, and the pipeline entry is
+ * earned by the application. The segment, WTP, and recommendation tags are
+ * what the GHL drip automations key on once they exist.
+ */
+export async function syncAssessmentToGhl(input: {
+  name: string;
+  email: string;
+  segment: string;
+  budget: string;
+  recommendation: string;
+  noteBody: string;
+}): Promise<{ status: "synced" | "skipped" | "failed"; contactId?: string }> {
+  const apiKey = process.env.GHL_API_KEY;
+  if (!apiKey) return { status: "skipped" };
+
+  const nameParts = input.name.trim().split(/\s+/);
+  const firstName = nameParts[0] ?? input.name;
+  const lastName = nameParts.slice(1).join(" ") || "-";
+
+  const contactRes = await ghlFetch(apiKey, "/contacts/upsert", {
+    locationId: LOCATION_ID,
+    firstName,
+    lastName,
+    email: input.email,
+    source: "podcastnetwork-assessment",
+    tags: [
+      "pn-assessment",
+      `assessment-segment-${input.segment}`,
+      `assessment-wtp-${input.budget}`,
+      `assessment-rec-${input.recommendation}`,
+    ],
+  });
+
+  const contact = contactRes?.contact as { id?: string } | undefined;
+  const contactId = contact?.id;
+  if (!contactId) return { status: "failed" };
+
+  await ghlFetch(apiKey, `/contacts/${contactId}/notes`, {
+    body: input.noteBody,
+    userId: undefined,
+  });
+
+  return { status: "synced", contactId };
+}

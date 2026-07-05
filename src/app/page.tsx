@@ -291,22 +291,25 @@ export default function Home() {
     <>
       <SchemaGraph schema={homeSchema()} />
 
-      {/* Section 1: hero + Tier 1 Instant Report */}
-      <Container id="report" className="mt-24 scroll-mt-24 sm:mt-32 md:mt-40">
-        {/* Transform-only entrance: this block holds the LCP headline, so it
-            must be visible before hydration. */}
-        <div className="pn-rise max-w-3xl">
-          <h1 className="font-display text-5xl font-medium tracking-tight text-balance text-neutral-950 sm:text-7xl">
-            Your online presence is lacking. We can prove it.
-          </h1>
-          <p className="mt-6 text-xl text-neutral-600">
-            Enter your website or LinkedIn profile and get an instant report:
-            what Google actually knows about you, what&apos;s missing, and
-            which of our two builds fixes each gap.
-          </p>
-        </div>
-        <InstantReport />
-      </Container>
+      {/* Section 1: hero + Tier 1 Instant Report. The anchor lives on a
+          wrapping div because Container does not forward unknown props. */}
+      <div id="report" className="scroll-mt-24">
+        <Container className="mt-24 sm:mt-32 md:mt-40">
+          {/* Transform-only entrance: this block holds the LCP headline, so it
+              must be visible before hydration. */}
+          <div className="pn-rise max-w-3xl">
+            <h1 className="font-display text-5xl font-medium tracking-tight text-balance text-neutral-950 sm:text-7xl">
+              Your online presence is lacking. We can prove it.
+            </h1>
+            <p className="mt-6 text-xl text-neutral-600">
+              Enter your website or LinkedIn profile and get an instant report:
+              what Google actually knows about you, what&apos;s missing, and
+              which of our two builds fixes each gap.
+            </p>
+          </div>
+          <InstantReport />
+        </Container>
+      </div>
 
       {/* Section 2: trust bar */}
       <TrustBar />
