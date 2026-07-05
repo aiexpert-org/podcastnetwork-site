@@ -27,7 +27,7 @@ import {
 export const metadata: Metadata = {
   title: 'PodcastNetwork.org. Google authority, built through your podcast',
   description:
-    'Get a Google Knowledge Panel and a pre-sold book, built through your podcast. Run a free instant report of what Google actually knows about you, then see the two application-only builds: the Knowledge Panel Install and the Pre-Sold Author Package.',
+    'Google and AI have already decided who you are. Run a free instant report of what they actually know, then see the two application-only builds that fix it: the Knowledge Panel Install and the Pre-Sold Author Package.',
   alternates: { canonical: '/' },
 }
 
@@ -59,19 +59,21 @@ function Definition() {
   )
 }
 
-/* Section 3: the quiz gateway. One hook, one promise, no mechanics. */
+/* Section 3: the quiz gateway. One hook, one promise, no mechanics. The
+ * headline takes the command form because the hero already owns the
+ * decided-who-you-are line on this page. */
 function AssessmentGateway() {
   return (
     <div id="assessment" className="scroll-mt-24">
       <SectionIntro
         eyebrow="The three-minute quiz"
-        title="Google has already decided who you are."
+        title="Take control of your Google Knowledge Panel."
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          Every deal, meeting, and reference check now starts with a search,
-          and that page gets shaped with or without you. In three minutes you
-          will know how to take control of your Google Knowledge Panel.
+          Every deal, meeting, and reference check starts with a search, in
+          Google or in an AI chat, and what comes up gets shaped with or
+          without you. Three minutes here shows you how.
         </p>
       </SectionIntro>
       <Container className="mt-10">
@@ -275,14 +277,12 @@ export default function Home() {
               must be visible before hydration. */}
           <div className="pn-rise max-w-3xl">
             <h1 className="font-display text-5xl font-medium tracking-tight text-balance text-neutral-950 sm:text-6xl">
-              A Google Knowledge Panel and a pre-sold book, built through your
-              podcast.
+              Google and AI have already decided who you are.
             </h1>
             <p className="mt-6 text-xl text-neutral-600">
-              Your online presence is lacking. We can prove it. Enter your
-              website or LinkedIn profile and get an instant report: what
-              Google actually knows about you, what&apos;s missing, and which
-              of our two builds fixes each gap.
+              We can prove it. Enter your website or LinkedIn profile and get
+              an instant report: what they actually know about you, what&apos;s
+              missing, and which of our two builds fixes each gap.
             </p>
           </div>
           <InstantReport />
