@@ -3,9 +3,9 @@ import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
 import {
-  BUNDLE,
-  KNOWLEDGE_PANEL_INSTALL,
-  PRE_SOLD_AUTHOR,
+  ULTIMATE_ENTITY_BUILD,
+  BRAND_SERP_BUILD,
+  PRE_SOLD_AUTHOR_BUILD,
 } from '@/content/packages'
 import {
   COMPARISON_SECTIONS,
@@ -24,15 +24,14 @@ import {
  * the bundle's 10 percent, which attaches to scope, never to payment
  * timing). Pure CSS toggle via :has(); server component.
  *
- * Final card arrangement (Brett, 2026-07-05, after seeing both variants):
- * descending price left to right with the levers split. The Full Build
- * anchors left as a standard card carrying only the Save $6,000 chip;
- * the Pre-Sold Author Package holds the featured middle (white panel,
- * solar ring, glow centered behind it); the Brand SERP Install enters
- * right. No compare-at strikethroughs anywhere: on the monthly toggle a
- * struck $5,000 beside the save chip invited save-per-month misreading.
- * The entrance curtain lives in page.tsx (sticky definition + opaque
- * band, no opacity animation).
+ * FINAL tier arrangement and names (Brett, 2026-07-05, naming lock):
+ * Ultimate Entity Build ($54,000, left anchor, standard card, Save
+ * $6,000 chip, no compare-at strikes), Pre-Sold Author Build ($36,000,
+ * featured middle: white panel, solar ring, glow centered behind it),
+ * Brand SERP Build ($24,000, right, standard). Old anchors live on as
+ * invisible alias spans inside each card because URL fragments cannot be
+ * server-redirected. The entrance curtain lives in page.tsx (sticky
+ * definition + opaque band, no opacity animation anywhere).
  */
 
 function CheckIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -58,6 +57,8 @@ function XMarkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 type Tier = {
   key: TierKey
   anchorId: string
+  /** Retired anchor id kept as an invisible alias for existing links. */
+  legacyAnchorId?: string
   name: string
   description: string
   monthly: string
@@ -72,43 +73,46 @@ type Tier = {
 const TIERS: Tier[] = [
   {
     key: 'both',
-    anchorId: 'the-full-build',
-    name: BUNDLE.name,
+    anchorId: 'ultimate-entity-build',
+    legacyAnchorId: 'the-full-build',
+    name: ULTIMATE_ENTITY_BUILD.name,
     description: 'Both builds, run in parallel by one team. The book lands inside the first 6 months; the panel work runs the year.',
-    monthly: BUNDLE.payment.monthlyDisplay,
-    upfront: BUNDLE.priceDisplay,
-    monthlyNote: `12 payments, ${BUNDLE.priceDisplay} total`,
+    monthly: ULTIMATE_ENTITY_BUILD.payment.monthlyDisplay,
+    upfront: ULTIMATE_ENTITY_BUILD.priceDisplay,
+    monthlyNote: `12 payments, ${ULTIMATE_ENTITY_BUILD.priceDisplay} total`,
     featured: false,
-    saveChip: `Save ${BUNDLE.savingsDisplay}`,
+    saveChip: `Save ${ULTIMATE_ENTITY_BUILD.savingsDisplay}`,
     highlights: [
-      `Everything in the ${KNOWLEDGE_PANEL_INSTALL.name}`,
-      `Everything in the ${PRE_SOLD_AUTHOR.name}`,
-      `10 percent off the ${BUNDLE.listPriceDisplay} the two cost separately`,
+      `Everything in the ${BRAND_SERP_BUILD.name}`,
+      `Everything in the ${PRE_SOLD_AUTHOR_BUILD.name}`,
+      `10 percent off the ${ULTIMATE_ENTITY_BUILD.listPriceDisplay} the two cost separately`,
       'One team holding both builds in parallel',
     ],
   },
   {
     key: 'psa',
-    anchorId: 'pre-sold-author',
-    name: PRE_SOLD_AUTHOR.name,
+    anchorId: 'pre-sold-author-build',
+    legacyAnchorId: 'pre-sold-author',
+    name: PRE_SOLD_AUTHOR_BUILD.name,
     description: 'A finished book from your own voice, plus the launch. Delivered in 6 months, application only.',
-    monthly: PRE_SOLD_AUTHOR.payment.monthlyDisplay,
-    upfront: PRE_SOLD_AUTHOR.priceDisplay,
-    monthlyNote: `12 payments, ${PRE_SOLD_AUTHOR.priceDisplay} total`,
-    note: PRE_SOLD_AUTHOR.payment.note,
+    monthly: PRE_SOLD_AUTHOR_BUILD.payment.monthlyDisplay,
+    upfront: PRE_SOLD_AUTHOR_BUILD.priceDisplay,
+    monthlyNote: `12 payments, ${PRE_SOLD_AUTHOR_BUILD.priceDisplay} total`,
+    note: PRE_SOLD_AUTHOR_BUILD.payment.note,
     featured: true,
-    highlights: [...PRE_SOLD_AUTHOR.differentiators],
+    highlights: [...PRE_SOLD_AUTHOR_BUILD.differentiators],
   },
   {
     key: 'kp',
-    anchorId: 'knowledge-panel',
-    name: KNOWLEDGE_PANEL_INSTALL.name,
+    anchorId: 'brand-serp-build',
+    legacyAnchorId: 'knowledge-panel',
+    name: BRAND_SERP_BUILD.name,
     description: 'The Google recognition layer, verified for a year. 12 months, application only.',
-    monthly: KNOWLEDGE_PANEL_INSTALL.payment.monthlyDisplay,
-    upfront: KNOWLEDGE_PANEL_INSTALL.priceDisplay,
-    monthlyNote: `12 payments, ${KNOWLEDGE_PANEL_INSTALL.priceDisplay} total`,
+    monthly: BRAND_SERP_BUILD.payment.monthlyDisplay,
+    upfront: BRAND_SERP_BUILD.priceDisplay,
+    monthlyNote: `12 payments, ${BRAND_SERP_BUILD.priceDisplay} total`,
     featured: false,
-    highlights: [...KNOWLEDGE_PANEL_INSTALL.differentiators],
+    highlights: [...BRAND_SERP_BUILD.differentiators],
   },
 ]
 
@@ -173,8 +177,8 @@ export function PricingSection() {
               Choose your build.
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-center text-lg font-medium text-pretty text-neutral-400 sm:text-xl/8">
-              The Full Build (both packages, 10 percent off), the Pre-Sold
-              Author Package, or the Brand SERP Install on its own.
+              The Ultimate Entity Build (both builds, 10 percent off), the
+              Pre-Sold Author Build, or the Brand SERP Build on its own.
               Application only, and the total is the same whichever way you
               pay.
             </p>
@@ -224,6 +228,13 @@ export function PricingSection() {
                   'relative scroll-mt-24 rounded-2xl',
                 )}
               >
+                {tier.legacyAnchorId && (
+                  <span
+                    id={tier.legacyAnchorId}
+                    aria-hidden="true"
+                    className="absolute top-0 scroll-mt-24"
+                  />
+                )}
                 <div className="p-8 lg:pt-12 xl:p-10 xl:pt-14">
                   <div className="flex items-center justify-between gap-3">
                     <h3

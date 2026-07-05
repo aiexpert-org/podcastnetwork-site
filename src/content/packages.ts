@@ -1,29 +1,29 @@
 /**
- * The two standalone packages. Single source of truth for pricing, timelines,
- * deliverables, and positioning across the homepage, the two package routes,
- * the JSON-LD offer schema, and the application flow.
+ * The two standalone builds. Single source of truth for pricing, timelines,
+ * deliverables, and positioning across the homepage, the retired package
+ * routes, the JSON-LD offer schema, and the application flow.
  *
  * Locked 2026-07-03 (two-package structure, supersedes the single $30K
- * flagship). Pricing reset 2026-07-05 with Mike (supersedes the 2026-07-04
- * $12,000 state): Brand SERP Install $24,000 total over 12 months, paid up
- * front or split into twelve monthly payments of $2,000. Pre-Sold Author
- * Package $36,000 total, paid up front or split into twelve monthly
- * payments of $3,000; delivery runs the first six months and payments 7
- * through 12 fund ongoing monitoring and maintenance. No discount on
- * payment timing in either direction. Bundle locked 2026-07-05 late: both
- * packages together are $54,000, 10 percent off the $60,000 list, up front
- * or $4,500 x 12; the bundle is the only discount anywhere, and it
- * attaches to scope, never to payment timing.
+ * flagship). Pricing reset 2026-07-05 with Mike: Brand SERP Build $24,000
+ * total over 12 months ($2,000 x 12 or up front); Pre-Sold Author Build
+ * $36,000 total ($3,000 x 12 or up front; delivery runs the first six
+ * months, payments 7 through 12 fund ongoing monitoring). No discount on
+ * payment timing. Bundle: both builds together $54,000, 10 percent off
+ * the $60,000 list ($4,500 x 12 or up front); the one discount anywhere,
+ * attached to scope, never payment timing.
  *
- * Naming locked 2026-07-05 late (Dispatch sync): the product is the Brand
- * SERP Install. Not Knowledge Panel Install, not AI Presence Install, not
- * Authority Install ("authority" is banned marketing vocabulary). The
- * bundle tier is The Full Build (pre-loaded per the Dispatch relay,
- * pending Brett's final signoff; the GHL product still says Both Packages
- * Bundle until renamed there). Slugs, URLs, and schema @ids unchanged.
- * GHL products live in sub-account GTfkjwM6RwadEVlbppbd: Brand SERP
- * Install 6a4a8d6d859ba9315419c1fd, PSA 6a4a8df96b558d08208a21c5, bundle
- * 6a4a8e736b558d988f8a28da.
+ * FINAL NAMING LOCK 2026-07-05 (Brett via Dispatch, ends the ping-pong):
+ * Ultimate Entity Build (the bundle), Pre-Sold Author Build, Brand SERP
+ * Build. Supersedes, in order: Knowledge Panel Install, Google Authority
+ * Install (20 minutes), Brand SERP Install, Both Packages Bundle, and The
+ * Full Build. The Pre-Sold Author PACKAGE name (locked 2026-06-11) is
+ * renamed on the site; vault offering docs and Legacy JV materials still
+ * carry Package and need their own pass. The three live GHL products
+ * (sub-account GTfkjwM6RwadEVlbppbd: 6a4a8d6d859ba9315419c1fd,
+ * 6a4a8df96b558d08208a21c5, 6a4a8e736b558d988f8a28da) still carry the
+ * old names until renamed there. Slugs, URLs, and schema @ids unchanged.
+ * The old export names remain below as deprecated aliases so the retired
+ * route files compile until post-pitch deletion.
  *
  * Copy rules: no em dashes, no banned vocabulary (including "authority"
  * in marketing copy), no "X, not Y" patterns. Public copy names
@@ -60,11 +60,11 @@ export type PackageMeta = {
   whoFor: string
   deliverables: string[]
   differentiators: string[]
-  /** Both packages offer up-front and monthly payment at the same total. */
+  /** Both builds offer up-front and monthly payment at the same total. */
   payment: PackagePayment
 }
 
-/** Shared floor present in both packages. */
+/** Shared floor present in both builds. */
 export const SHARED_FLOOR = [
   'A launched podcast, recorded by you and produced for you',
   'An IMDb Person page earned through your podcast credit',
@@ -72,11 +72,11 @@ export const SHARED_FLOOR = [
   'Author and contributor profiles set up across the surfaces that cite you',
 ] as const
 
-export const KNOWLEDGE_PANEL_INSTALL: PackageMeta = {
+export const BRAND_SERP_BUILD: PackageMeta = {
   id: 'knowledge-panel-install',
   slug: 'knowledge-panel-install',
   url: '/knowledge-panel-install/',
-  name: 'Brand SERP Install',
+  name: 'Brand SERP Build',
   priceUsd: 24000,
   priceDisplay: '$24,000',
   timelineMonths: 12,
@@ -125,11 +125,11 @@ export const KNOWLEDGE_PANEL_INSTALL: PackageMeta = {
   },
 }
 
-export const PRE_SOLD_AUTHOR: PackageMeta = {
+export const PRE_SOLD_AUTHOR_BUILD: PackageMeta = {
   id: 'pre-sold-author',
   slug: 'the-package',
   url: '/the-package/',
-  name: 'Pre-Sold Author Package',
+  name: 'Pre-Sold Author Build',
   priceUsd: 36000,
   priceDisplay: '$36,000',
   timelineMonths: 6,
@@ -145,8 +145,8 @@ export const PRE_SOLD_AUTHOR: PackageMeta = {
     'A podcast, either four episodes recorded with guests or three to five audio-only episodes produced from your voice clone',
     'Eight private interviews that become the raw material for your book',
     'A finished book manuscript delivered by month three',
-    'An audio voice clone, exclusive to this package',
-    'A voice corpus, exclusive to this package',
+    'An audio voice clone, exclusive to this build',
+    'A voice corpus, exclusive to this build',
     'A publishing option through our Legacy Publishing partner at 10 percent of net royalties, so you keep roughly 90 percent',
     'An IMDb Person page earned through your podcast credit',
     'A full website if you do not already have one',
@@ -161,7 +161,7 @@ export const PRE_SOLD_AUTHOR: PackageMeta = {
   ],
   differentiators: [
     'A finished book manuscript from your own voice',
-    'An audio voice clone and voice corpus, exclusive to this package',
+    'An audio voice clone and voice corpus, exclusive to this build',
     'A publishing option at 10 percent of net, no upfront fee',
     'Launch-window amplification: ARC copies, retail setup, and a podcast tour',
   ],
@@ -173,11 +173,11 @@ export const PRE_SOLD_AUTHOR: PackageMeta = {
   },
 }
 
-export const PACKAGES: PackageMeta[] = [KNOWLEDGE_PANEL_INSTALL, PRE_SOLD_AUTHOR]
+export const PACKAGES: PackageMeta[] = [BRAND_SERP_BUILD, PRE_SOLD_AUTHOR_BUILD]
 
-/** Sum of the two package prices, bought separately. */
+/** Sum of the two build prices, bought separately. */
 export const BOTH_PACKAGES_PRICE_USD =
-  KNOWLEDGE_PANEL_INSTALL.priceUsd + PRE_SOLD_AUTHOR.priceUsd
+  BRAND_SERP_BUILD.priceUsd + PRE_SOLD_AUTHOR_BUILD.priceUsd
 export const BOTH_PACKAGES_PRICE_DISPLAY = '$60,000'
 
 export type BundleMeta = {
@@ -186,19 +186,18 @@ export type BundleMeta = {
   priceDisplay: string
   listPriceUsd: number
   listPriceDisplay: string
-  /** Monthly figure at list price, for the compare-at strike. */
+  /** Monthly figure at list price. Unused by the UI since the compare-at
+   * strikethrough was killed 2026-07-05; retained as data. */
   listMonthlyDisplay: string
   savingsDisplay: string
   payment: PackagePayment
 }
 
-/** The bundle: both packages at 10 percent off, locked 2026-07-05 late.
+/** The bundle: both builds at 10 percent off, locked 2026-07-05 late.
  * The only discount anywhere; it attaches to scope, never to payment
- * timing. Display name pre-loaded as The Full Build pending Brett's
- * signoff; the GHL product (6a4a8e736b558d988f8a28da) still carries the
- * Both Packages Bundle name until renamed there. */
-export const BUNDLE: BundleMeta = {
-  name: 'The Full Build',
+ * timing. */
+export const ULTIMATE_ENTITY_BUILD: BundleMeta = {
+  name: 'Ultimate Entity Build',
   priceUsd: 54000,
   priceDisplay: '$54,000',
   listPriceUsd: BOTH_PACKAGES_PRICE_USD,
@@ -212,3 +211,11 @@ export const BUNDLE: BundleMeta = {
     note: 'Book delivery runs the first 6 months; the panel work and the plan run the year.',
   },
 }
+
+/** @deprecated Compatibility aliases for the retired package routes.
+ * Remove with those routes at post-pitch cleanup. */
+export const KNOWLEDGE_PANEL_INSTALL = BRAND_SERP_BUILD
+/** @deprecated See KNOWLEDGE_PANEL_INSTALL note. */
+export const PRE_SOLD_AUTHOR = PRE_SOLD_AUTHOR_BUILD
+/** @deprecated See KNOWLEDGE_PANEL_INSTALL note. */
+export const BUNDLE = ULTIMATE_ENTITY_BUILD

@@ -15,14 +15,14 @@ import { SchemaGraph } from '@/components/seo/SchemaGraph'
 import { homeSchema } from '@/lib/schema-graph'
 import { Button } from '@/components/Button'
 import {
-  KNOWLEDGE_PANEL_INSTALL,
-  PRE_SOLD_AUTHOR,
+  BRAND_SERP_BUILD,
+  PRE_SOLD_AUTHOR_BUILD,
 } from '@/content/packages'
 
 export const metadata: Metadata = {
   title: 'PodcastNetwork.org. Google authority, built through your podcast',
   description:
-    'Google and AI have already decided who you are. Run a free instant report of what they actually know, then see the two application-only builds that fix it: the Brand SERP Install and the Pre-Sold Author Package.',
+    'Google and AI have already decided who you are. Run a free instant report of what they actually know, then see the application-only builds that fix it: the Brand SERP Build and the Pre-Sold Author Build.',
   alternates: { canonical: '/' },
 }
 
@@ -46,8 +46,8 @@ function Definition() {
               conversations become the credits, citations, and content that
               Google&apos;s Knowledge Graph and the AI answer engines read as
               proof you are real. Two application-only builds deliver it: the{' '}
-              {KNOWLEDGE_PANEL_INSTALL.priceDisplay} Brand SERP Install and
-              the {PRE_SOLD_AUTHOR.priceDisplay} Pre-Sold Author Package.
+              {BRAND_SERP_BUILD.priceDisplay} Brand SERP Build and the{' '}
+              {PRE_SOLD_AUTHOR_BUILD.priceDisplay} Pre-Sold Author Build.
             </p>
           </div>
         </FadeIn>

@@ -44,11 +44,11 @@ function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 
 /* 3-surface architecture (Brett, 2026-07-04 evening): the desktop nav is
  * anchor links into the homepage sections plus the Apply pill. The killed
- * routes redirect to these anchors in next.config.mjs. Labels renamed
- * 2026-07-05 (Dispatch sync): Brand SERP Install is the product name. */
+ * routes redirect to the legacy anchors, which live on as alias spans
+ * inside the pricing cards. Labels per the 2026-07-05 final naming lock. */
 const NAV_ITEMS = [
-  { title: 'Brand SERP', href: '/#knowledge-panel' },
-  { title: 'Pre-Sold Author', href: '/#pre-sold-author' },
+  { title: 'Brand SERP', href: '/#brand-serp-build' },
+  { title: 'Pre-Sold Author', href: '/#pre-sold-author-build' },
   { title: 'FAQ', href: '/#faq' },
 ]
 
@@ -158,10 +158,10 @@ function Navigation() {
   return (
     <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
-        <NavigationItem href="/#knowledge-panel">
+        <NavigationItem href="/#brand-serp-build">
           Brand SERP
         </NavigationItem>
-        <NavigationItem href="/#pre-sold-author">
+        <NavigationItem href="/#pre-sold-author-build">
           Pre-Sold Author
         </NavigationItem>
       </NavigationRow>
