@@ -239,8 +239,8 @@ export default function Home() {
 
       {/* Section 1: hero + Tier 1 Instant Report. The anchor lives on a
           wrapping div because Container does not forward unknown props.
-          Stakes sentence first (matches the quiz page pairing), then the
-          hand-off to the five-second proof. */}
+          H1 locked per Brett 2026-07-05; the paragraph holds three lines
+          at desktop (placeholder tighten, yields to the copy chat). */}
       <div id="report" className="scroll-mt-24">
         <Container className="mt-24 sm:mt-32 md:mt-40">
           {/* Transform-only entrance: this block holds the LCP headline, so it
@@ -250,9 +250,8 @@ export default function Home() {
               Google and AI have already decided who you are.
             </h1>
             <p className="mt-6 text-xl text-neutral-600">
-              Every deal, meeting, and reference check starts with a search,
-              in Google or in an AI chat, and what comes up gets shaped with
-              or without you. Enter your website or LinkedIn profile and see
+              Every deal, meeting, and reference check starts with a Google
+              or AI search. Enter your website or LinkedIn profile and see
               what they actually know about you, and what&apos;s missing.
             </p>
           </div>
