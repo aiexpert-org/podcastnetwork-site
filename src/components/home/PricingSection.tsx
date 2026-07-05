@@ -30,8 +30,11 @@ import {
  * featured middle: white panel, solar ring, glow centered behind it),
  * Brand SERP Build ($24,000, right, standard). Old anchors live on as
  * invisible alias spans inside each card because URL fragments cannot be
- * server-redirected. The entrance curtain lives in page.tsx (sticky
- * definition + opaque band, no opacity animation anywhere).
+ * server-redirected. The entrance curtain lives in page.tsx (the CCM
+ * sticky-over pattern: pinned full-viewport definition, this opaque band
+ * climbing over it; no opacity animation anywhere). Reddit citation
+ * strategy bullets (2026-07-05 scope add) are placeholder wording
+ * pending the copy chat's batch.
  */
 
 function CheckIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -85,6 +88,7 @@ const TIERS: Tier[] = [
     highlights: [
       `Everything in the ${BRAND_SERP_BUILD.name}`,
       `Everything in the ${PRE_SOLD_AUTHOR_BUILD.name}`,
+      'Reddit citation strategy',
       `10 percent off the ${ULTIMATE_ENTITY_BUILD.listPriceDisplay} the two cost separately`,
       'One team holding both builds in parallel',
     ],
