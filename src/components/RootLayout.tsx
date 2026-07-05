@@ -2,7 +2,6 @@
 
 import {
   createContext,
-  useContext,
   useEffect,
   useId,
   useRef,
@@ -17,7 +16,7 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Footer } from '@/components/Footer'
 import { GridPattern } from '@/components/GridPattern'
-import { Logo, Logomark } from '@/components/Logo'
+import { Logo } from '@/components/Logo'
 import { Offices } from '@/components/Offices'
 import { SocialMedia } from '@/components/SocialMedia'
 
@@ -88,27 +87,11 @@ function Header({
   toggleRef: React.RefObject<HTMLButtonElement | null>
   invert?: boolean
 }) {
-  let { logoHovered, setLogoHovered } = useContext(RootLayoutContext)!
-
   return (
     <Container>
       <div className="flex items-center justify-between">
-        <Link
-          href="/"
-          aria-label="Home"
-          onMouseEnter={() => setLogoHovered(true)}
-          onMouseLeave={() => setLogoHovered(false)}
-        >
-          <Logomark
-            className="h-8 sm:hidden"
-            invert={invert}
-            filled={logoHovered}
-          />
-          <Logo
-            className="hidden h-8 sm:block"
-            invert={invert}
-            filled={logoHovered}
-          />
+        <Link href="/" aria-label="Home">
+          <Logo className="h-8" invert={invert} />
         </Link>
         <div className="flex items-center gap-x-7">
           <DesktopNavigation invert={invert} />

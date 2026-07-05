@@ -1,9 +1,12 @@
 import clsx from 'clsx'
 
 /*
- * PN logomark: a miniature entity graph. Three satellite nodes wired to a
- * center Person node. The center node fills Foil on hover (or when `filled`),
- * echoing Studio's fill-on-hover logo behavior.
+ * Brand mark (v0.6.9, per Brett 2026-07-04): wordmark only, no icon.
+ * PodcastNetwork in ink, .org muted; inverted on dark panels.
+ *
+ * The old entity-graph Logomark below is retired from the header and footer
+ * but kept exported for possible favicon or asset reuse. Logo still accepts
+ * filled/fillOnHover as no-ops so existing call sites compile unchanged.
  */
 export function Logomark({
   invert = false,
@@ -50,8 +53,6 @@ export function Logomark({
           invert ? 'stroke-white' : 'stroke-neutral-950',
         )}
       />
-      {/* The accent node carries the Solar CTA color: ink-stroked so it
-          holds its edge on white, filling solar on hover. */}
       <circle
         cx="16"
         cy="17"
@@ -71,8 +72,8 @@ export function Logomark({
 export function Logo({
   className,
   invert = false,
-  filled = false,
-  fillOnHover = false,
+  filled: _filled = false,
+  fillOnHover: _fillOnHover = false,
   ...props
 }: React.ComponentPropsWithoutRef<'div'> & {
   invert?: boolean
@@ -80,19 +81,7 @@ export function Logo({
   fillOnHover?: boolean
 }) {
   return (
-    <div
-      className={clsx(
-        'flex items-center gap-x-2.5',
-        fillOnHover && 'group/logo',
-        className,
-      )}
-      {...props}
-    >
-      <Logomark
-        className="h-full w-auto shrink-0"
-        invert={invert}
-        filled={filled}
-      />
+    <div className={clsx('flex items-center', className)} {...props}>
       <span
         className={clsx(
           'font-display text-xl font-semibold tracking-tight whitespace-nowrap',
