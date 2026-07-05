@@ -180,7 +180,7 @@ export function packageSchema(): SchemaNode {
     },
     breadcrumb(`${BASE}/the-package/#breadcrumb`, [
       HOME_CRUMB,
-      { name: "The Pre-Sold Author Package", item: `${BASE}/the-package/` },
+      { name: "The Pre-Sold Author Build", item: `${BASE}/the-package/` },
     ]),
   ]);
 }
@@ -211,7 +211,7 @@ export function knowledgePanelSchema(): SchemaNode {
     breadcrumb(`${BASE}/knowledge-panel-install/#breadcrumb`, [
       HOME_CRUMB,
       {
-        name: "The Brand SERP Install",
+        name: "The Brand SERP Build",
         item: `${BASE}/knowledge-panel-install/`,
       },
     ]),
@@ -278,7 +278,7 @@ export function inLaunchCaseStudySchema(
       "@type": "Person",
       "@id": personId,
       name,
-      description: `${name} is a non-fiction author inside the current PodcastNetwork.org cohort, running the Pre-Sold Author Package on the 180-day clock.`,
+      description: `${name} is a non-fiction author inside the current PodcastNetwork.org cohort, running the Pre-Sold Author Build on the 180-day clock.`,
       mainEntityOfPage: `${BASE}/case-studies/${slug}/`,
     },
     breadcrumb(`${BASE}/case-studies/${slug}/#breadcrumb`, [
