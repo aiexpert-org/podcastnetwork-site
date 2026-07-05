@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 export const alt =
-  "PodcastNetwork.org. Google authority, built through your podcast.";
+  "PodcastNetwork.org. Google and AI have already decided who you are.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -43,7 +43,7 @@ export default function OgImage() {
               maxWidth: 1000,
             }}
           >
-            Google authority, built through your podcast.
+            Google and AI have already decided who you are.
           </div>
           <div
             style={{
@@ -52,8 +52,7 @@ export default function OgImage() {
               maxWidth: 900,
             }}
           >
-            The Knowledge Panel Install and the Pre-Sold Author Package. Real
-            signals, live proof.
+            Google authority, built through your podcast.
           </div>
         </div>
       </div>
