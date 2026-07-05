@@ -8,9 +8,19 @@
  * recommendation: the visitor teaches themselves why the entity layer
  * matters and leaves with buying criteria that travel with them.
  *
- * Every reveal is a verifiable claim. The market-pricing beat is sourced
- * from Kalicube's published pricing pages (done-for-you service starts at
- * $12,000; reputable range $3,000 to $18,000), checked 2026-07-04.
+ * Rules locked while Brett walked the flow: every quiz question carries
+ * exactly three substantive options plus an honest "I'm not sure" that is
+ * never scolded; the podcast beat sits at position 2 so early drop-off
+ * still learns why the company carries its name.
+ *
+ * Every reveal is a verifiable claim. Sources, checked 2026-07-04:
+ * - Google, About knowledge panels: "automatically generated", information
+ *   "comes from various sources across the web"
+ *   (support.google.com/knowledgepanel/answer/9163198)
+ * - Google Search Central spam policies: buying links violates policy
+ *   (developers.google.com/search/docs/essentials/spam-policies)
+ * - Kalicube published pricing: done-for-you service starts at $12,000;
+ *   reputable range $3,000 to $18,000 (kalicube.com pricing FAQ pages)
  */
 
 import { useCallback, useState } from 'react'
@@ -41,6 +51,8 @@ type ContactStep = { kind: 'contact'; key: 'contact'; question: string }
 
 type Step = QuizStep | ChoiceStep | ContactStep
 
+const NOT_SURE = { value: 'not-sure', label: "I'm not sure" }
+
 const STEPS: Step[] = [
   {
     kind: 'quiz',
@@ -51,11 +63,26 @@ const STEPS: Step[] = [
       { value: 'paid', label: 'Google sells that space' },
       { value: 'earned', label: 'Google decides it has enough proof the person is real' },
       { value: 'anyone', label: 'It appears for anyone with a website' },
-      { value: 'random', label: 'It is basically random' },
+      NOT_SURE,
     ],
     correct: 'earned',
     reveal:
       'It is earned. Google’s Knowledge Graph builds an entity for you only when enough corroborated, machine-readable proof exists across the web. Nobody can buy the box, and the proof does not assemble itself: it gets built signal by signal across a dozen surfaces, in the right order. The rest of this quiz shows you what those signals are.',
+  },
+  {
+    kind: 'quiz',
+    key: 'q_mechanism',
+    question:
+      'Which single activity feeds several of the sources Google reads, all at once?',
+    options: [
+      { value: 'press', label: 'A press release blast' },
+      { value: 'podcast', label: 'Hosting a podcast' },
+      { value: 'backlinks', label: 'Buying backlinks' },
+      NOT_SURE,
+    ],
+    correct: 'podcast',
+    reveal:
+      'A podcast. Google’s own help pages say knowledge panels are automatically generated and their information comes from various sources across the web. One show feeds several of those sources at once: the credit earns an IMDb Person page, every guest appearance adds a citation on someone else’s site, and every episode is indexable content in your own voice. A press release is a single self-published source, and buying links violates Google’s published spam policies. This mechanism is why we are built around podcasts.',
   },
   {
     kind: 'quiz',
@@ -66,7 +93,7 @@ const STEPS: Step[] = [
       { value: 'website', label: 'Your website' },
       { value: 'wikidata', label: 'Wikidata' },
       { value: 'linkedin', label: 'Your LinkedIn profile' },
-      { value: 'instagram', label: 'Your Instagram' },
+      NOT_SURE,
     ],
     correct: 'wikidata',
     reveal:
@@ -81,25 +108,11 @@ const STEPS: Step[] = [
       { value: 'made-up', label: 'The AI invents it' },
       { value: 'entity-data', label: 'The same public entity data and citations Google reads' },
       { value: 'social', label: 'Your social media posts' },
+      NOT_SURE,
     ],
     correct: 'entity-data',
     reveal:
       'Largely the same entity layer Google reads: structured data, citations, and corroborated facts. Thin entity data produces vague or wrong AI answers about you. Fix the layer once and search results and AI answers both improve.',
-  },
-  {
-    kind: 'quiz',
-    key: 'q_mechanism',
-    question:
-      'What is the fastest legitimate way to generate the credits and citations Google wants?',
-    options: [
-      { value: 'press', label: 'A press release blast' },
-      { value: 'backlinks', label: 'Buying backlinks' },
-      { value: 'podcast', label: 'Hosting a podcast' },
-      { value: 'social-daily', label: 'Posting daily on social media' },
-    ],
-    correct: 'podcast',
-    reveal:
-      'A podcast. The show credit earns an IMDb Person page, every guest appearance is a third-party citation, and every episode is indexable content in your own voice. One habit feeds every signal Google wants. Press helps as a supplement; bought backlinks get ignored or penalized.',
   },
   {
     kind: 'quiz',
@@ -108,6 +121,8 @@ const STEPS: Step[] = [
     options: [
       { value: 'pay', label: 'Yes, if you pay enough' },
       { value: 'no-guarantee', label: 'No. Wikipedia decides, and no vendor controls it' },
+      { value: 'celebrity', label: 'Only if you are a celebrity' },
+      NOT_SURE,
     ],
     correct: 'no-guarantee',
     reveal:
@@ -122,7 +137,7 @@ const STEPS: Step[] = [
       { value: 'five-hundred', label: '$500 or less' },
       { value: 'two-k', label: 'Around $2,000' },
       { value: 'three-to-eighteen', label: '$3,000 to $18,000' },
-      { value: 'hundred-k', label: 'Over $100,000' },
+      NOT_SURE,
     ],
     correct: 'three-to-eighteen',
     reveal:
@@ -394,7 +409,9 @@ export function AssessmentFlow() {
                   <p className="text-sm font-semibold text-neutral-950">
                     {answers[step.key] === step.correct
                       ? 'You got it.'
-                      : 'Most people miss this one.'}
+                      : answers[step.key] === 'not-sure'
+                        ? 'Honest answer. Almost nobody has been told this.'
+                        : 'Most people miss this one.'}
                   </p>
                   <p className="mt-2 text-sm text-neutral-600">{step.reveal}</p>
                   <div className="mt-4">

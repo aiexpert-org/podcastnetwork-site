@@ -10,7 +10,7 @@ import { KNOWLEDGE_PANEL_INSTALL, PRE_SOLD_AUTHOR } from '@/content/packages'
  * six teaching beats server-side, composes the briefing, logs the submission
  * (console + /tmp JSONL, the WTP exhaust), and syncs to GHL as a contact
  * with segment, WTP, book-intent, and quiz-score tags when GHL_API_KEY is
- * present.
+ * present. "not-sure" is a valid, unscored answer on every quiz beat.
  *
  * Market-pricing facts sourced from Kalicube's published pricing pages
  * (done-for-you service starts at $12,000; reputable range $3,000 to
@@ -21,20 +21,20 @@ export const runtime = 'nodejs'
 
 const QUIZ_CORRECT: Record<string, string> = {
   q_panel: 'earned',
+  q_mechanism: 'podcast',
   q_seed: 'wikidata',
   q_ai: 'entity-data',
-  q_mechanism: 'podcast',
   q_wikipedia: 'no-guarantee',
   q_market: 'three-to-eighteen',
 }
 
 const CHOICES: Record<string, string[]> = {
-  q_panel: ['paid', 'earned', 'anyone', 'random'],
-  q_seed: ['website', 'wikidata', 'linkedin', 'instagram'],
-  q_ai: ['made-up', 'entity-data', 'social'],
-  q_mechanism: ['press', 'backlinks', 'podcast', 'social-daily'],
-  q_wikipedia: ['pay', 'no-guarantee'],
-  q_market: ['five-hundred', 'two-k', 'three-to-eighteen', 'hundred-k'],
+  q_panel: ['paid', 'earned', 'anyone', 'not-sure'],
+  q_mechanism: ['press', 'podcast', 'backlinks', 'not-sure'],
+  q_seed: ['website', 'wikidata', 'linkedin', 'not-sure'],
+  q_ai: ['made-up', 'entity-data', 'social', 'not-sure'],
+  q_wikipedia: ['pay', 'no-guarantee', 'celebrity', 'not-sure'],
+  q_market: ['five-hundred', 'two-k', 'three-to-eighteen', 'not-sure'],
   role: ['executive', 'author', 'entrepreneur', 'professional'],
   book: ['published', 'writing', 'someday', 'none'],
   budget: ['under-5k', '5-15k', '15-40k', '40k-plus', 'depends'],
@@ -54,6 +54,7 @@ type Briefing = {
 
 const KNOW_NOW = [
   'A Knowledge Panel is earned from Google’s Knowledge Graph. It cannot be bought. It gets built signal by signal, and that assembly is the work.',
+  'One podcast feeds several trusted sources at once: an IMDb credit, guest-appearance citations, and an indexable body of work in your own voice.',
   'Wikidata is the seed surface, your own site is the Entity Home, and rented profiles count least.',
   'AI answer engines read the same entity layer, so fixing it corrects search results and AI answers together.',
   'Nobody can guarantee Wikipedia, and a panel does not depend on it. A guarantee is the tell of a bad vendor.',
@@ -135,9 +136,9 @@ export async function POST(req: Request) {
 
   const answers = {
     q_panel: raw.q_panel as string,
+    q_mechanism: raw.q_mechanism as string,
     q_seed: raw.q_seed as string,
     q_ai: raw.q_ai as string,
-    q_mechanism: raw.q_mechanism as string,
     q_wikipedia: raw.q_wikipedia as string,
     q_market: raw.q_market as string,
     role: raw.role as string,
@@ -212,7 +213,7 @@ export async function POST(req: Request) {
       `Informed WTP: ${answers.budget}`,
       `Book intent: ${bookIntent ? 'yes' : 'no'}`,
       '',
-      `Quiz answers: panel=${answers.q_panel}, seed=${answers.q_seed}, ai=${answers.q_ai}, mechanism=${answers.q_mechanism}, wikipedia=${answers.q_wikipedia}, market=${answers.q_market}`,
+      `Quiz answers: panel=${answers.q_panel}, mechanism=${answers.q_mechanism}, seed=${answers.q_seed}, ai=${answers.q_ai}, wikipedia=${answers.q_wikipedia}, market=${answers.q_market}`,
     ].join('\n'),
   })
 
