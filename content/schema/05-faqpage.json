@@ -37,7 +37,7 @@
       "name": "Can I do both packages?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Both packages are standalone and an executive who wants both pays $60,000 total, which is the two prices added together with no bundle discount, because each package stands on its own. They run in parallel on their own timelines: six months of delivery for the Pre-Sold Author Package and twelve months for the Knowledge Panel Install. Doing both gives you a published book and the full discovery layer (Knowledge Panel, answer engines, Wikipedia, and a year of verification) around it."
+        "text": "Yes, and the bundle is the one discount we offer. Both packages together are $54,000, 10 percent off the $60,000 they cost separately, paid up front or split into twelve monthly payments of $4,500 at no extra cost. They run in parallel on their own timelines: the book side delivers inside six months while the Knowledge Panel Install runs its full year. Doing both gives you a published book and the full discovery layer (Knowledge Panel, answer engines, Wikipedia, and a year of verification) around it."
       }
     },
     {
@@ -145,7 +145,7 @@
       "name": "How does payment work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Knowledge Panel Install is $24,000, paid up front or split into twelve monthly payments of $2,000 at no extra cost. The Pre-Sold Author Package is $36,000, paid up front or split into twelve monthly payments of $3,000 at no extra cost; delivery runs the first six months while the payment plan runs the full year. An executive who wants both pays $60,000 total, with no bundle discount. Payment processes through GHL Payments on Stripe Connect. There is no retainer and no hidden fee. On the Pre-Sold Author Package, the only downstream cost is the standing 10 percent of net book sales royalty if you take the Legacy Publishing option."
+        "text": "The Knowledge Panel Install is $24,000, paid up front or split into twelve monthly payments of $2,000 at no extra cost. The Pre-Sold Author Package is $36,000, paid up front or split into twelve monthly payments of $3,000 at no extra cost; delivery runs the first six months while the payment plan runs the full year. Both packages together are the one discounted path: $54,000 as the bundle, 10 percent off the two prices, paid up front or split into twelve monthly payments of $4,500. Payment processes through GHL Payments on Stripe Connect. There is no retainer and no hidden fee. On the Pre-Sold Author Package, the only downstream cost is the standing 10 percent of net book sales royalty if you take the Legacy Publishing option."
       }
     },
     {
