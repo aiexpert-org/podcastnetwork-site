@@ -11,7 +11,7 @@ export const HOME_FAQ: FaqItem[] = [
   {
     question: "Can I do both?",
     answer:
-      "Yes, and the Both Packages Bundle is the one discount we offer: $54,000, 10 percent off the $60,000 they cost separately, paid up front or $4,500 a month for 12 months. They run in parallel: the book delivers inside six months while the Brand SERP Install runs its full year.",
+      "Yes, and The Full Build is the one discount we offer: both packages together for $54,000, 10 percent off the $60,000 they cost separately, paid up front or $4,500 a month for 12 months. They run in parallel: the book delivers inside six months while the Brand SERP Install runs its full year.",
   },
   {
     question: "Is this only for real estate?",

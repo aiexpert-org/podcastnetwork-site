@@ -211,7 +211,7 @@ export function knowledgePanelSchema(): SchemaNode {
     breadcrumb(`${BASE}/knowledge-panel-install/#breadcrumb`, [
       HOME_CRUMB,
       {
-        name: "The Knowledge Panel Install",
+        name: "The Brand SERP Install",
         item: `${BASE}/knowledge-panel-install/`,
       },
     ]),
