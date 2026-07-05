@@ -13,6 +13,10 @@
  * artifact; no industry jargon in anything that teaches; the AI answer
  * layer is part of the offer, so it is woven through the stakes, the
  * market beat, and the outcomes rather than living in one question.
+ *
+ * Naming note (2026-07-05 Dispatch sync): the product is the Brand SERP
+ * Install. The quiz and review titles are copy-chat territory and keep
+ * their current names until that session delivers replacements.
  */
 
 import { useCallback, useState } from 'react'
@@ -61,7 +65,7 @@ const STEPS: Step[] = [
     kind: 'quiz',
     key: 'q_panel',
     question:
-      'When someone Googles a name, what decides whether the information box on the right (the Knowledge Panel) appears?',
+      'When someone Googles a name, what decides whether the information box (the Knowledge Panel) appears?',
     options: [
       { value: 'paid', label: 'Google sells that space' },
       { value: 'earned', label: 'Google decides it has enough proof the person is real' },
@@ -417,7 +421,7 @@ export function AssessmentFlow() {
         )}
 
         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-neutral-950/10 pt-6">
-          <Button href="/apply/">Apply for the Knowledge Panel Install</Button>
+          <Button href="/apply/">Apply for the Brand SERP Install</Button>
           <Link
             href="/#report"
             className="text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
