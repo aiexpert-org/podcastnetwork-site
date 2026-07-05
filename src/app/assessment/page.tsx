@@ -8,7 +8,7 @@ import { AssessmentFlow } from '@/components/assessment/AssessmentFlow'
 export const metadata: Metadata = {
   title: 'The Google Authority Quiz',
   description:
-    'Six questions most executives get wrong, answered as you go. Three minutes, and you finish with a Google Authority Briefing: what a Knowledge Panel is, what the market charges, and the five things to demand from any vendor.',
+    'Google has already decided who you are. In three minutes you will know how that page gets decided, what it costs to fix, and how to take control of it.',
   alternates: { canonical: '/assessment/' },
 }
 
@@ -17,13 +17,13 @@ export default function AssessmentPage() {
     <>
       <PageIntro
         eyebrow="The three-minute quiz"
-        title="Do you know what Google says about you?"
+        title="Google has already decided who you are."
       >
         <p>
-          Six questions most people get wrong, and you learn the answer to
-          each one as you go. At the end: your Google Authority Briefing, with
-          what the market charges and the five things to demand from any
-          vendor you hire, including us.
+          Every deal, meeting, and reference check now starts with a search,
+          and that page gets shaped with or without you. In three minutes you
+          will know how it gets decided, what it costs to fix, and how to take
+          control of it.
         </p>
       </PageIntro>
 

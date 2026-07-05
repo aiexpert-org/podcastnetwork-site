@@ -59,21 +59,20 @@ function Definition() {
   )
 }
 
-/* Section 3: the quiz gateway. Education is the sale: the visitor teaches
- * themselves why the entity layer matters and leaves with a briefing. */
+/* Section 3: the quiz gateway. One hook, one promise, no mechanics. */
 function AssessmentGateway() {
   return (
     <div id="assessment" className="scroll-mt-24">
       <SectionIntro
         eyebrow="The three-minute quiz"
-        title="Do you know what Google says about you?"
+        title="Google has already decided who you are."
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          Most executives cannot answer six basic questions about how Google
-          decides who is real. Take the quiz, learn the answers as you go, and
-          finish with a briefing worth keeping: what the market charges, what
-          to demand from any vendor, and where you stand.
+          Every deal, meeting, and reference check now starts with a search,
+          and that page gets shaped with or without you. In three minutes you
+          will know how it gets decided, what it costs to fix, and how to take
+          control of it.
         </p>
       </SectionIntro>
       <Container className="mt-10">
@@ -81,7 +80,7 @@ function AssessmentGateway() {
           <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
             <Button href="/assessment/">Take the quiz</Button>
             <p className="text-sm text-neutral-600">
-              You learn something at every step.
+              Free. About three minutes.
             </p>
           </div>
         </FadeIn>
