@@ -158,15 +158,17 @@ Everything above still applies (env keys, metrics IDs, GHL). New items:
 
 Everything above still applies. New items, priority order:
 
-1. **Domain claim (THE Tuesday blocker, Brett clicks).** podcastnetwork.org
-   resolves to Vercel edge but is not attached to this project (only
-   vercel.app domains are), and the live domain still serves the March
-   original site. In Vercel: AI Expert team → podcastnetwork-site →
-   Settings → Domains → Add podcastnetwork.org + www. If Vercel reports the
-   domain is in use by another account, add the `_vercel` TXT record it
-   gives you at GoDaddy DNS and hit Verify. The moment it attaches,
-   production = current main (the June 29 build) until this branch merges.
-   Per Brett 2026-07-04: claim happens at cutover on July 5.
+1. **Domain cutover (Mike executes).** podcastnetwork.org is parked in
+   Mike's Vercel account (Brett, 2026-07-04 late: the domain rode along
+   with his GitHub connection there), which is why it is not attached to
+   this project and the live domain still serves the March original site.
+   Mike removes the domain from the old project in his account, then adds
+   podcastnetwork.org + www to `podcastnetwork-site` in the AI Expert team
+   (Settings > Domains), or does the attach directly if he has team
+   access. If Vercel still challenges ownership, the `_vercel` TXT record
+   at GoDaddy resolves it. The moment it attaches, production = current
+   main (the June 29 build) until this branch merges. Timing: at cutover
+   on July 5.
 2. **Tier 2 question copy needs Brett's wording pass.** The ten-step flow
    ships with drafted copy per the locked question shape. Edit the STEPS
    array in `src/components/assessment/AssessmentFlow.tsx` and the
@@ -189,7 +191,11 @@ Everything above still applies. New items, priority order:
    linkedin.com/in/glennsanford resolves via SerpAPI. The Lighthouse row
    takes up to 30 seconds; either talk over it or run the URL once before
    the meeting so the cache serves it instantly.
-7. **Post-pitch cleanup:** delete the five killed route directories
+7. **GHL product refresh.** The sub-account still carries the old "$30K
+   Pre-Sold Author Package" product. Load the two current products
+   (Knowledge Panel Install $12,000; Pre-Sold Author Package $36,000)
+   before the first close.
+8. **Post-pitch cleanup:** delete the five killed route directories
    (the-method, case-studies, founders, the-package,
    knowledge-panel-install) and the case-studies MDX wrapper config in
    next.config.mjs; rename PresenceScoreHero.tsx → InstantReport.tsx;

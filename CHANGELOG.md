@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## v0.6.5 — Knowledge Panel Install repriced to $12,000 (2026-07-04, late)
+
+- Brett's lock, later the same evening: the Knowledge Panel Install moves
+  from $10,000 to $12,000; the both-packages total moves from $46,000 to
+  $48,000, still with no bundle discount. The Pre-Sold Author Package
+  stays $36,000. Swept across packages.ts (the source of truth), the
+  homepage FAQ, the KP route metadata title, the KP service JSON-LD offer
+  (price + priceSpecification), and the four FAQ payload answers that
+  named a price.
+- Domain cutover reassigned: podcastnetwork.org is parked in Mike's
+  Vercel account, and Mike executes the attach (NEXT-STEPS item 1
+  updated). Env keys remain with Brett.
+
 ## v0.6.4 — Two-tier real diagnostic + 3-surface collapse (2026-07-04)
 
 Brett's evening locks, relayed through the Dispatch sync report and confirmed
