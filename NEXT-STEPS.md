@@ -94,6 +94,9 @@ intentional on July 7, or as broken.
   12-question diagnostic; the v0.5 six-question answers that have no
   matching field (situation, KP status, audience band, timeline, budget)
   land in the contact note. Reconcile the field group when convenient.
+- **2026-07-04 correction:** the opportunity now posts with monetaryValue 0
+  by design (sales sets the package after the discovery call), so the
+  "$30,000" above describes the older behavior and no longer ships.
 
 ### 10. Vercel KV (cross-instance caching)
 - In-memory cache works per instance; a KV store would share the SerpAPI
@@ -150,3 +153,45 @@ Everything above still applies (env keys, metrics IDs, GHL). New items:
 - **Studio license note:** chassis is Tailwind Plus Studio under Brett's
   Tailwind Plus license; fine for company sites, don't open-source the repo
   without stripping the template.
+
+## v0.6.4 addendum (2026-07-04, two-tier diagnostic + 3-surface collapse)
+
+Everything above still applies. New items, priority order:
+
+1. **Domain claim (THE Tuesday blocker, Brett clicks).** podcastnetwork.org
+   resolves to Vercel edge but is not attached to this project (only
+   vercel.app domains are), and the live domain still serves the March
+   original site. In Vercel: AI Expert team → podcastnetwork-site →
+   Settings → Domains → Add podcastnetwork.org + www. If Vercel reports the
+   domain is in use by another account, add the `_vercel` TXT record it
+   gives you at GoDaddy DNS and hit Verify. The moment it attaches,
+   production = current main (the June 29 build) until this branch merges.
+   Per Brett 2026-07-04: claim happens at cutover on July 5.
+2. **Tier 2 question copy needs Brett's wording pass.** The ten-step flow
+   ships with drafted copy per the locked question shape. Edit the STEPS
+   array in `src/components/assessment/AssessmentFlow.tsx` and the
+   recommendation templates in `src/app/api/assessment/route.ts`
+   (`recommend()`); the flow, scoring, and CRM wiring do not change with
+   copy edits.
+3. **Assessment email delivery + drips ride on GHL** per HQ canon (email
+   infra is GHL). Add `GHL_API_KEY`, then build three drips in GHL keyed on
+   the `assessment-segment-*` / `assessment-rec-*` tags. The on-screen flow
+   promises no email until that is live. If you want an interim Resend send
+   instead, say so and it wires in an hour.
+4. **Trust bar numbers.** Section 2 ships with the honest floor (founders,
+   application-only, live-data standard). Supply the specific proof numbers
+   you want on the strip and they drop in.
+5. **PAGESPEED_API_KEY** in Vercel env for demo-day quota headroom on the
+   Lighthouse finding. Keyless PSI works at low volume; a shared demo room
+   hammering it might not stay low volume.
+6. **Demo playbook (Tuesday):** use exprealty.com or expworldholdings.com,
+   never expworld.com (no A record, correctly errors).
+   linkedin.com/in/glennsanford resolves via SerpAPI. The Lighthouse row
+   takes up to 30 seconds; either talk over it or run the URL once before
+   the meeting so the cache serves it instantly.
+7. **Post-pitch cleanup:** delete the five killed route directories
+   (the-method, case-studies, founders, the-package,
+   knowledge-panel-install) and the case-studies MDX wrapper config in
+   next.config.mjs; rename PresenceScoreHero.tsx → InstantReport.tsx;
+   repoint schema-graph offer/FAQ URLs from the killed routes to the
+   homepage anchors (redirects preserve them meanwhile).

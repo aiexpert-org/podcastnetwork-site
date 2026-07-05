@@ -1,5 +1,57 @@
 # CHANGELOG
 
+## v0.6.4 — Two-tier real diagnostic + 3-surface collapse (2026-07-04)
+
+Brett's evening locks, relayed through the Dispatch sync report and confirmed
+directly: the fake score is out, the site collapses to three surfaces, yellow
+stays CTA-only.
+
+- **The /10 score is dead.** The Instant Report keeps the same five real
+  checks (Google KG, Wikidata, owned schema, Wikipedia, Entity Home) and
+  presents them as individual findings with Found / Partial / Missing text
+  chips (no glyphs per the 2026-06-29 lock), plain-language detail, new
+  evidence lines (KG entity type, Wikidata Q-number, Wikipedia mentions
+  count), and the package that fixes each miss. No aggregate number
+  anywhere. Cache key bumped from presence-score to presence-report so a
+  stale scored payload can never render.
+- **Lighthouse SEO finding** added via /api/seo-score (PageSpeed Insights
+  v5, keyless; set PAGESPEED_API_KEY to lift quota). PSI runs 10 to 25
+  seconds, so the client renders the five fast findings inside the 3-to-5s
+  window and slots the Lighthouse row in when it lands, with an honest
+  checking state. LinkedIn inputs skip it (a rented profile is not your
+  page, and the API refuses linkedin.com directly).
+- **Tier 2 assessment** at /assessment: ten steps, one question per screen,
+  labeled progress bar, back navigation. Question shape per the locked
+  spec: segment, goal, book status, audience size, prior attempts, outcome
+  free text, timeline, investment range (the WTP question), email at step
+  nine, optional context at ten. Recommendation computed server-side
+  (package, price line, three plain-language reasons tied to the answers)
+  and rendered on screen. Submissions log to function logs + /tmp JSONL
+  (the WTP exhaust for the quarterly aggregate content) and sync to GHL as
+  contact + assessment-segment-* / assessment-wtp-* / assessment-rec-* tags
+  + full-answer note when GHL_API_KEY lands; the route skips GHL cleanly
+  without it. No opportunity is created; the pipeline entry is earned by
+  the application.
+- **3-surface collapse.** Home + Apply + Legal. The five marketing routes
+  (/the-method, /case-studies, /founders, /the-package,
+  /knowledge-panel-install) are unreachable behind next.config redirects to
+  homepage anchors; route files stay in the tree for the post-pitch
+  deletion pass. The homepage is the six-section spine: hero + report
+  (#report), trust bar (#proof), assessment gateway (#assessment), two
+  packages + shared floor + live proof cards (#packages, #knowledge-panel,
+  #pre-sold-author), FAQ (#faq), apply CTA (#apply-cta). Desktop nav is
+  three anchor links + the Apply pill; the mobile drawer mirrors it with
+  the assessment added. Sitemap trimmed to /, /apply/, /assessment/.
+  HeroBand, LogoMarquee, and FounderAnchorLive are retired from the
+  homepage; the components remain in the tree.
+- **Verified during the pivot:** api/apply/ghl.ts already sets
+  monetaryValue 0 by design (sales sets the package after the discovery
+  call), so the $30,000 default flagged in the older NEXT-STEPS no longer
+  exists and no price mismatch ships.
+- **Anchor plumbing note:** Container drops unknown props, so section
+  anchors live on wrapping divs with scroll-mt-24. Worth knowing before
+  adding future anchors.
+
 ## v0.6.3 — White ground, traditional nav, Presence Score hero (2026-07-04)
 
 - **White ground restored** per Brett's correction: the actual Studio DNA.
