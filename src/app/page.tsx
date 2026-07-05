@@ -31,18 +31,20 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 }
 
-/* Section 2: the definition block. Written for answer engines to lift whole
- * and for a first-time visitor to orient in one paragraph. */
+/* Section 3: the definition block. Written for answer engines to lift whole
+ * and for a first-time visitor to orient in one paragraph. Heading-left,
+ * paragraph-right grid so the band uses its full width (Brett, 2026-07-05:
+ * the single narrow column read as a spacing bug). */
 function Definition() {
   return (
     <div id="proof" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
       <Container>
         <FadeIn>
-          <div className="border-y border-neutral-950/10 py-10">
+          <div className="grid grid-cols-1 gap-x-12 gap-y-6 border-y border-neutral-950/10 py-12 lg:grid-cols-3">
             <h2 className="font-display text-2xl font-medium tracking-tight text-neutral-950">
               What PodcastNetwork.org does
             </h2>
-            <p className="mt-4 max-w-3xl text-base text-neutral-600">
+            <p className="text-base text-neutral-600 lg:col-span-2">
               PodcastNetwork.org builds Google authority for executives,
               authors, and entrepreneurs who want a formal, Google-recognized
               personal brand. The mechanism is a podcast: recorded
@@ -59,31 +61,36 @@ function Definition() {
   )
 }
 
-/* Section 3: the quiz gateway. The hero owns the stakes sentence now, so
- * this section's job is the stitch: the report showed the record, the quiz
- * teaches how to take control of it. The headline keeps the command form
- * because the hero owns the decided-who-you-are line on this page. */
+/* Section 2: the quiz gateway as a dark card directly under the hero
+ * (Brett, 2026-07-05: the black ContactSection block is the strongest
+ * thing on the page, so the quiz invitation gets the same treatment).
+ * The headline keeps the command form because the hero owns the
+ * decided-who-you-are line on this page. */
 function AssessmentGateway() {
   return (
-    <div id="assessment" className="scroll-mt-24">
-      <SectionIntro
-        eyebrow="The three-minute quiz"
-        title="Take control of your Google Knowledge Panel."
-        className="mt-24 sm:mt-32 lg:mt-40"
-      >
-        <p>
-          The report shows what Google and AI know about you today. In three
-          minutes, learn how that record gets written and how to take control
-          of what they say about you.
-        </p>
-      </SectionIntro>
-      <Container className="mt-10">
-        <FadeIn>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
-            <Button href="/assessment/">Take the quiz</Button>
-            <p className="text-sm text-neutral-600">
-              Free. About three minutes.
+    <div id="assessment" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
+      <Container>
+        <FadeIn className="-mx-6 rounded-4xl bg-neutral-950 px-6 py-16 sm:mx-0 sm:py-20 md:px-12">
+          <div className="mx-auto max-w-4xl">
+            <p className="font-display text-sm font-semibold tracking-wider text-neutral-400 uppercase">
+              The three-minute quiz
             </p>
+            <h2 className="mt-6 font-display text-3xl font-medium text-balance text-white sm:text-4xl">
+              Take control of your Google Knowledge Panel.
+            </h2>
+            <p className="mt-6 max-w-2xl text-base text-neutral-300">
+              The report shows what Google and AI know about you today. In
+              three minutes, learn how that record gets written and how to
+              take control of what they say about you.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <Button href="/assessment/" invert>
+                Take the quiz
+              </Button>
+              <p className="text-sm text-neutral-400">
+                Free. About three minutes.
+              </p>
+            </div>
           </div>
         </FadeIn>
       </Container>
@@ -285,20 +292,19 @@ export default function Home() {
             <p className="mt-6 text-xl text-neutral-600">
               Every deal, meeting, and reference check starts with a search,
               in Google or in an AI chat, and what comes up gets shaped with
-              or without you. We can prove it. Enter your website or LinkedIn
-              profile and see what they actually know about you, and
-              what&apos;s missing.
+              or without you. Enter your website or LinkedIn profile and see
+              what they actually know about you, and what&apos;s missing.
             </p>
           </div>
           <InstantReport />
         </Container>
       </div>
 
-      {/* Section 2: definition block */}
-      <Definition />
-
-      {/* Section 3: quiz gateway */}
+      {/* Section 2: quiz gateway, dark card */}
       <AssessmentGateway />
+
+      {/* Section 3: definition block */}
+      <Definition />
 
       {/* Section 4: the two packages + folded proof */}
       <Packages studies={studies} />
