@@ -32,9 +32,7 @@ export const metadata: Metadata = {
 }
 
 /* Section 2: the definition block. Written for answer engines to lift whole
- * and for a first-time visitor to orient in one paragraph. The decorative
- * trust cells and founder story were cut in the v0.6.11 psychology pass:
- * nothing renders here that a buyer does not need to see to move. */
+ * and for a first-time visitor to orient in one paragraph. */
 function Definition() {
   return (
     <div id="proof" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
@@ -61,29 +59,29 @@ function Definition() {
   )
 }
 
-/* Section 3: the Tier 2 gateway. Email is captured inside the assessment
- * flow itself (question 9), not here. */
+/* Section 3: the quiz gateway. Education is the sale: the visitor teaches
+ * themselves why the entity layer matters and leaves with a briefing. */
 function AssessmentGateway() {
   return (
     <div id="assessment" className="scroll-mt-24">
       <SectionIntro
-        eyebrow="The deeper assessment"
-        title="Which build fits? A ten-question assessment."
+        eyebrow="The three-minute quiz"
+        title="Do you know what Google says about you?"
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          The instant report shows what Google sees. The assessment works out
-          what to do about it: ten questions, about three minutes, and a
-          personalized recommendation for which build fits what you are trying
-          to accomplish.
+          Most executives cannot answer six basic questions about how Google
+          decides who is real. Take the quiz, learn the answers as you go, and
+          finish with a briefing worth keeping: what the market charges, what
+          to demand from any vendor, and where you stand.
         </p>
       </SectionIntro>
       <Container className="mt-10">
         <FadeIn>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
-            <Button href="/assessment/">Start the assessment</Button>
+            <Button href="/assessment/">Take the quiz</Button>
             <p className="text-sm text-neutral-600">
-              Your recommendation renders on screen at the end.
+              You learn something at every step.
             </p>
           </div>
         </FadeIn>
@@ -296,7 +294,7 @@ export default function Home() {
       {/* Section 2: definition block */}
       <Definition />
 
-      {/* Section 3: Tier 2 gateway */}
+      {/* Section 3: quiz gateway */}
       <AssessmentGateway />
 
       {/* Section 4: the two packages + folded proof */}

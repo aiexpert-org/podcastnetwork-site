@@ -6,9 +6,9 @@ import { PageIntro } from '@/components/PageIntro'
 import { AssessmentFlow } from '@/components/assessment/AssessmentFlow'
 
 export const metadata: Metadata = {
-  title: 'The Deeper Assessment',
+  title: 'The Google Authority Quiz',
   description:
-    'Ten questions, about three minutes. Get a personalized recommendation for which build fits what you are trying to accomplish: the Knowledge Panel Install or the Pre-Sold Author Package.',
+    'Six questions most executives get wrong, answered as you go. Three minutes, and you finish with a Google Authority Briefing: what a Knowledge Panel is, what the market charges, and the five things to demand from any vendor.',
   alternates: { canonical: '/assessment/' },
 }
 
@@ -16,14 +16,14 @@ export default function AssessmentPage() {
   return (
     <>
       <PageIntro
-        eyebrow="The deeper assessment"
-        title="Ten questions. A precise recommendation."
+        eyebrow="The three-minute quiz"
+        title="Do you know what Google says about you?"
       >
         <p>
-          The instant report shows what Google sees. This assessment works out
-          what to do about it. One question per screen, about three minutes,
-          and a recommendation at the end that names the build, the price, and
-          the reasons in plain language.
+          Six questions most people get wrong, and you learn the answer to
+          each one as you go. At the end: your Google Authority Briefing, with
+          what the market charges and the five things to demand from any
+          vendor you hire, including us.
         </p>
       </PageIntro>
 
