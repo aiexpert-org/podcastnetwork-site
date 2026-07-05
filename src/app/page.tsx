@@ -59,9 +59,10 @@ function Definition() {
   )
 }
 
-/* Section 3: the quiz gateway. One hook, one promise, no mechanics. The
- * headline takes the command form because the hero already owns the
- * decided-who-you-are line on this page. */
+/* Section 3: the quiz gateway. The hero owns the stakes sentence now, so
+ * this section's job is the stitch: the report showed the record, the quiz
+ * teaches how to take control of it. The headline keeps the command form
+ * because the hero owns the decided-who-you-are line on this page. */
 function AssessmentGateway() {
   return (
     <div id="assessment" className="scroll-mt-24">
@@ -71,9 +72,9 @@ function AssessmentGateway() {
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          Every deal, meeting, and reference check starts with a search, in
-          Google or in an AI chat, and what comes up gets shaped with or
-          without you. Three minutes here shows you how.
+          The report shows what Google and AI know about you today. In three
+          minutes, learn how that record gets written and how to take control
+          of what they say about you.
         </p>
       </SectionIntro>
       <Container className="mt-10">
@@ -270,7 +271,9 @@ export default function Home() {
       <SchemaGraph schema={homeSchema()} />
 
       {/* Section 1: hero + Tier 1 Instant Report. The anchor lives on a
-          wrapping div because Container does not forward unknown props. */}
+          wrapping div because Container does not forward unknown props.
+          Stakes sentence first (matches the quiz page pairing), then the
+          hand-off to the five-second proof. */}
       <div id="report" className="scroll-mt-24">
         <Container className="mt-24 sm:mt-32 md:mt-40">
           {/* Transform-only entrance: this block holds the LCP headline, so it
@@ -280,9 +283,11 @@ export default function Home() {
               Google and AI have already decided who you are.
             </h1>
             <p className="mt-6 text-xl text-neutral-600">
-              We can prove it. Enter your website or LinkedIn profile and get
-              an instant report: what they actually know about you, what&apos;s
-              missing, and which of our two builds fixes each gap.
+              Every deal, meeting, and reference check starts with a search,
+              in Google or in an AI chat, and what comes up gets shaped with
+              or without you. We can prove it. Enter your website or LinkedIn
+              profile and see what they actually know about you, and
+              what&apos;s missing.
             </p>
           </div>
           <InstantReport />
