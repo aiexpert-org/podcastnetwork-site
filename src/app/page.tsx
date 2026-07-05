@@ -126,6 +126,12 @@ function PathCard({ pkg, anchorId }: { pkg: PackageMeta; anchorId: string }) {
         <p className="mt-1 text-sm text-neutral-600">
           {pkg.timelineDisplay}, application only
         </p>
+        {pkg.payment && (
+          <p className="mt-1 text-sm text-neutral-600">
+            {pkg.payment.planDisplay}, or {pkg.payment.payInFullDisplay} up
+            front (save {pkg.payment.savingsDisplay})
+          </p>
+        )}
         <p className="mt-6 text-base text-neutral-600">{pkg.tagline}</p>
         <ul role="list" className="mt-6 space-y-3 text-sm text-neutral-600">
           {pkg.differentiators.map((d) => (
@@ -176,8 +182,9 @@ function Packages({ studies }: { studies: CaseStudyStatic[] }) {
           verified monthly for a year. The Pre-Sold Author Package produces a
           finished book from your own voice on top of that authority build.
           Both standalone, both application only. Take both and it&apos;s{' '}
-          {BOTH_PACKAGES_PRICE_DISPLAY}, run in parallel on their own
-          timelines. No bundle discount, because each one stands on its own.
+          {BOTH_PACKAGES_PRICE_DISPLAY} on standard terms, run in parallel on
+          their own timelines. No bundle discount, because each one stands on
+          its own.
         </p>
       </SectionIntro>
       <Container className="mt-16">
