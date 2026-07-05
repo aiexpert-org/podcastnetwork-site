@@ -191,10 +191,14 @@ Everything above still applies. New items, priority order:
    linkedin.com/in/glennsanford resolves via SerpAPI. The Lighthouse row
    takes up to 30 seconds; either talk over it or run the URL once before
    the meeting so the cache serves it instantly.
-7. **GHL product refresh.** The sub-account still carries the old "$30K
-   Pre-Sold Author Package" product. Load the two current products
-   (Knowledge Panel Install $12,000; Pre-Sold Author Package $36,000)
-   before the first close.
+7. **GHL product refresh (updated 2026-07-04 final).** The sub-account
+   still carries the old "$30K Pre-Sold Author Package" product. Load the
+   two current products before the first close: Knowledge Panel Install
+   $10,000 (a paid-in-full product plus a 12-cycle recurring plan at about
+   $833.33 a month, cents settled on the final payment, no surcharge in
+   either direction) and Pre-Sold Author Package $36,000, paid in full.
+   Add payment-plan default terms (what happens on a missed installment)
+   to the GHL Documents contract template before the first plan close.
 8. **Post-pitch cleanup:** delete the five killed route directories
    (the-method, case-studies, founders, the-package,
    knowledge-panel-install) and the case-studies MDX wrapper config in
