@@ -31,10 +31,11 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 }
 
-/* Section 2: the proof section. Opens with the answer-engine definition
- * block (the AEO extraction target), then the trust strip and the founder
- * line. Specific portfolio numbers are a NEXT-STEPS item awaiting Brett. */
-function TrustBar() {
+/* Section 2: the definition block. Written for answer engines to lift whole
+ * and for a first-time visitor to orient in one paragraph. The decorative
+ * trust cells and founder story were cut in the v0.6.11 psychology pass:
+ * nothing renders here that a buyer does not need to see to move. */
+function Definition() {
   return (
     <div id="proof" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
       <Container>
@@ -52,38 +53,6 @@ function TrustBar() {
               proof you are real. Two application-only builds deliver it: the{' '}
               {KNOWLEDGE_PANEL_INSTALL.priceDisplay} Knowledge Panel Install
               and the {PRE_SOLD_AUTHOR.priceDisplay} Pre-Sold Author Package.
-            </p>
-            <dl className="mt-10 grid grid-cols-1 gap-x-8 gap-y-6 text-center sm:grid-cols-3">
-              <div>
-                <dt className="text-xs font-semibold tracking-wider text-neutral-500 uppercase">
-                  Built and run by
-                </dt>
-                <dd className="mt-2 font-display text-lg font-medium text-neutral-950">
-                  Brett K Moore + Mike Partners
-                </dd>
-              </div>
-              <div>
-                <dt className="text-xs font-semibold tracking-wider text-neutral-500 uppercase">
-                  Intake
-                </dt>
-                <dd className="mt-2 font-display text-lg font-medium text-neutral-950">
-                  Application only
-                </dd>
-              </div>
-              <div>
-                <dt className="text-xs font-semibold tracking-wider text-neutral-500 uppercase">
-                  Proof standard
-                </dt>
-                <dd className="mt-2 font-display text-lg font-medium text-neutral-950">
-                  Live data you can verify
-                </dd>
-              </div>
-            </dl>
-            <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-neutral-600">
-              The co-founders ran the Pre-Sold Author Package on themselves
-              first. Their book AI or Die launched 2026-06-24 under the Legacy
-              Publishing JV, and its live numbers render further down this
-              page.
             </p>
           </div>
         </FadeIn>
@@ -234,9 +203,8 @@ function Packages({ studies }: { studies: CaseStudyStatic[] }) {
           className="mt-24"
         >
           <p>
-            These cards pull their numbers from the same APIs Google reads,
-            refreshed hourly. AI or Die is the founders&apos; own run of the
-            Pre-Sold Author Package.
+            Live numbers from recent builds, pulled from the same sources
+            Google reads and refreshed hourly.
           </p>
         </SectionIntro>
         <FadeInStagger>
@@ -325,8 +293,8 @@ export default function Home() {
         </Container>
       </div>
 
-      {/* Section 2: definition block + trust bar */}
-      <TrustBar />
+      {/* Section 2: definition block */}
+      <Definition />
 
       {/* Section 3: Tier 2 gateway */}
       <AssessmentGateway />

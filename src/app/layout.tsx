@@ -9,20 +9,51 @@ import { siteConfig } from '@/lib/site-config'
 
 import '@/styles/tailwind.css'
 
-/* Mona Sans through next/font so it preloads and swaps: the homepage LCP is
- * hero text, and font-display: block would hold the paint hostage. */
-const monaSans = localFont({
-  src: '../fonts/Mona-Sans.var.woff2',
-  weight: '200 900',
-  // `optional` + preload: the font wins on any healthy connection, and a
-  // late arrival never re-anchors LCP with a second hero paint.
-  display: 'optional',
+/* Azo Sans (v0.6.11, per Brett): six static weights through next/font so
+ * they self-host from public/fonts/azo-sans. display: swap because the
+ * files are 18KB each; the brand face should always render and the swap
+ * flash is negligible at that size. The CSS variable keeps its historical
+ * name so the Tailwind theme is untouched; renaming the token is a
+ * post-pitch cleanup item. */
+const azoSans = localFont({
+  src: [
+    {
+      path: '../../public/fonts/azo-sans/AzoSans-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/azo-sans/AzoSans-Italic.woff2',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: '../../public/fonts/azo-sans/AzoSans-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/azo-sans/AzoSans-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/azo-sans/AzoSans-BoldItalic.woff2',
+      weight: '700',
+      style: 'italic',
+    },
+    {
+      path: '../../public/fonts/azo-sans/AzoSans-Black.woff2',
+      weight: '900',
+      style: 'normal',
+    },
+  ],
+  display: 'swap',
   variable: '--font-mona-sans',
-  declarations: [{ prop: 'font-stretch', value: '75% 125%' }],
 })
 
 /* Accent faces render below the fold only, so they skip preload and leave
- * the bandwidth to Mona Sans. */
+ * the bandwidth to the primary face. */
 const playfair = Playfair_Display({
   subsets: ['latin'],
   weight: ['400', '500', '700'],
@@ -76,7 +107,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      className={`h-full bg-neutral-950 text-base antialiased ${monaSans.variable} ${playfair.variable} ${jetbrains.variable}`}
+      className={`h-full bg-neutral-950 text-base antialiased ${azoSans.variable} ${playfair.variable} ${jetbrains.variable}`}
     >
       <body className="flex min-h-full flex-col">
         <RootLayout>{children}</RootLayout>
