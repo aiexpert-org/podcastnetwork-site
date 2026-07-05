@@ -26,11 +26,11 @@ import {
  * to payment timing). Pure CSS toggle via :has(), so this stays a server
  * component.
  *
- * Tier order (Brett, 2026-07-05 late): the two distinct products sit
- * adjacent for the side-by-side read, and the bundle lands featured on
- * the right as the conclusion. Middle-featured suits linear ladders;
- * this is A, B, then A+B. Names come from packages.ts (Brand SERP
- * Install and Both Packages Bundle per the 2026-07-05 Dispatch sync).
+ * Tier order (Brett via Dispatch, 2026-07-05, per Russ Laggan): descending
+ * price left to right. The Full Build anchors on the left with the save
+ * chip and the struck compare-at; the Pre-Sold Author Package holds the
+ * featured middle treatment; the Brand SERP Install is the entry point on
+ * the right.
  */
 
 function CheckIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -62,6 +62,8 @@ type Tier = {
   upfront: string
   monthlyNote: string
   note?: string
+  compareAtMonthly?: string
+  compareAtUpfront?: string
   featured: boolean
   saveChip?: string
   highlights: string[]
@@ -69,15 +71,23 @@ type Tier = {
 
 const TIERS: Tier[] = [
   {
-    key: 'kp',
-    anchorId: 'knowledge-panel',
-    name: KNOWLEDGE_PANEL_INSTALL.name,
-    description: 'The Google recognition layer, verified for a year. 12 months, application only.',
-    monthly: KNOWLEDGE_PANEL_INSTALL.payment.monthlyDisplay,
-    upfront: KNOWLEDGE_PANEL_INSTALL.priceDisplay,
-    monthlyNote: `12 payments, ${KNOWLEDGE_PANEL_INSTALL.priceDisplay} total`,
+    key: 'both',
+    anchorId: 'the-full-build',
+    name: BUNDLE.name,
+    description: 'Both builds, run in parallel by one team. The book lands inside the first 6 months; the panel work runs the year.',
+    monthly: BUNDLE.payment.monthlyDisplay,
+    upfront: BUNDLE.priceDisplay,
+    monthlyNote: `12 payments, ${BUNDLE.priceDisplay} total`,
+    compareAtMonthly: BUNDLE.listMonthlyDisplay,
+    compareAtUpfront: BUNDLE.listPriceDisplay,
     featured: false,
-    highlights: [...KNOWLEDGE_PANEL_INSTALL.differentiators],
+    saveChip: `Save ${BUNDLE.savingsDisplay}`,
+    highlights: [
+      `Everything in the ${KNOWLEDGE_PANEL_INSTALL.name}`,
+      `Everything in the ${PRE_SOLD_AUTHOR.name}`,
+      `10 percent off the ${BUNDLE.listPriceDisplay} the two cost separately`,
+      'One team holding both builds in parallel',
+    ],
   },
   {
     key: 'psa',
@@ -88,25 +98,19 @@ const TIERS: Tier[] = [
     upfront: PRE_SOLD_AUTHOR.priceDisplay,
     monthlyNote: `12 payments, ${PRE_SOLD_AUTHOR.priceDisplay} total`,
     note: PRE_SOLD_AUTHOR.payment.note,
-    featured: false,
+    featured: true,
     highlights: [...PRE_SOLD_AUTHOR.differentiators],
   },
   {
-    key: 'both',
-    anchorId: 'both-packages',
-    name: BUNDLE.name,
-    description: 'Both builds, run in parallel by one team. The book lands inside the first 6 months; the panel work runs the year.',
-    monthly: BUNDLE.payment.monthlyDisplay,
-    upfront: BUNDLE.priceDisplay,
-    monthlyNote: `12 payments, ${BUNDLE.priceDisplay} total`,
-    featured: true,
-    saveChip: `Save ${BUNDLE.savingsDisplay}`,
-    highlights: [
-      `Everything in the ${KNOWLEDGE_PANEL_INSTALL.name}`,
-      `Everything in the ${PRE_SOLD_AUTHOR.name}`,
-      `10 percent off the ${BUNDLE.listPriceDisplay} the two cost separately`,
-      'One team holding both builds in parallel',
-    ],
+    key: 'kp',
+    anchorId: 'knowledge-panel',
+    name: KNOWLEDGE_PANEL_INSTALL.name,
+    description: 'The Google recognition layer, verified for a year. 12 months, application only.',
+    monthly: KNOWLEDGE_PANEL_INSTALL.payment.monthlyDisplay,
+    upfront: KNOWLEDGE_PANEL_INSTALL.priceDisplay,
+    monthlyNote: `12 payments, ${KNOWLEDGE_PANEL_INSTALL.priceDisplay} total`,
+    featured: false,
+    highlights: [...KNOWLEDGE_PANEL_INSTALL.differentiators],
   },
 ]
 
@@ -132,8 +136,7 @@ function Cell({ value, featured }: { value: ComparisonCell; featured: boolean })
       )}
       <span className="sr-only">{value === true ? 'Yes' : 'No'}</span>
     </>
-  )
-}
+  )}
 
 export function PricingSection() {
   return (
@@ -143,12 +146,13 @@ export function PricingSection() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="relative z-10">
             <h2 className="mx-auto max-w-4xl text-center font-display text-4xl font-medium tracking-tight text-balance text-white sm:text-5xl">
-              Two builds, one bundle.
+              Three ways in.
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-center text-lg font-medium text-pretty text-neutral-400 sm:text-xl/8">
-              The Brand SERP Install, the Pre-Sold Author Package, or both
-              together at 10 percent off. Application only, and the total is
-              the same whichever way you pay.
+              The Full Build (both packages, 10 percent off), the Pre-Sold
+              Author Package, or the Brand SERP Install on its own.
+              Application only, and the total is the same whichever way you
+              pay.
             </p>
             <div className="mt-12 flex justify-center">
               <fieldset aria-label="How you would pay">
@@ -221,7 +225,14 @@ export function PricingSection() {
                       {tier.name}
                     </h3>
                     {tier.saveChip && (
-                      <p className="rounded-full bg-neutral-950 px-2.5 py-1 text-xs font-semibold text-white">
+                      <p
+                        className={clsx(
+                          tier.featured
+                            ? 'bg-neutral-950 text-white'
+                            : 'bg-solar text-neutral-950',
+                          'rounded-full px-2.5 py-1 text-xs font-semibold',
+                        )}
+                      >
                         {tier.saveChip}
                       </p>
                     )}
@@ -234,6 +245,11 @@ export function PricingSection() {
                           'font-display text-4xl font-medium tracking-tight group-has-[[name=frequency][value=upfront]:checked]/tiers:hidden',
                         )}
                       >
+                        {tier.compareAtMonthly && (
+                          <span className="mr-2 text-2xl text-neutral-400 line-through">
+                            {tier.compareAtMonthly}
+                          </span>
+                        )}
                         {tier.monthly}
                       </p>
                       <p
@@ -242,6 +258,11 @@ export function PricingSection() {
                           'font-display text-4xl font-medium tracking-tight group-has-[[name=frequency][value=monthly]:checked]/tiers:hidden',
                         )}
                       >
+                        {tier.compareAtUpfront && (
+                          <span className="mr-2 text-2xl text-neutral-400 line-through">
+                            {tier.compareAtUpfront}
+                          </span>
+                        )}
                         {tier.upfront}
                       </p>
                       <div className="text-sm">

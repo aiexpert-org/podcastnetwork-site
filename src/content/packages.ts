@@ -18,10 +18,11 @@
  * Naming locked 2026-07-05 late (Dispatch sync): the product is the Brand
  * SERP Install. Not Knowledge Panel Install, not AI Presence Install, not
  * Authority Install ("authority" is banned marketing vocabulary). The
- * bundle tier is Both Packages Bundle, matching the live GHL product.
- * Slugs, URLs, anchors, and schema @ids unchanged. GHL products live in
- * sub-account GTfkjwM6RwadEVlbppbd: Brand SERP Install
- * 6a4a8d6d859ba9315419c1fd, PSA 6a4a8df96b558d08208a21c5, bundle
+ * bundle tier is The Full Build (pre-loaded per the Dispatch relay,
+ * pending Brett's final signoff; the GHL product still says Both Packages
+ * Bundle until renamed there). Slugs, URLs, and schema @ids unchanged.
+ * GHL products live in sub-account GTfkjwM6RwadEVlbppbd: Brand SERP
+ * Install 6a4a8d6d859ba9315419c1fd, PSA 6a4a8df96b558d08208a21c5, bundle
  * 6a4a8e736b558d988f8a28da.
  *
  * Copy rules: no em dashes, no banned vocabulary (including "authority"
@@ -185,19 +186,24 @@ export type BundleMeta = {
   priceDisplay: string
   listPriceUsd: number
   listPriceDisplay: string
+  /** Monthly figure at list price, for the compare-at strike. */
+  listMonthlyDisplay: string
   savingsDisplay: string
   payment: PackagePayment
 }
 
 /** The bundle: both packages at 10 percent off, locked 2026-07-05 late.
  * The only discount anywhere; it attaches to scope, never to payment
- * timing. Named to match the live GHL product. */
+ * timing. Display name pre-loaded as The Full Build pending Brett's
+ * signoff; the GHL product (6a4a8e736b558d988f8a28da) still carries the
+ * Both Packages Bundle name until renamed there. */
 export const BUNDLE: BundleMeta = {
-  name: 'Both Packages Bundle',
+  name: 'The Full Build',
   priceUsd: 54000,
   priceDisplay: '$54,000',
   listPriceUsd: BOTH_PACKAGES_PRICE_USD,
   listPriceDisplay: BOTH_PACKAGES_PRICE_DISPLAY,
+  listMonthlyDisplay: '$5,000',
   savingsDisplay: '$6,000',
   payment: {
     planDisplay: 'Paid up front, or split into 12 monthly payments of $4,500',
