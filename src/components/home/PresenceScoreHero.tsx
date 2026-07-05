@@ -218,7 +218,7 @@ export function InstantReport() {
             placeholder="your-site.com or linkedin.com/in/you"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
-            className="block w-full rounded-2xl border border-neutral-300 bg-white px-6 py-4 text-base text-neutral-950 transition placeholder:text-neutral-500 focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/5 focus:outline-hidden"
+            className="block w-full rounded-xl border border-neutral-300 bg-white px-6 py-4 text-base text-neutral-950 transition placeholder:text-neutral-500 focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/5 focus:outline-hidden"
           />
           <Button
             type="submit"

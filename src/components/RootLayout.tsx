@@ -229,7 +229,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
         <motion.div
           layout
           id={panelId}
-          style={{ height: expanded ? 'auto' : '0.5rem' }}
+          style={{ height: expanded ? 'auto' : '0rem' }}
           className="relative z-50 overflow-hidden bg-neutral-950 pt-2"
           aria-hidden={expanded ? undefined : 'true'}
           inert={expanded ? undefined : true}
@@ -277,9 +277,16 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
         </motion.div>
       </header>
 
+      {/* The 40px top radius (and the black strip above, collapsed to 0rem)
+          existed for the expanding menu. With the drawer closed the sheet
+          squares off so no black shows at the top of the page (Brett,
+          2026-07-05). Both return while the menu is open. */}
       <motion.div
         layout
-        style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}
+        style={{
+          borderTopLeftRadius: expanded ? 40 : 0,
+          borderTopRightRadius: expanded ? 40 : 0,
+        }}
         className="relative flex flex-auto overflow-hidden bg-white pt-14"
       >
         <motion.div
