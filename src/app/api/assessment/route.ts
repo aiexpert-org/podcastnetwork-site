@@ -19,7 +19,9 @@ import { KNOWLEDGE_PANEL_INSTALL, PRE_SOLD_AUTHOR } from '@/content/packages'
  *
  * Market-pricing facts sourced from Kalicube's published pricing pages
  * (done-for-you service starts at $12,000; reputable range $3,000 to
- * $18,000), checked 2026-07-04.
+ * $18,000), checked 2026-07-04. Since the 2026-07-05 reset the Install
+ * sits above that range, and the market line says so plainly instead of
+ * hiding it.
  */
 
 export const runtime = 'nodejs'
@@ -114,14 +116,16 @@ function startingPoint(role: string, book: string, firstName: string): string {
 }
 
 function market(): string {
-  return `Reputable specialist services run roughly $3,000 to $18,000, and the leading specialist’s done-for-you service starts at $12,000, typically for the panel work alone. The Knowledge Panel Install is ${KNOWLEDGE_PANEL_INSTALL.priceDisplay} flat, paid up front or split into 12 monthly payments of $1,000, and it includes the podcast, IMDb, press, AI answer testing, and a year of monthly checkups that others price separately, when they offer them at all.`
+  const plan = KNOWLEDGE_PANEL_INSTALL.payment.planDisplay
+  const planLower = `${plan.charAt(0).toLowerCase()}${plan.slice(1)}`
+  return `Reputable specialist services run roughly $3,000 to $18,000, and the leading specialist’s done-for-you service starts at $12,000, typically for the panel work alone. The Knowledge Panel Install is ${KNOWLEDGE_PANEL_INSTALL.priceDisplay} total, ${planLower}. It sits above the panel-only range on purpose: the podcast, IMDb, press, AI answer testing, and a year of monthly checkups are inside the price, where others quote them separately or not at all.`
 }
 
 function psaParagraph(book: string): string | null {
   if (book !== 'published' && book !== 'writing' && book !== 'someday') {
     return null
   }
-  return `One more thing your answers surfaced: a book is on your map. As the quiz covered, a published book creates its own stack of records about you, and the recognition work is also the launch infrastructure a book needs. That is what the ${PRE_SOLD_AUTHOR.name} exists for: ${PRE_SOLD_AUTHOR.priceDisplay} over ${PRE_SOLD_AUTHOR.timelineDisplay}, application only, a finished book from your own voice built on top of the panel work. It is here when you want that conversation, and not before.`
+  return `One more thing your answers surfaced: a book is on your map. As the quiz covered, a published book creates its own stack of records about you, and the recognition work is also the launch infrastructure a book needs. That is what the ${PRE_SOLD_AUTHOR.name} exists for: ${PRE_SOLD_AUTHOR.priceDisplay} total, delivered over ${PRE_SOLD_AUTHOR.timelineDisplay}, paid up front or in 12 monthly payments of ${PRE_SOLD_AUTHOR.payment.monthlyDisplay}, application only, a finished book from your own voice built on top of the panel work. It is here when you want that conversation, and not before.`
 }
 
 export async function POST(req: Request) {

@@ -109,11 +109,12 @@ function CheckIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 }
 
 /* Pricing cards adapted from the Tailwind Plus "Two tiers with emphasized
- * left tier" section (harvested from Brett's Plus session, 2026-07-05).
- * The KP Install pops as the featured tier per the KP-first ladder; the
- * PSA sits inset with joined corners. Indigo became ink, the gradient
- * blob stayed home, and the CTA hierarchy is solar for the primary,
- * outline for the upsell. */
+ * left tier" section, with the payment toggle from the Plus "Three tiers
+ * with toggle" block (both harvested from Brett's Plus session,
+ * 2026-07-05). Price visibility is driven entirely by the radio state
+ * through :has() selectors, so this stays a server component. Same total
+ * both ways (no discount in either direction, per the 2026-07-05 lock),
+ * so the toggle reframes the same money rather than repricing it. */
 function PricingCard({
   pkg,
   anchorId,
@@ -145,7 +146,13 @@ function PricingCard({
           </p>
         )}
       </div>
-      <p className="mt-4 flex items-baseline gap-x-2">
+      <p className="mt-4 flex items-baseline gap-x-2 group-has-[[name=frequency][value=upfront]:checked]/tiers:hidden">
+        <span className="font-display text-5xl font-medium tracking-tight text-neutral-950">
+          {pkg.payment.monthlyDisplay}
+        </span>
+        <span className="text-base text-neutral-500">a month</span>
+      </p>
+      <p className="mt-4 flex items-baseline gap-x-2 group-has-[[name=frequency][value=monthly]:checked]/tiers:hidden">
         <span className="font-display text-5xl font-medium tracking-tight text-neutral-950">
           {pkg.priceDisplay}
         </span>
@@ -154,10 +161,11 @@ function PricingCard({
       <p className="mt-2 text-sm text-neutral-600">
         {pkg.timelineDisplay}, application only
       </p>
-      {pkg.payment && (
-        <p className="mt-1 text-sm text-neutral-600">
-          {pkg.payment.planDisplay}
-        </p>
+      <p className="mt-1 text-sm text-neutral-600">
+        {pkg.payment.planDisplay}
+      </p>
+      {pkg.payment.note && (
+        <p className="mt-1 text-sm text-neutral-600">{pkg.payment.note}</p>
       )}
       <p className="mt-6 text-base/7 text-neutral-600">{pkg.tagline}</p>
       <ul role="list" className="mt-8 space-y-3 text-sm/6 text-neutral-600">
@@ -289,15 +297,46 @@ function Packages({ studies }: { studies: CaseStudyStatic[] }) {
       </SectionIntro>
       <Container className="mt-16">
         <FadeIn>
-          <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-y-6 sm:gap-y-0 lg:grid-cols-2">
-            <PricingCard
-              pkg={KNOWLEDGE_PANEL_INSTALL}
-              anchorId="knowledge-panel"
-              featured
-              badge="Start here"
-            />
-            <PricingCard pkg={PRE_SOLD_AUTHOR} anchorId="pre-sold-author" />
-          </div>
+          <form className="group/tiers">
+            <div className="flex justify-center">
+              <fieldset aria-label="How you would pay">
+                <div className="grid grid-cols-2 gap-x-1 rounded-full p-1 text-center text-xs/5 font-semibold ring-1 ring-neutral-950/10">
+                  <label className="group relative cursor-pointer rounded-full px-3 py-1.5 has-[:checked]:bg-neutral-950">
+                    <input
+                      defaultValue="monthly"
+                      defaultChecked
+                      name="frequency"
+                      type="radio"
+                      className="absolute inset-0 appearance-none rounded-full"
+                    />
+                    <span className="text-neutral-500 group-has-[:checked]:text-white">
+                      Pay monthly
+                    </span>
+                  </label>
+                  <label className="group relative cursor-pointer rounded-full px-3 py-1.5 has-[:checked]:bg-neutral-950">
+                    <input
+                      defaultValue="upfront"
+                      name="frequency"
+                      type="radio"
+                      className="absolute inset-0 appearance-none rounded-full"
+                    />
+                    <span className="text-neutral-500 group-has-[:checked]:text-white">
+                      Pay up front
+                    </span>
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+            <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 items-center gap-y-6 sm:gap-y-0 lg:grid-cols-2">
+              <PricingCard
+                pkg={KNOWLEDGE_PANEL_INSTALL}
+                anchorId="knowledge-panel"
+                featured
+                badge="Start here"
+              />
+              <PricingCard pkg={PRE_SOLD_AUTHOR} anchorId="pre-sold-author" />
+            </div>
+          </form>
         </FadeIn>
 
         <FadeIn>
