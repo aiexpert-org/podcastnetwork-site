@@ -14,9 +14,10 @@
  * layer is part of the offer, so it is woven through the stakes, the
  * market beat, and the outcomes rather than living in one question.
  *
- * Naming note (2026-07-05 Dispatch sync): the product is the Brand SERP
- * Install. The quiz and review titles are copy-chat territory and keep
- * their current names until that session delivers replacements.
+ * Naming note (2026-07-05 final lock): the builds are the Brand SERP
+ * Build, the Pre-Sold Author Build, and the Ultimate Entity Build. The
+ * quiz and review titles are copy-chat territory and keep their current
+ * names until that session delivers replacements.
  */
 
 import { useCallback, useState } from 'react'
@@ -421,7 +422,7 @@ export function AssessmentFlow() {
         )}
 
         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-neutral-950/10 pt-6">
-          <Button href="/apply/">Apply for the Brand SERP Install</Button>
+          <Button href="/apply/">Apply for the Brand SERP Build</Button>
           <Link
             href="/#report"
             className="text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
