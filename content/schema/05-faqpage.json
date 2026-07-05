@@ -4,7 +4,7 @@
   "@id": "https://podcastnetwork.org/faq/#faqpage",
   "url": "https://podcastnetwork.org/faq/",
   "name": "PodcastNetwork.org: Frequently Asked Questions",
-  "description": "Every question a prospective client asks about the two standalone packages: the Brand SERP Install, the Pre-Sold Author Package, the Legacy Publishing option, how the Google and AI record gets built, and the application process.",
+  "description": "Every question a prospective client asks about the two standalone builds: the Brand SERP Build, the Pre-Sold Author Build, the Legacy Publishing option, how the Google and AI record gets built, and the application process.",
   "inLanguage": "en-US",
   "publisher": {
     "@id": "https://podcastnetwork.org/#organization"
@@ -16,16 +16,16 @@
     {
       "@type": "Question",
       "@id": "https://podcastnetwork.org/faq/#what-does-pre-sold-author-cover",
-      "name": "What does the Pre-Sold Author Package cover?",
+      "name": "What does the Pre-Sold Author Build cover?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "$36,000, delivered over the first six months, application only, paid up front or split into twelve monthly payments of $3,000 at no extra cost; payments seven through twelve fund ongoing monitoring and maintenance after delivery completes. Eight private interviews become the raw material for a finished book manuscript delivered by month three. You also get a launched podcast, an audio voice clone and voice corpus (both exclusive to this package), an IMDb Person page through the podcast credit, a full website if you do not already have one, author profiles across the major platforms, a Wikidata Person entry, launch-window amplification with ARC copies and a podcast tour, and a coordinated launch sequence. Publishing runs through Legacy Publishing as an option at 10 percent of net royalties, so you keep roughly 90 percent, with no upfront fee. The name is the goal. The package positions you for pre-sales through launch and audience infrastructure. It does not guarantee pre-orders, and actual pre-sales depend on your execution and market fit."
+        "text": "$36,000, delivered over the first six months, application only, paid up front or split into twelve monthly payments of $3,000 at no extra cost; payments seven through twelve fund ongoing monitoring and maintenance after delivery completes. Eight private interviews become the raw material for a finished book manuscript delivered by month three. You also get a launched podcast, an audio voice clone and voice corpus (both exclusive to this build), an IMDb Person page through the podcast credit, a full website if you do not already have one, author profiles across the major platforms, a Wikidata Person entry, launch-window amplification with ARC copies and a podcast tour, and a coordinated launch sequence. Publishing runs through Legacy Publishing as an option at 10 percent of net royalties, so you keep roughly 90 percent, with no upfront fee. The name is the goal. The build positions you for pre-sales through launch and audience infrastructure. It does not guarantee pre-orders, and actual pre-sales depend on your execution and market fit."
       }
     },
     {
       "@type": "Question",
       "@id": "https://podcastnetwork.org/faq/#what-does-knowledge-panel-install-cover",
-      "name": "What does the Brand SERP Install cover?",
+      "name": "What does the Brand SERP Build cover?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "$24,000 over twelve months, application only, paid up front or split into twelve monthly payments of $2,000 at no extra cost. A Google Knowledge Panel with its full qualifying signal set, coverage across the major AI answer engines with monthly testing (48 tests over the year), first-page ownership of your brand search, a Wikipedia submission attempt with one resubmission if needed, a Wikidata Q-number, and a full Schema.org JSON-LD stack. It also includes a podcast with three episodes you record, an IMDb Person page through the podcast credit, a full website if you do not already have one, a schema pass on your existing site, social handle consistency, a placed article, five press releases, three guest placements on shows doing 10,000+ monthly downloads, search cleanup, twelve monthly reports, and four quarterly Knowledge Panel verifications."
@@ -34,10 +34,10 @@
     {
       "@type": "Question",
       "@id": "https://podcastnetwork.org/faq/#both-packages-together",
-      "name": "Can I do both packages?",
+      "name": "Can I do both builds?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, and The Full Build is the one discount we offer. Both packages together are $54,000, 10 percent off the $60,000 they cost separately, paid up front or split into twelve monthly payments of $4,500 at no extra cost. They run in parallel on their own timelines: the book side delivers inside six months while the Brand SERP Install runs its full year. Doing both gives you a published book and the full discovery layer (Knowledge Panel, answer engines, Wikipedia, and a year of verification) around it."
+        "text": "Yes, and the Ultimate Entity Build is the one discount we offer. Both builds together are $54,000, 10 percent off the $60,000 they cost separately, paid up front or split into twelve monthly payments of $4,500 at no extra cost. They run in parallel on their own timelines: the book side delivers inside six months while the Brand SERP Build runs its full year. Doing both gives you a published book and the full discovery layer (Knowledge Panel, answer engines, Wikipedia, and a year of verification) around it."
       }
     },
     {
@@ -46,7 +46,7 @@
       "name": "Is this only for real estate agents?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. Both packages are for any executive, author, entrepreneur, or professional who wants to formalize a personal brand in Google's eyes and build a real online presence. There is no industry requirement. If you have expertise worth recognizing and you want Google and the AI answer engines to know who you are, you are the client, whatever field you are in."
+        "text": "No. Both builds are for any executive, author, entrepreneur, or professional who wants to formalize a personal brand in Google's eyes and build a real online presence. There is no industry requirement. If you have expertise worth recognizing and you want Google and the AI answer engines to know who you are, you are the client, whatever field you are in."
       }
     },
     {
@@ -55,7 +55,7 @@
       "name": "Do I have to pay extra for the podcast?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. Both packages include podcast setup, branding, hosting, and distribution as part of the price. There is no premium podcast tier and no add-on. The Brand SERP Install has you record three episodes. The Pre-Sold Author Package launches your show with recorded or voice-clone episodes. In both cases the podcast is how you earn your IMDb Person page, so it is built in, not upsold."
+        "text": "No. Both builds include podcast setup, branding, hosting, and distribution as part of the price. There is no premium podcast tier and no add-on. The Brand SERP Build has you record three episodes. The Pre-Sold Author Build launches your show with recorded or voice-clone episodes. In both cases the podcast is how you earn your IMDb Person page, so it is built in, not upsold."
       }
     },
     {
@@ -64,13 +64,13 @@
       "name": "What if I don't have a podcast yet?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "That is expected. Both packages include launching a podcast for you: setup, branding, cover art, hosting, and distribution to the major directories. You record the episodes and we produce and place them. If you already have a podcast, we optimize and work with the existing show rather than launching a new one, and the freed time reallocates to the rest of the build."
+        "text": "That is expected. Both builds include launching a podcast for you: setup, branding, cover art, hosting, and distribution to the major directories. You record the episodes and we produce and place them. If you already have a podcast, we optimize and work with the existing show rather than launching a new one, and the freed time reallocates to the rest of the build."
       }
     },
     {
       "@type": "Question",
       "@id": "https://podcastnetwork.org/faq/#six-months-not-24",
-      "name": "How does the Pre-Sold Author Package deliver a book in six months?",
+      "name": "How does the Pre-Sold Author Build deliver a book in six months?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "The book is built from your own voice. Eight private interviews plus your voice corpus give the editorial team the raw material to shape a finished manuscript by month three, instead of months of blank-page drafting. The podcast, the voice clone, and the author profile build run in parallel with the manuscript rather than waiting in line behind it. One team holds the through-line so the parallel workstreams stay coordinated. That is what compresses a two-to-three-year path into six months."
@@ -79,7 +79,7 @@
     {
       "@type": "Question",
       "@id": "https://podcastnetwork.org/faq/#twelve-months-not-24",
-      "name": "Why is the Brand SERP Install twelve months?",
+      "name": "Why is the Brand SERP Build twelve months?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "A Google Knowledge Panel is not something you switch on. Google surfaces it only after it has ingested enough structured, corroborated signal to treat you as a notable entity, and that ingestion runs on Google's clock, typically weeks to a few months after the signals are seeded. The twelve-month window covers building the full signal set, waiting for Google and the AI answer engines to pick it up, making the Wikipedia attempt and a resubmission if needed, and then a full year of monthly verification and reporting so the panel stays accurate and defended. A standalone knowledge panel engagement elsewhere commonly runs twelve to twenty-four months without the podcast, the press, or the year of monitoring."
@@ -91,7 +91,7 @@
       "name": "What if I already have a manuscript?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Bring it. The Pre-Sold Author Package still runs the editorial passes to bring it to publication standard, then moves into cover design, interior layout, and production through the Legacy Publishing option. Having a draft in hand typically frees interview and drafting time that reallocates to the podcast, the voice work, and the author profile build. The price and the six-month window are the same."
+        "text": "Bring it. The Pre-Sold Author Build still runs the editorial passes to bring it to publication standard, then moves into cover design, interior layout, and production through the Legacy Publishing option. Having a draft in hand typically frees interview and drafting time that reallocates to the podcast, the voice work, and the author profile build. The price and the six-month window are the same."
       }
     },
     {
@@ -100,7 +100,7 @@
       "name": "How does the Legacy Publishing option work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Legacy Publishing is our elite publishing partner and part of the Pre-Sold Author Package. Once your manuscript is finished, you have the option to publish through Legacy. Legacy handles cover, interior layout, ARC copies, blurb sourcing, and retail distribution, and takes 10 percent of net book sales as royalty, so you keep roughly 90 percent. There is no advance and no upfront fee to Legacy beyond your $36,000 payment to PodcastNetwork.org, and you own the book rights. Publishing through Legacy is an option for the book, not a required step."
+        "text": "Legacy Publishing is our elite publishing partner and part of the Pre-Sold Author Build. Once your manuscript is finished, you have the option to publish through Legacy. Legacy handles cover, interior layout, ARC copies, blurb sourcing, and retail distribution, and takes 10 percent of net book sales as royalty, so you keep roughly 90 percent. There is no advance and no upfront fee to Legacy beyond your $36,000 payment to PodcastNetwork.org, and you own the book rights. Publishing through Legacy is an option for the book, not a required step."
       }
     },
     {
@@ -109,16 +109,16 @@
       "name": "How does the Google Knowledge Panel actually get built?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Brand SERP Install builds the signal set Google reads before it will show a panel. A Wikidata Q-number is seeded early, since it is a primary structured signal Google's Knowledge Graph consumes. A canonical, machine-readable web presence carries the full JSON-LD Person schema. Schema.org markup ships across your site, the podcast, and the surfaces that cite you. A Wikipedia submission attempt goes in, press and guest placements add corroboration, and search cleanup removes conflicting signals. Google typically ingests a well-seeded entity within weeks to a few months, and the panel appears once the Graph accepts it. Then monthly verification confirms it stays live and accurate across the twelve months."
+        "text": "The Brand SERP Build creates the signal set Google reads before it will show a panel. A Wikidata Q-number is seeded early, since it is a primary structured signal Google's Knowledge Graph consumes. A canonical, machine-readable web presence carries the full JSON-LD Person schema. Schema.org markup ships across your site, the podcast, and the surfaces that cite you. A Wikipedia submission attempt goes in, press and guest placements add corroboration, and search cleanup removes conflicting signals. Google typically ingests a well-seeded entity within weeks to a few months, and the panel appears once the Graph accepts it. Then monthly verification confirms it stays live and accurate across the twelve months."
       }
     },
     {
       "@type": "Question",
       "@id": "https://podcastnetwork.org/faq/#pre-sold-audience-mechanics",
-      "name": "Does the Pre-Sold Author Package guarantee pre-orders?",
+      "name": "Does the Pre-Sold Author Build guarantee pre-orders?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. The marketing name describes the goal, not a promise. The package builds the infrastructure that positions you for pre-sales: a real podcast, a recognized author entity, launch-window amplification through ARC copies and a podcast tour, and a coordinated launch sequence. How the launch actually performs depends on your execution, the strength of the platform you bring, and market fit. We do not quote a pre-order number, and any operator who guarantees one is selling you a story. We build the launch machine. The sales are earned."
+        "text": "No. The marketing name describes the goal, not a promise. The build creates the infrastructure that positions you for pre-sales: a real podcast, a recognized author entity, launch-window amplification through ARC copies and a podcast tour, and a coordinated launch sequence. How the launch actually performs depends on your execution, the strength of the platform you bring, and market fit. We do not quote a pre-order number, and any operator who guarantees one is selling you a story. We build the launch machine. The sales are earned."
       }
     },
     {
@@ -127,16 +127,16 @@
       "name": "What would it cost to produce the book and launch on my own?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The do-it-yourself path runs two to three years and stacks separate vendors: developmental and line editing, cover and interior design, a launch publicist, and a guest-booking service, each hired on its own clock, at the low end landing north of $50,000 in vendor costs. And the pieces are not coordinated, so the launch arrives as disconnected parts that were never designed to compound. The Pre-Sold Author Package produces the finished book, the podcast, the voice clone, and the launch infrastructure in six months, coordinated by design, at $36,000."
+        "text": "The do-it-yourself path runs two to three years and stacks separate vendors: developmental and line editing, cover and interior design, a launch publicist, and a guest-booking service, each hired on its own clock, at the low end landing north of $50,000 in vendor costs. And the pieces are not coordinated, so the launch arrives as disconnected parts that were never designed to compound. The Pre-Sold Author Build produces the finished book, the podcast, the voice clone, and the launch infrastructure in six months, coordinated by design, at $36,000."
       }
     },
     {
       "@type": "Question",
       "@id": "https://podcastnetwork.org/faq/#knowledge-panel-versus-diy",
-      "name": "What would the Brand SERP Install cost to run on my own?",
+      "name": "What would the Brand SERP Build cost to run on my own?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A standalone knowledge panel or entity SEO engagement commonly runs twelve to twenty-four months at a specialist agency, and Wikipedia and Wikidata submissions are often quoted separately again. That usually buys the entity work alone, without a launched podcast, an IMDb page, press distribution, guest placements, answer-engine testing, or a full year of monthly verification. The Brand SERP Install carries the whole signal set plus the year of monitoring at $24,000, and it sits above panel-only pricing precisely because the podcast, the press, the guest placements, the answer-engine testing, and the year of verification are inside the price instead of quoted separately."
+        "text": "A standalone knowledge panel or entity SEO engagement commonly runs twelve to twenty-four months at a specialist agency, and Wikipedia and Wikidata submissions are often quoted separately again. That usually buys the entity work alone, without a launched podcast, an IMDb page, press distribution, guest placements, answer-engine testing, or a full year of monthly verification. The Brand SERP Build carries the whole signal set plus the year of monitoring at $24,000, and it sits above panel-only pricing precisely because the podcast, the press, the guest placements, the answer-engine testing, and the year of verification are inside the price instead of quoted separately."
       }
     },
     {
@@ -145,7 +145,7 @@
       "name": "How does payment work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Brand SERP Install is $24,000, paid up front or split into twelve monthly payments of $2,000 at no extra cost. The Pre-Sold Author Package is $36,000, paid up front or split into twelve monthly payments of $3,000 at no extra cost; delivery runs the first six months while the payment plan runs the full year, with payments seven through twelve funding ongoing monitoring and maintenance. Both packages together are the one discounted path: $54,000 as The Full Build, 10 percent off the two prices, paid up front or split into twelve monthly payments of $4,500. Payment processes through GHL Payments on Stripe Connect. There is no retainer and no hidden fee. On the Pre-Sold Author Package, the only downstream cost is the standing 10 percent of net book sales royalty if you take the Legacy Publishing option."
+        "text": "The Brand SERP Build is $24,000, paid up front or split into twelve monthly payments of $2,000 at no extra cost. The Pre-Sold Author Build is $36,000, paid up front or split into twelve monthly payments of $3,000 at no extra cost; delivery runs the first six months while the payment plan runs the full year, with payments seven through twelve funding ongoing monitoring and maintenance. Both builds together are the one discounted path: $54,000 as the Ultimate Entity Build, 10 percent off the two prices, paid up front or split into twelve monthly payments of $4,500. Payment processes through GHL Payments on Stripe Connect. There is no retainer and no hidden fee. On the Pre-Sold Author Build, the only downstream cost is the standing 10 percent of net book sales royalty if you take the Legacy Publishing option."
       }
     },
     {
@@ -163,7 +163,7 @@
       "name": "What happens if my side of the work runs late?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "On the Pre-Sold Author Package, the interviews and your manuscript input are the critical path. If your side slips (interviews delayed, source material incomplete, feedback returned late), the timeline moves proportionally. We flag risk early in a formal check-in, and most slips are recoverable inside the window. The podcast and the profile build keep compounding while the manuscript catches up, so a moved launch date usually arrives with more, not less, infrastructure in place."
+        "text": "On the Pre-Sold Author Build, the interviews and your manuscript input are the critical path. If your side slips (interviews delayed, source material incomplete, feedback returned late), the timeline moves proportionally. We flag risk early in a formal check-in, and most slips are recoverable inside the window. The podcast and the profile build keep compounding while the manuscript catches up, so a moved launch date usually arrives with more, not less, infrastructure in place."
       }
     },
     {
@@ -178,10 +178,10 @@
     {
       "@type": "Question",
       "@id": "https://podcastnetwork.org/faq/#ai-or-die",
-      "name": "What is AI or Die and how does it relate to the packages?",
+      "name": "What is AI or Die and how does it relate to the builds?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "AI or Die is the book co-authored by Brett K Moore and Mike Partners, the co-founders of PodcastNetwork.org, published under the Legacy Publishing partnership. It is the case study we ran on ourselves before selling to anyone else: we built the book, the infrastructure, and the launch around it using the same methods behind the packages. Its launch is the anchor case study on the site, with live metrics that refresh on their own schedule."
+        "text": "AI or Die is the book co-authored by Brett K Moore and Mike Partners, the co-founders of PodcastNetwork.org, published under the Legacy Publishing partnership. It is the case study we ran on ourselves before selling to anyone else: we built the book, the infrastructure, and the launch around it using the same methods behind the builds. Its launch is the anchor case study on the site, with live metrics that refresh on their own schedule."
       }
     },
     {
