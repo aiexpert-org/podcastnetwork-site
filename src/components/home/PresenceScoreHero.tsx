@@ -1,6 +1,15 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+/**
+ * Instant Presence Report (Tier 1 of the two-tier diagnostic).
+ *
+ * File name retained through the v0.6.4 pivot to keep the diff reviewable;
+ * rename to InstantReport.tsx in the post-pitch cleanup. The 0-to-10
+ * aggregate score is gone per Brett's 2026-07-04 evening lock: real findings
+ * only, no email gate, each miss labeled with the package that fixes it.
+ */
+
+import { useCallback, useRef, useState } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -8,59 +17,97 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/Button'
 import { track } from '@/lib/track'
 import type {
-  PresenceCheck,
-  PresenceScoreReport,
+  FindingStatus,
+  PresenceFinding,
+  InstantReportPayload,
 } from '@/app/api/presence-score/route'
 
 const LOADING_PHASES = [
   'Reading your page',
   'Asking Google Knowledge Graph',
   'Checking Wikidata and Wikipedia',
-  'Scoring the gaps',
+  'Writing your findings',
 ]
 
-const FIX_LABELS: Record<NonNullable<PresenceCheck['fix']>, string> = {
+const FIX_LABELS: Record<NonNullable<PresenceFinding['fix']>, string> = {
   kp: 'Fixed by the Knowledge Panel Install',
   psa: 'Fixed by the Pre-Sold Author Package',
   both: 'Fixed by both packages',
 }
 
-function bandLine(report: PresenceScoreReport): string {
-  if (report.band === 'low') {
-    return 'Google barely knows this identity exists. Every signal below is buildable, and each one maps to one of the two packages.'
-  }
-  if (report.band === 'medium') {
-    return 'A partial footprint. Some surfaces corroborate this identity; the missing ones below are what keep a knowledge panel from resolving.'
-  }
-  return 'A strong footprint. The remaining gaps below are the difference between visible and unmistakable.'
+type SeoState =
+  | { phase: 'pending' }
+  | { phase: 'done'; seoScore: number }
+  | { phase: 'unavailable' }
+
+const STATUS_LABEL: Record<FindingStatus, string> = {
+  found: 'Found',
+  partial: 'Partial',
+  missing: 'Missing',
+  unavailable: 'Retry',
 }
 
-function CheckRow({ check }: { check: PresenceCheck }) {
-  const passed = check.points === check.max
+function StatusChip({
+  status,
+  pulse = false,
+  label,
+}: {
+  status: FindingStatus | 'checking'
+  pulse?: boolean
+  label?: string
+}) {
+  const text =
+    label ?? (status === 'checking' ? 'Checking' : STATUS_LABEL[status])
+  return (
+    <span
+      className={clsx(
+        'mt-0.5 inline-flex h-6 flex-none items-center justify-center rounded-full px-2.5 text-[11px] font-semibold tracking-wide uppercase',
+        status === 'found' && 'bg-solar text-neutral-950',
+        status === 'partial' &&
+          'bg-white text-neutral-700 ring-1 ring-neutral-950/20',
+        (status === 'missing' || status === 'unavailable') &&
+          'bg-neutral-100 text-neutral-500 ring-1 ring-neutral-950/10',
+        status === 'checking' &&
+          'bg-neutral-100 text-neutral-500 ring-1 ring-neutral-950/10',
+        pulse && 'animate-pulse',
+      )}
+    >
+      {text}
+    </span>
+  )
+}
+
+function FindingRow({
+  label,
+  status,
+  evidence,
+  detail,
+  fixLabel,
+  pulse = false,
+}: {
+  label: string
+  status: FindingStatus | 'checking'
+  evidence?: string | null
+  detail: string
+  fixLabel?: string | null
+  pulse?: boolean
+}) {
   return (
     <li className="flex gap-4 py-4">
-      <span
-        aria-hidden="true"
-        className={clsx(
-          'mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full text-xs font-bold',
-          passed
-            ? 'bg-solar text-neutral-950'
-            : 'bg-neutral-100 text-neutral-500 ring-1 ring-neutral-950/10',
-        )}
-      >
-        {passed ? '✓' : '✕'}
-      </span>
+      <StatusChip status={status} pulse={pulse} />
       <div>
         <p className="text-sm font-semibold text-neutral-950">
-          {check.label}
-          <span className="ml-2 font-mono text-xs font-medium text-neutral-500">
-            {check.points}/{check.max}
-          </span>
+          {label}
+          {evidence && (
+            <span className="ml-2 font-mono text-xs font-medium text-neutral-500">
+              {evidence}
+            </span>
+          )}
         </p>
-        <p className="mt-1 text-sm text-neutral-600">{check.detail}</p>
-        {check.fix && (
+        <p className="mt-1 text-sm text-neutral-600">{detail}</p>
+        {fixLabel && (
           <p className="mt-1 text-xs font-semibold tracking-wide text-neutral-500 uppercase">
-            {FIX_LABELS[check.fix]}
+            {fixLabel}
           </p>
         )}
       </div>
@@ -68,24 +115,50 @@ function CheckRow({ check }: { check: PresenceCheck }) {
   )
 }
 
-export function PresenceScoreHero() {
+export function InstantReport() {
   const [url, setUrl] = useState('')
   const [phase, setPhase] = useState<'idle' | 'loading' | 'done' | 'error'>(
     'idle',
   )
   const [phaseLabel, setPhaseLabel] = useState(LOADING_PHASES[0])
-  const [report, setReport] = useState<PresenceScoreReport | null>(null)
+  const [report, setReport] = useState<InstantReportPayload | null>(null)
+  const [seo, setSeo] = useState<SeoState | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const runIdRef = useRef(0)
+
+  const fetchSeo = useCallback(async (input: string, runId: number) => {
+    setSeo({ phase: 'pending' })
+    try {
+      const res = await fetch(
+        `/api/seo-score/?url=${encodeURIComponent(input)}`,
+        { signal: AbortSignal.timeout(50_000) },
+      )
+      if (runIdRef.current !== runId) return
+      const json = (await res.json()) as
+        | { status: 'ok'; seoScore: number }
+        | { status: 'unavailable' }
+        | { error: string }
+      if ('status' in json && json.status === 'ok') {
+        setSeo({ phase: 'done', seoScore: json.seoScore })
+      } else {
+        setSeo({ phase: 'unavailable' })
+      }
+    } catch {
+      if (runIdRef.current === runId) setSeo({ phase: 'unavailable' })
+    }
+  }, [])
 
   const submit = useCallback(
     async (e: React.FormEvent) => {
       e.preventDefault()
       if (!url.trim() || phase === 'loading') return
 
+      const runId = ++runIdRef.current
       setPhase('loading')
       setError(null)
       setReport(null)
-      track('presence_score_run')
+      setSeo(null)
+      track('instant_report_run')
 
       let phaseIndex = 0
       const ticker = window.setInterval(() => {
@@ -106,8 +179,13 @@ export function PresenceScoreHero() {
           )
           setPhase('error')
         } else {
-          setReport(json as PresenceScoreReport)
+          const payload = json as InstantReportPayload
+          setReport(payload)
           setPhase('done')
+          track('instant_report_done')
+          if (payload.inputKind === 'website') {
+            void fetchSeo(payload.input, runId)
+          }
         }
       } catch {
         setError('Something went wrong. Try again.')
@@ -117,12 +195,17 @@ export function PresenceScoreHero() {
         setPhaseLabel(LOADING_PHASES[0])
       }
     },
-    [url, phase],
+    [url, phase, fetchSeo],
   )
+
+  // Server findings render in a fixed order; the Lighthouse row slots in
+  // after the owned-schema row for website inputs.
+  const beforeSeo = report?.findings.slice(0, 3) ?? []
+  const afterSeo = report?.findings.slice(3) ?? []
 
   return (
     <div className="mt-10 max-w-2xl">
-      <form onSubmit={submit} aria-label="Get your Google Knowledge Presence Score">
+      <form onSubmit={submit} aria-label="Run your instant presence report">
         <div className="flex flex-col gap-4 sm:flex-row">
           <label htmlFor="presence-url" className="sr-only">
             Your website or LinkedIn URL
@@ -142,13 +225,13 @@ export function PresenceScoreHero() {
             disabled={phase === 'loading' || !url.trim()}
             className="flex-none justify-center px-6 py-4 text-base disabled:pointer-events-none disabled:opacity-60 sm:py-0"
           >
-            {phase === 'loading' ? phaseLabel : 'Get my score'}
+            {phase === 'loading' ? phaseLabel : 'Run my report'}
           </Button>
         </div>
       </form>
       <p className="mt-3 text-xs text-neutral-500">
-        Runs against the same public surfaces Google reads. Nothing is stored
-        beyond a short cache; no signup required.
+        Real findings from the same public surfaces Google reads. No aggregate
+        score, no email gate. Nothing is stored beyond a short cache.
       </p>
 
       <AnimatePresence>
@@ -175,43 +258,100 @@ export function PresenceScoreHero() {
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold tracking-wide text-neutral-500 uppercase">
-                  Google Knowledge Presence Score
+                  Instant presence report
                 </p>
-                <p className="mt-2 font-display text-5xl font-medium tracking-tight text-neutral-950">
-                  {report.score}
-                  <span className="text-2xl text-neutral-400">
-                    /{report.max}
-                  </span>
+                <p className="mt-2 font-display text-2xl font-medium tracking-tight text-neutral-950">
+                  {report.entityName}
                 </p>
               </div>
               <p className="text-sm text-neutral-600">
-                Scored for{' '}
-                <span className="font-semibold text-neutral-950">
-                  {report.entityName}
-                </span>
+                {report.findings.filter((f) => f.status === 'found').length} of{' '}
+                {report.findings.length +
+                  (report.inputKind === 'website' ? 1 : 0)}{' '}
+                signals in place
               </p>
             </div>
 
-            <p className="mt-4 text-sm text-neutral-600">{bandLine(report)}</p>
+            <p className="mt-4 text-sm text-neutral-600">
+              Every line below is a real, checkable signal. No aggregate score,
+              because the individual findings are what Google actually reads.
+            </p>
 
             <ul
               role="list"
               className="mt-6 divide-y divide-neutral-950/5 border-t border-neutral-950/10"
             >
-              {report.checks.map((check) => (
-                <CheckRow key={check.id} check={check} />
+              {beforeSeo.map((f) => (
+                <FindingRow
+                  key={f.id}
+                  label={f.label}
+                  status={f.status}
+                  evidence={f.evidence}
+                  detail={f.detail}
+                  fixLabel={f.fix ? FIX_LABELS[f.fix] : null}
+                />
+              ))}
+
+              {report.inputKind === 'website' && seo && (
+                <FindingRow
+                  label="Lighthouse SEO score"
+                  status={
+                    seo.phase === 'pending'
+                      ? 'checking'
+                      : seo.phase === 'done'
+                        ? seo.seoScore >= 90
+                          ? 'found'
+                          : 'partial'
+                        : 'unavailable'
+                  }
+                  pulse={seo.phase === 'pending'}
+                  evidence={
+                    seo.phase === 'done' ? `${seo.seoScore}/100` : null
+                  }
+                  detail={
+                    seo.phase === 'pending'
+                      ? 'Running a live Lighthouse audit against your page. This one takes up to 30 seconds.'
+                      : seo.phase === 'done'
+                        ? seo.seoScore >= 90
+                          ? 'Your page passes the technical SEO floor Lighthouse checks for.'
+                          : 'Lighthouse found technical SEO gaps on your page. Crawlability and metadata are part of the authority floor.'
+                        : 'The Lighthouse audit did not complete for this scan. Run the report again in a minute.'
+                  }
+                  fixLabel={
+                    seo.phase === 'done' && seo.seoScore < 90
+                      ? FIX_LABELS.kp
+                      : null
+                  }
+                />
+              )}
+
+              {afterSeo.map((f) => (
+                <FindingRow
+                  key={f.id}
+                  label={f.label}
+                  status={f.status}
+                  evidence={f.evidence}
+                  detail={f.detail}
+                  fixLabel={f.fix ? FIX_LABELS[f.fix] : null}
+                />
               ))}
             </ul>
 
-            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-neutral-950/10 pt-6">
-              <Button href="/apply">Get the full diagnostic</Button>
-              <Link
-                href="/knowledge-panel-install"
-                className="text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
-              >
-                See what the fixes cost{' '}
-                <span aria-hidden="true">&rarr;</span>
-              </Link>
+            <div className="mt-6 border-t border-neutral-950/10 pt-6">
+              <p className="text-sm text-neutral-600">
+                Two of our packages fix everything above. Which one is right
+                for you depends on what you are trying to do. Answer a few
+                questions to find out.
+              </p>
+              <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-4">
+                <Button href="/assessment/">Take the deeper assessment</Button>
+                <Link
+                  href="/#packages"
+                  className="text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
+                >
+                  See the two packages <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}

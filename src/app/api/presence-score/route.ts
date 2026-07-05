@@ -7,9 +7,14 @@ import { extractStructuredData } from '../schema-scan/extract'
 import { fetchGoogleKg, fetchWikidata } from '../entity-lookup/sources'
 
 /**
- * Google Knowledge Presence Score: one URL in (website or LinkedIn), a
- * 0-to-10 score out, built from the same public surfaces Google reads.
- * Each failed check maps to the package that fixes it.
+ * Instant Presence Report: one URL in (website or LinkedIn), a set of real,
+ * verifiable findings out, built from the same public surfaces Google reads.
+ * No aggregate score. Each finding carries its own status, plain-language
+ * detail, and the package that fixes it when it fails.
+ *
+ * The Lighthouse SEO finding is served separately by /api/seo-score because
+ * PageSpeed Insights runs 10 to 25 seconds; the client slots it in when it
+ * lands so these findings stay in the 3-to-5-second window.
  */
 
 export const runtime = 'nodejs'
@@ -18,23 +23,23 @@ const CACHE_TTL_SECONDS = 15 * 60
 const FETCH_TIMEOUT_MS = 12_000
 const MAX_BODY_BYTES = 3 * 1024 * 1024
 
-export type PresenceCheck = {
+export type FindingStatus = 'found' | 'partial' | 'missing' | 'unavailable'
+
+export type PresenceFinding = {
   id: 'google-kg' | 'wikidata' | 'schema' | 'citations' | 'entity-home'
   label: string
-  points: number
-  max: number
+  status: FindingStatus
+  /** Short verifiable fact line, e.g. the Q-number or the mentions count. */
+  evidence: string | null
   detail: string
   fix: 'kp' | 'psa' | 'both' | null
 }
 
-export type PresenceScoreReport = {
+export type InstantReportPayload = {
   input: string
   inputKind: 'website' | 'linkedin'
   entityName: string
-  score: number
-  max: 10
-  band: 'low' | 'medium' | 'high'
-  checks: PresenceCheck[]
+  findings: PresenceFinding[]
   scannedAt: string
   cached: boolean
 }
@@ -130,7 +135,7 @@ async function fetchPage(url: string): Promise<string | null> {
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
       headers: {
         'User-Agent':
-          'Mozilla/5.0 (compatible; PodcastNetworkOrg-PresenceScore/1.0; +https://podcastnetwork.org)',
+          'Mozilla/5.0 (compatible; PodcastNetworkOrg-PresenceReport/1.0; +https://podcastnetwork.org)',
         Accept: 'text/html,application/xhtml+xml',
       },
     })
@@ -215,7 +220,12 @@ async function resolveLinkedInNameViaSearch(
   }
 }
 
-type WikipediaResult = { hit: boolean; exact: boolean; title?: string }
+type WikipediaResult = {
+  hit: boolean
+  exact: boolean
+  title?: string
+  mentions: number
+}
 
 async function searchWikipedia(name: string): Promise<WikipediaResult> {
   try {
@@ -224,27 +234,37 @@ async function searchWikipedia(name: string): Promise<WikipediaResult> {
       {
         headers: {
           'User-Agent':
-            'PodcastNetworkOrg-PresenceScore/1.0 (https://podcastnetwork.org; brett@podcastnetwork.org)',
+            'PodcastNetworkOrg-PresenceReport/1.0 (https://podcastnetwork.org; brett@podcastnetwork.org)',
         },
         signal: AbortSignal.timeout(8000),
       },
     )
-    if (!res.ok) return { hit: false, exact: false }
+    if (!res.ok) return { hit: false, exact: false, mentions: 0 }
     const json = (await res.json()) as {
-      query?: { search?: { title: string }[] }
+      query?: { search?: { title: string }[]; searchinfo?: { totalhits?: number } }
     }
     const results = json.query?.search ?? []
-    if (results.length === 0) return { hit: false, exact: false }
+    const mentions = json.query?.searchinfo?.totalhits ?? results.length
+    if (results.length === 0) return { hit: false, exact: false, mentions: 0 }
     const target = name.toLowerCase().replace(/[^a-z0-9]+/g, '')
     const exact = results.some(
       (r) =>
         r.title.toLowerCase().replace(/\s*\(.*\)$/, '').replace(/[^a-z0-9]+/g, '') ===
         target,
     )
-    return { hit: true, exact, title: results[0].title }
+    return { hit: true, exact, title: results[0].title, mentions }
   } catch {
-    return { hit: false, exact: false }
+    return { hit: false, exact: false, mentions: 0 }
   }
+}
+
+/** Pull the Q-number out of the Wikidata sameAs URL the adapter returns. */
+function wikidataQNumber(sameAs: { label: string; url: string }[]): string | null {
+  for (const link of sameAs) {
+    const m = link.url.match(/wikidata\.org\/wiki\/(Q\d+)/i)
+    if (m) return m[1].toUpperCase()
+  }
+  return null
 }
 
 export async function GET(req: Request) {
@@ -262,7 +282,7 @@ export async function GET(req: Request) {
 
   const ip =
     req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
-  if (!rateLimit(`presence-score:${ip}`, 30, 3600)) {
+  if (!rateLimit(`presence-report:${ip}`, 30, 3600)) {
     return NextResponse.json(
       { error: 'rate limited' },
       { status: 429, headers: { 'Retry-After': '3600' } },
@@ -279,8 +299,10 @@ export async function GET(req: Request) {
     }
   }
 
-  const cacheKey = `presence-score:${await sha256(normalized)}`
-  const cached = cacheGet<PresenceScoreReport>(cacheKey)
+  // Key prefix is distinct from the retired scored report so a cached /10
+  // payload can never render in the findings UI.
+  const cacheKey = `presence-report:${await sha256(normalized)}`
+  const cached = cacheGet<InstantReportPayload>(cacheKey)
   if (cached) {
     return NextResponse.json({ ...cached, cached: true })
   }
@@ -288,15 +310,13 @@ export async function GET(req: Request) {
   // ---- Resolve the entity name + on-page signals -------------------------
 
   let entityName = ''
-  let schemaPoints = 0
+  let schemaStatus: FindingStatus = 'missing'
+  let schemaEvidence: string | null = null
   let schemaDetail = ''
-  let homePoints = 0
+  let homeStatus: FindingStatus = 'missing'
   let homeDetail = ''
 
   if (linkedIn) {
-    // LinkedIn auth-walls automated reads. Try the public page for an
-    // og:title, then ask Google what it titles the profile, then fall back
-    // to the slug.
     const html = await fetchPage(normalized)
     if (html) {
       const data = extractStructuredData(html)
@@ -314,10 +334,10 @@ export async function GET(req: Request) {
     }
     if (!entityName) entityName = nameFromLinkedInSlug(target)
 
-    schemaPoints = 0
+    schemaStatus = 'missing'
     schemaDetail =
       'A LinkedIn profile exposes no structured data you own. Google reads rented pages last.'
-    homePoints = 0
+    homeStatus = 'missing'
     homeDetail =
       'A rented profile is not an Entity Home. You need a canonical page Google can anchor your identity to.'
   } else {
@@ -330,18 +350,13 @@ export async function GET(req: Request) {
     }
     const data = extractStructuredData(html)
 
-    const typed = data.jsonLd.filter((n) => {
-      const t = n['@type']
-      const types = Array.isArray(t) ? t : [t]
-      return types.some((x) => typeof x === 'string')
-    })
-    const identity = typed.filter((n) => {
+    const identity = data.jsonLd.filter((n) => {
       const t = n['@type']
       const types = (Array.isArray(t) ? t : [t]).filter(
         (x): x is string => typeof x === 'string',
       )
       return types.some((x) =>
-        /^(Person|Organization|LocalBusiness|ProfessionalService|Corporation|OnlineBusiness)$/i.test(
+        /^(Person|Organization|LocalBusiness|ProfessionalService|Corporation|OnlineBusiness|PodcastSeries)$/i.test(
           x,
         ),
       )
@@ -362,29 +377,33 @@ export async function GET(req: Request) {
     const sameAsCount = Array.isArray(sameAs) ? sameAs.length : 0
 
     if (identity.length > 0 && sameAsCount >= 2) {
-      schemaPoints = 2
-      schemaDetail = `Found ${identity.length === 1 ? 'an identity entity' : `${identity.length} identity entities`} in JSON-LD with ${sameAsCount} corroborating sameAs links. Google can read who this page is about.`
+      schemaStatus = 'found'
+      schemaEvidence = `${identity.length === 1 ? '1 identity entity' : `${identity.length} identity entities`}, ${sameAsCount} sameAs links`
+      schemaDetail = `This page declares who it is about in JSON-LD, with ${sameAsCount} corroborating sameAs links Google can cross-verify.`
     } else if (identity.length > 0) {
-      schemaPoints = 1
+      schemaStatus = 'partial'
+      schemaEvidence = `${identity.length} identity ${identity.length === 1 ? 'entity' : 'entities'}, 0 to 1 sameAs links`
       schemaDetail =
         'Identity schema exists but carries no corroborating sameAs links, so Google cannot cross-verify it against other surfaces.'
     } else if (data.jsonLd.length > 0) {
-      schemaPoints = 0
+      schemaStatus = 'missing'
+      schemaEvidence = `${data.jsonLd.length} JSON-LD ${data.jsonLd.length === 1 ? 'block' : 'blocks'}, none identity-typed`
       schemaDetail =
-        'Structured data exists, but none of it declares a Person or Organization. Google sees a page, not an identity.'
+        'Structured data exists, but none of it declares a Person or Organization. Google sees a page here, and no identity.'
     } else {
-      schemaPoints = 0
+      schemaStatus = 'missing'
+      schemaEvidence = null
       schemaDetail =
         'No structured data at all. Google is guessing at who this page belongs to.'
     }
 
     const hasTitle = data.openGraph['og:title'] || data.headings.length > 0
     if (identityNode && hasTitle) {
-      homePoints = 1
+      homeStatus = 'found'
       homeDetail =
         'This page can serve as an Entity Home: a canonical, machine-readable statement of who you are.'
     } else {
-      homePoints = 0
+      homeStatus = 'missing'
       homeDetail =
         'No canonical Entity Home. Every authority signal you earn has nowhere consistent to point.'
     }
@@ -408,116 +427,111 @@ export async function GET(req: Request) {
     searchWikipedia(entityName),
   ])
 
-  const checks: PresenceCheck[] = []
+  const findings: PresenceFinding[] = []
 
   if (kg.status === 'ok' && kg.entity) {
-    checks.push({
+    findings.push({
       id: 'google-kg',
       label: 'Google Knowledge Graph entity',
-      points: 3,
-      max: 3,
-      detail: `Google recognizes "${kg.entity.name}"${kg.entity.description ? ` (${kg.entity.description})` : ''} as an entity.`,
+      status: 'found',
+      evidence: `Entity type: ${kg.entity.type}`,
+      detail: `Google recognizes "${kg.entity.name}"${kg.entity.description ? ` (${kg.entity.description})` : ''} as an entity in its Knowledge Graph.`,
       fix: null,
     })
   } else if (kg.status === 'error') {
-    checks.push({
+    findings.push({
       id: 'google-kg',
       label: 'Google Knowledge Graph entity',
-      points: 0,
-      max: 3,
+      status: 'unavailable',
+      evidence: null,
       detail:
-        'Knowledge Graph lookup was unavailable for this scan. Scored conservatively.',
-      fix: 'kp',
+        'The Knowledge Graph lookup was unavailable for this scan. Run the report again in a minute.',
+      fix: null,
     })
   } else {
-    checks.push({
+    findings.push({
       id: 'google-kg',
       label: 'Google Knowledge Graph entity',
-      points: 0,
-      max: 3,
+      status: 'missing',
+      evidence: null,
       detail: `Google's Knowledge Graph has no entity for "${entityName}". You do not exist in the machine layer Google answers from.`,
       fix: 'kp',
     })
   }
 
   if (wikidata.status === 'ok' && wikidata.entity) {
-    checks.push({
+    const q = wikidataQNumber(wikidata.entity.sameAs)
+    findings.push({
       id: 'wikidata',
       label: 'Wikidata entity',
-      points: 2,
-      max: 2,
+      status: 'found',
+      evidence: q ? `Q-number: ${q}` : null,
       detail: `Wikidata carries "${wikidata.entity.name}"${wikidata.entity.description ? ` (${wikidata.entity.description})` : ''}. This is the seed surface Google trusts most.`,
       fix: null,
     })
   } else {
-    checks.push({
+    findings.push({
       id: 'wikidata',
       label: 'Wikidata entity',
-      points: 0,
-      max: 2,
+      status: 'missing',
+      evidence: null,
       detail: `No Wikidata entry found for "${entityName}". Without a Q-number, the knowledge panel has no root to grow from.`,
       fix: 'kp',
     })
   }
 
-  checks.push({
+  findings.push({
     id: 'schema',
     label: 'Structured data you own',
-    points: schemaPoints,
-    max: 2,
+    status: schemaStatus,
+    evidence: schemaEvidence,
     detail: schemaDetail,
-    fix: schemaPoints >= 2 ? null : 'kp',
+    fix: schemaStatus === 'found' ? null : 'kp',
   })
 
   if (wikipedia.exact) {
-    checks.push({
+    findings.push({
       id: 'citations',
-      label: 'Citation surfaces',
-      points: 2,
-      max: 2,
+      label: 'Wikipedia footprint',
+      status: 'found',
+      evidence: `${wikipedia.mentions.toLocaleString()} mention${wikipedia.mentions === 1 ? '' : 's'} indexed`,
       detail: `Wikipedia carries "${wikipedia.title}". Encyclopedia-grade corroboration is in place.`,
       fix: null,
     })
   } else if (wikipedia.hit) {
-    checks.push({
+    findings.push({
       id: 'citations',
-      label: 'Citation surfaces',
-      points: 1,
-      max: 2,
-      detail: `Wikipedia mentions "${entityName}" but has no article. Partial corroboration only.`,
+      label: 'Wikipedia footprint',
+      status: 'partial',
+      evidence: `${wikipedia.mentions.toLocaleString()} mention${wikipedia.mentions === 1 ? '' : 's'}, no article`,
+      detail: `Wikipedia mentions "${entityName}" but has no article about you. Partial corroboration only.`,
       fix: 'both',
     })
   } else {
-    checks.push({
+    findings.push({
       id: 'citations',
-      label: 'Citation surfaces',
-      points: 0,
-      max: 2,
+      label: 'Wikipedia footprint',
+      status: 'missing',
+      evidence: '0 mentions indexed',
       detail: `No Wikipedia footprint for "${entityName}". Third-party citation is the signal you cannot fake, and it is missing.`,
       fix: 'both',
     })
   }
 
-  checks.push({
+  findings.push({
     id: 'entity-home',
     label: 'Entity Home',
-    points: homePoints,
-    max: 1,
+    status: homeStatus,
+    evidence: null,
     detail: homeDetail,
-    fix: homePoints === 1 ? null : 'kp',
+    fix: homeStatus === 'found' ? null : 'kp',
   })
 
-  const score = checks.reduce((sum, c) => sum + c.points, 0)
-  const band = score <= 3 ? 'low' : score <= 7 ? 'medium' : 'high'
-
-  const report: PresenceScoreReport = {
+  const report: InstantReportPayload = {
     input: normalized,
     inputKind: linkedIn ? 'linkedin' : 'website',
     entityName,
-    score,
-    max: 10,
-    band,
-    checks,
+    findings,
     scannedAt: new Date().toISOString(),
     cached: false,
   }

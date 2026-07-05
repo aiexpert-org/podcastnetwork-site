@@ -1,22 +1,17 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site-config";
 
+// 3-surface architecture (2026-07-04): Home + Apply are the indexable
+// surfaces. Legal stays noindex per the v0.5 robots policy, and the killed
+// marketing routes redirect to homepage anchors.
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
   const now = new Date();
 
   const routes: { path: string; priority: number }[] = [
     { path: "/", priority: 1.0 },
-    { path: "/the-method/", priority: 0.9 },
-    { path: "/knowledge-panel-install/", priority: 0.9 },
-    { path: "/the-package/", priority: 0.9 },
-    { path: "/case-studies/", priority: 0.8 },
-    { path: "/case-studies/ai-or-die/", priority: 0.8 },
-    { path: "/case-studies/michele-okimura/", priority: 0.6 },
-    { path: "/case-studies/dominic-jones/", priority: 0.6 },
-    { path: "/case-studies/rob-okimura/", priority: 0.6 },
-    { path: "/founders/", priority: 0.8 },
     { path: "/apply/", priority: 0.9 },
+    { path: "/assessment/", priority: 0.8 },
   ];
 
   return routes.map(({ path, priority }) => ({

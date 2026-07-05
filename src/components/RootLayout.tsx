@@ -43,16 +43,15 @@ function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
+/* 3-surface architecture (Brett, 2026-07-04 evening): the desktop nav is
+ * anchor links into the homepage sections plus the Apply pill. The killed
+ * routes redirect to these anchors in next.config.mjs. */
 const NAV_ITEMS = [
-  { title: 'Knowledge Panel', href: '/knowledge-panel-install' },
-  { title: 'Pre-Sold Author', href: '/the-package' },
-  { title: 'The Method', href: '/the-method' },
-  { title: 'Case Studies', href: '/case-studies' },
-  { title: 'Founders', href: '/founders' },
+  { title: 'Knowledge Panel', href: '/#knowledge-panel' },
+  { title: 'Pre-Sold Author', href: '/#pre-sold-author' },
+  { title: 'FAQ', href: '/#faq' },
 ]
 
-/* Traditional inline nav on desktop (Brett, 2026-07-04: no drop-down). The
- * Studio drawer survives below lg as the mobile menu. */
 function DesktopNavigation({ invert = false }: { invert?: boolean }) {
   return (
     <nav className="hidden items-center gap-x-7 lg:flex" aria-label="Main">
@@ -113,7 +112,7 @@ function Header({
         </Link>
         <div className="flex items-center gap-x-7">
           <DesktopNavigation invert={invert} />
-          <Button href="/apply" invert={invert}>
+          <Button href="/apply/" invert={invert}>
             Apply
           </Button>
           <button
@@ -175,17 +174,16 @@ function Navigation() {
   return (
     <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
-        <NavigationItem href="/knowledge-panel-install">
+        <NavigationItem href="/#knowledge-panel">
           Knowledge Panel
         </NavigationItem>
-        <NavigationItem href="/the-package">Pre-Sold Author</NavigationItem>
+        <NavigationItem href="/#pre-sold-author">
+          Pre-Sold Author
+        </NavigationItem>
       </NavigationRow>
       <NavigationRow>
-        <NavigationItem href="/the-method">The Method</NavigationItem>
-        <NavigationItem href="/case-studies">Case Studies</NavigationItem>
-      </NavigationRow>
-      <NavigationRow>
-        <NavigationItem href="/founders">Founders</NavigationItem>
+        <NavigationItem href="/#faq">FAQ</NavigationItem>
+        <NavigationItem href="/assessment/">The Assessment</NavigationItem>
       </NavigationRow>
     </nav>
   )

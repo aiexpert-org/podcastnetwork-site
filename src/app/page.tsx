@@ -6,18 +6,16 @@ import { ContactSection } from '@/components/ContactSection'
 import { Container } from '@/components/Container'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { SectionIntro } from '@/components/SectionIntro'
-import { HeroBand } from '@/components/home/HeroBand'
-import { PresenceScoreHero } from '@/components/home/PresenceScoreHero'
-import { LogoMarquee, type MarqueeItem } from '@/components/home/LogoMarquee'
+import { InstantReport } from '@/components/home/PresenceScoreHero'
 import {
   LiveCaseStudyCard,
   type CaseStudyStatic,
 } from '@/components/case-studies/LiveCaseStudyCard'
-import { FounderAnchorLive } from '@/components/founders/FounderAnchorLive'
 import { FAQBlock } from '@/components/ui/FAQBlock'
 import { HOME_FAQ } from '@/content/home-faq'
 import { SchemaGraph } from '@/components/seo/SchemaGraph'
 import { homeSchema } from '@/lib/schema-graph'
+import { Button } from '@/components/Button'
 import {
   BOTH_PACKAGES_PRICE_DISPLAY,
   KNOWLEDGE_PANEL_INSTALL,
@@ -27,16 +25,98 @@ import {
 } from '@/content/packages'
 
 export const metadata: Metadata = {
-  title: 'PodcastNetwork.org. Get your Google Knowledge Presence Score',
+  title: 'PodcastNetwork.org. See what Google actually knows about you',
   description:
-    'Enter your website or LinkedIn and see what Google actually knows about you. Then see the two builds that fix what is missing: the Knowledge Panel Install and the Pre-Sold Author Package.',
+    'Enter your website or LinkedIn and get an instant report of real findings: Knowledge Graph, Wikidata, owned schema, Lighthouse SEO, Wikipedia, Entity Home. Then see the two builds that fix what is missing.',
   alternates: { canonical: '/' },
 }
 
-function PathCard({ pkg }: { pkg: PackageMeta }) {
+/* Section 2: the trust bar. One horizontal strip, names and proof, with the
+ * two-line founder story beneath it. Specific portfolio numbers are a
+ * NEXT-STEPS item awaiting Brett; nothing here is a claim we cannot back. */
+function TrustBar() {
+  return (
+    <div id="proof" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
+      <Container>
+        <FadeIn>
+          <div className="border-y border-neutral-950/10 py-8">
+            <dl className="grid grid-cols-1 gap-x-8 gap-y-6 text-center sm:grid-cols-3">
+              <div>
+                <dt className="text-xs font-semibold tracking-wider text-neutral-500 uppercase">
+                  Built and run by
+                </dt>
+                <dd className="mt-2 font-display text-lg font-medium text-neutral-950">
+                  Brett K Moore + Mike Partners
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs font-semibold tracking-wider text-neutral-500 uppercase">
+                  Intake
+                </dt>
+                <dd className="mt-2 font-display text-lg font-medium text-neutral-950">
+                  Application only
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs font-semibold tracking-wider text-neutral-500 uppercase">
+                  Proof standard
+                </dt>
+                <dd className="mt-2 font-display text-lg font-medium text-neutral-950">
+                  Live data, never screenshots
+                </dd>
+              </div>
+            </dl>
+            <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-neutral-600">
+              The co-founders ran the Pre-Sold Author Package on themselves
+              first. Their book AI or Die launched 2026-06-24 under the Legacy
+              Publishing JV, and its live numbers render further down this
+              page.
+            </p>
+          </div>
+        </FadeIn>
+      </Container>
+    </div>
+  )
+}
+
+/* Section 3: the Tier 2 gateway. Email is captured inside the assessment
+ * flow itself (question 9), not here. */
+function AssessmentGateway() {
+  return (
+    <div id="assessment" className="scroll-mt-24">
+      <SectionIntro
+        eyebrow="The deeper assessment"
+        title="Want a deeper analysis?"
+        className="mt-24 sm:mt-32 lg:mt-40"
+      >
+        <p>
+          The instant report shows what Google sees. The assessment works out
+          what to do about it: ten questions, about three minutes, and a
+          personalized recommendation for which build fits what you are trying
+          to accomplish.
+        </p>
+      </SectionIntro>
+      <Container className="mt-10">
+        <FadeIn>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
+            <Button href="/assessment/">Start the assessment</Button>
+            <p className="text-sm text-neutral-600">
+              Your recommendation renders on screen at the end.
+            </p>
+          </div>
+        </FadeIn>
+      </Container>
+    </div>
+  )
+}
+
+function PathCard({ pkg, anchorId }: { pkg: PackageMeta; anchorId: string }) {
   return (
     <FadeIn className="flex">
-      <div className="flex w-full flex-col rounded-4xl border border-neutral-950/10 bg-white p-8 sm:p-10">
+      <div
+        id={anchorId}
+        className="flex w-full scroll-mt-24 flex-col rounded-4xl border border-neutral-950/10 bg-white p-8 sm:p-10"
+      >
         <p className="font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
           {pkg.name}
         </p>
@@ -57,12 +137,18 @@ function PathCard({ pkg }: { pkg: PackageMeta }) {
             </li>
           ))}
         </ul>
-        <div className="mt-8 pt-2">
+        <p className="mt-6 text-sm text-neutral-600">
+          {pkg.deliverables.length} deliverables in total.{' '}
+          {pkg.timeInvestment}
+        </p>
+        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
+          <Button href="/apply/">Apply for this build</Button>
           <Link
-            href={pkg.url}
-            className="text-base font-semibold text-signal transition hover:text-signal-dark"
+            href="/assessment/"
+            className="text-sm font-semibold text-signal transition hover:text-signal-dark"
           >
-            See {pkg.name} <span aria-hidden="true">&rarr;</span>
+            Not sure? Take the assessment{' '}
+            <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>
       </div>
@@ -70,12 +156,18 @@ function PathCard({ pkg }: { pkg: PackageMeta }) {
   )
 }
 
-function TwoPaths() {
+/* Section 4: the two packages, the shared floor folded in from the retired
+ * package routes, and the live proof cards folded in from the retired
+ * case-studies route. */
+function Packages({ studies }: { studies: CaseStudyStatic[] }) {
+  const featured = studies.find((c) => c.variant === 'featured')
+  const inLaunch = studies.filter((c) => c.variant === 'in-launch')
+
   return (
-    <>
+    <div id="packages" className="scroll-mt-24">
       <SectionIntro
         eyebrow="The fixes"
-        title="Two builds. Each one closes gaps the score just showed you."
+        title="Two builds. Each one closes gaps the report just showed you."
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
@@ -91,165 +183,76 @@ function TwoPaths() {
       <Container className="mt-16">
         <FadeInStagger>
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            <PathCard pkg={KNOWLEDGE_PANEL_INSTALL} />
-            <PathCard pkg={PRE_SOLD_AUTHOR} />
+            <PathCard pkg={KNOWLEDGE_PANEL_INSTALL} anchorId="knowledge-panel" />
+            <PathCard pkg={PRE_SOLD_AUTHOR} anchorId="pre-sold-author" />
           </div>
         </FadeInStagger>
-      </Container>
-    </>
-  )
-}
 
-function CaseStudiesPreview({ studies }: { studies: CaseStudyStatic[] }) {
-  const featured = studies.find((c) => c.variant === 'featured')
-  const inLaunch = studies.filter((c) => c.variant === 'in-launch')
-
-  return (
-    <>
-      <SectionIntro
-        eyebrow="In the wild"
-        title="The graphs we have built. And the ones we are building right now."
-        className="mt-24 sm:mt-32 lg:mt-40"
-      >
-        <p>
-          Live case studies pull their numbers from the same APIs Google reads.
-          Nothing below is a screenshot.
-        </p>
-      </SectionIntro>
-      <Container className="mt-16">
-        <FadeInStagger>
-          {featured && (
-            <FadeIn>
-              <LiveCaseStudyCard data={featured} headingLevel="h3" />
-            </FadeIn>
-          )}
-          <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3">
-            {inLaunch.map((c) => (
-              <FadeIn key={c.slug} className="flex">
-                <div className="w-full">
-                  <LiveCaseStudyCard data={c} headingLevel="h3" />
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </FadeInStagger>
         <FadeIn>
-          <p className="mt-12">
-            <Link
-              href="/case-studies"
-              className="text-base font-semibold text-signal transition hover:text-signal-dark"
+          <div className="mt-16 rounded-4xl bg-neutral-50 p-8 ring-1 ring-neutral-950/5 sm:p-10">
+            <p className="font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
+              The shared floor
+            </p>
+            <p className="mt-3 max-w-2xl text-sm text-neutral-600">
+              Every client walks away with the same base, whichever build they
+              pick. Each package adds its own depth on top of it.
+            </p>
+            <ul
+              role="list"
+              className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2"
             >
-              See every case study <span aria-hidden="true">&rarr;</span>
-            </Link>
-          </p>
-        </FadeIn>
-      </Container>
-    </>
-  )
-}
-
-/* Roster note: this deliberately lists surfaces and shows we can prove
- * (entity graph nodes, live metrics, the network itself), not aspirational
- * press logos. Swap in outlet wordmarks here once real placements exist. */
-const SIGNAL_SURFACES: MarqueeItem[] = [
-  { name: 'Google Knowledge Graph', href: '/the-method/' },
-  { name: 'Wikidata', href: '/the-method/' },
-  { name: 'Wikipedia', href: '/knowledge-panel-install/' },
-  { name: 'IMDb', href: '/knowledge-panel-install/' },
-  { name: 'Amazon', href: '/case-studies/ai-or-die/' },
-  { name: 'Goodreads', href: '/case-studies/ai-or-die/' },
-  { name: 'LinkedIn', href: '/founders/' },
-  { name: 'X', href: '/founders/' },
-]
-
-const NETWORK_ROSTER: MarqueeItem[] = [
-  { name: 'AI or Die', href: '/case-studies/ai-or-die/' },
-  { name: 'Legacy Publishing', href: '/legal/legacy-jv/' },
-  { name: 'Apex Podcast Co', href: '/founders/' },
-  { name: 'AI Expert', href: '/founders/' },
-  { name: 'In a Moment', href: '/case-studies/michele-okimura/' },
-  { name: 'The Next Episode', href: '/the-package/' },
-  { name: 'The Buddy Buck Show', href: '/the-package/' },
-  { name: 'The Play Free Sports Podcast', href: '/the-package/' },
-]
-
-function SignalCloud() {
-  return (
-    <LogoMarquee
-      className="mt-24 sm:mt-32 lg:mt-40"
-      eyebrow="Live surfaces in the graph"
-      caption="Hover to pause. Every wordmark links to the proof."
-      topRow={SIGNAL_SURFACES}
-      bottomRow={NETWORK_ROSTER}
-    />
-  )
-}
-
-function SharedFloor() {
-  return (
-    <>
-      <SectionIntro
-        eyebrow="The shared floor"
-        title="Every client walks away with the same base."
-        className="mt-24 sm:mt-32 lg:mt-40"
-      >
-        <p>
-          Both packages launch a podcast, earn an IMDb page through the podcast
-          credit, and build a full website if you do not already have one. That
-          is the floor. Each package adds its own depth on top of it.
-        </p>
-      </SectionIntro>
-      <Container className="mt-16">
-        <FadeInStagger>
-          <ul
-            role="list"
-            className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2"
-          >
-            {SHARED_FLOOR.map((item) => (
-              <li key={item}>
-                <FadeIn className="flex gap-3 text-base text-neutral-600">
+              {SHARED_FLOOR.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-3 text-sm text-neutral-600"
+                >
                   <span aria-hidden="true" className="mt-1 text-neutral-950">
                     &#8226;
                   </span>
                   <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </FadeIn>
+
+        <SectionIntro
+          eyebrow="In the wild"
+          title="Live proof, not screenshots."
+          className="mt-24"
+        >
+          <p>
+            These cards pull their numbers from the same APIs Google reads,
+            refreshed hourly. AI or Die is the founders&apos; own run of the
+            Pre-Sold Author Package.
+          </p>
+        </SectionIntro>
+        <FadeInStagger>
+          <div className="mt-12">
+            {featured && (
+              <FadeIn>
+                <LiveCaseStudyCard data={featured} headingLevel="h3" />
+              </FadeIn>
+            )}
+            <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3">
+              {inLaunch.map((c) => (
+                <FadeIn key={c.slug} className="flex">
+                  <div className="w-full">
+                    <LiveCaseStudyCard data={c} headingLevel="h3" />
+                  </div>
                 </FadeIn>
-              </li>
-            ))}
-          </ul>
+              ))}
+            </div>
+          </div>
         </FadeInStagger>
       </Container>
-    </>
-  )
-}
-
-function Founders() {
-  return (
-    <>
-      <SectionIntro
-        eyebrow="The founders"
-        title="We built the arc on ourselves first."
-        className="mt-24 sm:mt-32 lg:mt-40"
-      >
-        <p>
-          Brett K Moore and Mike Partners co-founded PodcastNetwork.org and ran
-          the Pre-Sold Author Package as its own first case study. AI or Die
-          launched 2026-06-24 under the JV with Legacy Publishing. The metrics
-          below refresh hourly. Whatever you see is what&apos;s actually
-          happening.
-        </p>
-      </SectionIntro>
-      <Container className="mt-16">
-        <FadeIn>
-          <FounderAnchorLive />
-        </FadeIn>
-      </Container>
-    </>
+    </div>
   )
 }
 
 function Faq() {
   return (
-    <div id="faq">
+    <div id="faq" className="scroll-mt-24">
       <SectionIntro
         eyebrow="Questions"
         title="Asked before you apply"
@@ -262,7 +265,7 @@ function Faq() {
             <p className="mt-6 text-sm text-neutral-600">
               More questions?{' '}
               <Link
-                href="/apply"
+                href="/apply/"
                 className="font-semibold text-signal transition hover:text-signal-dark"
               >
                 Ask them inside the application{' '}
@@ -288,7 +291,8 @@ export default function Home() {
     <>
       <SchemaGraph schema={homeSchema()} />
 
-      <Container className="mt-24 sm:mt-32 md:mt-40">
+      {/* Section 1: hero + Tier 1 Instant Report */}
+      <Container id="report" className="mt-24 scroll-mt-24 sm:mt-32 md:mt-40">
         {/* Transform-only entrance: this block holds the LCP headline, so it
             must be visible before hydration. */}
         <div className="pn-rise max-w-3xl">
@@ -296,42 +300,30 @@ export default function Home() {
             Your online presence is lacking. We can prove it.
           </h1>
           <p className="mt-6 text-xl text-neutral-600">
-            Enter your website or LinkedIn profile and get your Google
-            Knowledge Presence Score in seconds: what Google actually knows
-            about you, what&apos;s missing, and which of our two builds fixes
-            it.
+            Enter your website or LinkedIn profile and get an instant report:
+            what Google actually knows about you, what&apos;s missing, and
+            which of our two builds fixes each gap.
           </p>
         </div>
-        <PresenceScoreHero />
+        <InstantReport />
       </Container>
 
-      <TwoPaths />
+      {/* Section 2: trust bar */}
+      <TrustBar />
 
-      <SharedFloor />
+      {/* Section 3: Tier 2 gateway */}
+      <AssessmentGateway />
 
-      <SectionIntro
-        eyebrow="The end state"
-        title="This is what a complete Google presence looks like."
-        className="mt-24 sm:mt-32 lg:mt-40"
-      >
-        <p>
-          Our own entity graph, live from the same data Google reads. Every
-          node is a real, indexed signal. Drag the playhead to watch six months
-          of authority architecture assemble itself.
-        </p>
-      </SectionIntro>
+      {/* Section 4: the two packages + folded proof */}
+      <Packages studies={studies} />
 
-      <HeroBand />
-
-      <SignalCloud />
-
-      <CaseStudiesPreview studies={studies} />
-
-      <Founders />
-
+      {/* Section 5: FAQ */}
       <Faq />
 
-      <ContactSection />
+      {/* Section 6: apply CTA */}
+      <div id="apply-cta" className="scroll-mt-24">
+        <ContactSection />
+      </div>
     </>
   )
 }
