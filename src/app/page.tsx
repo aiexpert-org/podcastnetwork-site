@@ -5,13 +5,10 @@ import clsx from 'clsx'
 import caseStudies from '../../data/case-studies.json'
 import { ContactSection } from '@/components/ContactSection'
 import { Container } from '@/components/Container'
-import { FadeIn, FadeInStagger } from '@/components/FadeIn'
+import { FadeIn } from '@/components/FadeIn'
 import { SectionIntro } from '@/components/SectionIntro'
 import { InstantReport } from '@/components/home/PresenceScoreHero'
-import {
-  LiveCaseStudyCard,
-  type CaseStudyStatic,
-} from '@/components/case-studies/LiveCaseStudyCard'
+import { type CaseStudyStatic } from '@/components/case-studies/LiveCaseStudyCard'
 import { FAQBlock } from '@/components/ui/FAQBlock'
 import { HOME_FAQ } from '@/content/home-faq'
 import { SchemaGraph } from '@/components/seo/SchemaGraph'
@@ -190,13 +187,88 @@ function PricingCard({
   )
 }
 
-/* Section 4: the two packages, the shared floor folded in from the retired
- * package routes, and the live proof cards folded in from the retired
- * case-studies route. */
-function Packages({ studies }: { studies: CaseStudyStatic[] }) {
+/* Live case studies as a stepped stats band, adapted from the Tailwind
+ * Plus "Stepped" stats section (Brett's Plus session, 2026-07-05) in the
+ * site's monochrome: three cards rising toward the featured build. No
+ * fabricated numbers, per the case-study honesty rule: months, phases,
+ * and milestones come straight from data/case-studies.json, and the
+ * retired per-study routes lost their links instead of redirecting the
+ * reader in a circle. The least progressed build sits out rather than
+ * padding the band. */
+function CaseStudyBand({ studies }: { studies: CaseStudyStatic[] }) {
   const featured = studies.find((c) => c.variant === 'featured')
-  const inLaunch = studies.filter((c) => c.variant === 'in-launch')
+  const inLaunch = studies
+    .filter((c) => c.variant === 'in-launch')
+    .sort((a, b) => (b.currentMonth ?? 0) - (a.currentMonth ?? 0))
+  const mid = inLaunch[0]
+  const small = inLaunch[1]
 
+  return (
+    <FadeIn>
+      <div className="mx-auto mt-12 flex max-w-2xl flex-col gap-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-end">
+        {small && (
+          <div className="flex flex-col-reverse justify-between gap-x-16 gap-y-8 rounded-2xl bg-neutral-50 p-8 ring-1 ring-neutral-950/5 sm:w-3/4 sm:max-w-md sm:flex-row-reverse sm:items-end lg:w-72 lg:max-w-none lg:flex-none lg:flex-col lg:items-start">
+            <p className="flex-none font-display text-3xl font-medium tracking-tight text-neutral-950">
+              Month {small.currentMonth} of {small.totalMonths}
+            </p>
+            <div className="sm:w-80 sm:shrink lg:w-auto lg:flex-none">
+              <p className="text-lg font-semibold tracking-tight text-neutral-950">
+                {small.title}. {small.currentPhase}.
+              </p>
+              {small.nextMilestone && (
+                <p className="mt-2 text-base/7 text-neutral-600">
+                  Next milestone: {small.nextMilestone.label}. Published by{' '}
+                  {small.publisher}.
+                </p>
+              )}
+            </div>
+          </div>
+        )}
+        {mid && (
+          <div className="flex flex-col-reverse justify-between gap-x-16 gap-y-8 rounded-2xl bg-neutral-950 p-8 sm:flex-row-reverse sm:items-end lg:w-full lg:max-w-sm lg:flex-auto lg:flex-col lg:items-start lg:gap-y-44">
+            <p className="flex-none font-display text-3xl font-medium tracking-tight text-white">
+              Month {mid.currentMonth} of {mid.totalMonths}
+            </p>
+            <div className="sm:w-80 sm:shrink lg:w-auto lg:flex-none">
+              <p className="text-lg font-semibold tracking-tight text-white">
+                {mid.title}. {mid.currentPhase}.
+              </p>
+              {mid.nextMilestone && (
+                <p className="mt-2 text-base/7 text-neutral-400">
+                  Next milestone: {mid.nextMilestone.label}. Published by{' '}
+                  {mid.publisher}.
+                </p>
+              )}
+            </div>
+          </div>
+        )}
+        {featured && (
+          <div className="flex flex-col-reverse justify-between gap-x-16 gap-y-8 rounded-2xl bg-white p-8 shadow-2xl ring-1 ring-neutral-950/10 sm:w-11/12 sm:max-w-xl sm:flex-row-reverse sm:items-end lg:w-full lg:max-w-none lg:flex-auto lg:flex-col lg:items-start lg:gap-y-28">
+            <p className="flex-none font-display text-3xl font-medium tracking-tight text-neutral-950">
+              Month 6 of 6. Launched.
+            </p>
+            <div className="sm:w-80 sm:shrink lg:w-auto lg:flex-none">
+              <p className="text-lg font-semibold tracking-tight text-neutral-950">
+                {featured.title}, published by {featured.publisher} on June
+                24, 2026.
+              </p>
+              <p className="mt-2 text-base/7 text-neutral-600">
+                We ran the six-month arc on ourselves: the podcast, the
+                pre-sell, the finished book. The case study we can prove
+                because we still own it.
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    </FadeIn>
+  )
+}
+
+/* Section 4: the two packages, the shared floor folded in from the retired
+ * package routes, and the stepped case-study band folded in from the
+ * retired case-studies route. */
+function Packages({ studies }: { studies: CaseStudyStatic[] }) {
   return (
     <div id="packages" className="scroll-mt-24">
       <SectionIntro
@@ -258,32 +330,16 @@ function Packages({ studies }: { studies: CaseStudyStatic[] }) {
 
         <SectionIntro
           eyebrow="In the wild"
-          title="Live case studies you can verify."
+          title="Where the current builds stand."
           className="mt-24"
         >
           <p>
-            Live numbers from recent builds, pulled from the same sources
-            Google reads and refreshed hourly.
+            One finished on our own name and two underway for clients.
+            Months, phases, and next milestones exactly as they stand today.
+            Nothing projected.
           </p>
         </SectionIntro>
-        <FadeInStagger>
-          <div className="mt-12">
-            {featured && (
-              <FadeIn>
-                <LiveCaseStudyCard data={featured} headingLevel="h3" />
-              </FadeIn>
-            )}
-            <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3">
-              {inLaunch.map((c) => (
-                <FadeIn key={c.slug} className="flex">
-                  <div className="w-full">
-                    <LiveCaseStudyCard data={c} headingLevel="h3" />
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
-        </FadeInStagger>
+        <CaseStudyBand studies={studies} />
       </Container>
     </div>
   )
