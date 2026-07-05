@@ -10,17 +10,9 @@
  *
  * Rules locked while Brett walked the flow: every quiz question carries
  * exactly three substantive options plus an honest "I'm not sure" that is
- * never scolded; the podcast beat sits at position 2 so early drop-off
- * still learns why the company carries its name.
- *
- * Every reveal is a verifiable claim. Sources, checked 2026-07-04:
- * - Google, About knowledge panels: "automatically generated", information
- *   "comes from various sources across the web"
- *   (support.google.com/knowledgepanel/answer/9163198)
- * - Google Search Central spam policies: buying links violates policy
- *   (developers.google.com/search/docs/essentials/spam-policies)
- * - Kalicube published pricing: done-for-you service starts at $12,000;
- *   reputable range $3,000 to $18,000 (kalicube.com pricing FAQ pages)
+ * never scolded; the podcast beat sits at position 2; reveals carry
+ * clickable source links, but only where the linked page plainly supports
+ * the sentence.
  */
 
 import { useCallback, useState } from 'react'
@@ -31,6 +23,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/Button'
 import { track } from '@/lib/track'
 
+type RevealSource = { label: string; url: string }
+
 type QuizStep = {
   kind: 'quiz'
   key: string
@@ -38,6 +32,7 @@ type QuizStep = {
   options: { value: string; label: string }[]
   correct: string
   reveal: string
+  sources?: RevealSource[]
 }
 
 type ChoiceStep = {
@@ -68,6 +63,12 @@ const STEPS: Step[] = [
     correct: 'earned',
     reveal:
       'It is earned. Google’s Knowledge Graph builds an entity for you only when enough corroborated, machine-readable proof exists across the web. Nobody can buy the box, and the proof does not assemble itself: it gets built signal by signal across a dozen surfaces, in the right order. The rest of this quiz shows you what those signals are.',
+    sources: [
+      {
+        label: 'Google: About knowledge panels',
+        url: 'https://support.google.com/knowledgepanel/answer/9163198',
+      },
+    ],
   },
   {
     kind: 'quiz',
@@ -83,6 +84,16 @@ const STEPS: Step[] = [
     correct: 'podcast',
     reveal:
       'A podcast. Google’s own help pages say knowledge panels are automatically generated and their information comes from various sources across the web. One show feeds several of those sources at once: the credit earns an IMDb Person page, every guest appearance adds a citation on someone else’s site, and every episode is indexable content in your own voice. A press release is a single self-published source, and buying links violates Google’s published spam policies. This mechanism is why we are built around podcasts.',
+    sources: [
+      {
+        label: 'Google: About knowledge panels',
+        url: 'https://support.google.com/knowledgepanel/answer/9163198',
+      },
+      {
+        label: 'Google: spam policies on link buying',
+        url: 'https://developers.google.com/search/docs/essentials/spam-policies',
+      },
+    ],
   },
   {
     kind: 'quiz',
@@ -127,6 +138,12 @@ const STEPS: Step[] = [
     correct: 'no-guarantee',
     reveal:
       'Nobody can guarantee Wikipedia. Volunteer editors and a notability bar decide, and no vendor controls them. A Knowledge Panel does not depend on Wikipedia, and anyone promising you a page is telling you something false. Treat that promise as the tell.',
+    sources: [
+      {
+        label: 'Wikipedia: the notability policy',
+        url: 'https://en.wikipedia.org/wiki/Wikipedia:Notability',
+      },
+    ],
   },
   {
     kind: 'quiz',
@@ -141,7 +158,17 @@ const STEPS: Step[] = [
     ],
     correct: 'three-to-eighteen',
     reveal:
-      'Reputable services run roughly $3,000 to $18,000, and the category leader’s done-for-you panel service starts at $12,000, typically for the entity work alone. A podcast, press placements, IMDb, and a year of monthly verification usually cost extra, when they are offered at all. Cheaper than that range is where the spam lives.',
+      'Reputable services run roughly $3,000 to $18,000, and the leading specialist’s done-for-you service starts at $12,000, typically for the entity work alone. A podcast, press placements, IMDb, and a year of monthly verification usually cost extra, when they are offered at all.',
+    sources: [
+      {
+        label: 'The leading specialist’s pricing guidance',
+        url: 'https://kalicube.com/learning-spaces/faq-list/knowledge-panels/knowledge-panel-in-google-pricing/',
+      },
+      {
+        label: 'Their done-for-you service pricing',
+        url: 'https://kalicube.com/faq/kalicube/kalicube-personal-branding/personal-knowledge-panel-service/how-much-does-a-knowledge-panel-with-kalicube-cost-and-is-it-worth-it-for-my-business/',
+      },
+    ],
   },
   {
     kind: 'choice',
@@ -414,6 +441,24 @@ export function AssessmentFlow() {
                         : 'Most people miss this one.'}
                   </p>
                   <p className="mt-2 text-sm text-neutral-600">{step.reveal}</p>
+                  {step.sources && step.sources.length > 0 && (
+                    <p className="mt-3 text-xs text-neutral-500">
+                      {'Check it yourself: '}
+                      {step.sources.map((s, i) => (
+                        <span key={s.url}>
+                          {i > 0 && ' · '}
+                          <a
+                            href={s.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-semibold text-neutral-700 underline decoration-neutral-300 underline-offset-2 transition hover:text-neutral-950"
+                          >
+                            {s.label}
+                          </a>
+                        </span>
+                      ))}
+                    </p>
+                  )}
                   <div className="mt-4">
                     <Button type="button" onClick={advance}>
                       Continue
