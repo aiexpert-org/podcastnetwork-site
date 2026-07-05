@@ -1,5 +1,6 @@
 import { type Metadata } from 'next'
 import Link from 'next/link'
+import clsx from 'clsx'
 
 import caseStudies from '../../data/case-studies.json'
 import { ContactSection } from '@/components/ContactSection'
@@ -98,47 +99,94 @@ function AssessmentGateway() {
   )
 }
 
-function PathCard({ pkg, anchorId }: { pkg: PackageMeta; anchorId: string }) {
+function CheckIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
-    <FadeIn className="flex">
-      <div
-        id={anchorId}
-        className="flex w-full scroll-mt-24 flex-col rounded-4xl border border-neutral-950/10 bg-white p-8 sm:p-10"
-      >
+    <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" {...props}>
+      <path
+        fillRule="evenodd"
+        d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+        clipRule="evenodd"
+      />
+    </svg>
+  )
+}
+
+/* Pricing cards adapted from the Tailwind Plus "Two tiers with emphasized
+ * left tier" section (harvested from Brett's Plus session, 2026-07-05).
+ * The KP Install pops as the featured tier per the KP-first ladder; the
+ * PSA sits inset with joined corners. Indigo became ink, the gradient
+ * blob stayed home, and the CTA hierarchy is solar for the primary,
+ * outline for the upsell. */
+function PricingCard({
+  pkg,
+  anchorId,
+  featured = false,
+  badge,
+}: {
+  pkg: PackageMeta
+  anchorId: string
+  featured?: boolean
+  badge?: string
+}) {
+  return (
+    <div
+      id={anchorId}
+      className={clsx(
+        featured
+          ? 'relative bg-white shadow-2xl'
+          : 'bg-white/60 sm:mx-8 sm:rounded-t-none lg:mx-0 lg:rounded-tr-3xl lg:rounded-bl-none',
+        'scroll-mt-24 rounded-3xl p-8 ring-1 ring-neutral-950/10 sm:p-10',
+      )}
+    >
+      <div className="flex items-center justify-between gap-4">
         <h3 className="font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
           {pkg.name}
         </h3>
-        <p className="mt-4 font-display text-4xl font-medium tracking-tight text-neutral-950">
-          {pkg.priceDisplay}
-        </p>
-        <p className="mt-1 text-sm text-neutral-600">
-          {pkg.timelineDisplay}, application only
-        </p>
-        {pkg.payment && (
-          <p className="mt-1 text-sm text-neutral-600">
-            {pkg.payment.planDisplay}
+        {badge && (
+          <p className="rounded-full bg-neutral-950 px-3 py-1 text-xs font-semibold text-white">
+            {badge}
           </p>
         )}
-        <p className="mt-6 text-base text-neutral-600">{pkg.tagline}</p>
-        <ul role="list" className="mt-6 space-y-3 text-sm text-neutral-600">
-          {pkg.differentiators.map((d) => (
-            <li key={d} className="flex gap-3">
-              <span aria-hidden="true" className="mt-1 text-neutral-950">
-                &#8226;
-              </span>
-              <span>{d}</span>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-6 text-sm text-neutral-600">
-          {pkg.deliverables.length} deliverables in total.{' '}
-          {pkg.timeInvestment}
-        </p>
-        <div className="mt-8 pt-2">
-          <Button href="/apply/">Apply for this build</Button>
-        </div>
       </div>
-    </FadeIn>
+      <p className="mt-4 flex items-baseline gap-x-2">
+        <span className="font-display text-5xl font-medium tracking-tight text-neutral-950">
+          {pkg.priceDisplay}
+        </span>
+        <span className="text-base text-neutral-500">total</span>
+      </p>
+      <p className="mt-2 text-sm text-neutral-600">
+        {pkg.timelineDisplay}, application only
+      </p>
+      {pkg.payment && (
+        <p className="mt-1 text-sm text-neutral-600">
+          {pkg.payment.planDisplay}
+        </p>
+      )}
+      <p className="mt-6 text-base/7 text-neutral-600">{pkg.tagline}</p>
+      <ul role="list" className="mt-8 space-y-3 text-sm/6 text-neutral-600">
+        {pkg.differentiators.map((d) => (
+          <li key={d} className="flex gap-x-3">
+            <CheckIcon className="h-6 w-5 flex-none text-neutral-950" />
+            <span>{d}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-8 text-sm text-neutral-600">
+        {pkg.deliverables.length} deliverables in total. {pkg.timeInvestment}
+      </p>
+      {featured ? (
+        <Button href="/apply/" className="mt-8 w-full sm:mt-10">
+          Apply for this build
+        </Button>
+      ) : (
+        <Link
+          href="/apply/"
+          className="mt-8 block rounded-xl border border-neutral-950/15 px-5 py-2.5 text-center text-sm font-semibold text-neutral-950 transition hover:border-neutral-950/40 sm:mt-10"
+        >
+          Apply for this build
+        </Link>
+      )}
+    </div>
   )
 }
 
@@ -168,12 +216,17 @@ function Packages({ studies }: { studies: CaseStudyStatic[] }) {
         </p>
       </SectionIntro>
       <Container className="mt-16">
-        <FadeInStagger>
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            <PathCard pkg={KNOWLEDGE_PANEL_INSTALL} anchorId="knowledge-panel" />
-            <PathCard pkg={PRE_SOLD_AUTHOR} anchorId="pre-sold-author" />
+        <FadeIn>
+          <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-y-6 sm:gap-y-0 lg:grid-cols-2">
+            <PricingCard
+              pkg={KNOWLEDGE_PANEL_INSTALL}
+              anchorId="knowledge-panel"
+              featured
+              badge="Start here"
+            />
+            <PricingCard pkg={PRE_SOLD_AUTHOR} anchorId="pre-sold-author" />
           </div>
-        </FadeInStagger>
+        </FadeIn>
 
         <FadeIn>
           <div className="mt-16 rounded-4xl bg-neutral-50 p-8 ring-1 ring-neutral-950/5 sm:p-10">
