@@ -5,17 +5,20 @@
  *
  * Locked 2026-07-03 (two-package structure, supersedes the single $30K
  * flagship). Pricing reset 2026-07-05 with Mike (supersedes the 2026-07-04
- * $12,000 state): Knowledge Panel Install $24,000 total over 12 months,
+ * $12,000 state): Google Authority Install $24,000 total over 12 months,
  * paid up front or split into twelve monthly payments of $2,000. Pre-Sold
  * Author Package $36,000 total, paid up front or split into twelve monthly
  * payments of $3,000 while delivery runs the first six months. No discount
  * on payment timing in either direction. Bundle locked 2026-07-05 late:
  * both packages together are $54,000, 10 percent off the $60,000 list, up
  * front or $4,500 x 12; the bundle is the only discount anywhere, and it
- * attaches to scope, never to payment timing. Podcast, IMDb, and a full
- * website (if the executive does not already have one) are the shared
- * floor in both. The audio voice clone and voice corpus are exclusive to
- * the Pre-Sold Author Package.
+ * attaches to scope, never to payment timing. Renamed 2026-07-05 late:
+ * Knowledge Panel Install becomes the Google Authority Install (one family
+ * with the Google Authority Quiz and Review); the bundle tier is The
+ * Complete Build. Slugs, URLs, anchors, and schema @ids unchanged.
+ * Podcast, IMDb, and a full website (if the executive does not already
+ * have one) are the shared floor in both. The audio voice clone and voice
+ * corpus are exclusive to the Pre-Sold Author Package.
  *
  * Copy rules: no em dashes, no banned vocabulary, no "X, not Y" patterns.
  * Public copy names capabilities, never vendors.
@@ -67,7 +70,7 @@ export const KNOWLEDGE_PANEL_INSTALL: PackageMeta = {
   id: 'knowledge-panel-install',
   slug: 'knowledge-panel-install',
   url: '/knowledge-panel-install/',
-  name: 'Knowledge Panel Install',
+  name: 'Google Authority Install',
   priceUsd: 24000,
   priceDisplay: '$24,000',
   timelineMonths: 12,
@@ -185,7 +188,7 @@ export type BundleMeta = {
  * The only discount anywhere; it attaches to scope, never to payment
  * timing. */
 export const BUNDLE: BundleMeta = {
-  name: 'Both Packages',
+  name: 'The Complete Build',
   priceUsd: 54000,
   priceDisplay: '$54,000',
   listPriceUsd: BOTH_PACKAGES_PRICE_USD,

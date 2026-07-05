@@ -25,6 +25,11 @@ import {
  * on the page is the bundle's 10 percent, which attaches to scope, never
  * to payment timing). Pure CSS toggle via :has(), so this stays a server
  * component.
+ *
+ * Tier order (Brett, 2026-07-05 late): the two distinct products sit
+ * adjacent for the side-by-side read, and the bundle lands featured on
+ * the right as the conclusion. Middle-featured suits linear ladders;
+ * this is A, B, then A+B.
  */
 
 function CheckIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -73,6 +78,17 @@ const TIERS: Tier[] = [
     highlights: [...KNOWLEDGE_PANEL_INSTALL.differentiators],
   },
   {
+    key: 'psa',
+    anchorId: 'pre-sold-author',
+    name: PRE_SOLD_AUTHOR.name,
+    description: 'A finished book from your own voice, plus the launch. Delivered in 6 months, application only.',
+    monthly: PRE_SOLD_AUTHOR.payment.monthlyDisplay,
+    upfront: PRE_SOLD_AUTHOR.priceDisplay,
+    monthlyNote: `12 payments, ${PRE_SOLD_AUTHOR.priceDisplay} total`,
+    featured: false,
+    highlights: [...PRE_SOLD_AUTHOR.differentiators],
+  },
+  {
     key: 'both',
     anchorId: 'both-packages',
     name: BUNDLE.name,
@@ -83,22 +99,11 @@ const TIERS: Tier[] = [
     featured: true,
     saveChip: `Save ${BUNDLE.savingsDisplay}`,
     highlights: [
-      'Everything in the Knowledge Panel Install',
-      'Everything in the Pre-Sold Author Package',
+      `Everything in the ${KNOWLEDGE_PANEL_INSTALL.name}`,
+      `Everything in the ${PRE_SOLD_AUTHOR.name}`,
       `10 percent off the ${BUNDLE.listPriceDisplay} the two cost separately`,
       'One team holding both builds in parallel',
     ],
-  },
-  {
-    key: 'psa',
-    anchorId: 'pre-sold-author',
-    name: PRE_SOLD_AUTHOR.name,
-    description: 'A finished book from your own voice, plus the launch. Delivered in 6 months, application only.',
-    monthly: PRE_SOLD_AUTHOR.payment.monthlyDisplay,
-    upfront: PRE_SOLD_AUTHOR.priceDisplay,
-    monthlyNote: `12 payments, ${PRE_SOLD_AUTHOR.priceDisplay} total`,
-    featured: false,
-    highlights: [...PRE_SOLD_AUTHOR.differentiators],
   },
 ]
 
@@ -138,7 +143,7 @@ export function PricingSection() {
               Two builds, one bundle.
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-center text-lg font-medium text-pretty text-neutral-400 sm:text-xl/8">
-              The Knowledge Panel Install, the Pre-Sold Author Package, or
+              The Google Authority Install, the Pre-Sold Author Package, or
               both together at 10 percent off. Application only, and the
               total is the same whichever way you pay.
             </p>
