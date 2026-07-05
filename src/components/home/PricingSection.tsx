@@ -24,15 +24,15 @@ import {
  * the bundle's 10 percent, which attaches to scope, never to payment
  * timing). Pure CSS toggle via :has(); server component.
  *
- * Corrective pass (Brett via Dispatch, 2026-07-05 late): no opacity
- * animation anywhere. The entrance is a curtain handled in page.tsx (the
- * definition block pins under a scroll runway and this opaque band slides
- * over it at native scroll speed). The Full Build is the featured card on
- * the LEFT (aspirational anchoring: solar ring, white card, glow behind
- * the left column); PSA and the Brand SERP Install wear the standard
- * treatment. The glow clips inside its own rounded layer so the form
- * never needs overflow-hidden and nothing can clip the hanging cards or
- * the comparison tables.
+ * Final card arrangement (Brett, 2026-07-05, after seeing both variants):
+ * descending price left to right with the levers split. The Full Build
+ * anchors left as a standard card carrying only the Save $6,000 chip;
+ * the Pre-Sold Author Package holds the featured middle (white panel,
+ * solar ring, glow centered behind it); the Brand SERP Install enters
+ * right. No compare-at strikethroughs anywhere: on the monthly toggle a
+ * struck $5,000 beside the save chip invited save-per-month misreading.
+ * The entrance curtain lives in page.tsx (sticky definition + opaque
+ * band, no opacity animation).
  */
 
 function CheckIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -64,8 +64,6 @@ type Tier = {
   upfront: string
   monthlyNote: string
   note?: string
-  compareAtMonthly?: string
-  compareAtUpfront?: string
   featured: boolean
   saveChip?: string
   highlights: string[]
@@ -80,9 +78,7 @@ const TIERS: Tier[] = [
     monthly: BUNDLE.payment.monthlyDisplay,
     upfront: BUNDLE.priceDisplay,
     monthlyNote: `12 payments, ${BUNDLE.priceDisplay} total`,
-    compareAtMonthly: BUNDLE.listMonthlyDisplay,
-    compareAtUpfront: BUNDLE.listPriceDisplay,
-    featured: true,
+    featured: false,
     saveChip: `Save ${BUNDLE.savingsDisplay}`,
     highlights: [
       `Everything in the ${KNOWLEDGE_PANEL_INSTALL.name}`,
@@ -100,7 +96,7 @@ const TIERS: Tier[] = [
     upfront: PRE_SOLD_AUTHOR.priceDisplay,
     monthlyNote: `12 payments, ${PRE_SOLD_AUTHOR.priceDisplay} total`,
     note: PRE_SOLD_AUTHOR.payment.note,
-    featured: false,
+    featured: true,
     highlights: [...PRE_SOLD_AUTHOR.differentiators],
   },
   {
@@ -148,8 +144,8 @@ export function PricingSection() {
           quiz-card treatment. The glow clips inside its own layer below so
           the band itself never clips the cards hanging past its bottom. */}
       <div className="relative flow-root rounded-3xl bg-neutral-950 pt-16 pb-16 sm:pt-20 lg:pb-0">
-        {/* Solar glow, clipped to the rounded band, aimed at the featured
-            left column on desktop. */}
+        {/* Solar glow, clipped to the rounded band, centered behind the
+            featured middle card. */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl"
@@ -157,7 +153,7 @@ export function PricingSection() {
           <svg
             viewBox="0 0 1208 1024"
             aria-hidden="true"
-            className="absolute -bottom-48 left-1/2 h-256 -translate-x-1/2 mask-[radial-gradient(closest-side,white,transparent)] lg:left-[18%]"
+            className="absolute -bottom-48 left-1/2 h-256 -translate-x-1/2 mask-[radial-gradient(closest-side,white,transparent)]"
           >
             <ellipse cx={604} cy={512} rx={604} ry={512} fill="url(#pn-solar-glow)" />
             <defs>
@@ -259,11 +255,6 @@ export function PricingSection() {
                           'font-display text-4xl font-medium tracking-tight group-has-[[name=frequency][value=upfront]:checked]/tiers:hidden',
                         )}
                       >
-                        {tier.compareAtMonthly && (
-                          <span className="mr-2 text-2xl text-neutral-400 line-through">
-                            {tier.compareAtMonthly}
-                          </span>
-                        )}
                         {tier.monthly}
                       </p>
                       <p
@@ -272,11 +263,6 @@ export function PricingSection() {
                           'font-display text-4xl font-medium tracking-tight group-has-[[name=frequency][value=monthly]:checked]/tiers:hidden',
                         )}
                       >
-                        {tier.compareAtUpfront && (
-                          <span className="mr-2 text-2xl text-neutral-400 line-through">
-                            {tier.compareAtUpfront}
-                          </span>
-                        )}
                         {tier.upfront}
                       </p>
                       <div className="text-sm">
