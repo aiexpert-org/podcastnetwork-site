@@ -55,7 +55,7 @@ const STEPS: Step[] = [
     ],
     correct: 'earned',
     reveal:
-      'It is earned. Google’s Knowledge Graph builds an entity for you only when enough corroborated, machine-readable proof exists across the web. Nobody can buy the box. Anybody can build the proof.',
+      'It is earned. Google’s Knowledge Graph builds an entity for you only when enough corroborated, machine-readable proof exists across the web. Nobody can buy the box, and the proof does not assemble itself: it gets built signal by signal across a dozen surfaces, in the right order. The rest of this quiz shows you what those signals are.',
   },
   {
     kind: 'quiz',
