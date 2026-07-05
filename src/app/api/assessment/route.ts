@@ -53,7 +53,7 @@ type Briefing = {
 }
 
 const KNOW_NOW = [
-  'A Knowledge Panel is earned from Google’s Knowledge Graph. It cannot be bought, and it can be built.',
+  'A Knowledge Panel is earned from Google’s Knowledge Graph. It cannot be bought. It gets built signal by signal, and that assembly is the work.',
   'Wikidata is the seed surface, your own site is the Entity Home, and rented profiles count least.',
   'AI answer engines read the same entity layer, so fixing it corrects search results and AI answers together.',
   'Nobody can guarantee Wikipedia, and a panel does not depend on it. A guarantee is the tell of a bad vendor.',
