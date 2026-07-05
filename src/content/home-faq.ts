@@ -11,7 +11,7 @@ export const HOME_FAQ: FaqItem[] = [
   {
     question: "Can I do both?",
     answer:
-      "Yes. Both are standalone, so an executive who wants both pays $60,000 total with no bundle discount. They run in parallel on their own timelines: six months of delivery for the Pre-Sold Author Package, twelve months for the Knowledge Panel Install.",
+      "Yes, and the bundle is the one discount we offer: both packages together are $54,000, 10 percent off the $60,000 they cost separately, paid up front or $4,500 a month for 12 months. They run in parallel: the book delivers inside six months while the panel work runs the year.",
   },
   {
     question: "Is this only for real estate?",

@@ -9,10 +9,13 @@
  * paid up front or split into twelve monthly payments of $2,000. Pre-Sold
  * Author Package $36,000 total, paid up front or split into twelve monthly
  * payments of $3,000 while delivery runs the first six months. No discount
- * in either direction on either package. Both packages together $60,000,
- * no bundle discount. Podcast, IMDb, and a full website (if the executive
- * does not already have one) are the shared floor in both. The audio voice
- * clone and voice corpus are exclusive to the Pre-Sold Author Package.
+ * on payment timing in either direction. Bundle locked 2026-07-05 late:
+ * both packages together are $54,000, 10 percent off the $60,000 list, up
+ * front or $4,500 x 12; the bundle is the only discount anywhere, and it
+ * attaches to scope, never to payment timing. Podcast, IMDb, and a full
+ * website (if the executive does not already have one) are the shared
+ * floor in both. The audio voice clone and voice corpus are exclusive to
+ * the Pre-Sold Author Package.
  *
  * Copy rules: no em dashes, no banned vocabulary, no "X, not Y" patterns.
  * Public copy names capabilities, never vendors.
@@ -163,7 +166,35 @@ export const PRE_SOLD_AUTHOR: PackageMeta = {
 
 export const PACKAGES: PackageMeta[] = [KNOWLEDGE_PANEL_INSTALL, PRE_SOLD_AUTHOR]
 
-/** Combined price when an executive takes both. No bundle discount. */
+/** Sum of the two package prices, bought separately. */
 export const BOTH_PACKAGES_PRICE_USD =
   KNOWLEDGE_PANEL_INSTALL.priceUsd + PRE_SOLD_AUTHOR.priceUsd
 export const BOTH_PACKAGES_PRICE_DISPLAY = '$60,000'
+
+export type BundleMeta = {
+  name: string
+  priceUsd: number
+  priceDisplay: string
+  listPriceUsd: number
+  listPriceDisplay: string
+  savingsDisplay: string
+  payment: PackagePayment
+}
+
+/** The bundle: both packages at 10 percent off, locked 2026-07-05 late.
+ * The only discount anywhere; it attaches to scope, never to payment
+ * timing. */
+export const BUNDLE: BundleMeta = {
+  name: 'Both Packages',
+  priceUsd: 54000,
+  priceDisplay: '$54,000',
+  listPriceUsd: BOTH_PACKAGES_PRICE_USD,
+  listPriceDisplay: BOTH_PACKAGES_PRICE_DISPLAY,
+  savingsDisplay: '$6,000',
+  payment: {
+    planDisplay: 'Paid up front, or split into 12 monthly payments of $4,500',
+    monthlyDisplay: '$4,500',
+    monthlyPayments: 12,
+    note: 'Book delivery runs the first 6 months; the panel work and the plan run the year.',
+  },
+}

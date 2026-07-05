@@ -1,6 +1,5 @@
 import { type Metadata } from 'next'
 import Link from 'next/link'
-import clsx from 'clsx'
 
 import caseStudies from '../../data/case-studies.json'
 import { ContactSection } from '@/components/ContactSection'
@@ -8,6 +7,7 @@ import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { SectionIntro } from '@/components/SectionIntro'
 import { InstantReport } from '@/components/home/PresenceScoreHero'
+import { PricingSection } from '@/components/home/PricingSection'
 import { type CaseStudyStatic } from '@/components/case-studies/LiveCaseStudyCard'
 import { FAQBlock } from '@/components/ui/FAQBlock'
 import { HOME_FAQ } from '@/content/home-faq'
@@ -15,11 +15,8 @@ import { SchemaGraph } from '@/components/seo/SchemaGraph'
 import { homeSchema } from '@/lib/schema-graph'
 import { Button } from '@/components/Button'
 import {
-  BOTH_PACKAGES_PRICE_DISPLAY,
   KNOWLEDGE_PANEL_INSTALL,
   PRE_SOLD_AUTHOR,
-  SHARED_FLOOR,
-  type PackageMeta,
 } from '@/content/packages'
 
 export const metadata: Metadata = {
@@ -92,105 +89,6 @@ function AssessmentGateway() {
           </div>
         </FadeIn>
       </Container>
-    </div>
-  )
-}
-
-function CheckIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" {...props}>
-      <path
-        fillRule="evenodd"
-        d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-        clipRule="evenodd"
-      />
-    </svg>
-  )
-}
-
-/* Pricing cards adapted from the Tailwind Plus "Two tiers with emphasized
- * left tier" section, with the payment toggle from the Plus "Three tiers
- * with toggle" block (both harvested from Brett's Plus session,
- * 2026-07-05). Price visibility is driven entirely by the radio state
- * through :has() selectors, so this stays a server component. Same total
- * both ways (no discount in either direction, per the 2026-07-05 lock),
- * so the toggle reframes the same money rather than repricing it. */
-function PricingCard({
-  pkg,
-  anchorId,
-  featured = false,
-  badge,
-}: {
-  pkg: PackageMeta
-  anchorId: string
-  featured?: boolean
-  badge?: string
-}) {
-  return (
-    <div
-      id={anchorId}
-      className={clsx(
-        featured
-          ? 'relative bg-white shadow-2xl'
-          : 'bg-white/60 sm:mx-8 sm:rounded-t-none lg:mx-0 lg:rounded-tr-3xl lg:rounded-bl-none',
-        'scroll-mt-24 rounded-3xl p-8 ring-1 ring-neutral-950/10 sm:p-10',
-      )}
-    >
-      <div className="flex items-center justify-between gap-4">
-        <h3 className="font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
-          {pkg.name}
-        </h3>
-        {badge && (
-          <p className="rounded-full bg-neutral-950 px-3 py-1 text-xs font-semibold text-white">
-            {badge}
-          </p>
-        )}
-      </div>
-      <p className="mt-4 flex items-baseline gap-x-2 group-has-[[name=frequency][value=upfront]:checked]/tiers:hidden">
-        <span className="font-display text-5xl font-medium tracking-tight text-neutral-950">
-          {pkg.payment.monthlyDisplay}
-        </span>
-        <span className="text-base text-neutral-500">a month</span>
-      </p>
-      <p className="mt-4 flex items-baseline gap-x-2 group-has-[[name=frequency][value=monthly]:checked]/tiers:hidden">
-        <span className="font-display text-5xl font-medium tracking-tight text-neutral-950">
-          {pkg.priceDisplay}
-        </span>
-        <span className="text-base text-neutral-500">total</span>
-      </p>
-      <p className="mt-2 text-sm text-neutral-600">
-        {pkg.timelineDisplay}, application only
-      </p>
-      <p className="mt-1 text-sm text-neutral-600">
-        {pkg.payment.planDisplay}
-      </p>
-      {pkg.payment.note && (
-        <p className="mt-1 text-sm text-neutral-600">{pkg.payment.note}</p>
-      )}
-      <p className="mt-6 text-base/7 text-neutral-600">{pkg.tagline}</p>
-      <ul role="list" className="mt-8 space-y-3 text-sm/6 text-neutral-600">
-        {pkg.differentiators.map((d) => (
-          <li key={d} className="flex gap-x-3">
-            <CheckIcon className="h-6 w-5 flex-none text-neutral-950" />
-            <span>{d}</span>
-          </li>
-        ))}
-      </ul>
-      <p className="mt-8 text-sm text-neutral-600">
-        {pkg.deliverables.length} deliverables in total. {pkg.timeInvestment}
-      </p>
-      {featured ? (
-        <Button href="/apply/" className="mt-8 w-full sm:mt-10">
-          Apply for this build
-        </Button>
-      ) : (
-        <Link
-          href="/apply/"
-          className="mt-8 block rounded-xl border border-neutral-950/15 px-5 py-2.5 text-center text-sm font-semibold text-neutral-950 transition hover:border-neutral-950/40 sm:mt-10"
-        >
-          Apply for this build
-        </Link>
-      )}
     </div>
   )
 }
@@ -273,100 +171,14 @@ function CaseStudyBand({ studies }: { studies: CaseStudyStatic[] }) {
   )
 }
 
-/* Section 4: the two packages, the shared floor folded in from the retired
- * package routes, and the stepped case-study band folded in from the
- * retired case-studies route. */
+/* Section 4: the three-tier pricing band (Tailwind Plus block, dark with
+ * the solar glow) followed by the stepped case-study band. The shared
+ * floor block retired 2026-07-05: its rows live in the comparison table. */
 function Packages({ studies }: { studies: CaseStudyStatic[] }) {
   return (
-    <div id="packages" className="scroll-mt-24">
-      <SectionIntro
-        eyebrow="The fixes"
-        title="Two builds: the Knowledge Panel Install and the Pre-Sold Author Package."
-        className="mt-24 sm:mt-32 lg:mt-40"
-      >
-        <p>
-          Each one closes gaps the report just showed you. The Knowledge Panel
-          Install is for executives who need Google to recognize them as an
-          entity: schema, entity graph, citation signals, verified monthly for
-          a year. The Pre-Sold Author Package produces a finished book from
-          your own voice on top of that authority build. Both standalone, both
-          application only. Take both and it&apos;s{' '}
-          {BOTH_PACKAGES_PRICE_DISPLAY}, run in parallel on their own
-          timelines. No bundle discount, because each one stands on its own.
-        </p>
-      </SectionIntro>
-      <Container className="mt-16">
-        <FadeIn>
-          <form className="group/tiers">
-            <div className="flex justify-center">
-              <fieldset aria-label="How you would pay">
-                <div className="grid grid-cols-2 gap-x-1 rounded-full p-1 text-center text-xs/5 font-semibold ring-1 ring-neutral-950/10">
-                  <label className="group relative cursor-pointer rounded-full px-3 py-1.5 has-[:checked]:bg-neutral-950">
-                    <input
-                      defaultValue="monthly"
-                      defaultChecked
-                      name="frequency"
-                      type="radio"
-                      className="absolute inset-0 appearance-none rounded-full"
-                    />
-                    <span className="text-neutral-500 group-has-[:checked]:text-white">
-                      Pay monthly
-                    </span>
-                  </label>
-                  <label className="group relative cursor-pointer rounded-full px-3 py-1.5 has-[:checked]:bg-neutral-950">
-                    <input
-                      defaultValue="upfront"
-                      name="frequency"
-                      type="radio"
-                      className="absolute inset-0 appearance-none rounded-full"
-                    />
-                    <span className="text-neutral-500 group-has-[:checked]:text-white">
-                      Pay up front
-                    </span>
-                  </label>
-                </div>
-              </fieldset>
-            </div>
-            <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 items-center gap-y-6 sm:gap-y-0 lg:grid-cols-2">
-              <PricingCard
-                pkg={KNOWLEDGE_PANEL_INSTALL}
-                anchorId="knowledge-panel"
-                featured
-                badge="Start here"
-              />
-              <PricingCard pkg={PRE_SOLD_AUTHOR} anchorId="pre-sold-author" />
-            </div>
-          </form>
-        </FadeIn>
-
-        <FadeIn>
-          <div className="mt-16 rounded-4xl bg-neutral-50 p-8 ring-1 ring-neutral-950/5 sm:p-10">
-            <h3 className="font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
-              The shared floor
-            </h3>
-            <p className="mt-3 max-w-2xl text-sm text-neutral-600">
-              Every client walks away with the same base, whichever build they
-              pick. Each package adds its own depth on top of it.
-            </p>
-            <ul
-              role="list"
-              className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2"
-            >
-              {SHARED_FLOOR.map((item) => (
-                <li
-                  key={item}
-                  className="flex gap-3 text-sm text-neutral-600"
-                >
-                  <span aria-hidden="true" className="mt-1 text-neutral-950">
-                    &#8226;
-                  </span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </FadeIn>
-
+    <div id="packages" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
+      <PricingSection />
+      <Container>
         <SectionIntro
           eyebrow="In the wild"
           title="Where the current builds stand."
@@ -454,7 +266,7 @@ export default function Home() {
       {/* Section 3: definition block */}
       <Definition />
 
-      {/* Section 4: the two packages + folded proof */}
+      {/* Section 4: three-tier pricing + folded proof */}
       <Packages studies={studies} />
 
       {/* Section 5: FAQ */}
