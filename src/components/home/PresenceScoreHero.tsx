@@ -7,6 +7,7 @@
  * rename to InstantReport.tsx in the post-pitch cleanup. The 0-to-10
  * aggregate score is gone per Brett's 2026-07-04 evening lock: real findings
  * only, no email gate, each miss labeled with the package that fixes it.
+ * Fix labels follow the 2026-07-05 rename: Brand SERP Install.
  */
 
 import { useCallback, useRef, useState } from 'react'
@@ -30,7 +31,7 @@ const LOADING_PHASES = [
 ]
 
 const FIX_LABELS: Record<NonNullable<PresenceFinding['fix']>, string> = {
-  kp: 'Fixed by the Knowledge Panel Install',
+  kp: 'Fixed by the Brand SERP Install',
   psa: 'Fixed by the Pre-Sold Author Package',
   both: 'Fixed by both packages',
 }
@@ -313,7 +314,7 @@ export function InstantReport() {
                       : seo.phase === 'done'
                         ? seo.seoScore >= 90
                           ? 'Your page passes the technical SEO floor Lighthouse checks for.'
-                          : 'Lighthouse found technical SEO gaps on your page. Crawlability and metadata are part of the authority floor.'
+                          : 'Lighthouse found technical SEO gaps on your page. Crawlability and metadata are part of the discovery floor.'
                         : 'The Lighthouse audit did not complete for this scan. Run the report again in a minute.'
                   }
                   fixLabel={
@@ -347,7 +348,7 @@ export function InstantReport() {
                   href="/#packages"
                   className="text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
                 >
-                  See the two packages <span aria-hidden="true">&rarr;</span>
+                  See the packages <span aria-hidden="true">&rarr;</span>
                 </Link>
               </div>
             </div>

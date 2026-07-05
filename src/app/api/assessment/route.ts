@@ -15,7 +15,8 @@ import { KNOWLEDGE_PANEL_INSTALL, PRE_SOLD_AUTHOR } from '@/content/packages'
  * into the log and the GHL note.
  *
  * Copy rule from Brett's walkthrough: the review screen teaches, so no
- * industry jargon survives here. Plain words only.
+ * industry jargon survives here. Plain words only. Product names come
+ * from packages.ts (Brand SERP Install per the 2026-07-05 Dispatch sync).
  *
  * Market-pricing facts sourced from Kalicube's published pricing pages
  * (done-for-you service starts at $12,000; reputable range $3,000 to
@@ -118,7 +119,7 @@ function startingPoint(role: string, book: string, firstName: string): string {
 function market(): string {
   const plan = KNOWLEDGE_PANEL_INSTALL.payment.planDisplay
   const planLower = `${plan.charAt(0).toLowerCase()}${plan.slice(1)}`
-  return `Reputable specialist services run roughly $3,000 to $18,000, and the leading specialist’s done-for-you service starts at $12,000, typically for the panel work alone. The Knowledge Panel Install is ${KNOWLEDGE_PANEL_INSTALL.priceDisplay} total, ${planLower}. It sits above the panel-only range on purpose: the podcast, IMDb, press, AI answer testing, and a year of monthly checkups are inside the price, where others quote them separately or not at all.`
+  return `Reputable specialist services run roughly $3,000 to $18,000, and the leading specialist’s done-for-you service starts at $12,000, typically for the panel work alone. The ${KNOWLEDGE_PANEL_INSTALL.name} is ${KNOWLEDGE_PANEL_INSTALL.priceDisplay} total, ${planLower}. It sits above the panel-only range on purpose: the podcast, IMDb, press, AI answer testing, and a year of monthly checkups are inside the price, where others quote them separately or not at all.`
 }
 
 function psaParagraph(book: string): string | null {
