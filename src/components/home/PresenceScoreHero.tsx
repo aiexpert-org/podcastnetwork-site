@@ -230,8 +230,7 @@ export function InstantReport() {
         </div>
       </form>
       <p className="mt-3 text-xs text-neutral-500">
-        Real findings from the same public surfaces Google reads. No aggregate
-        score, no email gate. Nothing is stored beyond a short cache.
+        Free. Takes about five seconds. No signup needed.
       </p>
 
       <AnimatePresence>
@@ -273,8 +272,8 @@ export function InstantReport() {
             </div>
 
             <p className="mt-4 text-sm text-neutral-600">
-              Every line below is a real, checkable signal. No aggregate score,
-              because the individual findings are what Google actually reads.
+              Every line below is a real signal Google reads, checked live just
+              now.
             </p>
 
             <ul

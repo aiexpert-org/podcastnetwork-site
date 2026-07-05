@@ -103,7 +103,7 @@ const STEPS: Step[] = [
     question:
       'How big is your monthly audience today? Count your largest surface: downloads, email list, or social.',
     options: [
-      { value: 'none', label: 'No real audience yet' },
+      { value: 'none', label: 'Just getting started' },
       { value: 'under-1k', label: 'Under 1,000' },
       { value: '1k-10k', label: '1,000 to 10,000' },
       { value: '10k-plus', label: 'More than 10,000' },
@@ -124,7 +124,8 @@ const STEPS: Step[] = [
     key: 'outcome',
     question: 'What outcome would make this worth doing?',
     placeholder:
-      'One or two sentences. What has to be true in a year for this to have been worth it?',
+      'Optional, but it sharpens your recommendation. What has to be true in a year for this to have been worth it?',
+    optional: true,
   },
   {
     kind: 'choice',
