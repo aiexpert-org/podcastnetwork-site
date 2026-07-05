@@ -2,11 +2,12 @@
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": "https://podcastnetwork.org/knowledge-panel-install/#service",
-  "name": "Knowledge Panel Install",
+  "name": "Brand SERP Install",
   "url": "https://podcastnetwork.org/knowledge-panel-install/",
   "description": "A twelve-month build that makes Google and the AI answer engines recognize the client as a real entity: a Google Knowledge Panel with its qualifying signal set, answer-engine coverage with monthly testing, a Wikipedia and Wikidata attempt, a schema stack, a podcast, press, and a full year of monthly verification and reporting. Application only.",
-  "serviceType": "Entity and Knowledge Panel build",
+  "serviceType": "Brand SERP and entity build",
   "category": [
+    "Brand SERP",
     "Google Knowledge Panel",
     "Entity SEO",
     "Wikidata entity seeding",
@@ -32,7 +33,7 @@
   "offers": {
     "@type": "Offer",
     "@id": "https://podcastnetwork.org/knowledge-panel-install/#offer",
-    "name": "Knowledge Panel Install",
+    "name": "Brand SERP Install",
     "url": "https://podcastnetwork.org/knowledge-panel-install/",
     "price": "24000",
     "priceCurrency": "USD",
@@ -64,7 +65,7 @@
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "@id": "https://podcastnetwork.org/knowledge-panel-install/#catalog",
-    "name": "What the Knowledge Panel Install includes",
+    "name": "What the Brand SERP Install includes",
     "itemListElement": [
       {
         "@type": "Offer",
