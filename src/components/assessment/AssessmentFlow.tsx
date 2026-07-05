@@ -1,14 +1,19 @@
 'use client'
 
 /**
- * Tier 2 of the two-tier diagnostic (locked 2026-07-04): a ten-step,
- * one-question-per-screen assessment. Email is captured at step nine, the
- * recommendation is computed server-side and rendered on screen. Question
- * copy is drafted per the locked question shape and awaits Brett's wording
- * pass; the flow, scoring, and CRM wiring do not change with copy edits.
+ * The Google Authority Quiz (v0.6.12, per Brett): ask-guess-reveal.
+ *
+ * Six teaching beats, two situation questions, one informed WTP question,
+ * then contact details. The outcome is a briefing, never a package
+ * recommendation: the visitor teaches themselves why the entity layer
+ * matters and leaves with buying criteria that travel with them.
+ *
+ * Every reveal is a verifiable claim. The market-pricing beat is sourced
+ * from Kalicube's published pricing pages (done-for-you service starts at
+ * $12,000; reputable range $3,000 to $18,000), checked 2026-07-04.
  */
 
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useState } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -16,132 +21,140 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/Button'
 import { track } from '@/lib/track'
 
-export type AssessmentAnswers = {
-  role: string
-  goal: string
-  book: string
-  audience: string
-  tried: string
-  outcome: string
-  timeline: string
-  budget: string
-  email: string
-  name: string
-  extra: string
-}
-
-type Recommendation = {
-  packageId: 'knowledge-panel-install' | 'pre-sold-author' | 'both'
-  headline: string
-  priceLine: string
-  whyLines: string[]
+type QuizStep = {
+  kind: 'quiz'
+  key: string
+  question: string
+  options: { value: string; label: string }[]
+  correct: string
+  reveal: string
 }
 
 type ChoiceStep = {
   kind: 'choice'
-  key: keyof AssessmentAnswers
-  question: string | ((a: Partial<AssessmentAnswers>) => string)
+  key: string
+  question: string
   options: { value: string; label: string }[]
 }
 
-type TextStep = {
-  kind: 'text'
-  key: keyof AssessmentAnswers
-  question: string
-  placeholder: string
-  optional?: boolean
-}
+type ContactStep = { kind: 'contact'; key: 'contact'; question: string }
 
-type EmailStep = {
-  kind: 'email'
-  key: 'email'
-  question: string
-}
-
-type Step = ChoiceStep | TextStep | EmailStep
+type Step = QuizStep | ChoiceStep | ContactStep
 
 const STEPS: Step[] = [
+  {
+    kind: 'quiz',
+    key: 'q_panel',
+    question:
+      'When someone Googles a name, what decides whether the information box on the right (the Knowledge Panel) appears?',
+    options: [
+      { value: 'paid', label: 'Google sells that space' },
+      { value: 'earned', label: 'Google decides it has enough proof the person is real' },
+      { value: 'anyone', label: 'It appears for anyone with a website' },
+      { value: 'random', label: 'It is basically random' },
+    ],
+    correct: 'earned',
+    reveal:
+      'It is earned. Google’s Knowledge Graph builds an entity for you only when enough corroborated, machine-readable proof exists across the web. Nobody can buy the box. Anybody can build the proof.',
+  },
+  {
+    kind: 'quiz',
+    key: 'q_seed',
+    question:
+      'Which of these does Google trust most as the seed of a Knowledge Panel?',
+    options: [
+      { value: 'website', label: 'Your website' },
+      { value: 'wikidata', label: 'Wikidata' },
+      { value: 'linkedin', label: 'Your LinkedIn profile' },
+      { value: 'instagram', label: 'Your Instagram' },
+    ],
+    correct: 'wikidata',
+    reveal:
+      'Wikidata: a structured database most people have never heard of. A Q-number there is the root a panel grows from. Your own site matters as the Entity Home, and social profiles are rented ground that Google reads last.',
+  },
+  {
+    kind: 'quiz',
+    key: 'q_ai',
+    question:
+      'When someone asks ChatGPT or Gemini who you are, where does that answer mostly come from?',
+    options: [
+      { value: 'made-up', label: 'The AI invents it' },
+      { value: 'entity-data', label: 'The same public entity data and citations Google reads' },
+      { value: 'social', label: 'Your social media posts' },
+    ],
+    correct: 'entity-data',
+    reveal:
+      'Largely the same entity layer Google reads: structured data, citations, and corroborated facts. Thin entity data produces vague or wrong AI answers about you. Fix the layer once and search results and AI answers both improve.',
+  },
+  {
+    kind: 'quiz',
+    key: 'q_mechanism',
+    question:
+      'What is the fastest legitimate way to generate the credits and citations Google wants?',
+    options: [
+      { value: 'press', label: 'A press release blast' },
+      { value: 'backlinks', label: 'Buying backlinks' },
+      { value: 'podcast', label: 'Hosting a podcast' },
+      { value: 'social-daily', label: 'Posting daily on social media' },
+    ],
+    correct: 'podcast',
+    reveal:
+      'A podcast. The show credit earns an IMDb Person page, every guest appearance is a third-party citation, and every episode is indexable content in your own voice. One habit feeds every signal Google wants. Press helps as a supplement; bought backlinks get ignored or penalized.',
+  },
+  {
+    kind: 'quiz',
+    key: 'q_wikipedia',
+    question: 'Can a vendor guarantee you a Wikipedia page?',
+    options: [
+      { value: 'pay', label: 'Yes, if you pay enough' },
+      { value: 'no-guarantee', label: 'No. Wikipedia decides, and no vendor controls it' },
+    ],
+    correct: 'no-guarantee',
+    reveal:
+      'Nobody can guarantee Wikipedia. Volunteer editors and a notability bar decide, and no vendor controls them. A Knowledge Panel does not depend on Wikipedia, and anyone promising you a page is telling you something false. Treat that promise as the tell.',
+  },
+  {
+    kind: 'quiz',
+    key: 'q_market',
+    question:
+      'What do specialist firms typically charge to build and manage a Knowledge Panel?',
+    options: [
+      { value: 'five-hundred', label: '$500 or less' },
+      { value: 'two-k', label: 'Around $2,000' },
+      { value: 'three-to-eighteen', label: '$3,000 to $18,000' },
+      { value: 'hundred-k', label: 'Over $100,000' },
+    ],
+    correct: 'three-to-eighteen',
+    reveal:
+      'Reputable services run roughly $3,000 to $18,000, and the category leader’s done-for-you panel service starts at $12,000, typically for the entity work alone. A podcast, press placements, IMDb, and a year of monthly verification usually cost extra, when they are offered at all. Cheaper than that range is where the spam lives.',
+  },
   {
     kind: 'choice',
     key: 'role',
     question: 'Which of these is closest to you?',
     options: [
       { value: 'executive', label: 'Executive' },
-      { value: 'author', label: 'Author, or becoming one' },
+      { value: 'author', label: 'Author, or planning a book' },
       { value: 'entrepreneur', label: 'Entrepreneur or founder' },
       { value: 'professional', label: 'Another kind of professional' },
     ],
   },
   {
     kind: 'choice',
-    key: 'goal',
-    question: 'What are you trying to accomplish?',
-    options: [
-      { value: 'authority', label: 'Google and AI engines should recognize me' },
-      { value: 'pre-sell-book', label: 'Pre-sell a book before it launches' },
-      { value: 'audience', label: 'Build an audience that compounds' },
-      { value: 'other', label: 'Something else' },
-    ],
-  },
-  {
-    kind: 'choice',
     key: 'book',
-    question: (a) =>
-      a.role === 'author'
-        ? 'Where is the book today?'
-        : 'Do you have a book, or plans for one?',
+    question: 'Where does a book fit for you?',
     options: [
-      { value: 'manuscript', label: 'Manuscript in hand' },
-      { value: 'writing', label: 'Writing it now' },
-      { value: 'planning', label: 'Planning one' },
+      { value: 'published', label: 'Published before' },
+      { value: 'writing', label: 'Writing or planning one now' },
+      { value: 'someday', label: 'Someday, maybe' },
       { value: 'none', label: 'No book plans' },
     ],
   },
   {
     kind: 'choice',
-    key: 'audience',
-    question:
-      'How big is your monthly audience today? Count your largest surface: downloads, email list, or social.',
-    options: [
-      { value: 'none', label: 'Just getting started' },
-      { value: 'under-1k', label: 'Under 1,000' },
-      { value: '1k-10k', label: '1,000 to 10,000' },
-      { value: '10k-plus', label: 'More than 10,000' },
-    ],
-  },
-  {
-    kind: 'choice',
-    key: 'tried',
-    question: 'Have you tried to fix this before?',
-    options: [
-      { value: 'agency', label: 'Hired an agency' },
-      { value: 'self', label: 'Did it myself' },
-      { value: 'no', label: 'This is the first attempt' },
-    ],
-  },
-  {
-    kind: 'text',
-    key: 'outcome',
-    question: 'What outcome would make this worth doing?',
-    placeholder:
-      'Optional, but it sharpens your recommendation. What has to be true in a year for this to have been worth it?',
-    optional: true,
-  },
-  {
-    kind: 'choice',
-    key: 'timeline',
-    question: 'When do you want to start?',
-    options: [
-      { value: 'now', label: 'Now' },
-      { value: '90-days', label: 'Inside 90 days' },
-      { value: '6-12-months', label: '6 to 12 months out' },
-      { value: 'no-urgency', label: 'No urgency, just researching' },
-    ],
-  },
-  {
-    kind: 'choice',
     key: 'budget',
-    question: 'What range would you invest to get the outcome you described?',
+    question:
+      'Knowing what you know now, what would a done-for-you authority build be worth to you?',
     options: [
       { value: 'under-5k', label: 'Under $5,000' },
       { value: '5-15k', label: '$5,000 to $15,000' },
@@ -151,20 +164,23 @@ const STEPS: Step[] = [
     ],
   },
   {
-    kind: 'email',
-    key: 'email',
-    question: 'Where should your recommendation live?',
-  },
-  {
-    kind: 'text',
-    key: 'extra',
-    question: 'Anything else we should know?',
-    placeholder: 'Optional. Context, constraints, or questions.',
-    optional: true,
+    kind: 'contact',
+    key: 'contact',
+    question: 'Who is this briefing for?',
   },
 ]
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+
+export type Briefing = {
+  score: number
+  scoreLine: string
+  knowNow: string[]
+  startingPoint: string
+  market: string
+  demands: string[]
+  psa: string | null
+}
 
 function ProgressBar({ step, total }: { step: number; total: number }) {
   const pct = Math.round((step / total) * 100)
@@ -172,13 +188,13 @@ function ProgressBar({ step, total }: { step: number; total: number }) {
     <div>
       <div className="flex items-center justify-between text-xs font-semibold tracking-wide text-neutral-500 uppercase">
         <span>
-          Question {Math.min(step + 1, total)} of {total}
+          Step {Math.min(step + 1, total)} of {total}
         </span>
         <span>{pct}%</span>
       </div>
       <div
         role="progressbar"
-        aria-label="Assessment progress"
+        aria-label="Quiz progress"
         aria-valuemin={0}
         aria-valuemax={total}
         aria-valuenow={step}
@@ -195,40 +211,26 @@ function ProgressBar({ step, total }: { step: number; total: number }) {
 
 export function AssessmentFlow() {
   const [stepIndex, setStepIndex] = useState(0)
-  const [answers, setAnswers] = useState<Partial<AssessmentAnswers>>({})
-  const [textDraft, setTextDraft] = useState('')
-  const [emailDraft, setEmailDraft] = useState('')
-  const [nameDraft, setNameDraft] = useState('')
+  const [answers, setAnswers] = useState<Record<string, string>>({})
+  const [revealed, setRevealed] = useState(false)
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [result, setResult] = useState<Recommendation | null>(null)
+  const [briefing, setBriefing] = useState<Briefing | null>(null)
 
   const step = STEPS[stepIndex]
   const total = STEPS.length
 
-  const question = useMemo(() => {
-    if (!step) return ''
-    return typeof step.question === 'function'
-      ? step.question(answers)
-      : step.question
-  }, [step, answers])
-
-  const advance = useCallback(
-    (updated: Partial<AssessmentAnswers>) => {
-      setAnswers(updated)
-      setError(null)
-      if (stepIndex === 0) track('assessment_start')
-      track('assessment_step_complete')
-      if (stepIndex < total - 1) {
-        setStepIndex(stepIndex + 1)
-        setTextDraft('')
-      }
-    },
-    [stepIndex, total],
-  )
+  const advance = useCallback(() => {
+    setRevealed(false)
+    setError(null)
+    if (stepIndex < total - 1) setStepIndex(stepIndex + 1)
+  }, [stepIndex, total])
 
   const submit = useCallback(
-    async (finalAnswers: Partial<AssessmentAnswers>) => {
+    async (finalAnswers: Record<string, string>) => {
       setSubmitting(true)
       setError(null)
       track('assessment_submit')
@@ -246,7 +248,7 @@ export function AssessmentFlow() {
               : 'Something went wrong. Try again.',
           )
         } else {
-          setResult(json.recommendation as Recommendation)
+          setBriefing(json.briefing as Briefing)
         }
       } catch {
         setError('Something went wrong. Try again.')
@@ -257,7 +259,7 @@ export function AssessmentFlow() {
     [],
   )
 
-  if (result) {
+  if (briefing) {
     return (
       <motion.div
         initial={{ opacity: 0, y: 16 }}
@@ -265,14 +267,17 @@ export function AssessmentFlow() {
         className="rounded-3xl bg-white p-8 ring-1 ring-neutral-950/10 sm:p-10"
       >
         <p className="text-sm font-semibold tracking-wide text-neutral-500 uppercase">
-          Your recommendation
+          Your Google Authority Briefing
         </p>
         <h2 className="mt-3 font-display text-3xl font-medium tracking-tight text-neutral-950">
-          {result.headline}
+          {briefing.scoreLine}
         </h2>
-        <p className="mt-2 text-base text-neutral-600">{result.priceLine}</p>
-        <ul role="list" className="mt-6 space-y-3">
-          {result.whyLines.map((line) => (
+
+        <h3 className="mt-8 font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
+          What you now know
+        </h3>
+        <ul role="list" className="mt-3 space-y-2">
+          {briefing.knowNow.map((line) => (
             <li key={line} className="flex gap-3 text-base text-neutral-600">
               <span aria-hidden="true" className="mt-1 text-neutral-950">
                 &#8226;
@@ -281,15 +286,51 @@ export function AssessmentFlow() {
             </li>
           ))}
         </ul>
-        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-          <Button href="/apply/">Start your application</Button>
+
+        <h3 className="mt-8 font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
+          Your starting point
+        </h3>
+        <p className="mt-3 text-base text-neutral-600">
+          {briefing.startingPoint}
+        </p>
+
+        <h3 className="mt-8 font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
+          What the market charges
+        </h3>
+        <p className="mt-3 text-base text-neutral-600">{briefing.market}</p>
+
+        <h3 className="mt-8 font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
+          Five things to demand from any vendor
+        </h3>
+        <ul role="list" className="mt-3 space-y-2">
+          {briefing.demands.map((line) => (
+            <li key={line} className="flex gap-3 text-base text-neutral-600">
+              <span aria-hidden="true" className="mt-1 text-neutral-950">
+                &#8226;
+              </span>
+              <span>{line}</span>
+            </li>
+          ))}
+        </ul>
+
+        {briefing.psa && (
+          <div className="mt-8 rounded-2xl bg-neutral-50 p-6 ring-1 ring-neutral-950/5">
+            <p className="text-base text-neutral-600">{briefing.psa}</p>
+          </div>
+        )}
+
+        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-neutral-950/10 pt-6">
+          <Button href="/apply/">Apply for the Knowledge Panel Install</Button>
           <Link
-            href="/#packages"
+            href="/#report"
             className="text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
           >
-            Compare the two builds <span aria-hidden="true">&rarr;</span>
+            Run your instant report <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>
+        <p className="mt-4 text-sm text-neutral-600">
+          The criteria above travel with you, whoever you hire.
+        </p>
       </motion.div>
     )
   }
@@ -308,8 +349,63 @@ export function AssessmentFlow() {
           className="mt-8"
         >
           <h2 className="font-display text-2xl font-medium tracking-tight text-neutral-950">
-            {question}
+            {step.kind === 'contact' ? step.question : step.question}
           </h2>
+
+          {step.kind === 'quiz' && (
+            <div className="mt-6">
+              <div className="grid grid-cols-1 gap-3">
+                {step.options.map((opt) => {
+                  const chosen = answers[step.key] === opt.value
+                  const isCorrect = opt.value === step.correct
+                  return (
+                    <button
+                      key={opt.value}
+                      type="button"
+                      disabled={revealed}
+                      onClick={() => {
+                        if (stepIndex === 0) track('assessment_start')
+                        setAnswers({ ...answers, [step.key]: opt.value })
+                        setRevealed(true)
+                        track('assessment_step_complete')
+                      }}
+                      className={clsx(
+                        'rounded-2xl border px-5 py-4 text-left text-base transition',
+                        revealed && isCorrect
+                          ? 'border-neutral-950 bg-solar text-neutral-950'
+                          : revealed && chosen
+                            ? 'border-neutral-400 bg-neutral-100 text-neutral-500'
+                            : revealed
+                              ? 'border-neutral-200 bg-white text-neutral-400'
+                              : 'border-neutral-300 bg-white text-neutral-950 hover:border-neutral-950',
+                      )}
+                    >
+                      {opt.label}
+                    </button>
+                  )
+                })}
+              </div>
+              {revealed && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 rounded-2xl bg-neutral-50 p-5 ring-1 ring-neutral-950/5"
+                >
+                  <p className="text-sm font-semibold text-neutral-950">
+                    {answers[step.key] === step.correct
+                      ? 'You got it.'
+                      : 'Most people miss this one.'}
+                  </p>
+                  <p className="mt-2 text-sm text-neutral-600">{step.reveal}</p>
+                  <div className="mt-4">
+                    <Button type="button" onClick={advance}>
+                      Continue
+                    </Button>
+                  </div>
+                </motion.div>
+              )}
+            </div>
+          )}
 
           {step.kind === 'choice' && (
             <div className="mt-6 grid grid-cols-1 gap-3">
@@ -317,7 +413,11 @@ export function AssessmentFlow() {
                 <button
                   key={opt.value}
                   type="button"
-                  onClick={() => advance({ ...answers, [step.key]: opt.value })}
+                  onClick={() => {
+                    setAnswers({ ...answers, [step.key]: opt.value })
+                    track('assessment_step_complete')
+                    advance()
+                  }}
                   className={clsx(
                     'rounded-2xl border px-5 py-4 text-left text-base transition',
                     answers[step.key] === opt.value
@@ -331,117 +431,84 @@ export function AssessmentFlow() {
             </div>
           )}
 
-          {step.kind === 'text' && (
+          {step.kind === 'contact' && (
             <form
               className="mt-6"
               onSubmit={(e) => {
                 e.preventDefault()
-                const value = textDraft.trim()
-                if (!value && !step.optional) {
-                  setError('A sentence or two helps us get this right.')
+                if (!firstName.trim()) {
+                  setError('A first name makes the briefing yours.')
                   return
                 }
-                const updated = { ...answers, [step.key]: value }
-                if (stepIndex === total - 1) {
-                  setAnswers(updated)
-                  void submit(updated)
-                } else {
-                  advance(updated)
+                if (!EMAIL_RE.test(email.trim())) {
+                  setError('That email does not look complete.')
+                  return
                 }
+                void submit({
+                  ...answers,
+                  firstName: firstName.trim(),
+                  lastName: lastName.trim(),
+                  email: email.trim(),
+                })
               }}
             >
-              <label htmlFor={`assessment-${step.key}`} className="sr-only">
-                {question}
-              </label>
-              <textarea
-                id={`assessment-${step.key}`}
-                rows={4}
-                value={textDraft}
-                onChange={(e) => setTextDraft(e.target.value)}
-                placeholder={step.placeholder}
-                maxLength={2000}
-                className="block w-full rounded-2xl border border-neutral-300 bg-white px-5 py-4 text-base text-neutral-950 transition placeholder:text-neutral-500 focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/5 focus:outline-hidden"
-              />
-              <div className="mt-4 flex items-center gap-4">
+              <p className="mt-2 text-sm text-neutral-600">
+                Your briefing renders on screen right now. The email is where
+                the conversation continues if you ever want it to.
+              </p>
+              <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="quiz-first" className="sr-only">
+                    First name
+                  </label>
+                  <input
+                    id="quiz-first"
+                    type="text"
+                    autoComplete="given-name"
+                    placeholder="First name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="block w-full rounded-2xl border border-neutral-300 bg-white px-5 py-4 text-base text-neutral-950 transition placeholder:text-neutral-500 focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/5 focus:outline-hidden"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="quiz-last" className="sr-only">
+                    Last name
+                  </label>
+                  <input
+                    id="quiz-last"
+                    type="text"
+                    autoComplete="family-name"
+                    placeholder="Last name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className="block w-full rounded-2xl border border-neutral-300 bg-white px-5 py-4 text-base text-neutral-950 transition placeholder:text-neutral-500 focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/5 focus:outline-hidden"
+                  />
+                </div>
+              </div>
+              <div className="mt-3">
+                <label htmlFor="quiz-email" className="sr-only">
+                  Email
+                </label>
+                <input
+                  id="quiz-email"
+                  type="email"
+                  inputMode="email"
+                  autoComplete="email"
+                  placeholder="you@company.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="block w-full rounded-2xl border border-neutral-300 bg-white px-5 py-4 text-base text-neutral-950 transition placeholder:text-neutral-500 focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/5 focus:outline-hidden"
+                />
+              </div>
+              <div className="mt-4">
                 <Button
                   type="submit"
                   disabled={submitting}
                   className="disabled:pointer-events-none disabled:opacity-60"
                 >
-                  {stepIndex === total - 1
-                    ? submitting
-                      ? 'Working out your fit'
-                      : 'Get my recommendation'
-                    : 'Continue'}
+                  {submitting ? 'Writing your briefing' : 'Get my briefing'}
                 </Button>
-                {step.optional && stepIndex === total - 1 && (
-                  <button
-                    type="button"
-                    disabled={submitting}
-                    onClick={() => {
-                      const updated = { ...answers, [step.key]: '' }
-                      setAnswers(updated)
-                      void submit(updated)
-                    }}
-                    className="text-sm font-semibold text-neutral-600 transition hover:text-neutral-950"
-                  >
-                    Skip and finish
-                  </button>
-                )}
-              </div>
-            </form>
-          )}
-
-          {step.kind === 'email' && (
-            <form
-              className="mt-6"
-              onSubmit={(e) => {
-                e.preventDefault()
-                const email = emailDraft.trim()
-                if (!EMAIL_RE.test(email)) {
-                  setError('That email does not look complete.')
-                  return
-                }
-                advance({ ...answers, email, name: nameDraft.trim() })
-              }}
-            >
-              <p className="mt-2 text-sm text-neutral-600">
-                Your recommendation renders on screen either way. The email is
-                where the follow-up conversation starts if you want one.
-              </p>
-              <div className="mt-4 grid grid-cols-1 gap-3">
-                <div>
-                  <label htmlFor="assessment-name" className="sr-only">
-                    Your name
-                  </label>
-                  <input
-                    id="assessment-name"
-                    type="text"
-                    autoComplete="name"
-                    placeholder="Your name (optional)"
-                    value={nameDraft}
-                    onChange={(e) => setNameDraft(e.target.value)}
-                    className="block w-full rounded-2xl border border-neutral-300 bg-white px-5 py-4 text-base text-neutral-950 transition placeholder:text-neutral-500 focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/5 focus:outline-hidden"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="assessment-email" className="sr-only">
-                    Your email
-                  </label>
-                  <input
-                    id="assessment-email"
-                    type="email"
-                    inputMode="email"
-                    autoComplete="email"
-                    placeholder="you@company.com"
-                    value={emailDraft}
-                    onChange={(e) => setEmailDraft(e.target.value)}
-                    className="block w-full rounded-2xl border border-neutral-300 bg-white px-5 py-4 text-base text-neutral-950 transition placeholder:text-neutral-500 focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/5 focus:outline-hidden"
-                  />
-                </div>
-              </div>
-              <div className="mt-4">
-                <Button type="submit">Continue</Button>
               </div>
             </form>
           )}
@@ -460,11 +527,8 @@ export function AssessmentFlow() {
           onClick={() => {
             if (stepIndex > 0) {
               setStepIndex(stepIndex - 1)
+              setRevealed(false)
               setError(null)
-              const prev = STEPS[stepIndex - 1]
-              if (prev.kind === 'text') {
-                setTextDraft((answers[prev.key] as string) ?? '')
-              }
             }
           }}
           disabled={stepIndex === 0 || submitting}
@@ -473,7 +537,7 @@ export function AssessmentFlow() {
           Back
         </button>
         <p className="text-xs text-neutral-500">
-          About three minutes. No payment details, no commitment.
+          About three minutes. You learn as you go.
         </p>
       </div>
     </div>

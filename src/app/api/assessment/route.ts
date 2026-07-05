@@ -3,119 +3,99 @@ import { appendFile, mkdir } from 'node:fs/promises'
 
 import { rateLimit } from '@/lib/server-cache'
 import { syncAssessmentToGhl } from '../apply/ghl'
-import {
-  KNOWLEDGE_PANEL_INSTALL,
-  PRE_SOLD_AUTHOR,
-  BOTH_PACKAGES_PRICE_DISPLAY,
-} from '@/content/packages'
+import { KNOWLEDGE_PANEL_INSTALL, PRE_SOLD_AUTHOR } from '@/content/packages'
 
 /**
- * Tier 2 assessment intake. Validates the ten answers, computes the package
- * recommendation server-side, logs the submission (console + /tmp JSONL, the
- * same pattern as the application route), and syncs to GHL as a contact with
- * segment, WTP, and recommendation tags when GHL_API_KEY is present.
+ * Google Authority Quiz intake (v0.6.12). Validates the answers, scores the
+ * six teaching beats server-side, composes the briefing, logs the submission
+ * (console + /tmp JSONL, the WTP exhaust), and syncs to GHL as a contact
+ * with segment, WTP, book-intent, and quiz-score tags when GHL_API_KEY is
+ * present.
  *
- * The WTP question (budget) is the marketing exhaust: quarterly aggregates
- * come straight out of these logs.
+ * Market-pricing facts sourced from Kalicube's published pricing pages
+ * (done-for-you service starts at $12,000; reputable range $3,000 to
+ * $18,000), checked 2026-07-04.
  */
 
 export const runtime = 'nodejs'
 
+const QUIZ_CORRECT: Record<string, string> = {
+  q_panel: 'earned',
+  q_seed: 'wikidata',
+  q_ai: 'entity-data',
+  q_mechanism: 'podcast',
+  q_wikipedia: 'no-guarantee',
+  q_market: 'three-to-eighteen',
+}
+
 const CHOICES: Record<string, string[]> = {
+  q_panel: ['paid', 'earned', 'anyone', 'random'],
+  q_seed: ['website', 'wikidata', 'linkedin', 'instagram'],
+  q_ai: ['made-up', 'entity-data', 'social'],
+  q_mechanism: ['press', 'backlinks', 'podcast', 'social-daily'],
+  q_wikipedia: ['pay', 'no-guarantee'],
+  q_market: ['five-hundred', 'two-k', 'three-to-eighteen', 'hundred-k'],
   role: ['executive', 'author', 'entrepreneur', 'professional'],
-  goal: ['authority', 'pre-sell-book', 'audience', 'other'],
-  book: ['manuscript', 'writing', 'planning', 'none'],
-  audience: ['none', 'under-1k', '1k-10k', '10k-plus'],
-  tried: ['agency', 'self', 'no'],
-  timeline: ['now', '90-days', '6-12-months', 'no-urgency'],
+  book: ['published', 'writing', 'someday', 'none'],
   budget: ['under-5k', '5-15k', '15-40k', '40k-plus', 'depends'],
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
-type Answers = {
-  role: string
-  goal: string
-  book: string
-  audience: string
-  tried: string
-  outcome: string
-  timeline: string
-  budget: string
-  email: string
-  name: string
-  extra: string
+type Briefing = {
+  score: number
+  scoreLine: string
+  knowNow: string[]
+  startingPoint: string
+  market: string
+  demands: string[]
+  psa: string | null
 }
 
-type Recommendation = {
-  packageId: 'knowledge-panel-install' | 'pre-sold-author' | 'both'
-  headline: string
-  priceLine: string
-  whyLines: string[]
+const KNOW_NOW = [
+  'A Knowledge Panel is earned from Google’s Knowledge Graph. It cannot be bought, and it can be built.',
+  'Wikidata is the seed surface, your own site is the Entity Home, and rented profiles count least.',
+  'AI answer engines read the same entity layer, so fixing it corrects search results and AI answers together.',
+  'Nobody can guarantee Wikipedia, and a panel does not depend on it. A guarantee is the tell of a bad vendor.',
+]
+
+const DEMANDS = [
+  'Every claimed signal should be checkable on public surfaces, never screenshots.',
+  'No guaranteed-Wikipedia promises, ever.',
+  'Verification should continue after the build. Panels drift, and a one-time setup decays.',
+  'You should own every asset: the site, the schema, the podcast, the Wikidata entry.',
+  'Pricing should be fixed and public before any call.',
+]
+
+function startingPoint(role: string, book: string, firstName: string): string {
+  const roleLine =
+    role === 'executive'
+      ? 'As an executive, the panel and the AI answer layer are the surfaces your counterparties check first.'
+      : role === 'author'
+        ? 'As an author, the entity layer decides whether your name and your book resolve to you when readers search.'
+        : role === 'entrepreneur'
+          ? 'As a founder, your personal entity is the trust layer your company borrows from in every deal.'
+          : 'The entity layer is the difference between being findable and being verifiable when someone checks you out.'
+  const bookLine =
+    book === 'published'
+      ? 'You have published before, which means citations already exist to build on. Most of your raw material is waiting to be structured.'
+      : book === 'writing'
+        ? 'With a book in motion, sequencing matters: the authority layer built now becomes the launch surface the book lands on.'
+        : book === 'someday'
+          ? 'A someday-book is a reason to build the authority layer first. It compounds while you decide.'
+          : 'No book required. The recognition layer stands on its own.'
+  return `${firstName ? `${firstName}, ` : ''}${roleLine} ${bookLine}`
 }
 
-const KP_PAY = KNOWLEDGE_PANEL_INSTALL.payment
-const KP_PRICE_LINE = `${KNOWLEDGE_PANEL_INSTALL.priceDisplay} over ${KNOWLEDGE_PANEL_INSTALL.timelineDisplay}.${
-  KP_PAY ? ` ${KP_PAY.planDisplay}.` : ''
-} Application only.`
+function market(): string {
+  return `Reputable specialist services run roughly $3,000 to $18,000, and the category leader’s done-for-you panel service starts at $12,000, typically for the entity work alone. The Knowledge Panel Install is ${KNOWLEDGE_PANEL_INSTALL.priceDisplay} flat, paid up front or split into 12 monthly payments of $1,000, and it includes the podcast, IMDb, press, and a year of monthly verification that others price separately, when they offer them at all.`
+}
 
-function recommend(a: Answers): Recommendation {
-  const psaSignal =
-    a.role === 'author' ||
-    a.goal === 'pre-sell-book' ||
-    a.book === 'manuscript' ||
-    a.book === 'writing'
-  const authorityAppetite = a.goal === 'authority' || a.role === 'executive'
-  const bigBudget = a.budget === '40k-plus' || a.budget === 'depends'
-
-  if (psaSignal && authorityAppetite && bigBudget) {
-    return {
-      packageId: 'both',
-      headline: 'Both builds, run in parallel',
-      priceLine: `${BOTH_PACKAGES_PRICE_DISPLAY} total. ${PRE_SOLD_AUTHOR.name} over ${PRE_SOLD_AUTHOR.timelineDisplay}, ${KNOWLEDGE_PANEL_INSTALL.name} over ${KNOWLEDGE_PANEL_INSTALL.timelineDisplay}. No bundle discount, because each stands on its own.`,
-      whyLines: [
-        'You have a book in motion and you want the machine layer of Google to recognize you. Those are two different problems, and each package solves one of them.',
-        `The ${PRE_SOLD_AUTHOR.name} produces the finished book from your own voice and positions it for pre-sales in the launch window.`,
-        `The ${KNOWLEDGE_PANEL_INSTALL.name} makes the recognition durable: knowledge panel signals, Wikidata, schema, and a year of monthly verification.`,
-      ],
-    }
+function psaParagraph(book: string): string | null {
+  if (book !== 'published' && book !== 'writing' && book !== 'someday') {
+    return null
   }
-
-  if (psaSignal) {
-    const bookLine =
-      a.book === 'manuscript'
-        ? 'You already have a manuscript, so the six-month clock spends its time on authority, audience, and the launch window rather than drafting.'
-        : a.book === 'writing'
-          ? 'The book is already moving. Eight interviews and the editorial team turn that momentum into a finished manuscript by month three.'
-          : 'The book is the goal, and the interview-based process is built to produce it from your own voice inside six months.'
-    return {
-      packageId: 'pre-sold-author',
-      headline: PRE_SOLD_AUTHOR.name,
-      priceLine: `${PRE_SOLD_AUTHOR.priceDisplay} over ${PRE_SOLD_AUTHOR.timelineDisplay}. Application only.`,
-      whyLines: [
-        bookLine,
-        'Everything the launch needs ships inside the same build: the podcast, the voice clone, the author authority stack, and the coordinated launch sequence.',
-        a.timeline === 'now' || a.timeline === '90-days'
-          ? 'Your timeline fits. Kickoff typically lands three to four weeks after application, and Day 1 starts the six-month clock.'
-          : 'When you are ready to start, kickoff lands three to four weeks after application and the clock runs six months from Day 1.',
-      ],
-    }
-  }
-
-  return {
-    packageId: 'knowledge-panel-install',
-    headline: KNOWLEDGE_PANEL_INSTALL.name,
-    priceLine: KP_PRICE_LINE,
-    whyLines: [
-      a.goal === 'authority'
-        ? 'Your goal is recognition: when Google and the AI answer engines are asked about you, they should answer correctly. That is exactly what this build installs and then verifies monthly for a year.'
-        : 'Without a book in motion, the highest-return build is the recognition layer: make Google and the AI answer engines describe you correctly, then keep proving it monthly for a year.',
-      'The deliverables map one-to-one to the gaps the instant report surfaces: Knowledge Graph, Wikidata, owned schema, citation surfaces, and an Entity Home.',
-      a.tried === 'agency'
-        ? 'You have paid for this before. The difference here is verifiable output: every signal this build claims is checkable from the same public surfaces the report reads.'
-        : 'Every signal the build claims is checkable from the same public surfaces the instant report reads. Nothing rides on our word.',
-    ],
-  }
+  return `One more thing your answers surfaced: a book is on your map. The authority layer is also the launch infrastructure a book needs, and that is what the ${PRE_SOLD_AUTHOR.name} exists for: ${PRE_SOLD_AUTHOR.priceDisplay} over ${PRE_SOLD_AUTHOR.timelineDisplay}, application only, a finished book from your own voice built on top of the panel work. It is here when you want that conversation, and not before.`
 }
 
 export async function POST(req: Request) {
@@ -128,16 +108,16 @@ export async function POST(req: Request) {
     )
   }
 
-  let body: { answers?: Partial<Answers> }
+  let body: { answers?: Record<string, unknown> }
   try {
-    body = (await req.json()) as { answers?: Partial<Answers> }
+    body = (await req.json()) as { answers?: Record<string, unknown> }
   } catch {
     return NextResponse.json({ error: 'invalid payload' }, { status: 400 })
   }
 
   const raw = body.answers ?? {}
   for (const [key, allowed] of Object.entries(CHOICES)) {
-    const value = raw[key as keyof Answers]
+    const value = raw[key]
     if (typeof value !== 'string' || !allowed.includes(value)) {
       return NextResponse.json(
         { error: `missing or invalid answer: ${key}` },
@@ -145,34 +125,58 @@ export async function POST(req: Request) {
       )
     }
   }
-  if (typeof raw.email !== 'string' || !EMAIL_RE.test(raw.email.trim())) {
+  const emailRaw = raw.email
+  if (typeof emailRaw !== 'string' || !EMAIL_RE.test(emailRaw.trim())) {
     return NextResponse.json({ error: 'invalid email' }, { status: 400 })
   }
 
-  const clamp = (v: unknown) =>
-    typeof v === 'string' ? v.trim().slice(0, 2000) : ''
+  const clamp = (v: unknown, n: number) =>
+    typeof v === 'string' ? v.trim().slice(0, n) : ''
 
-  const answers: Answers = {
+  const answers = {
+    q_panel: raw.q_panel as string,
+    q_seed: raw.q_seed as string,
+    q_ai: raw.q_ai as string,
+    q_mechanism: raw.q_mechanism as string,
+    q_wikipedia: raw.q_wikipedia as string,
+    q_market: raw.q_market as string,
     role: raw.role as string,
-    goal: raw.goal as string,
     book: raw.book as string,
-    audience: raw.audience as string,
-    tried: raw.tried as string,
-    outcome: clamp(raw.outcome),
-    timeline: raw.timeline as string,
     budget: raw.budget as string,
-    email: raw.email.trim().toLowerCase(),
-    name: clamp(raw.name).slice(0, 200),
-    extra: clamp(raw.extra),
+    email: emailRaw.trim().toLowerCase(),
+    firstName: clamp(raw.firstName, 100),
+    lastName: clamp(raw.lastName, 100),
   }
 
-  const recommendation = recommend(answers)
+  const score = Object.entries(QUIZ_CORRECT).reduce(
+    (sum, [key, correct]) =>
+      sum + (answers[key as keyof typeof answers] === correct ? 1 : 0),
+    0,
+  )
+
+  const briefing: Briefing = {
+    score,
+    scoreLine:
+      score >= 5
+        ? `You knew ${score} of 6 going in. You are ahead of most of the market.`
+        : score >= 3
+          ? `You knew ${score} of 6 going in. Most executives score lower.`
+          : `You knew ${score} of 6 going in. That is normal, and it is exactly why this layer is an edge.`,
+    knowNow: KNOW_NOW,
+    startingPoint: startingPoint(answers.role, answers.book, answers.firstName),
+    market: market(),
+    demands: DEMANDS,
+    psa: psaParagraph(answers.book),
+  }
+
+  const bookIntent = briefing.psa !== null
 
   const record = {
-    kind: 'assessment',
+    kind: 'quiz',
     submittedAt: new Date().toISOString(),
     answers,
-    recommendation: recommendation.packageId,
+    score,
+    bookIntent,
   }
 
   // The WTP exhaust: function logs are the durable copy until KV lands.
@@ -187,27 +191,28 @@ export async function POST(req: Request) {
     // /tmp is best-effort on serverless; the console line above is canonical.
   }
 
+  const fullName =
+    `${answers.firstName} ${answers.lastName}`.trim() ||
+    answers.email.split('@')[0]
+
   const ghl = await syncAssessmentToGhl({
-    name: answers.name || answers.email.split('@')[0],
+    name: fullName,
     email: answers.email,
     segment: answers.role,
     budget: answers.budget,
-    recommendation: recommendation.packageId,
+    recommendation: bookIntent ? 'kp-book-intent' : 'kp',
     noteBody: [
-      'PodcastNetwork.org deeper assessment',
+      'PodcastNetwork.org Google Authority Quiz',
       `Submitted: ${record.submittedAt}`,
       '',
+      `Name: ${fullName}`,
+      `Quiz score: ${score} of 6`,
       `Role: ${answers.role}`,
-      `Goal: ${answers.goal}`,
       `Book status: ${answers.book}`,
-      `Audience: ${answers.audience}`,
-      `Tried before: ${answers.tried}`,
-      `Timeline: ${answers.timeline}`,
-      `Investment range (WTP): ${answers.budget}`,
-      `Recommendation: ${recommendation.packageId}`,
+      `Informed WTP: ${answers.budget}`,
+      `Book intent: ${bookIntent ? 'yes' : 'no'}`,
       '',
-      `Outcome in their words: ${answers.outcome || '(blank)'}`,
-      `Anything else: ${answers.extra || '(blank)'}`,
+      `Quiz answers: panel=${answers.q_panel}, seed=${answers.q_seed}, ai=${answers.q_ai}, mechanism=${answers.q_mechanism}, wikipedia=${answers.q_wikipedia}, market=${answers.q_market}`,
     ].join('\n'),
   })
 
@@ -215,5 +220,5 @@ export async function POST(req: Request) {
     console.log('[assessment-submit] crm_pending_ghl_key')
   }
 
-  return NextResponse.json({ ok: true, recommendation })
+  return NextResponse.json({ ok: true, briefing })
 }
