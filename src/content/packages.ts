@@ -5,16 +5,27 @@
  *
  * Locked 2026-07-03 (two-package structure, supersedes the single $30K
  * flagship). Knowledge Panel Install repriced to $12,000 on 2026-07-04 per
- * Brett. Both packages are standalone. An executive who wants both pays
- * $48,000 total, no bundle discount. Podcast, IMDb, and a full website (if the
- * executive does not already have one) are the shared floor in both. The audio
- * voice clone and voice corpus are exclusive to the Pre-Sold Author Package.
+ * Brett, with payment terms locked later the same evening: $1,000 a month
+ * for 12 months, or $10,000 paid up front (a $2,000 savings). Both packages
+ * are standalone. An executive who wants both pays $48,000 total on standard
+ * terms ($46,000 with the Knowledge Panel Install paid up front), no bundle
+ * discount. Podcast, IMDb, and a full website (if the executive does not
+ * already have one) are the shared floor in both. The audio voice clone and
+ * voice corpus are exclusive to the Pre-Sold Author Package.
  *
  * Copy rules: no em dashes, no banned vocabulary, no "X, not Y" patterns.
  * Public copy names capabilities, never vendors.
  */
 
 export type PackageId = 'knowledge-panel-install' | 'pre-sold-author'
+
+export type PackagePayment = {
+  /** e.g. '$1,000 a month for 12 months' */
+  planDisplay: string
+  payInFullUsd: number
+  payInFullDisplay: string
+  savingsDisplay: string
+}
 
 export type PackageMeta = {
   id: PackageId
@@ -32,6 +43,8 @@ export type PackageMeta = {
   whoFor: string
   deliverables: string[]
   differentiators: string[]
+  /** Present when the package offers more than one way to pay. */
+  payment?: PackagePayment
 }
 
 /** Shared floor present in both packages. */
@@ -88,6 +101,12 @@ export const KNOWLEDGE_PANEL_INSTALL: PackageMeta = {
     'Wikipedia attempt and a Wikidata entry',
     'Twelve monthly reports and four quarterly Knowledge Panel verifications',
   ],
+  payment: {
+    planDisplay: '$1,000 a month for 12 months',
+    payInFullUsd: 10000,
+    payInFullDisplay: '$10,000',
+    savingsDisplay: '$2,000',
+  },
 }
 
 export const PRE_SOLD_AUTHOR: PackageMeta = {
@@ -134,7 +153,9 @@ export const PRE_SOLD_AUTHOR: PackageMeta = {
 
 export const PACKAGES: PackageMeta[] = [KNOWLEDGE_PANEL_INSTALL, PRE_SOLD_AUTHOR]
 
-/** Combined price when an executive takes both. No bundle discount. */
+/** Combined price on standard terms when an executive takes both. No bundle
+ * discount. Drops to $46,000 when the Knowledge Panel Install is paid up
+ * front (its own pay-in-full saving, no additional discount). */
 export const BOTH_PACKAGES_PRICE_USD =
   KNOWLEDGE_PANEL_INSTALL.priceUsd + PRE_SOLD_AUTHOR.priceUsd
 export const BOTH_PACKAGES_PRICE_DISPLAY = '$48,000'

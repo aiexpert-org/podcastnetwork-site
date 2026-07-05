@@ -29,36 +29,68 @@
     "@type": "BusinessAudience",
     "audienceType": "Executives, authors, entrepreneurs, and professionals who want a formal, Google-recognized personal brand"
   },
-  "offers": {
-    "@type": "Offer",
-    "@id": "https://podcastnetwork.org/knowledge-panel-install/#offer",
-    "name": "Knowledge Panel Install",
-    "url": "https://podcastnetwork.org/knowledge-panel-install/",
-    "price": "12000",
-    "priceCurrency": "USD",
-    "priceValidUntil": "2026-12-31",
-    "availability": "https://schema.org/InStock",
-    "eligibleDuration": {
-      "@type": "QuantitativeValue",
-      "value": 12,
-      "unitCode": "MON"
-    },
-    "eligibleQuantity": {
-      "@type": "QuantitativeValue",
-      "value": 1,
-      "unitText": "engagement"
-    },
-    "priceSpecification": {
-      "@type": "PriceSpecification",
+  "offers": [
+    {
+      "@type": "Offer",
+      "@id": "https://podcastnetwork.org/knowledge-panel-install/#offer",
+      "name": "Knowledge Panel Install (12 monthly payments)",
+      "url": "https://podcastnetwork.org/knowledge-panel-install/",
       "price": "12000",
       "priceCurrency": "USD",
-      "valueAddedTaxIncluded": false,
-      "description": "One-time payment to PodcastNetwork.org. Twelve-month build with monthly verification and reporting."
+      "priceValidUntil": "2026-12-31",
+      "availability": "https://schema.org/InStock",
+      "eligibleDuration": {
+        "@type": "QuantitativeValue",
+        "value": 12,
+        "unitCode": "MON"
+      },
+      "eligibleQuantity": {
+        "@type": "QuantitativeValue",
+        "value": 1,
+        "unitText": "engagement"
+      },
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": "12000",
+        "priceCurrency": "USD",
+        "valueAddedTaxIncluded": false,
+        "description": "$1,000 per month for twelve months. Twelve-month build with monthly verification and reporting."
+      },
+      "seller": {
+        "@id": "https://podcastnetwork.org/#organization"
+      }
     },
-    "seller": {
-      "@id": "https://podcastnetwork.org/#organization"
+    {
+      "@type": "Offer",
+      "@id": "https://podcastnetwork.org/knowledge-panel-install/#offer-paid-in-full",
+      "name": "Knowledge Panel Install (paid in full)",
+      "url": "https://podcastnetwork.org/knowledge-panel-install/",
+      "price": "10000",
+      "priceCurrency": "USD",
+      "priceValidUntil": "2026-12-31",
+      "availability": "https://schema.org/InStock",
+      "eligibleDuration": {
+        "@type": "QuantitativeValue",
+        "value": 12,
+        "unitCode": "MON"
+      },
+      "eligibleQuantity": {
+        "@type": "QuantitativeValue",
+        "value": 1,
+        "unitText": "engagement"
+      },
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": "10000",
+        "priceCurrency": "USD",
+        "valueAddedTaxIncluded": false,
+        "description": "Single upfront payment for the twelve-month build, a $2,000 savings against the monthly plan."
+      },
+      "seller": {
+        "@id": "https://podcastnetwork.org/#organization"
+      }
     }
-  },
+  ],
   "priceRange": "$$$",
   "termsOfService": "https://podcastnetwork.org/legal/terms/",
   "hasOfferCatalog": {
