@@ -5,23 +5,28 @@
  *
  * Locked 2026-07-03 (two-package structure, supersedes the single $30K
  * flagship). Pricing reset 2026-07-05 with Mike (supersedes the 2026-07-04
- * $12,000 state): Google Authority Install $24,000 total over 12 months,
- * paid up front or split into twelve monthly payments of $2,000. Pre-Sold
- * Author Package $36,000 total, paid up front or split into twelve monthly
- * payments of $3,000 while delivery runs the first six months. No discount
- * on payment timing in either direction. Bundle locked 2026-07-05 late:
- * both packages together are $54,000, 10 percent off the $60,000 list, up
- * front or $4,500 x 12; the bundle is the only discount anywhere, and it
- * attaches to scope, never to payment timing. Renamed 2026-07-05 late:
- * Knowledge Panel Install becomes the Google Authority Install (one family
- * with the Google Authority Quiz and Review); the bundle tier is The
- * Complete Build. Slugs, URLs, anchors, and schema @ids unchanged.
- * Podcast, IMDb, and a full website (if the executive does not already
- * have one) are the shared floor in both. The audio voice clone and voice
- * corpus are exclusive to the Pre-Sold Author Package.
+ * $12,000 state): Brand SERP Install $24,000 total over 12 months, paid up
+ * front or split into twelve monthly payments of $2,000. Pre-Sold Author
+ * Package $36,000 total, paid up front or split into twelve monthly
+ * payments of $3,000; delivery runs the first six months and payments 7
+ * through 12 fund ongoing monitoring and maintenance. No discount on
+ * payment timing in either direction. Bundle locked 2026-07-05 late: both
+ * packages together are $54,000, 10 percent off the $60,000 list, up front
+ * or $4,500 x 12; the bundle is the only discount anywhere, and it
+ * attaches to scope, never to payment timing.
  *
- * Copy rules: no em dashes, no banned vocabulary, no "X, not Y" patterns.
- * Public copy names capabilities, never vendors.
+ * Naming locked 2026-07-05 late (Dispatch sync): the product is the Brand
+ * SERP Install. Not Knowledge Panel Install, not AI Presence Install, not
+ * Authority Install ("authority" is banned marketing vocabulary). The
+ * bundle tier is Both Packages Bundle, matching the live GHL product.
+ * Slugs, URLs, anchors, and schema @ids unchanged. GHL products live in
+ * sub-account GTfkjwM6RwadEVlbppbd: Brand SERP Install
+ * 6a4a8d6d859ba9315419c1fd, PSA 6a4a8df96b558d08208a21c5, bundle
+ * 6a4a8e736b558d988f8a28da.
+ *
+ * Copy rules: no em dashes, no banned vocabulary (including "authority"
+ * in marketing copy), no "X, not Y" patterns. Public copy names
+ * capabilities, never vendors.
  */
 
 export type PackageId = 'knowledge-panel-install' | 'pre-sold-author'
@@ -70,7 +75,7 @@ export const KNOWLEDGE_PANEL_INSTALL: PackageMeta = {
   id: 'knowledge-panel-install',
   slug: 'knowledge-panel-install',
   url: '/knowledge-panel-install/',
-  name: 'Google Authority Install',
+  name: 'Brand SERP Install',
   priceUsd: 24000,
   priceDisplay: '$24,000',
   timelineMonths: 12,
@@ -129,9 +134,9 @@ export const PRE_SOLD_AUTHOR: PackageMeta = {
   timelineMonths: 6,
   timelineDisplay: '6 months',
   eligibleDurationMonths: 6,
-  tagline: 'Turn your expertise into a published book and the authority infrastructure around it.',
+  tagline: 'Turn your expertise into a published book and the launch infrastructure around it.',
   summary:
-    'A six-month build that produces a finished book from your own voice, plus the podcast, the audio voice clone, and the authority infrastructure to position it for pre-sales. The name is the goal. Pre-sales depend on execution and market fit, and we do not guarantee them.',
+    'A six-month build that produces a finished book from your own voice, plus the podcast, the audio voice clone, and the launch infrastructure to position it for pre-sales. The name is the goal. Pre-sales depend on execution and market fit, and we do not guarantee them.',
   timeInvestment: 'About 21 to 24 hours over 6 months, across interviews and podcast recording.',
   whoFor:
     'Any executive, author, entrepreneur, or professional with something worth a book who wants it written, produced, and positioned inside six months.',
@@ -151,7 +156,7 @@ export const PRE_SOLD_AUTHOR: PackageMeta = {
     'Retail distribution setup through the Legacy partnership',
     'Podcast tour placements timed to your launch window',
     'Launch sequence coordination',
-    'Author authority build: bio pages, contributor citation surfaces, and a Wikidata Person entry',
+    'Author profile build: bio pages, contributor citation surfaces, and a Wikidata Person entry',
   ],
   differentiators: [
     'A finished book manuscript from your own voice',
@@ -163,7 +168,7 @@ export const PRE_SOLD_AUTHOR: PackageMeta = {
     planDisplay: 'Paid up front, or split into 12 monthly payments of $3,000',
     monthlyDisplay: '$3,000',
     monthlyPayments: 12,
-    note: 'Delivery runs the first 6 months; the payment plan runs 12.',
+    note: 'Delivery runs the first 6 months. Payments 7 through 12 fund ongoing monitoring and maintenance.',
   },
 }
 
@@ -186,9 +191,9 @@ export type BundleMeta = {
 
 /** The bundle: both packages at 10 percent off, locked 2026-07-05 late.
  * The only discount anywhere; it attaches to scope, never to payment
- * timing. */
+ * timing. Named to match the live GHL product. */
 export const BUNDLE: BundleMeta = {
-  name: 'The Complete Build',
+  name: 'Both Packages Bundle',
   priceUsd: 54000,
   priceDisplay: '$54,000',
   listPriceUsd: BOTH_PACKAGES_PRICE_USD,

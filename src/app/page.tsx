@@ -22,7 +22,7 @@ import {
 export const metadata: Metadata = {
   title: 'PodcastNetwork.org. Google authority, built through your podcast',
   description:
-    'Google and AI have already decided who you are. Run a free instant report of what they actually know, then see the two application-only builds that fix it: the Knowledge Panel Install and the Pre-Sold Author Package.',
+    'Google and AI have already decided who you are. Run a free instant report of what they actually know, then see the two application-only builds that fix it: the Brand SERP Install and the Pre-Sold Author Package.',
   alternates: { canonical: '/' },
 }
 
@@ -46,8 +46,8 @@ function Definition() {
               conversations become the credits, citations, and content that
               Google&apos;s Knowledge Graph and the AI answer engines read as
               proof you are real. Two application-only builds deliver it: the{' '}
-              {KNOWLEDGE_PANEL_INSTALL.priceDisplay} Knowledge Panel Install
-              and the {PRE_SOLD_AUTHOR.priceDisplay} Pre-Sold Author Package.
+              {KNOWLEDGE_PANEL_INSTALL.priceDisplay} Brand SERP Install and
+              the {PRE_SOLD_AUTHOR.priceDisplay} Pre-Sold Author Package.
             </p>
           </div>
         </FadeIn>
