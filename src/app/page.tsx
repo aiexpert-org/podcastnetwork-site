@@ -71,8 +71,7 @@ function AssessmentGateway() {
         <p>
           Every deal, meeting, and reference check now starts with a search,
           and that page gets shaped with or without you. In three minutes you
-          will know how it gets decided, what it costs to fix, and how to take
-          control of it.
+          will know how to take control of your Google Knowledge Panel.
         </p>
       </SectionIntro>
       <Container className="mt-10">
