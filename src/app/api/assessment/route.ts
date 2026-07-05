@@ -3,7 +3,7 @@ import { appendFile, mkdir } from 'node:fs/promises'
 
 import { rateLimit } from '@/lib/server-cache'
 import { syncAssessmentToGhl } from '../apply/ghl'
-import { KNOWLEDGE_PANEL_INSTALL, PRE_SOLD_AUTHOR } from '@/content/packages'
+import { BRAND_SERP_BUILD, PRE_SOLD_AUTHOR_BUILD } from '@/content/packages'
 
 /**
  * Google Authority Quiz intake (v0.6.12). Validates the answers, scores the
@@ -16,11 +16,12 @@ import { KNOWLEDGE_PANEL_INSTALL, PRE_SOLD_AUTHOR } from '@/content/packages'
  *
  * Copy rule from Brett's walkthrough: the review screen teaches, so no
  * industry jargon survives here. Plain words only. Product names come
- * from packages.ts (Brand SERP Install per the 2026-07-05 Dispatch sync).
+ * from packages.ts (Brand SERP Build and Pre-Sold Author Build per the
+ * 2026-07-05 final naming lock).
  *
  * Market-pricing facts sourced from Kalicube's published pricing pages
  * (done-for-you service starts at $12,000; reputable range $3,000 to
- * $18,000), checked 2026-07-04. Since the 2026-07-05 reset the Install
+ * $18,000), checked 2026-07-04. Since the 2026-07-05 reset the Build
  * sits above that range, and the market line says so plainly instead of
  * hiding it.
  */
@@ -117,16 +118,16 @@ function startingPoint(role: string, book: string, firstName: string): string {
 }
 
 function market(): string {
-  const plan = KNOWLEDGE_PANEL_INSTALL.payment.planDisplay
+  const plan = BRAND_SERP_BUILD.payment.planDisplay
   const planLower = `${plan.charAt(0).toLowerCase()}${plan.slice(1)}`
-  return `Reputable specialist services run roughly $3,000 to $18,000, and the leading specialist’s done-for-you service starts at $12,000, typically for the panel work alone. The ${KNOWLEDGE_PANEL_INSTALL.name} is ${KNOWLEDGE_PANEL_INSTALL.priceDisplay} total, ${planLower}. It sits above the panel-only range on purpose: the podcast, IMDb, press, AI answer testing, and a year of monthly checkups are inside the price, where others quote them separately or not at all.`
+  return `Reputable specialist services run roughly $3,000 to $18,000, and the leading specialist’s done-for-you service starts at $12,000, typically for the panel work alone. The ${BRAND_SERP_BUILD.name} is ${BRAND_SERP_BUILD.priceDisplay} total, ${planLower}. It sits above the panel-only range on purpose: the podcast, IMDb, press, AI answer testing, and a year of monthly checkups are inside the price, where others quote them separately or not at all.`
 }
 
 function psaParagraph(book: string): string | null {
   if (book !== 'published' && book !== 'writing' && book !== 'someday') {
     return null
   }
-  return `One more thing your answers surfaced: a book is on your map. As the quiz covered, a published book creates its own stack of records about you, and the recognition work is also the launch infrastructure a book needs. That is what the ${PRE_SOLD_AUTHOR.name} exists for: ${PRE_SOLD_AUTHOR.priceDisplay} total, delivered over ${PRE_SOLD_AUTHOR.timelineDisplay}, paid up front or in 12 monthly payments of ${PRE_SOLD_AUTHOR.payment.monthlyDisplay}, application only, a finished book from your own voice built on top of the panel work. It is here when you want that conversation, and not before.`
+  return `One more thing your answers surfaced: a book is on your map. As the quiz covered, a published book creates its own stack of records about you, and the recognition work is also the launch infrastructure a book needs. That is what the ${PRE_SOLD_AUTHOR_BUILD.name} exists for: ${PRE_SOLD_AUTHOR_BUILD.priceDisplay} total, delivered over ${PRE_SOLD_AUTHOR_BUILD.timelineDisplay}, paid up front or in 12 monthly payments of ${PRE_SOLD_AUTHOR_BUILD.payment.monthlyDisplay}, application only, a finished book from your own voice built on top of the panel work. It is here when you want that conversation, and not before.`
 }
 
 export async function POST(req: Request) {
