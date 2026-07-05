@@ -28,11 +28,11 @@ export const metadata: Metadata = {
 
 /* Section 3: the definition block. Written for answer engines to lift whole
  * and for a first-time visitor to orient in one paragraph. Heading-left,
- * paragraph-right grid so the band uses its full width. Pins under the
- * pricing curtain via the sticky wrapper in Home. */
+ * paragraph-right grid. Renders inside the full-viewport sticky wrapper in
+ * Home (the CCM curtain), so it carries no section margin of its own. */
 function Definition() {
   return (
-    <div id="proof" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
+    <div id="proof" className="w-full scroll-mt-24">
       <Container>
         <FadeIn>
           <div className="grid grid-cols-1 gap-x-12 gap-y-6 border-y border-neutral-950/10 py-12 lg:grid-cols-3">
@@ -263,22 +263,24 @@ export default function Home() {
       {/* Section 2: quiz gateway, dark card */}
       <AssessmentGateway />
 
-      {/* Section 3: definition, pinned under the pricing curtain. The
-          sticky wrapper holds it in place while the opaque pricing band
-          slides up over it at native scroll speed (the curtain reveal,
-          Brett via Dispatch 2026-07-05: full density, no opacity
-          animation). The runway div provides the overlap distance; the
-          band's higher stacking order does the covering. */}
-      <div className="relative">
-        <div className="sticky top-24">
+      {/* Sections 3 + 4: the CCM sticky-over curtain (Brett's
+          createchurchmedia.com reference). The definition pins at the top
+          of the viewport and fully occupies it (min-h-screen, content
+          centered); the opaque rounded pricing band climbs over it at
+          native scroll speed by stacking order alone. No opacity
+          animation, no runway: the viewport-height geometry supplies the
+          overlap. motion-safe gates the pin, so prefers-reduced-motion
+          reads the page in natural block flow. The pricing section itself
+          is not sticky: it is three-plus viewports tall, and a sticky
+          element taller than its container's remaining space never pins;
+          the curtain comes entirely from the previous section pinning. */}
+      <div className="relative mt-24 sm:mt-32 lg:mt-40">
+        <div className="z-0 flex min-h-screen items-center motion-safe:sticky motion-safe:top-0">
           <Definition />
         </div>
-        <div aria-hidden="true" className="h-[45vh]" />
-      </div>
-
-      {/* Section 4: three-tier pricing + folded proof, over the curtain */}
-      <div className="relative z-10">
-        <Packages studies={studies} />
+        <div className="relative z-10">
+          <Packages studies={studies} />
+        </div>
       </div>
 
       {/* Section 5: FAQ */}
