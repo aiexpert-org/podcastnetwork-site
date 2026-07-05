@@ -6,12 +6,12 @@ export const HOME_FAQ: FaqItem[] = [
   {
     question: "What are the two packages?",
     answer:
-      "The Knowledge Panel Install ($10,000 over 12 months, paid up front or split into 12 equal monthly payments at no extra cost) makes Google and the AI answer engines recognize you as a real entity, then verifies it monthly for a year. The Pre-Sold Author Package ($36,000, 6 months) produces a finished book from your own voice plus the podcast, voice clone, and author authority to launch it. Both are standalone and application only.",
+      "The Knowledge Panel Install ($12,000 over 12 months, paid up front or split into 12 monthly payments of $1,000 at no extra cost) makes Google and the AI answer engines recognize you as a real entity, then verifies it monthly for a year. The Pre-Sold Author Package ($36,000, 6 months) produces a finished book from your own voice plus the podcast, voice clone, and author authority to launch it. Both are standalone and application only.",
   },
   {
     question: "Can I do both?",
     answer:
-      "Yes. Both are standalone, so an executive who wants both pays $46,000 total with no bundle discount. They run in parallel on their own timelines: six months for the Pre-Sold Author Package, twelve months for the Knowledge Panel Install.",
+      "Yes. Both are standalone, so an executive who wants both pays $48,000 total with no bundle discount. They run in parallel on their own timelines: six months for the Pre-Sold Author Package, twelve months for the Knowledge Panel Install.",
   },
   {
     question: "Is this only for real estate?",

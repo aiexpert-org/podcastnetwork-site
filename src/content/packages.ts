@@ -4,15 +4,13 @@
  * the JSON-LD offer schema, and the application flow.
  *
  * Locked 2026-07-03 (two-package structure, supersedes the single $30K
- * flagship). Knowledge Panel Install pricing settled 2026-07-04 (final):
- * $10,000 flat, paid up front or split into twelve equal monthly payments at
- * no extra cost. No discount in either direction (supersedes the brief
- * $12,000 reprice and the pay-in-full discount from earlier the same
- * evening). Both packages are standalone. An executive who wants both pays
- * $46,000 total, no bundle discount. Podcast, IMDb, and a full website (if
- * the executive does not already have one) are the shared floor in both. The
- * audio voice clone and voice corpus are exclusive to the Pre-Sold Author
- * Package.
+ * flagship). Knowledge Panel Install pricing settled 2026-07-04 (v0.6.8):
+ * $12,000 total, paid up front or split into twelve monthly payments of
+ * $1,000 at no extra cost. No discount in either direction. Both packages
+ * are standalone. An executive who wants both pays $48,000 total, no bundle
+ * discount. Podcast, IMDb, and a full website (if the executive does not
+ * already have one) are the shared floor in both. The audio voice clone and
+ * voice corpus are exclusive to the Pre-Sold Author Package.
  *
  * Copy rules: no em dashes, no banned vocabulary, no "X, not Y" patterns.
  * Public copy names capabilities, never vendors.
@@ -22,7 +20,7 @@ export type PackageId = 'knowledge-panel-install' | 'pre-sold-author'
 
 export type PackagePayment = {
   /** Full sentence-case payment line, e.g.
-   * 'Paid up front, or split into 12 equal monthly payments'. */
+   * 'Paid up front, or split into 12 monthly payments of $1,000'. */
   planDisplay: string
 }
 
@@ -59,8 +57,8 @@ export const KNOWLEDGE_PANEL_INSTALL: PackageMeta = {
   slug: 'knowledge-panel-install',
   url: '/knowledge-panel-install/',
   name: 'Knowledge Panel Install',
-  priceUsd: 10000,
-  priceDisplay: '$10,000',
+  priceUsd: 12000,
+  priceDisplay: '$12,000',
   timelineMonths: 12,
   timelineDisplay: '12 months',
   eligibleDurationMonths: 12,
@@ -101,7 +99,7 @@ export const KNOWLEDGE_PANEL_INSTALL: PackageMeta = {
     'Twelve monthly reports and four quarterly Knowledge Panel verifications',
   ],
   payment: {
-    planDisplay: 'Paid up front, or split into 12 equal monthly payments',
+    planDisplay: 'Paid up front, or split into 12 monthly payments of $1,000',
   },
 }
 
@@ -152,4 +150,4 @@ export const PACKAGES: PackageMeta[] = [KNOWLEDGE_PANEL_INSTALL, PRE_SOLD_AUTHOR
 /** Combined price when an executive takes both. No bundle discount. */
 export const BOTH_PACKAGES_PRICE_USD =
   KNOWLEDGE_PANEL_INSTALL.priceUsd + PRE_SOLD_AUTHOR.priceUsd
-export const BOTH_PACKAGES_PRICE_DISPLAY = '$46,000'
+export const BOTH_PACKAGES_PRICE_DISPLAY = '$48,000'
