@@ -7,12 +7,15 @@ import { KNOWLEDGE_PANEL_INSTALL, PRE_SOLD_AUTHOR } from '@/content/packages'
 
 /**
  * Google Authority Quiz intake (v0.6.12). Validates the answers, scores the
- * eight teaching beats server-side, composes the briefing, logs the
+ * eight teaching beats server-side, composes the review, logs the
  * submission (console + /tmp JSONL, the WTP exhaust), and syncs to GHL as a
  * contact with segment, WTP, book-intent, and quiz-score tags when
  * GHL_API_KEY is present. "not-sure" is a valid, unscored answer on every
  * quiz beat. The outcomes multi-select primes the WTP question and rides
  * into the log and the GHL note.
+ *
+ * Copy rule from Brett's walkthrough: the review screen teaches, so no
+ * industry jargon survives here. Plain words only.
  *
  * Market-pricing facts sourced from Kalicube's published pricing pages
  * (done-for-you service starts at $12,000; reputable range $3,000 to
@@ -60,6 +63,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 type Briefing = {
   score: number
   scoreLine: string
+  knowNowHeading: string
   knowNow: string[]
   startingPoint: string
   market: string
@@ -68,52 +72,55 @@ type Briefing = {
 }
 
 const KNOW_NOW = [
-  'A Knowledge Panel is earned from Google’s Knowledge Graph. It cannot be bought. It gets built signal by signal, and that assembly is the work.',
-  'The search page about you exists whether or not you shape it. A panel turns it into a verified identity you author.',
-  'One podcast feeds several trusted sources at once: an IMDb credit, guest-appearance citations, and an indexable body of work in your own voice.',
-  'Wikidata is the seed surface, your own site is the Entity Home, and rented profiles count least.',
-  'AI answer engines read the same entity layer, so fixing it corrects search results and AI answers together.',
-  'Nobody can guarantee Wikipedia, and a panel does not depend on it. A guarantee is the tell of a bad vendor.',
-  'A published book generates its own cluster of records (ISBN, retailer author pages, Google Books, library catalogs) that all point back at you.',
+  'A Knowledge Panel is earned from Google’s Knowledge Graph. It cannot be bought. It gets built piece by piece from proof Google can read, and building that proof is exactly what our team does.',
+  'The Google results page about you already exists. The only choice is whether you shape it.',
+  'One podcast feeds several trusted sources at once: an IMDb credit, citations from every guest appearance, and a body of work in your own voice that Google indexes.',
+  'Wikidata, an open database Google trusts, is usually where a panel takes root. Your own website is your home base. Social media profiles add the least, because you rent them.',
+  'ChatGPT and Gemini pull from the same public facts Google reads. Get those facts right once and your search results and your AI answers improve together.',
+  'Nobody can guarantee you a Wikipedia page, and a Knowledge Panel does not need one. Any vendor who promises you a Wikipedia page is lying to you.',
+  'A published book creates a stack of new records that all point back at you: an ISBN, retailer author pages, a Google Books entry, library catalogs.',
 ]
 
 const DEMANDS = [
-  'Every claimed signal should be checkable on public surfaces, never screenshots.',
-  'No guaranteed-Wikipedia promises, ever.',
-  'Verification should continue after the build. Panels drift, and a one-time setup decays.',
-  'You should own every asset: the site, the schema, the podcast, the Wikidata entry.',
-  'Pricing should be fixed and public before any call.',
+  'Everything a vendor claims should be something you can check yourself on public sites, never a screenshot.',
+  'No promised Wikipedia pages, ever. Nobody can promise that.',
+  'The work should continue after the setup. Panels drift when nobody is watching.',
+  'You should own every asset: the website, the podcast, the Wikidata entry, all of it.',
+  'Pricing should be fixed and public before you ever get on a call.',
 ]
 
 function startingPoint(role: string, book: string, firstName: string): string {
   const roleLine =
     role === 'executive'
-      ? 'As an executive, the panel and the AI answer layer are the surfaces your counterparties check first.'
+      ? 'as an executive, your Google results and your AI answers are the first things your counterparties check.'
       : role === 'author'
-        ? 'As an author, the entity layer decides whether your name and your book resolve to you when readers search.'
+        ? 'as an author, this decides whether your name and your book actually find each other when readers search.'
         : role === 'entrepreneur'
-          ? 'As a founder, your personal entity is the trust layer your company borrows from in every deal.'
-          : 'The entity layer is the difference between being findable and being verifiable when someone checks you out.'
+          ? 'as a founder, your personal credibility on Google is the trust your company borrows in every deal.'
+          : 'this is the difference between being findable and being verifiable when someone checks you out.'
   const bookLine =
     book === 'published'
-      ? 'You have published before, which means citations already exist to build on. Most of your raw material is waiting to be structured.'
+      ? 'You have published before, which means records about you already exist. Most of your raw material is waiting to be put to work.'
       : book === 'writing'
-        ? 'With a book in motion, sequencing matters: the authority layer built now becomes the launch surface the book lands on.'
+        ? 'With a book in motion, order matters: build the recognition now and the book lands on a page you control.'
         : book === 'someday'
-          ? 'A someday-book is a reason to build the authority layer first. It compounds while you decide.'
-          : 'No book required. The recognition layer stands on its own.'
-  return `${firstName ? `${firstName}, ` : ''}${roleLine} ${bookLine}`
+          ? 'A someday-book is a reason to build the recognition first. It compounds while you decide.'
+          : 'No book required. The recognition stands on its own.'
+  const line = `${roleLine} ${bookLine}`
+  return firstName
+    ? `${firstName}, ${line}`
+    : `${line.charAt(0).toUpperCase()}${line.slice(1)}`
 }
 
 function market(): string {
-  return `Reputable specialist services run roughly $3,000 to $18,000, and the leading specialist’s done-for-you service starts at $12,000, typically for the entity work alone. The Knowledge Panel Install is ${KNOWLEDGE_PANEL_INSTALL.priceDisplay} flat, paid up front or split into 12 monthly payments of $1,000, and it includes the podcast, IMDb, press, and a year of monthly verification that others price separately, when they offer them at all.`
+  return `Reputable specialist services run roughly $3,000 to $18,000, and the leading specialist’s done-for-you service starts at $12,000, typically for the entity work alone. The Knowledge Panel Install is ${KNOWLEDGE_PANEL_INSTALL.priceDisplay} flat, paid up front or split into 12 monthly payments of $1,000, and it includes the podcast, IMDb, press, and a year of monthly checkups that others price separately, when they offer them at all.`
 }
 
 function psaParagraph(book: string): string | null {
   if (book !== 'published' && book !== 'writing' && book !== 'someday') {
     return null
   }
-  return `One more thing your answers surfaced: a book is on your map. As the quiz covered, a published book generates its own cluster of Google-readable records, and the authority layer is also the launch infrastructure a book needs. That is what the ${PRE_SOLD_AUTHOR.name} exists for: ${PRE_SOLD_AUTHOR.priceDisplay} over ${PRE_SOLD_AUTHOR.timelineDisplay}, application only, a finished book from your own voice built on top of the panel work. It is here when you want that conversation, and not before.`
+  return `One more thing your answers surfaced: a book is on your map. As the quiz covered, a published book creates its own stack of records about you, and the recognition work is also the launch infrastructure a book needs. That is what the ${PRE_SOLD_AUTHOR.name} exists for: ${PRE_SOLD_AUTHOR.priceDisplay} over ${PRE_SOLD_AUTHOR.timelineDisplay}, application only, a finished book from your own voice built on top of the panel work. It is here when you want that conversation, and not before.`
 }
 
 export async function POST(req: Request) {
@@ -167,6 +174,15 @@ export async function POST(req: Request) {
   const clamp = (v: unknown, n: number) =>
     typeof v === 'string' ? v.trim().slice(0, n) : ''
 
+  const firstName = clamp(raw.firstName, 100)
+  const lastName = clamp(raw.lastName, 100)
+  if (!firstName || !lastName) {
+    return NextResponse.json(
+      { error: 'first and last name are required' },
+      { status: 400 },
+    )
+  }
+
   const answers = {
     q_panel: raw.q_panel as string,
     q_stakes: raw.q_stakes as string,
@@ -181,8 +197,8 @@ export async function POST(req: Request) {
     budget: raw.budget as string,
     outcomes,
     email: emailRaw.trim().toLowerCase(),
-    firstName: clamp(raw.firstName, 100),
-    lastName: clamp(raw.lastName, 100),
+    firstName,
+    lastName,
   }
 
   const score = Object.entries(QUIZ_CORRECT).reduce(
@@ -198,9 +214,10 @@ export async function POST(req: Request) {
         ? `You knew ${score} of 8 going in. You are ahead of most of the market.`
         : score >= 4
           ? `You knew ${score} of 8 going in. Most executives score lower.`
-          : `You knew ${score} of 8 going in. That is normal, and it is exactly why this layer is an edge.`,
+          : `You knew ${score} of 8 going in.`,
+    knowNowHeading: `${firstName}, here is what you now know`,
     knowNow: KNOW_NOW,
-    startingPoint: startingPoint(answers.role, answers.book, answers.firstName),
+    startingPoint: startingPoint(answers.role, answers.book, firstName),
     market: market(),
     demands: DEMANDS,
     psa: psaParagraph(answers.book),
@@ -228,9 +245,7 @@ export async function POST(req: Request) {
     // /tmp is best-effort on serverless; the console line above is canonical.
   }
 
-  const fullName =
-    `${answers.firstName} ${answers.lastName}`.trim() ||
-    answers.email.split('@')[0]
+  const fullName = `${firstName} ${lastName}`.trim()
 
   const ghl = await syncAssessmentToGhl({
     name: fullName,

@@ -4,18 +4,14 @@
  * The Google Authority Quiz (v0.6.12, per Brett): ask-guess-reveal.
  *
  * Eight teaching beats, situation questions, an outcomes multi-select that
- * primes one informed WTP question, then contact details. The outcome is a
- * briefing, never a package recommendation: the visitor teaches themselves
- * why the entity layer matters and leaves with buying criteria that travel
- * with them.
+ * primes one informed WTP question, then contact details (first name, last
+ * name, and email all required). The outcome is a review, never a package
+ * recommendation: the visitor teaches themselves why this matters and
+ * leaves with buying criteria that travel with them.
  *
- * Rules locked while Brett walked the flow: every quiz question carries
- * exactly three substantive options plus an honest "I'm not sure" that is
- * never scolded; the stakes beat sits at 2 and the podcast beat at 3; the
- * book beat sits directly before the situation questions; the outcomes
- * multi-select primes the value question and the value question has no
- * escape-hatch option; reveals carry clickable source links, but only where
- * the linked page plainly supports the sentence.
+ * Copy rule from Brett's walkthrough: this flow teaches, so no industry
+ * jargon survives in visitor-facing text. Plain words only. The first name
+ * attaches to the positive heading, never to the score.
  */
 
 import { useCallback, useState } from 'react'
@@ -73,7 +69,7 @@ const STEPS: Step[] = [
     ],
     correct: 'earned',
     reveal:
-      'It is earned. Google’s Knowledge Graph builds an entity for you only when enough corroborated, machine-readable proof exists across the web. Nobody can buy the box, and the proof does not assemble itself: it gets built signal by signal across a dozen surfaces, in the right order. The rest of this quiz shows you what those signals are.',
+      'It is earned. Google’s Knowledge Graph builds an entry for you only when enough proof exists across the web, in a form its machines can read. Nobody can buy the box, and the proof does not assemble itself: it gets built piece by piece across a dozen websites, in the right order. The rest of this quiz shows you what those pieces are.',
     sources: [
       {
         label: 'Google: About knowledge panels',
@@ -85,7 +81,7 @@ const STEPS: Step[] = [
     kind: 'quiz',
     key: 'q_stakes',
     question:
-      'If Google has no verified entity for you, what fills the page when someone searches your name?',
+      'If Google has no verified entry for you, what fills the page when someone searches your name?',
     options: [
       { value: 'nothing', label: 'Nothing. The page is basically blank' },
       { value: 'whatever-found', label: 'Whatever Google finds: profiles, namesakes, old links' },
@@ -109,7 +105,7 @@ const STEPS: Step[] = [
     ],
     correct: 'podcast',
     reveal:
-      'A podcast. Google’s own help pages say knowledge panels are automatically generated and their information comes from various sources across the web. One show feeds several of those sources at once: the credit earns an IMDb Person page, every guest appearance adds a citation on someone else’s site, and every episode is indexable content in your own voice. A press release is a single self-published source, and buying links violates Google’s published spam policies. This mechanism is why we are built around podcasts.',
+      'A podcast. Google’s own help pages say knowledge panels are automatically generated and their information comes from various sources across the web. One show feeds several of those sources at once: the credit earns an IMDb page, every guest appearance adds a mention of you on someone else’s site, and every episode is content in your own voice that Google indexes. A press release is a single self-published source, and buying links violates Google’s published spam policies. This mechanism is why we are built around podcasts.',
     sources: [
       {
         label: 'Google: About knowledge panels',
@@ -125,7 +121,7 @@ const STEPS: Step[] = [
     kind: 'quiz',
     key: 'q_seed',
     question:
-      'Which of these does Google trust most as the seed of a Knowledge Panel?',
+      'Which of these does Google trust most as the starting point of a Knowledge Panel?',
     options: [
       { value: 'website', label: 'Your website' },
       { value: 'wikidata', label: 'Wikidata' },
@@ -134,7 +130,7 @@ const STEPS: Step[] = [
     ],
     correct: 'wikidata',
     reveal:
-      'Wikidata: a structured database most people have never heard of. A Q-number there is the root a panel grows from. Your own site matters as the Entity Home, and social profiles are rented ground that Google reads last.',
+      'Wikidata: an open database most people have never heard of, and one Google leans on heavily. An entry there is usually where a panel takes root. Your own website matters as your home base, and social profiles count least, because you rent them and Google knows it.',
   },
   {
     kind: 'quiz',
@@ -143,13 +139,13 @@ const STEPS: Step[] = [
       'When someone asks ChatGPT or Gemini who you are, where does that answer mostly come from?',
     options: [
       { value: 'made-up', label: 'The AI invents it' },
-      { value: 'entity-data', label: 'The same public entity data and citations Google reads' },
+      { value: 'entity-data', label: 'The same public facts and mentions Google reads' },
       { value: 'social', label: 'Your social media posts' },
       NOT_SURE,
     ],
     correct: 'entity-data',
     reveal:
-      'Largely the same entity layer Google reads: structured data, citations, and corroborated facts. Thin entity data produces vague or wrong AI answers about you. Fix the layer once and search results and AI answers both improve.',
+      'Mostly the same public facts and mentions Google reads. When those are thin, the AI answers about you come out vague or wrong. Get the facts right once and your search results and your AI answers improve together.',
   },
   {
     kind: 'quiz',
@@ -163,7 +159,7 @@ const STEPS: Step[] = [
     ],
     correct: 'no-guarantee',
     reveal:
-      'Nobody can guarantee Wikipedia. Volunteer editors and a notability bar decide, and no vendor controls them. A Knowledge Panel does not depend on Wikipedia, and anyone promising you a page is telling you something false. Treat that promise as the tell.',
+      'Nobody can guarantee you a Wikipedia page. Volunteer editors decide who qualifies, and no vendor controls them. The good news: a Knowledge Panel does not need a Wikipedia page. And any vendor who promises you one just told you everything you need to know about them.',
     sources: [
       {
         label: 'Wikipedia: the notability policy',
@@ -184,7 +180,7 @@ const STEPS: Step[] = [
     ],
     correct: 'three-to-eighteen',
     reveal:
-      'Reputable services run roughly $3,000 to $18,000, and the leading specialist’s done-for-you service starts at $12,000, typically for the entity work alone. A podcast, press placements, IMDb, and a year of monthly verification usually cost extra, when they are offered at all.',
+      'Reputable services run roughly $3,000 to $18,000, and the leading specialist’s done-for-you service starts at $12,000, typically for the panel work alone. A podcast, press placements, IMDb, and a year of monthly checkups usually cost extra, when they are offered at all.',
     sources: [
       {
         label: 'The leading specialist’s pricing guidance',
@@ -209,7 +205,7 @@ const STEPS: Step[] = [
     ],
     correct: 'book',
     reveal:
-      'A published book. The moment it exists, so do its records: an ISBN, retailer author pages, a Google Books entry, library catalogs. Every one is a third-party surface pointing back at you, and Google’s Knowledge Graph ties books to their authors as connected entities. It is also the credential people can hold in their hands. The word authority contains author for a reason.',
+      'A published book. The moment it exists, so do its records: an ISBN, retailer author pages, a Google Books entry, library catalogs. Every one points back at you, and Google connects books to their authors. It is also the credential people can hold in their hands. The word authority contains author for a reason.',
   },
   {
     kind: 'choice',
@@ -263,7 +259,7 @@ const STEPS: Step[] = [
   {
     kind: 'contact',
     key: 'contact',
-    question: 'Who is this briefing for?',
+    question: 'Who is this review for?',
   },
 ]
 
@@ -272,6 +268,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 export type Briefing = {
   score: number
   scoreLine: string
+  knowNowHeading: string
   knowNow: string[]
   startingPoint: string
   market: string
@@ -365,14 +362,14 @@ export function AssessmentFlow() {
         className="rounded-3xl bg-white p-8 ring-1 ring-neutral-950/10 sm:p-10"
       >
         <p className="text-sm font-semibold tracking-wide text-neutral-500 uppercase">
-          Your Google Authority Briefing
+          Your Google Authority Review
         </p>
         <h2 className="mt-3 font-display text-3xl font-medium tracking-tight text-neutral-950">
           {briefing.scoreLine}
         </h2>
 
         <h3 className="mt-8 font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
-          What you now know
+          {briefing.knowNowHeading}
         </h3>
         <ul role="list" className="mt-3 space-y-2">
           {briefing.knowNow.map((line) => (
@@ -602,8 +599,8 @@ export function AssessmentFlow() {
               className="mt-6"
               onSubmit={(e) => {
                 e.preventDefault()
-                if (!firstName.trim()) {
-                  setError('A first name makes the briefing yours.')
+                if (!firstName.trim() || !lastName.trim()) {
+                  setError('First and last name make the review yours.')
                   return
                 }
                 if (!EMAIL_RE.test(email.trim())) {
@@ -620,7 +617,7 @@ export function AssessmentFlow() {
               }}
             >
               <p className="mt-2 text-sm text-neutral-600">
-                Your briefing renders on screen right now. The email is where
+                Your review renders on screen right now. The email is where
                 the conversation continues if you ever want it to.
               </p>
               <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -674,7 +671,7 @@ export function AssessmentFlow() {
                   disabled={submitting}
                   className="disabled:pointer-events-none disabled:opacity-60"
                 >
-                  {submitting ? 'Writing your briefing' : 'Get my briefing'}
+                  {submitting ? 'Writing your review' : 'Get my review'}
                 </Button>
               </div>
             </form>
