@@ -1,14 +1,5 @@
-'use client'
-
-import { useRef } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from 'framer-motion'
 
 import { Button } from '@/components/Button'
 import {
@@ -31,19 +22,17 @@ import {
  * application links, and the frequency toggle is the Pay monthly / Pay
  * up front pair (same total either way; the only discount on the page is
  * the bundle's 10 percent, which attaches to scope, never to payment
- * timing). The toggle stays pure CSS via :has(); the component went
- * client-side only for the entrance motion.
+ * timing). Pure CSS toggle via :has(); server component.
  *
- * Tier order (Brett via Dispatch, 2026-07-05, per Russ Laggan):
- * descending price left to right. The Full Build anchors left with the
- * save chip and struck compare-at; the Pre-Sold Author Package holds the
- * featured middle; the Brand SERP Install enters on the right.
- *
- * Motion (same relay): full-bleed rounded slab, 40px ease-out rise with
- * opacity over the first 30% of entrance, interior content on a slower
- * secondary transform for the layered lag, cards staggered 100ms in
- * reading order, glow delayed 200ms behind the cards. All of it collapses
- * to instant visibility under prefers-reduced-motion.
+ * Corrective pass (Brett via Dispatch, 2026-07-05 late): no opacity
+ * animation anywhere. The entrance is a curtain handled in page.tsx (the
+ * definition block pins under a scroll runway and this opaque band slides
+ * over it at native scroll speed). The Full Build is the featured card on
+ * the LEFT (aspirational anchoring: solar ring, white card, glow behind
+ * the left column); PSA and the Brand SERP Install wear the standard
+ * treatment. The glow clips inside its own rounded layer so the form
+ * never needs overflow-hidden and nothing can clip the hanging cards or
+ * the comparison tables.
  */
 
 function CheckIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -93,7 +82,7 @@ const TIERS: Tier[] = [
     monthlyNote: `12 payments, ${BUNDLE.priceDisplay} total`,
     compareAtMonthly: BUNDLE.listMonthlyDisplay,
     compareAtUpfront: BUNDLE.listPriceDisplay,
-    featured: false,
+    featured: true,
     saveChip: `Save ${BUNDLE.savingsDisplay}`,
     highlights: [
       `Everything in the ${KNOWLEDGE_PANEL_INSTALL.name}`,
@@ -111,7 +100,7 @@ const TIERS: Tier[] = [
     upfront: PRE_SOLD_AUTHOR.priceDisplay,
     monthlyNote: `12 payments, ${PRE_SOLD_AUTHOR.priceDisplay} total`,
     note: PRE_SOLD_AUTHOR.payment.note,
-    featured: true,
+    featured: false,
     highlights: [...PRE_SOLD_AUTHOR.differentiators],
   },
   {
@@ -153,448 +142,424 @@ function Cell({ value, featured }: { value: ComparisonCell; featured: boolean })
 }
 
 export function PricingSection() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const reduceMotion = useReducedMotion()
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  })
-  const containerY = useTransform(scrollYProgress, [0, 0.3], [40, 0])
-  const containerOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1])
-  /* Interior lags the container (roughly 0.85x) for the layered depth. */
-  const innerY = useTransform(scrollYProgress, [0, 0.42], [24, 0])
-
   return (
-    <motion.section
-      ref={sectionRef}
-      style={
-        reduceMotion ? undefined : { y: containerY, opacity: containerOpacity }
-      }
-    >
-      <form className="group/tiers isolate overflow-hidden">
-        {/* Dark band: full viewport width, rounded on all four sides per the
-            quiz-card treatment (Brett's cited aesthetic anchor). */}
-        <div className="flow-root rounded-3xl bg-neutral-950 pt-16 pb-16 sm:pt-20 lg:pb-0">
-          <motion.div
-            style={reduceMotion ? undefined : { y: innerY }}
-            className="mx-auto max-w-7xl px-6 lg:px-8"
+    <form className="group/tiers isolate">
+      {/* Dark band: full viewport width, rounded on all four sides per the
+          quiz-card treatment. The glow clips inside its own layer below so
+          the band itself never clips the cards hanging past its bottom. */}
+      <div className="relative flow-root rounded-3xl bg-neutral-950 pt-16 pb-16 sm:pt-20 lg:pb-0">
+        {/* Solar glow, clipped to the rounded band, aimed at the featured
+            left column on desktop. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl"
+        >
+          <svg
+            viewBox="0 0 1208 1024"
+            aria-hidden="true"
+            className="absolute -bottom-48 left-1/2 h-256 -translate-x-1/2 mask-[radial-gradient(closest-side,white,transparent)] lg:left-[18%]"
           >
-            <div className="relative z-10">
-              <h2 className="mx-auto max-w-4xl text-center font-display text-4xl font-medium tracking-tight text-balance text-white sm:text-5xl">
-                Three ways in.
-              </h2>
-              <p className="mx-auto mt-6 max-w-2xl text-center text-lg font-medium text-pretty text-neutral-400 sm:text-xl/8">
-                The Full Build (both packages, 10 percent off), the Pre-Sold
-                Author Package, or the Brand SERP Install on its own.
-                Application only, and the total is the same whichever way you
-                pay.
-              </p>
-              <div className="mt-12 flex justify-center">
-                <fieldset aria-label="How you would pay">
-                  <div className="grid grid-cols-2 gap-x-1 rounded-full bg-white/5 p-1 text-center text-xs/5 font-semibold text-white">
-                    <label className="group relative cursor-pointer rounded-full px-3 py-1.5 has-[:checked]:bg-solar">
-                      <input
-                        defaultValue="monthly"
-                        defaultChecked
-                        name="frequency"
-                        type="radio"
-                        className="absolute inset-0 appearance-none rounded-full"
-                      />
-                      <span className="text-white group-has-[:checked]:text-neutral-950">
-                        Pay monthly
-                      </span>
-                    </label>
-                    <label className="group relative cursor-pointer rounded-full px-3 py-1.5 has-[:checked]:bg-solar">
-                      <input
-                        defaultValue="upfront"
-                        name="frequency"
-                        type="radio"
-                        className="absolute inset-0 appearance-none rounded-full"
-                      />
-                      <span className="text-white group-has-[:checked]:text-neutral-950">
-                        Pay up front
-                      </span>
-                    </label>
-                  </div>
-                </fieldset>
-              </div>
+            <ellipse cx={604} cy={512} rx={604} ry={512} fill="url(#pn-solar-glow)" />
+            <defs>
+              <radialGradient id="pn-solar-glow">
+                <stop stopColor="#FFDD05" stopOpacity={0.55} />
+                <stop offset={1} stopColor="#FFDD05" stopOpacity={0} />
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="relative z-10">
+            <p className="text-center font-display text-sm font-semibold tracking-wider text-neutral-400 uppercase">
+              Pricing
+            </p>
+            <h2 className="mx-auto mt-6 max-w-4xl text-center font-display text-4xl font-medium tracking-tight text-balance text-white sm:text-5xl">
+              Choose your build.
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-center text-lg font-medium text-pretty text-neutral-400 sm:text-xl/8">
+              The Full Build (both packages, 10 percent off), the Pre-Sold
+              Author Package, or the Brand SERP Install on its own.
+              Application only, and the total is the same whichever way you
+              pay.
+            </p>
+            <div className="mt-12 flex justify-center">
+              <fieldset aria-label="How you would pay">
+                <div className="grid grid-cols-2 gap-x-1 rounded-full bg-white/5 p-1 text-center text-xs/5 font-semibold text-white">
+                  <label className="group relative cursor-pointer rounded-full px-3 py-1.5 has-[:checked]:bg-solar">
+                    <input
+                      defaultValue="monthly"
+                      defaultChecked
+                      name="frequency"
+                      type="radio"
+                      className="absolute inset-0 appearance-none rounded-full"
+                    />
+                    <span className="text-white group-has-[:checked]:text-neutral-950">
+                      Pay monthly
+                    </span>
+                  </label>
+                  <label className="group relative cursor-pointer rounded-full px-3 py-1.5 has-[:checked]:bg-solar">
+                    <input
+                      defaultValue="upfront"
+                      name="frequency"
+                      type="radio"
+                      className="absolute inset-0 appearance-none rounded-full"
+                    />
+                    <span className="text-white group-has-[:checked]:text-neutral-950">
+                      Pay up front
+                    </span>
+                  </label>
+                </div>
+              </fieldset>
             </div>
-            <div className="relative mx-auto mt-10 grid max-w-md grid-cols-1 gap-y-8 lg:mx-0 lg:-mb-14 lg:max-w-none lg:grid-cols-3">
-              {/* Solar glow: illuminates 200ms after the cards begin. */}
-              <motion.svg
-                viewBox="0 0 1208 1024"
-                aria-hidden="true"
-                initial={reduceMotion ? false : { opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: '-64px' }}
-                transition={{ delay: 0.3, duration: 0.8, ease: 'easeOut' }}
-                className="absolute -bottom-48 left-1/2 h-256 -translate-x-1/2 translate-y-1/2 mask-[radial-gradient(closest-side,white,transparent)] lg:-top-48 lg:bottom-auto lg:translate-y-0"
-              >
-                <ellipse cx={604} cy={512} rx={604} ry={512} fill="url(#pn-solar-glow)" />
-                <defs>
-                  <radialGradient id="pn-solar-glow">
-                    <stop stopColor="#FFDD05" stopOpacity={0.55} />
-                    <stop offset={1} stopColor="#FFDD05" stopOpacity={0} />
-                  </radialGradient>
-                </defs>
-              </motion.svg>
+          </div>
+          <div className="relative mx-auto mt-10 grid max-w-md grid-cols-1 gap-y-8 lg:mx-0 lg:-mb-14 lg:max-w-none lg:grid-cols-3">
+            <div
+              aria-hidden="true"
+              className="hidden lg:absolute lg:inset-x-px lg:top-4 lg:bottom-0 lg:block lg:rounded-t-2xl lg:bg-neutral-800/80 lg:ring-1 lg:ring-white/10"
+            />
+            {TIERS.map((tier) => (
               <div
-                aria-hidden="true"
-                className="hidden lg:absolute lg:inset-x-px lg:top-4 lg:bottom-0 lg:block lg:rounded-t-2xl lg:bg-neutral-800/80 lg:ring-1 lg:ring-white/10"
-              />
-              {TIERS.map((tier, tierIdx) => (
-                <motion.div
-                  key={tier.key}
-                  id={tier.anchorId}
-                  initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-64px' }}
-                  transition={{
-                    duration: 0.5,
-                    delay: reduceMotion ? 0 : tierIdx * 0.1,
-                    ease: 'easeOut',
-                  }}
-                  className={clsx(
-                    tier.featured
-                      ? 'z-10 bg-white shadow-xl outline-1 outline-neutral-950/10'
-                      : 'bg-neutral-800/80 outline-1 -outline-offset-1 outline-white/10 lg:bg-transparent lg:pb-14 lg:outline-0',
-                    'relative scroll-mt-24 rounded-2xl',
-                  )}
-                >
-                  <div className="p-8 lg:pt-12 xl:p-10 xl:pt-14">
-                    <div className="flex items-center justify-between gap-3">
-                      <h3
-                        className={clsx(
-                          tier.featured ? 'text-neutral-950' : 'text-white',
-                          'text-sm/6 font-semibold',
-                        )}
-                      >
-                        {tier.name}
-                      </h3>
-                      {tier.saveChip && (
-                        <p
-                          className={clsx(
-                            tier.featured
-                              ? 'bg-neutral-950 text-white'
-                              : 'bg-solar text-neutral-950',
-                            'rounded-full px-2.5 py-1 text-xs font-semibold',
-                          )}
-                        >
-                          {tier.saveChip}
-                        </p>
-                      )}
-                    </div>
-                    <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between lg:flex-col lg:items-stretch">
-                      <div className="mt-2 flex items-center gap-x-4">
-                        <p
-                          className={clsx(
-                            tier.featured ? 'text-neutral-950' : 'text-white',
-                            'font-display text-4xl font-medium tracking-tight group-has-[[name=frequency][value=upfront]:checked]/tiers:hidden',
-                          )}
-                        >
-                          {tier.compareAtMonthly && (
-                            <span className="mr-2 text-2xl text-neutral-400 line-through">
-                              {tier.compareAtMonthly}
-                            </span>
-                          )}
-                          {tier.monthly}
-                        </p>
-                        <p
-                          className={clsx(
-                            tier.featured ? 'text-neutral-950' : 'text-white',
-                            'font-display text-4xl font-medium tracking-tight group-has-[[name=frequency][value=monthly]:checked]/tiers:hidden',
-                          )}
-                        >
-                          {tier.compareAtUpfront && (
-                            <span className="mr-2 text-2xl text-neutral-400 line-through">
-                              {tier.compareAtUpfront}
-                            </span>
-                          )}
-                          {tier.upfront}
-                        </p>
-                        <div className="text-sm">
-                          <p
-                            className={clsx(
-                              tier.featured ? 'text-neutral-950' : 'text-white',
-                              'group-has-[[name=frequency][value=upfront]:checked]/tiers:hidden',
-                            )}
-                          >
-                            a month
-                          </p>
-                          <p
-                            className={clsx(
-                              tier.featured ? 'text-neutral-500' : 'text-neutral-400',
-                              'group-has-[[name=frequency][value=upfront]:checked]/tiers:hidden',
-                            )}
-                          >
-                            {tier.monthlyNote}
-                          </p>
-                          <p
-                            className={clsx(
-                              tier.featured ? 'text-neutral-950' : 'text-white',
-                              'group-has-[[name=frequency][value=monthly]:checked]/tiers:hidden',
-                            )}
-                          >
-                            total
-                          </p>
-                          <p
-                            className={clsx(
-                              tier.featured ? 'text-neutral-500' : 'text-neutral-400',
-                              'group-has-[[name=frequency][value=monthly]:checked]/tiers:hidden',
-                            )}
-                          >
-                            One payment, same total as monthly
-                          </p>
-                        </div>
-                      </div>
-                      {tier.featured ? (
-                        <Button href="/apply/" className="w-full">
-                          Apply for this build
-                        </Button>
-                      ) : (
-                        <Link
-                          href="/apply/"
-                          className="w-full rounded-xl bg-white/10 px-3 py-2.5 text-center text-sm/6 font-semibold text-white transition hover:bg-white/20"
-                        >
-                          Apply for this build
-                        </Link>
-                      )}
-                    </div>
-                    <p
+                key={tier.key}
+                id={tier.anchorId}
+                className={clsx(
+                  tier.featured
+                    ? 'z-10 bg-white shadow-xl ring-2 ring-solar'
+                    : 'bg-neutral-800/80 outline-1 -outline-offset-1 outline-white/10 lg:bg-transparent lg:pb-14 lg:outline-0',
+                  'relative scroll-mt-24 rounded-2xl',
+                )}
+              >
+                <div className="p-8 lg:pt-12 xl:p-10 xl:pt-14">
+                  <div className="flex items-center justify-between gap-3">
+                    <h3
                       className={clsx(
-                        tier.featured ? 'text-neutral-600' : 'text-neutral-400',
-                        'mt-6 text-sm/6',
+                        tier.featured ? 'text-neutral-950' : 'text-white',
+                        'text-sm/6 font-semibold',
                       )}
                     >
-                      {tier.description}
-                    </p>
-                    {tier.note && (
+                      {tier.name}
+                    </h3>
+                    {tier.saveChip && (
                       <p
                         className={clsx(
-                          tier.featured ? 'text-neutral-500' : 'text-neutral-400',
-                          'mt-2 text-xs/5',
+                          tier.featured
+                            ? 'bg-neutral-950 text-white'
+                            : 'bg-solar text-neutral-950',
+                          'rounded-full px-2.5 py-1 text-xs font-semibold',
                         )}
                       >
-                        {tier.note}
+                        {tier.saveChip}
                       </p>
                     )}
-                    <div className="mt-6 flow-root">
-                      <ul
-                        role="list"
+                  </div>
+                  <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between lg:flex-col lg:items-stretch">
+                    <div className="mt-2 flex items-center gap-x-4">
+                      <p
                         className={clsx(
-                          tier.featured
-                            ? 'divide-neutral-950/5 border-neutral-950/5 text-neutral-600'
-                            : 'divide-white/5 border-white/5 text-white',
-                          '-my-2 divide-y border-t text-sm/6 lg:border-t-0',
+                          tier.featured ? 'text-neutral-950' : 'text-white',
+                          'font-display text-4xl font-medium tracking-tight group-has-[[name=frequency][value=upfront]:checked]/tiers:hidden',
                         )}
                       >
-                        {tier.highlights.map((mainFeature) => (
-                          <li key={mainFeature} className="flex gap-x-3 py-2">
-                            <CheckIcon
-                              aria-hidden="true"
-                              className={clsx(
-                                tier.featured ? 'text-neutral-950' : 'text-neutral-500',
-                                'h-6 w-5 flex-none',
-                              )}
-                            />
-                            {mainFeature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Feature comparison zone */}
-        <div className="relative bg-neutral-50 lg:pt-14">
-          <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
-            {/* Feature comparison (up to lg) */}
-            <section aria-labelledby="mobile-comparison-heading" className="lg:hidden">
-              <h2 id="mobile-comparison-heading" className="sr-only">
-                Feature comparison
-              </h2>
-              <div className="mx-auto max-w-2xl space-y-16">
-                {TIERS.map((tier) => (
-                  <div key={tier.key} className="border-t border-neutral-950/10">
-                    <div
-                      className={clsx(
-                        tier.featured ? 'border-solar' : 'border-transparent',
-                        '-mt-px w-72 border-t-2 pt-10 md:w-80',
-                      )}
-                    >
-                      <h3 className="text-sm/6 font-semibold text-neutral-950">
-                        {tier.name}
-                      </h3>
-                      <p className="mt-1 text-sm/6 text-neutral-600">
-                        {tier.description}
+                        {tier.compareAtMonthly && (
+                          <span className="mr-2 text-2xl text-neutral-400 line-through">
+                            {tier.compareAtMonthly}
+                          </span>
+                        )}
+                        {tier.monthly}
                       </p>
-                    </div>
-                    <div className="mt-10 space-y-10">
-                      {COMPARISON_SECTIONS.map((section) => (
-                        <div key={section.name}>
-                          <h4 className="text-sm/6 font-semibold text-neutral-950">
-                            {section.name}
-                          </h4>
-                          <div className="relative mt-6">
-                            <div
-                              aria-hidden="true"
-                              className="absolute inset-y-0 right-0 hidden w-1/2 rounded-lg bg-white shadow-xs sm:block"
-                            />
-                            <div
-                              className={clsx(
-                                tier.featured
-                                  ? 'ring-2 ring-solar'
-                                  : 'ring-1 ring-neutral-950/10',
-                                'relative rounded-lg bg-white shadow-xs sm:rounded-none sm:bg-transparent sm:shadow-none sm:ring-0',
-                              )}
-                            >
-                              <dl className="divide-y divide-neutral-200 text-sm/6">
-                                {section.features.map((feature) => (
-                                  <div
-                                    key={feature.name}
-                                    className="flex items-center justify-between px-4 py-3 sm:grid sm:grid-cols-2 sm:px-0"
-                                  >
-                                    <dt className="pr-4 text-neutral-600">
-                                      {feature.name}
-                                    </dt>
-                                    <dd className="flex items-center justify-end sm:justify-center sm:px-4">
-                                      <Cell
-                                        value={feature.tiers[tier.key]}
-                                        featured={tier.featured}
-                                      />
-                                    </dd>
-                                  </div>
-                                ))}
-                              </dl>
-                            </div>
-                            <div
-                              aria-hidden="true"
-                              className={clsx(
-                                tier.featured
-                                  ? 'ring-2 ring-solar'
-                                  : 'ring-1 ring-neutral-950/10',
-                                'pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 rounded-lg sm:block',
-                              )}
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Feature comparison (lg+) */}
-            <section aria-labelledby="comparison-heading" className="hidden lg:block">
-              <h2 id="comparison-heading" className="sr-only">
-                Feature comparison
-              </h2>
-              <div className="grid grid-cols-4 gap-x-8 border-t border-neutral-950/10 before:block">
-                {TIERS.map((tier) => (
-                  <div key={tier.key} aria-hidden="true" className="-mt-px">
-                    <div
-                      className={clsx(
-                        tier.featured ? 'border-solar' : 'border-transparent',
-                        'border-t-2 pt-10',
-                      )}
-                    >
-                      <p className="text-sm/6 font-semibold text-neutral-950">
-                        {tier.name}
-                      </p>
-                      <p className="mt-1 text-sm/6 text-neutral-600">
-                        {tier.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="-mt-6 space-y-16">
-                {COMPARISON_SECTIONS.map((section) => (
-                  <div key={section.name}>
-                    <h3 className="text-sm/6 font-semibold text-neutral-950">
-                      {section.name}
-                    </h3>
-                    <div className="relative -mx-8 mt-10">
-                      <div
-                        aria-hidden="true"
-                        className="absolute inset-x-8 inset-y-0 grid grid-cols-4 gap-x-8 before:block"
+                      <p
+                        className={clsx(
+                          tier.featured ? 'text-neutral-950' : 'text-white',
+                          'font-display text-4xl font-medium tracking-tight group-has-[[name=frequency][value=monthly]:checked]/tiers:hidden',
+                        )}
                       >
-                        <div className="size-full rounded-lg bg-white shadow-xs" />
-                        <div className="size-full rounded-lg bg-white shadow-xs" />
-                        <div className="size-full rounded-lg bg-white shadow-xs" />
+                        {tier.compareAtUpfront && (
+                          <span className="mr-2 text-2xl text-neutral-400 line-through">
+                            {tier.compareAtUpfront}
+                          </span>
+                        )}
+                        {tier.upfront}
+                      </p>
+                      <div className="text-sm">
+                        <p
+                          className={clsx(
+                            tier.featured ? 'text-neutral-950' : 'text-white',
+                            'group-has-[[name=frequency][value=upfront]:checked]/tiers:hidden',
+                          )}
+                        >
+                          a month
+                        </p>
+                        <p
+                          className={clsx(
+                            tier.featured ? 'text-neutral-500' : 'text-neutral-400',
+                            'group-has-[[name=frequency][value=upfront]:checked]/tiers:hidden',
+                          )}
+                        >
+                          {tier.monthlyNote}
+                        </p>
+                        <p
+                          className={clsx(
+                            tier.featured ? 'text-neutral-950' : 'text-white',
+                            'group-has-[[name=frequency][value=monthly]:checked]/tiers:hidden',
+                          )}
+                        >
+                          total
+                        </p>
+                        <p
+                          className={clsx(
+                            tier.featured ? 'text-neutral-500' : 'text-neutral-400',
+                            'group-has-[[name=frequency][value=monthly]:checked]/tiers:hidden',
+                          )}
+                        >
+                          One payment, same total as monthly
+                        </p>
                       </div>
-                      <table className="relative w-full border-separate border-spacing-x-8">
-                        <thead>
-                          <tr className="text-left">
-                            <th scope="col">
-                              <span className="sr-only">Feature</span>
-                            </th>
-                            {TIERS.map((tier) => (
-                              <th key={tier.key} scope="col">
-                                <span className="sr-only">{tier.name} tier</span>
-                              </th>
-                            ))}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {section.features.map((feature, featureIdx) => (
-                            <tr key={feature.name}>
-                              <th
-                                scope="row"
-                                className="w-1/4 py-3 pr-4 text-left text-sm/6 font-normal text-neutral-950"
-                              >
-                                {feature.name}
-                                {featureIdx !== section.features.length - 1 ? (
-                                  <div className="absolute inset-x-8 mt-3 h-px bg-neutral-200" />
-                                ) : null}
-                              </th>
-                              {TIERS.map((tier) => (
-                                <td
-                                  key={tier.key}
-                                  className="relative w-1/4 px-4 py-0 text-center"
-                                >
-                                  <span className="relative size-full py-3">
-                                    <Cell
-                                      value={feature.tiers[tier.key]}
-                                      featured={tier.featured}
-                                    />
-                                  </span>
-                                </td>
-                              ))}
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                      <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-x-8 inset-y-0 grid grid-cols-4 gap-x-8 before:block"
+                    </div>
+                    {tier.featured ? (
+                      <Button href="/apply/" className="w-full">
+                        Apply for this build
+                      </Button>
+                    ) : (
+                      <Link
+                        href="/apply/"
+                        className="w-full rounded-xl bg-white/10 px-3 py-2.5 text-center text-sm/6 font-semibold text-white transition hover:bg-white/20"
                       >
-                        {TIERS.map((tier) => (
+                        Apply for this build
+                      </Link>
+                    )}
+                  </div>
+                  <p
+                    className={clsx(
+                      tier.featured ? 'text-neutral-600' : 'text-neutral-400',
+                      'mt-6 text-sm/6',
+                    )}
+                  >
+                    {tier.description}
+                  </p>
+                  {tier.note && (
+                    <p
+                      className={clsx(
+                        tier.featured ? 'text-neutral-500' : 'text-neutral-400',
+                        'mt-2 text-xs/5',
+                      )}
+                    >
+                      {tier.note}
+                    </p>
+                  )}
+                  <div className="mt-6 flow-root">
+                    <ul
+                      role="list"
+                      className={clsx(
+                        tier.featured
+                          ? 'divide-neutral-950/5 border-neutral-950/5 text-neutral-600'
+                          : 'divide-white/5 border-white/5 text-white',
+                        '-my-2 divide-y border-t text-sm/6 lg:border-t-0',
+                      )}
+                    >
+                      {tier.highlights.map((mainFeature) => (
+                        <li key={mainFeature} className="flex gap-x-3 py-2">
+                          <CheckIcon
+                            aria-hidden="true"
+                            className={clsx(
+                              tier.featured ? 'text-neutral-950' : 'text-neutral-500',
+                              'h-6 w-5 flex-none',
+                            )}
+                          />
+                          {mainFeature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Feature comparison zone */}
+      <div className="relative bg-neutral-50 lg:pt-14">
+        <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
+          {/* Feature comparison (up to lg) */}
+          <section aria-labelledby="mobile-comparison-heading" className="lg:hidden">
+            <h2 id="mobile-comparison-heading" className="sr-only">
+              Feature comparison
+            </h2>
+            <div className="mx-auto max-w-2xl space-y-16">
+              {TIERS.map((tier) => (
+                <div key={tier.key} className="border-t border-neutral-950/10">
+                  <div
+                    className={clsx(
+                      tier.featured ? 'border-solar' : 'border-transparent',
+                      '-mt-px w-72 border-t-2 pt-10 md:w-80',
+                    )}
+                  >
+                    <h3 className="text-sm/6 font-semibold text-neutral-950">
+                      {tier.name}
+                    </h3>
+                    <p className="mt-1 text-sm/6 text-neutral-600">
+                      {tier.description}
+                    </p>
+                  </div>
+                  <div className="mt-10 space-y-10">
+                    {COMPARISON_SECTIONS.map((section) => (
+                      <div key={section.name}>
+                        <h4 className="text-sm/6 font-semibold text-neutral-950">
+                          {section.name}
+                        </h4>
+                        <div className="relative mt-6">
                           <div
-                            key={tier.key}
+                            aria-hidden="true"
+                            className="absolute inset-y-0 right-0 hidden w-1/2 rounded-lg bg-white shadow-xs sm:block"
+                          />
+                          <div
                             className={clsx(
                               tier.featured
                                 ? 'ring-2 ring-solar'
                                 : 'ring-1 ring-neutral-950/10',
-                              'rounded-lg',
+                              'relative rounded-lg bg-white shadow-xs sm:rounded-none sm:bg-transparent sm:shadow-none sm:ring-0',
+                            )}
+                          >
+                            <dl className="divide-y divide-neutral-200 text-sm/6">
+                              {section.features.map((feature) => (
+                                <div
+                                  key={feature.name}
+                                  className="flex items-center justify-between px-4 py-3 sm:grid sm:grid-cols-2 sm:px-0"
+                                >
+                                  <dt className="pr-4 text-neutral-600">
+                                    {feature.name}
+                                  </dt>
+                                  <dd className="flex items-center justify-end sm:justify-center sm:px-4">
+                                    <Cell
+                                      value={feature.tiers[tier.key]}
+                                      featured={tier.featured}
+                                    />
+                                  </dd>
+                                </div>
+                              ))}
+                            </dl>
+                          </div>
+                          <div
+                            aria-hidden="true"
+                            className={clsx(
+                              tier.featured
+                                ? 'ring-2 ring-solar'
+                                : 'ring-1 ring-neutral-950/10',
+                              'pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 rounded-lg sm:block',
                             )}
                           />
-                        ))}
+                        </div>
                       </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Feature comparison (lg+) */}
+          <section aria-labelledby="comparison-heading" className="hidden lg:block">
+            <h2 id="comparison-heading" className="sr-only">
+              Feature comparison
+            </h2>
+            <div className="grid grid-cols-4 gap-x-8 border-t border-neutral-950/10 before:block">
+              {TIERS.map((tier) => (
+                <div key={tier.key} aria-hidden="true" className="-mt-px">
+                  <div
+                    className={clsx(
+                      tier.featured ? 'border-solar' : 'border-transparent',
+                      'border-t-2 pt-10',
+                    )}
+                  >
+                    <p className="text-sm/6 font-semibold text-neutral-950">
+                      {tier.name}
+                    </p>
+                    <p className="mt-1 text-sm/6 text-neutral-600">
+                      {tier.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="-mt-6 space-y-16">
+              {COMPARISON_SECTIONS.map((section) => (
+                <div key={section.name}>
+                  <h3 className="text-sm/6 font-semibold text-neutral-950">
+                    {section.name}
+                  </h3>
+                  <div className="relative -mx-8 mt-10">
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-x-8 inset-y-0 grid grid-cols-4 gap-x-8 before:block"
+                    >
+                      <div className="size-full rounded-lg bg-white shadow-xs" />
+                      <div className="size-full rounded-lg bg-white shadow-xs" />
+                      <div className="size-full rounded-lg bg-white shadow-xs" />
+                    </div>
+                    <table className="relative w-full border-separate border-spacing-x-8">
+                      <thead>
+                        <tr className="text-left">
+                          <th scope="col">
+                            <span className="sr-only">Feature</span>
+                          </th>
+                          {TIERS.map((tier) => (
+                            <th key={tier.key} scope="col">
+                              <span className="sr-only">{tier.name} tier</span>
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {section.features.map((feature, featureIdx) => (
+                          <tr key={feature.name}>
+                            <th
+                              scope="row"
+                              className="w-1/4 py-3 pr-4 text-left text-sm/6 font-normal text-neutral-950"
+                            >
+                              {feature.name}
+                              {featureIdx !== section.features.length - 1 ? (
+                                <div className="absolute inset-x-8 mt-3 h-px bg-neutral-200" />
+                              ) : null}
+                            </th>
+                            {TIERS.map((tier) => (
+                              <td
+                                key={tier.key}
+                                className="relative w-1/4 px-4 py-0 text-center"
+                              >
+                                <span className="relative size-full py-3">
+                                  <Cell
+                                    value={feature.tiers[tier.key]}
+                                    featured={tier.featured}
+                                  />
+                                </span>
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-x-8 inset-y-0 grid grid-cols-4 gap-x-8 before:block"
+                    >
+                      {TIERS.map((tier) => (
+                        <div
+                          key={tier.key}
+                          className={clsx(
+                            tier.featured
+                              ? 'ring-2 ring-solar'
+                              : 'ring-1 ring-neutral-950/10',
+                            'rounded-lg',
+                          )}
+                        />
+                      ))}
                     </div>
                   </div>
-                ))}
-              </div>
-            </section>
-          </div>
+                </div>
+              ))}
+            </div>
+          </section>
         </div>
-      </form>
-    </motion.section>
+      </div>
+    </form>
   )
 }

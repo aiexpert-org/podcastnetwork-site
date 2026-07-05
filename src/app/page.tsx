@@ -28,8 +28,8 @@ export const metadata: Metadata = {
 
 /* Section 3: the definition block. Written for answer engines to lift whole
  * and for a first-time visitor to orient in one paragraph. Heading-left,
- * paragraph-right grid so the band uses its full width (Brett, 2026-07-05:
- * the single narrow column read as a spacing bug). */
+ * paragraph-right grid so the band uses its full width. Pins under the
+ * pricing curtain via the sticky wrapper in Home. */
 function Definition() {
   return (
     <div id="proof" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
@@ -176,7 +176,7 @@ function CaseStudyBand({ studies }: { studies: CaseStudyStatic[] }) {
  * floor block retired 2026-07-05: its rows live in the comparison table. */
 function Packages({ studies }: { studies: CaseStudyStatic[] }) {
   return (
-    <div id="packages" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
+    <div id="packages" className="scroll-mt-24">
       <PricingSection />
       <Container>
         <SectionIntro
@@ -263,11 +263,23 @@ export default function Home() {
       {/* Section 2: quiz gateway, dark card */}
       <AssessmentGateway />
 
-      {/* Section 3: definition block */}
-      <Definition />
+      {/* Section 3: definition, pinned under the pricing curtain. The
+          sticky wrapper holds it in place while the opaque pricing band
+          slides up over it at native scroll speed (the curtain reveal,
+          Brett via Dispatch 2026-07-05: full density, no opacity
+          animation). The runway div provides the overlap distance; the
+          band's higher stacking order does the covering. */}
+      <div className="relative">
+        <div className="sticky top-24">
+          <Definition />
+        </div>
+        <div aria-hidden="true" className="h-[45vh]" />
+      </div>
 
-      {/* Section 4: three-tier pricing + folded proof */}
-      <Packages studies={studies} />
+      {/* Section 4: three-tier pricing + folded proof, over the curtain */}
+      <div className="relative z-10">
+        <Packages studies={studies} />
+      </div>
 
       {/* Section 5: FAQ */}
       <Faq />
