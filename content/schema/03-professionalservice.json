@@ -53,7 +53,7 @@
       "price": "36000",
       "priceCurrency": "USD",
       "valueAddedTaxIncluded": false,
-      "description": "One-time payment to PodcastNetwork.org. If the client takes the Legacy Publishing option, Legacy earns 10% of net book sales as royalty with no upfront fee."
+      "description": "Paid up front, or split into twelve monthly payments of $3,000 at no extra cost; delivery runs the first six months. If the client takes the Legacy Publishing option, Legacy earns 10% of net book sales as royalty with no upfront fee."
     },
     "seller": {
       "@id": "https://podcastnetwork.org/#organization"
