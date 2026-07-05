@@ -11,7 +11,8 @@ import { KNOWLEDGE_PANEL_INSTALL, PRE_SOLD_AUTHOR } from '@/content/packages'
  * submission (console + /tmp JSONL, the WTP exhaust), and syncs to GHL as a
  * contact with segment, WTP, book-intent, and quiz-score tags when
  * GHL_API_KEY is present. "not-sure" is a valid, unscored answer on every
- * quiz beat.
+ * quiz beat. The outcomes multi-select primes the WTP question and rides
+ * into the log and the GHL note.
  *
  * Market-pricing facts sourced from Kalicube's published pricing pages
  * (done-for-you service starts at $12,000; reputable range $3,000 to
@@ -42,8 +43,17 @@ const CHOICES: Record<string, string[]> = {
   q_book: ['mba', 'book', 'social', 'not-sure'],
   role: ['executive', 'author', 'entrepreneur', 'professional'],
   book: ['published', 'writing', 'someday', 'none'],
-  budget: ['under-5k', '5-15k', '15-40k', '40k-plus', 'depends'],
+  budget: ['under-5k', '5-15k', '15-40k', '40k-plus'],
 }
+
+const OUTCOME_VALUES = [
+  'trust-first-meeting',
+  'higher-fees',
+  'bookings',
+  'outrank-namesakes',
+  'launch',
+  'investors',
+]
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
@@ -133,6 +143,22 @@ export async function POST(req: Request) {
       )
     }
   }
+  const rawOutcomes = raw.outcomes
+  if (
+    !Array.isArray(rawOutcomes) ||
+    rawOutcomes.length === 0 ||
+    rawOutcomes.length > OUTCOME_VALUES.length ||
+    rawOutcomes.some(
+      (v) => typeof v !== 'string' || !OUTCOME_VALUES.includes(v),
+    )
+  ) {
+    return NextResponse.json(
+      { error: 'missing or invalid answer: outcomes' },
+      { status: 400 },
+    )
+  }
+  const outcomes = [...new Set(rawOutcomes as string[])]
+
   const emailRaw = raw.email
   if (typeof emailRaw !== 'string' || !EMAIL_RE.test(emailRaw.trim())) {
     return NextResponse.json({ error: 'invalid email' }, { status: 400 })
@@ -153,6 +179,7 @@ export async function POST(req: Request) {
     role: raw.role as string,
     book: raw.book as string,
     budget: raw.budget as string,
+    outcomes,
     email: emailRaw.trim().toLowerCase(),
     firstName: clamp(raw.firstName, 100),
     lastName: clamp(raw.lastName, 100),
@@ -219,6 +246,7 @@ export async function POST(req: Request) {
       `Quiz score: ${score} of 8`,
       `Role: ${answers.role}`,
       `Book status: ${answers.book}`,
+      `Outcomes picked: ${outcomes.join(', ')}`,
       `Informed WTP: ${answers.budget}`,
       `Book intent: ${bookIntent ? 'yes' : 'no'}`,
       '',

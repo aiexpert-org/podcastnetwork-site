@@ -3,18 +3,19 @@
 /**
  * The Google Authority Quiz (v0.6.12, per Brett): ask-guess-reveal.
  *
- * Eight teaching beats, two situation questions, one informed WTP question,
- * then contact details. The outcome is a briefing, never a package
- * recommendation: the visitor teaches themselves why the entity layer
- * matters and leaves with buying criteria that travel with them.
+ * Eight teaching beats, situation questions, an outcomes multi-select that
+ * primes one informed WTP question, then contact details. The outcome is a
+ * briefing, never a package recommendation: the visitor teaches themselves
+ * why the entity layer matters and leaves with buying criteria that travel
+ * with them.
  *
  * Rules locked while Brett walked the flow: every quiz question carries
  * exactly three substantive options plus an honest "I'm not sure" that is
- * never scolded; the stakes beat sits at 2 and the podcast beat at 3 so
- * early drop-off still learns why this matters and why the company carries
- * its name; the book beat sits directly before the situation questions;
- * reveals carry clickable source links, but only where the linked page
- * plainly supports the sentence.
+ * never scolded; the stakes beat sits at 2 and the podcast beat at 3; the
+ * book beat sits directly before the situation questions; the outcomes
+ * multi-select primes the value question and the value question has no
+ * escape-hatch option; reveals carry clickable source links, but only where
+ * the linked page plainly supports the sentence.
  */
 
 import { useCallback, useState } from 'react'
@@ -44,9 +45,17 @@ type ChoiceStep = {
   options: { value: string; label: string }[]
 }
 
+type MultiStep = {
+  kind: 'multi'
+  key: 'outcomes'
+  question: string
+  hint: string
+  options: { value: string; label: string }[]
+}
+
 type ContactStep = { kind: 'contact'; key: 'contact'; question: string }
 
-type Step = QuizStep | ChoiceStep | ContactStep
+type Step = QuizStep | ChoiceStep | MultiStep | ContactStep
 
 const NOT_SURE = { value: 'not-sure', label: "I'm not sure" }
 
@@ -225,16 +234,30 @@ const STEPS: Step[] = [
     ],
   },
   {
+    kind: 'multi',
+    key: 'outcomes',
+    question:
+      'Which outcomes would a set-up Google Knowledge Panel open up for you?',
+    hint: 'Pick everything that fits.',
+    options: [
+      { value: 'trust-first-meeting', label: 'Winning trust before the first meeting' },
+      { value: 'higher-fees', label: 'Commanding higher fees or bigger deals' },
+      { value: 'bookings', label: 'Getting booked: media, podcasts, speaking' },
+      { value: 'outrank-namesakes', label: 'Outranking people who share my name' },
+      { value: 'launch', label: 'A stronger book or product launch' },
+      { value: 'investors', label: 'Credibility with investors and partners' },
+    ],
+  },
+  {
     kind: 'choice',
     key: 'budget',
     question:
-      'Knowing what you know now, what would a done-for-you authority build be worth to you?',
+      'What would a done-for-you Google Knowledge Panel setup be worth to you?',
     options: [
       { value: 'under-5k', label: 'Under $5,000' },
       { value: '5-15k', label: '$5,000 to $15,000' },
       { value: '15-40k', label: '$15,000 to $40,000' },
       { value: '40k-plus', label: 'More than $40,000' },
-      { value: 'depends', label: 'Depends on the expected return' },
     ],
   },
   {
@@ -286,6 +309,7 @@ function ProgressBar({ step, total }: { step: number; total: number }) {
 export function AssessmentFlow() {
   const [stepIndex, setStepIndex] = useState(0)
   const [answers, setAnswers] = useState<Record<string, string>>({})
+  const [outcomes, setOutcomes] = useState<string[]>([])
   const [revealed, setRevealed] = useState(false)
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -304,7 +328,7 @@ export function AssessmentFlow() {
   }, [stepIndex, total])
 
   const submit = useCallback(
-    async (finalAnswers: Record<string, string>) => {
+    async (finalAnswers: Record<string, unknown>) => {
       setSubmitting(true)
       setError(null)
       track('assessment_submit')
@@ -423,7 +447,7 @@ export function AssessmentFlow() {
           className="mt-8"
         >
           <h2 className="font-display text-2xl font-medium tracking-tight text-neutral-950">
-            {step.kind === 'contact' ? step.question : step.question}
+            {step.question}
           </h2>
 
           {step.kind === 'quiz' && (
@@ -525,6 +549,54 @@ export function AssessmentFlow() {
             </div>
           )}
 
+          {step.kind === 'multi' && (
+            <div className="mt-6">
+              <p className="text-sm text-neutral-600">{step.hint}</p>
+              <div className="mt-4 grid grid-cols-1 gap-3">
+                {step.options.map((opt) => {
+                  const selected = outcomes.includes(opt.value)
+                  return (
+                    <button
+                      key={opt.value}
+                      type="button"
+                      onClick={() => {
+                        setError(null)
+                        setOutcomes(
+                          selected
+                            ? outcomes.filter((v) => v !== opt.value)
+                            : [...outcomes, opt.value],
+                        )
+                      }}
+                      className={clsx(
+                        'rounded-2xl border px-5 py-4 text-left text-base transition',
+                        selected
+                          ? 'border-neutral-950 bg-neutral-950 text-white'
+                          : 'border-neutral-300 bg-white text-neutral-950 hover:border-neutral-950',
+                      )}
+                    >
+                      {opt.label}
+                    </button>
+                  )
+                })}
+              </div>
+              <div className="mt-4">
+                <Button
+                  type="button"
+                  onClick={() => {
+                    if (outcomes.length === 0) {
+                      setError('Pick at least one outcome that matters to you.')
+                      return
+                    }
+                    track('assessment_step_complete')
+                    advance()
+                  }}
+                >
+                  Continue
+                </Button>
+              </div>
+            </div>
+          )}
+
           {step.kind === 'contact' && (
             <form
               className="mt-6"
@@ -540,6 +612,7 @@ export function AssessmentFlow() {
                 }
                 void submit({
                   ...answers,
+                  outcomes,
                   firstName: firstName.trim(),
                   lastName: lastName.trim(),
                   email: email.trim(),
