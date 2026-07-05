@@ -4,14 +4,15 @@
  * the JSON-LD offer schema, and the application flow.
  *
  * Locked 2026-07-03 (two-package structure, supersedes the single $30K
- * flagship). Knowledge Panel Install repriced to $12,000 on 2026-07-04 per
- * Brett, with payment terms locked later the same evening: $1,000 a month
- * for 12 months, or $10,000 paid up front (a $2,000 savings). Both packages
- * are standalone. An executive who wants both pays $48,000 total on standard
- * terms ($46,000 with the Knowledge Panel Install paid up front), no bundle
- * discount. Podcast, IMDb, and a full website (if the executive does not
- * already have one) are the shared floor in both. The audio voice clone and
- * voice corpus are exclusive to the Pre-Sold Author Package.
+ * flagship). Knowledge Panel Install pricing settled 2026-07-04 (final):
+ * $10,000 flat, paid up front or split into twelve equal monthly payments at
+ * no extra cost. No discount in either direction (supersedes the brief
+ * $12,000 reprice and the pay-in-full discount from earlier the same
+ * evening). Both packages are standalone. An executive who wants both pays
+ * $46,000 total, no bundle discount. Podcast, IMDb, and a full website (if
+ * the executive does not already have one) are the shared floor in both. The
+ * audio voice clone and voice corpus are exclusive to the Pre-Sold Author
+ * Package.
  *
  * Copy rules: no em dashes, no banned vocabulary, no "X, not Y" patterns.
  * Public copy names capabilities, never vendors.
@@ -20,11 +21,9 @@
 export type PackageId = 'knowledge-panel-install' | 'pre-sold-author'
 
 export type PackagePayment = {
-  /** e.g. '$1,000 a month for 12 months' */
+  /** Full sentence-case payment line, e.g.
+   * 'Paid up front, or split into 12 equal monthly payments'. */
   planDisplay: string
-  payInFullUsd: number
-  payInFullDisplay: string
-  savingsDisplay: string
 }
 
 export type PackageMeta = {
@@ -60,8 +59,8 @@ export const KNOWLEDGE_PANEL_INSTALL: PackageMeta = {
   slug: 'knowledge-panel-install',
   url: '/knowledge-panel-install/',
   name: 'Knowledge Panel Install',
-  priceUsd: 12000,
-  priceDisplay: '$12,000',
+  priceUsd: 10000,
+  priceDisplay: '$10,000',
   timelineMonths: 12,
   timelineDisplay: '12 months',
   eligibleDurationMonths: 12,
@@ -102,10 +101,7 @@ export const KNOWLEDGE_PANEL_INSTALL: PackageMeta = {
     'Twelve monthly reports and four quarterly Knowledge Panel verifications',
   ],
   payment: {
-    planDisplay: '$1,000 a month for 12 months',
-    payInFullUsd: 10000,
-    payInFullDisplay: '$10,000',
-    savingsDisplay: '$2,000',
+    planDisplay: 'Paid up front, or split into 12 equal monthly payments',
   },
 }
 
@@ -153,9 +149,7 @@ export const PRE_SOLD_AUTHOR: PackageMeta = {
 
 export const PACKAGES: PackageMeta[] = [KNOWLEDGE_PANEL_INSTALL, PRE_SOLD_AUTHOR]
 
-/** Combined price on standard terms when an executive takes both. No bundle
- * discount. Drops to $46,000 when the Knowledge Panel Install is paid up
- * front (its own pay-in-full saving, no additional discount). */
+/** Combined price when an executive takes both. No bundle discount. */
 export const BOTH_PACKAGES_PRICE_USD =
   KNOWLEDGE_PANEL_INSTALL.priceUsd + PRE_SOLD_AUTHOR.priceUsd
-export const BOTH_PACKAGES_PRICE_DISPLAY = '$48,000'
+export const BOTH_PACKAGES_PRICE_DISPLAY = '$46,000'
