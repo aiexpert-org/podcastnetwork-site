@@ -338,9 +338,8 @@ export function InstantReport() {
 
             <div className="mt-6 border-t border-neutral-950/10 pt-6">
               <p className="text-sm text-neutral-600">
-                Want to understand what you just saw? The three-minute quiz
-                teaches how this actually works, six questions with the
-                answers as you go, ending in a briefing worth keeping.
+                Want to know why your page looks like this, and what it would
+                take to change it? That is what the quiz is for.
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-4">
                 <Button href="/assessment/">Take the quiz</Button>
