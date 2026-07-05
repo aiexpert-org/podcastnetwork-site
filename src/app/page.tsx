@@ -62,7 +62,7 @@ function TrustBar() {
                   Proof standard
                 </dt>
                 <dd className="mt-2 font-display text-lg font-medium text-neutral-950">
-                  Live data, never screenshots
+                  Live data you can verify
                 </dd>
               </div>
             </dl>
@@ -218,7 +218,7 @@ function Packages({ studies }: { studies: CaseStudyStatic[] }) {
 
         <SectionIntro
           eyebrow="In the wild"
-          title="Live proof, not screenshots."
+          title="Live proof you can check."
           className="mt-24"
         >
           <p>
