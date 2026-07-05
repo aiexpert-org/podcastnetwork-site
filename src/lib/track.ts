@@ -5,13 +5,17 @@
 export function track(
   event:
     | "you_search_submit"
-    | "presence_score_run"
+    | "instant_report_run"
+    | "instant_report_done"
     | "playhead_drag"
     | "schema_validator_run"
     | "case_study_open"
     | "application_start"
     | "application_step_complete"
-    | "application_submit",
+    | "application_submit"
+    | "assessment_start"
+    | "assessment_step_complete"
+    | "assessment_submit",
   properties?: Record<string, string | number | boolean>,
 ) {
   if (typeof window === "undefined") return;
