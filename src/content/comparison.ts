@@ -1,7 +1,7 @@
 /**
  * Feature comparison data for the three-tier pricing section. Rows come
  * from the real deliverables in packages.ts; nothing appears here that a
- * package does not actually include. Cells: true renders a check, false
+ * build does not actually include. Cells: true renders a check, false
  * renders an x, a string renders as text.
  */
 
@@ -59,6 +59,14 @@ export const COMPARISON_SECTIONS: ComparisonSection[] = [
       {
         name: 'AI answer testing across the year',
         tiers: { kp: '48 tests', both: '48 tests', psa: false },
+      },
+      {
+        /* Added 2026-07-05 (Brett via Dispatch): placement under AI
+         * answers is provisional and the row language is placeholder;
+         * the copy chat is drafting the final wording and category
+         * call. */
+        name: 'Reddit citation strategy',
+        tiers: { kp: true, both: true, psa: false },
       },
     ],
   },

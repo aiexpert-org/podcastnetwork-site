@@ -25,6 +25,12 @@
  * The old export names remain below as deprecated aliases so the retired
  * route files compile until post-pitch deletion.
  *
+ * Scope addition 2026-07-05 (Brett via Dispatch): Reddit citation
+ * strategy is the Brand SERP Build's 23rd deliverable (subreddit
+ * research, profile buildout, organic mention seeding, Reddit-linked
+ * schema, monthly monitoring). Card bullet and comparison row are
+ * placeholders; the copy chat owns the final wording and the FAQ answer.
+ *
  * Copy rules: no em dashes, no banned vocabulary (including "authority"
  * in marketing copy), no "X, not Y" patterns. Public copy names
  * capabilities, never vendors.
@@ -97,6 +103,7 @@ export const BRAND_SERP_BUILD: PackageMeta = {
     'A Wikipedia article submission attempt, with one resubmission in the back half if the first does not land',
     'A Wikidata Q-number',
     'A Schema.org JSON-LD stack',
+    'A Reddit citation strategy: subreddit research, profile buildout, organic mention seeding, Reddit-linked schema on your site, and monthly monitoring of citation surface changes',
     'A full website if you do not already have one',
     'A schema optimization pass on your existing site, up to five pages',
     'An optimization audit of your existing podcast if you have one',
@@ -115,6 +122,7 @@ export const BRAND_SERP_BUILD: PackageMeta = {
   differentiators: [
     'The Google Knowledge Panel and its qualifying signal set',
     'AI answer engine coverage with monthly testing',
+    'Reddit citation strategy',
     'Wikipedia attempt and a Wikidata entry',
     'Twelve monthly reports and four quarterly Knowledge Panel verifications',
   ],
@@ -195,7 +203,8 @@ export type BundleMeta = {
 
 /** The bundle: both builds at 10 percent off, locked 2026-07-05 late.
  * The only discount anywhere; it attaches to scope, never to payment
- * timing. */
+ * timing. Encompasses every deliverable in both builds, including the
+ * Reddit citation strategy added 2026-07-05. */
 export const ULTIMATE_ENTITY_BUILD: BundleMeta = {
   name: 'Ultimate Entity Build',
   priceUsd: 54000,
