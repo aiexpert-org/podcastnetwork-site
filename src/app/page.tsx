@@ -25,22 +25,35 @@ import {
 } from '@/content/packages'
 
 export const metadata: Metadata = {
-  title: 'PodcastNetwork.org. See what Google actually knows about you',
+  title: 'PodcastNetwork.org. Google authority, built through your podcast',
   description:
-    'Enter your website or LinkedIn and get an instant report of real findings: Knowledge Graph, Wikidata, owned schema, Lighthouse SEO, Wikipedia, Entity Home. Then see the two builds that fix what is missing.',
+    'Get a Google Knowledge Panel and a pre-sold book, built through your podcast. Run a free instant report of what Google actually knows about you, then see the two application-only builds: the Knowledge Panel Install and the Pre-Sold Author Package.',
   alternates: { canonical: '/' },
 }
 
-/* Section 2: the trust bar. One horizontal strip, names and proof, with the
- * two-line founder story beneath it. Specific portfolio numbers are a
- * NEXT-STEPS item awaiting Brett; nothing here is a claim we cannot back. */
+/* Section 2: the proof section. Opens with the answer-engine definition
+ * block (the AEO extraction target), then the trust strip and the founder
+ * line. Specific portfolio numbers are a NEXT-STEPS item awaiting Brett. */
 function TrustBar() {
   return (
     <div id="proof" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
       <Container>
         <FadeIn>
-          <div className="border-y border-neutral-950/10 py-8">
-            <dl className="grid grid-cols-1 gap-x-8 gap-y-6 text-center sm:grid-cols-3">
+          <div className="border-y border-neutral-950/10 py-10">
+            <h2 className="font-display text-2xl font-medium tracking-tight text-neutral-950">
+              What PodcastNetwork.org does
+            </h2>
+            <p className="mt-4 max-w-3xl text-base text-neutral-600">
+              PodcastNetwork.org builds Google authority for executives,
+              authors, and entrepreneurs who want a formal, Google-recognized
+              personal brand. The mechanism is a podcast: recorded
+              conversations become the credits, citations, and content that
+              Google&apos;s Knowledge Graph and the AI answer engines read as
+              proof you are real. Two application-only builds deliver it: the{' '}
+              {KNOWLEDGE_PANEL_INSTALL.priceDisplay} Knowledge Panel Install
+              and the {PRE_SOLD_AUTHOR.priceDisplay} Pre-Sold Author Package.
+            </p>
+            <dl className="mt-10 grid grid-cols-1 gap-x-8 gap-y-6 text-center sm:grid-cols-3">
               <div>
                 <dt className="text-xs font-semibold tracking-wider text-neutral-500 uppercase">
                   Built and run by
@@ -66,7 +79,7 @@ function TrustBar() {
                 </dd>
               </div>
             </dl>
-            <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-neutral-600">
+            <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-neutral-600">
               The co-founders ran the Pre-Sold Author Package on themselves
               first. Their book AI or Die launched 2026-06-24 under the Legacy
               Publishing JV, and its live numbers render further down this
@@ -86,7 +99,7 @@ function AssessmentGateway() {
     <div id="assessment" className="scroll-mt-24">
       <SectionIntro
         eyebrow="The deeper assessment"
-        title="Want a deeper analysis?"
+        title="Which build fits? A ten-question assessment."
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
@@ -117,9 +130,9 @@ function PathCard({ pkg, anchorId }: { pkg: PackageMeta; anchorId: string }) {
         id={anchorId}
         className="flex w-full scroll-mt-24 flex-col rounded-4xl border border-neutral-950/10 bg-white p-8 sm:p-10"
       >
-        <p className="font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
+        <h3 className="font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
           {pkg.name}
-        </p>
+        </h3>
         <p className="mt-4 font-display text-4xl font-medium tracking-tight text-neutral-950">
           {pkg.priceDisplay}
         </p>
@@ -146,15 +159,8 @@ function PathCard({ pkg, anchorId }: { pkg: PackageMeta; anchorId: string }) {
           {pkg.deliverables.length} deliverables in total.{' '}
           {pkg.timeInvestment}
         </p>
-        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
+        <div className="mt-8 pt-2">
           <Button href="/apply/">Apply for this build</Button>
-          <Link
-            href="/assessment/"
-            className="text-sm font-semibold text-signal transition hover:text-signal-dark"
-          >
-            Not sure? Take the assessment{' '}
-            <span aria-hidden="true">&rarr;</span>
-          </Link>
         </div>
       </div>
     </FadeIn>
@@ -172,15 +178,16 @@ function Packages({ studies }: { studies: CaseStudyStatic[] }) {
     <div id="packages" className="scroll-mt-24">
       <SectionIntro
         eyebrow="The fixes"
-        title="Two builds. Each one closes gaps the report just showed you."
+        title="Two builds: the Knowledge Panel Install and the Pre-Sold Author Package."
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          The Knowledge Panel Install is for executives who need Google to
-          recognize them as an entity: schema, entity graph, citation signals,
-          verified monthly for a year. The Pre-Sold Author Package produces a
-          finished book from your own voice on top of that authority build.
-          Both standalone, both application only. Take both and it&apos;s{' '}
+          Each one closes gaps the report just showed you. The Knowledge Panel
+          Install is for executives who need Google to recognize them as an
+          entity: schema, entity graph, citation signals, verified monthly for
+          a year. The Pre-Sold Author Package produces a finished book from
+          your own voice on top of that authority build. Both standalone, both
+          application only. Take both and it&apos;s{' '}
           {BOTH_PACKAGES_PRICE_DISPLAY}, run in parallel on their own
           timelines. No bundle discount, because each one stands on its own.
         </p>
@@ -195,9 +202,9 @@ function Packages({ studies }: { studies: CaseStudyStatic[] }) {
 
         <FadeIn>
           <div className="mt-16 rounded-4xl bg-neutral-50 p-8 ring-1 ring-neutral-950/5 sm:p-10">
-            <p className="font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
+            <h3 className="font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
               The shared floor
-            </p>
+            </h3>
             <p className="mt-3 max-w-2xl text-sm text-neutral-600">
               Every client walks away with the same base, whichever build they
               pick. Each package adds its own depth on top of it.
@@ -223,7 +230,7 @@ function Packages({ studies }: { studies: CaseStudyStatic[] }) {
 
         <SectionIntro
           eyebrow="In the wild"
-          title="Live proof you can check."
+          title="Live case studies you can verify."
           className="mt-24"
         >
           <p>
@@ -260,7 +267,7 @@ function Faq() {
     <div id="faq" className="scroll-mt-24">
       <SectionIntro
         eyebrow="Questions"
-        title="Asked before you apply"
+        title="Frequently asked questions"
         className="mt-24 sm:mt-32 lg:mt-40"
       />
       <Container className="mt-16">
@@ -303,20 +310,22 @@ export default function Home() {
           {/* Transform-only entrance: this block holds the LCP headline, so it
               must be visible before hydration. */}
           <div className="pn-rise max-w-3xl">
-            <h1 className="font-display text-5xl font-medium tracking-tight text-balance text-neutral-950 sm:text-7xl">
-              Your online presence is lacking. We can prove it.
+            <h1 className="font-display text-5xl font-medium tracking-tight text-balance text-neutral-950 sm:text-6xl">
+              A Google Knowledge Panel and a pre-sold book, built through your
+              podcast.
             </h1>
             <p className="mt-6 text-xl text-neutral-600">
-              Enter your website or LinkedIn profile and get an instant report:
-              what Google actually knows about you, what&apos;s missing, and
-              which of our two builds fixes each gap.
+              Your online presence is lacking. We can prove it. Enter your
+              website or LinkedIn profile and get an instant report: what
+              Google actually knows about you, what&apos;s missing, and which
+              of our two builds fixes each gap.
             </p>
           </div>
           <InstantReport />
         </Container>
       </div>
 
-      {/* Section 2: trust bar */}
+      {/* Section 2: definition block + trust bar */}
       <TrustBar />
 
       {/* Section 3: Tier 2 gateway */}
