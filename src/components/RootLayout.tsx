@@ -226,16 +226,20 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
           />
         </div>
 
+        {/* Collapsed, this panel must render at exactly 0px: height 0 alone
+            is not enough because padding wins over height, which is where
+            the stray 8px black bar came from (Brett, 2026-07-05). The
+            padding lives inside the expanded content instead. */}
         <motion.div
           layout
           id={panelId}
           style={{ height: expanded ? 'auto' : '0rem' }}
-          className="relative z-50 overflow-hidden bg-neutral-950 pt-2"
+          className="relative z-50 overflow-hidden bg-neutral-950"
           aria-hidden={expanded ? undefined : 'true'}
           inert={expanded ? undefined : true}
         >
           <motion.div layout className="bg-neutral-800">
-            <div ref={navRef} className="bg-neutral-950 pt-14 pb-16">
+            <div ref={navRef} className="bg-neutral-950 pt-16 pb-16">
               <Header
                 invert
                 panelId={panelId}
