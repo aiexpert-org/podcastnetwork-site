@@ -4,8 +4,9 @@
  * the JSON-LD offer schema, and the application flow.
  *
  * Locked 2026-07-03 (two-package structure, supersedes the single $30K
- * flagship). Both packages are standalone. An executive who wants both pays
- * $46,000 total, no bundle discount. Podcast, IMDb, and a full website (if the
+ * flagship). Knowledge Panel Install repriced to $12,000 on 2026-07-04 per
+ * Brett. Both packages are standalone. An executive who wants both pays
+ * $48,000 total, no bundle discount. Podcast, IMDb, and a full website (if the
  * executive does not already have one) are the shared floor in both. The audio
  * voice clone and voice corpus are exclusive to the Pre-Sold Author Package.
  *
@@ -46,8 +47,8 @@ export const KNOWLEDGE_PANEL_INSTALL: PackageMeta = {
   slug: 'knowledge-panel-install',
   url: '/knowledge-panel-install/',
   name: 'Knowledge Panel Install',
-  priceUsd: 10000,
-  priceDisplay: '$10,000',
+  priceUsd: 12000,
+  priceDisplay: '$12,000',
   timelineMonths: 12,
   timelineDisplay: '12 months',
   eligibleDurationMonths: 12,
@@ -136,4 +137,4 @@ export const PACKAGES: PackageMeta[] = [KNOWLEDGE_PANEL_INSTALL, PRE_SOLD_AUTHOR
 /** Combined price when an executive takes both. No bundle discount. */
 export const BOTH_PACKAGES_PRICE_USD =
   KNOWLEDGE_PANEL_INSTALL.priceUsd + PRE_SOLD_AUTHOR.priceUsd
-export const BOTH_PACKAGES_PRICE_DISPLAY = '$46,000'
+export const BOTH_PACKAGES_PRICE_DISPLAY = '$48,000'

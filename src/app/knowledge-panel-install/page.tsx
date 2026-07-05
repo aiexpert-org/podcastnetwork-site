@@ -13,7 +13,7 @@ import { faqItemsForUi, knowledgePanelSchema } from '@/lib/schema-graph'
 import { KNOWLEDGE_PANEL_INSTALL } from '@/content/packages'
 
 export const metadata: Metadata = {
-  title: 'The Knowledge Panel Install. $10,000, 12 months',
+  title: 'The Knowledge Panel Install. $12,000, 12 months',
   description:
     'A twelve-month build that makes Google and the AI answer engines recognize you as a real entity. Knowledge Panel, Wikipedia and Wikidata, podcast, press, and a year of monthly verification. Application only.',
   alternates: { canonical: '/knowledge-panel-install/' },
