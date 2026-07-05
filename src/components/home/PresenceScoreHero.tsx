@@ -338,12 +338,12 @@ export function InstantReport() {
 
             <div className="mt-6 border-t border-neutral-950/10 pt-6">
               <p className="text-sm text-neutral-600">
-                Two of our packages fix everything above. Which one is right
-                for you depends on what you are trying to do. Answer a few
-                questions to find out.
+                Want to understand what you just saw? The three-minute quiz
+                teaches how this actually works, six questions with the
+                answers as you go, ending in a briefing worth keeping.
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-4">
-                <Button href="/assessment/">Take the deeper assessment</Button>
+                <Button href="/assessment/">Take the quiz</Button>
                 <Link
                   href="/#packages"
                   className="text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
