@@ -53,6 +53,7 @@ const OUTCOME_VALUES = [
   'trust-first-meeting',
   'higher-fees',
   'bookings',
+  'ai-accuracy',
   'outrank-namesakes',
   'launch',
   'investors',
@@ -113,7 +114,7 @@ function startingPoint(role: string, book: string, firstName: string): string {
 }
 
 function market(): string {
-  return `Reputable specialist services run roughly $3,000 to $18,000, and the leading specialist’s done-for-you service starts at $12,000, typically for the entity work alone. The Knowledge Panel Install is ${KNOWLEDGE_PANEL_INSTALL.priceDisplay} flat, paid up front or split into 12 monthly payments of $1,000, and it includes the podcast, IMDb, press, and a year of monthly checkups that others price separately, when they offer them at all.`
+  return `Reputable specialist services run roughly $3,000 to $18,000, and the leading specialist’s done-for-you service starts at $12,000, typically for the panel work alone. The Knowledge Panel Install is ${KNOWLEDGE_PANEL_INSTALL.priceDisplay} flat, paid up front or split into 12 monthly payments of $1,000, and it includes the podcast, IMDb, press, AI answer testing, and a year of monthly checkups that others price separately, when they offer them at all.`
 }
 
 function psaParagraph(book: string): string | null {

@@ -8,7 +8,7 @@ import { AssessmentFlow } from '@/components/assessment/AssessmentFlow'
 export const metadata: Metadata = {
   title: 'The Google Authority Quiz',
   description:
-    'Google and AI have already decided who you are. In three minutes you will know how to take control of your Google Knowledge Panel.',
+    'Google and AI have already decided who you are. In three minutes you will know how to take control of your Google Knowledge Panel and what AI says about you.',
   alternates: { canonical: '/assessment/' },
 }
 
@@ -23,7 +23,7 @@ export default function AssessmentPage() {
           Every deal, meeting, and reference check starts with a search, in
           Google or in an AI chat, and what comes up gets shaped with or
           without you. In three minutes you will know how to take control of
-          your Google Knowledge Panel.
+          your Google Knowledge Panel and what AI says about you.
         </p>
       </PageIntro>
 

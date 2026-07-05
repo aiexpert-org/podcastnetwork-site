@@ -9,9 +9,10 @@
  * recommendation: the visitor teaches themselves why this matters and
  * leaves with buying criteria that travel with them.
  *
- * Copy rule from Brett's walkthrough: this flow teaches, so no industry
- * jargon survives in visitor-facing text. Plain words only. The first name
- * attaches to the positive heading, never to the score.
+ * Copy rules from Brett's walkthrough: write about the reader, never the
+ * artifact; no industry jargon in anything that teaches; the AI answer
+ * layer is part of the offer, so it is woven through the stakes, the
+ * market beat, and the outcomes rather than living in one question.
  */
 
 import { useCallback, useState } from 'react'
@@ -90,7 +91,7 @@ const STEPS: Step[] = [
     ],
     correct: 'whatever-found',
     reveal:
-      'Whatever it can find: rented social profiles, people who share your name, stale articles. The search page about you already exists either way. The only real choice is whether you author it. A Knowledge Panel flips that page from whatever Google found to a verified identity you shaped, and it sits there for every meeting, deal, and reference check that starts with a search.',
+      'Whatever it can find: rented social profiles, people who share your name, stale articles. The search page about you already exists either way. The only real choice is whether you author it. A Knowledge Panel flips that page from whatever Google found to a verified identity you shaped, and it sits there for every meeting, deal, and reference check that starts with a search, in Google or in an AI chat.',
   },
   {
     kind: 'quiz',
@@ -180,7 +181,7 @@ const STEPS: Step[] = [
     ],
     correct: 'three-to-eighteen',
     reveal:
-      'Reputable services run roughly $3,000 to $18,000, and the leading specialist’s done-for-you service starts at $12,000, typically for the panel work alone. A podcast, press placements, IMDb, and a year of monthly checkups usually cost extra, when they are offered at all.',
+      'Reputable services run roughly $3,000 to $18,000, and the leading specialist’s done-for-you service starts at $12,000, typically for the panel work alone. A podcast, press placements, IMDb, AI answer testing, and a year of monthly checkups usually cost extra, when they are offered at all.',
     sources: [
       {
         label: 'The leading specialist’s pricing guidance',
@@ -239,6 +240,7 @@ const STEPS: Step[] = [
       { value: 'trust-first-meeting', label: 'Winning trust before the first meeting' },
       { value: 'higher-fees', label: 'Commanding higher fees or bigger deals' },
       { value: 'bookings', label: 'Getting booked: media, podcasts, speaking' },
+      { value: 'ai-accuracy', label: 'Being described accurately by ChatGPT and Gemini' },
       { value: 'outrank-namesakes', label: 'Outranking people who share my name' },
       { value: 'launch', label: 'A stronger book or product launch' },
       { value: 'investors', label: 'Credibility with investors and partners' },
@@ -700,9 +702,7 @@ export function AssessmentFlow() {
         >
           Back
         </button>
-        <p className="text-xs text-neutral-500">
-          About three minutes. You learn as you go.
-        </p>
+        <p className="text-xs text-neutral-500">About three minutes.</p>
       </div>
     </div>
   )
