@@ -3,16 +3,18 @@
 /**
  * The Google Authority Quiz (v0.6.12, per Brett): ask-guess-reveal.
  *
- * Six teaching beats, two situation questions, one informed WTP question,
+ * Eight teaching beats, two situation questions, one informed WTP question,
  * then contact details. The outcome is a briefing, never a package
  * recommendation: the visitor teaches themselves why the entity layer
  * matters and leaves with buying criteria that travel with them.
  *
  * Rules locked while Brett walked the flow: every quiz question carries
  * exactly three substantive options plus an honest "I'm not sure" that is
- * never scolded; the podcast beat sits at position 2; reveals carry
- * clickable source links, but only where the linked page plainly supports
- * the sentence.
+ * never scolded; the stakes beat sits at 2 and the podcast beat at 3 so
+ * early drop-off still learns why this matters and why the company carries
+ * its name; the book beat sits directly before the situation questions;
+ * reveals carry clickable source links, but only where the linked page
+ * plainly supports the sentence.
  */
 
 import { useCallback, useState } from 'react'
@@ -69,6 +71,21 @@ const STEPS: Step[] = [
         url: 'https://support.google.com/knowledgepanel/answer/9163198',
       },
     ],
+  },
+  {
+    kind: 'quiz',
+    key: 'q_stakes',
+    question:
+      'If Google has no verified entity for you, what fills the page when someone searches your name?',
+    options: [
+      { value: 'nothing', label: 'Nothing. The page is basically blank' },
+      { value: 'whatever-found', label: 'Whatever Google finds: profiles, namesakes, old links' },
+      { value: 'error', label: 'Google suggests a spelling correction' },
+      NOT_SURE,
+    ],
+    correct: 'whatever-found',
+    reveal:
+      'Whatever it can find: rented social profiles, people who share your name, stale articles. The search page about you already exists either way. The only real choice is whether you author it. A Knowledge Panel flips that page from whatever Google found to a verified identity you shaped, and it sits there for every meeting, deal, and reference check that starts with a search.',
   },
   {
     kind: 'quiz',
@@ -169,6 +186,21 @@ const STEPS: Step[] = [
         url: 'https://kalicube.com/faq/kalicube/kalicube-personal-branding/personal-knowledge-panel-service/how-much-does-a-knowledge-panel-with-kalicube-cost-and-is-it-worth-it-for-my-business/',
       },
     ],
+  },
+  {
+    kind: 'quiz',
+    key: 'q_book',
+    question:
+      'Which credential creates a whole cluster of new Google-readable records about you at once?',
+    options: [
+      { value: 'mba', label: 'An MBA' },
+      { value: 'book', label: 'A published book' },
+      { value: 'social', label: 'A verified social media account' },
+      NOT_SURE,
+    ],
+    correct: 'book',
+    reveal:
+      'A published book. The moment it exists, so do its records: an ISBN, retailer author pages, a Google Books entry, library catalogs. Every one is a third-party surface pointing back at you, and Google’s Knowledge Graph ties books to their authors as connected entities. It is also the credential people can hold in their hands. The word authority contains author for a reason.',
   },
   {
     kind: 'choice',

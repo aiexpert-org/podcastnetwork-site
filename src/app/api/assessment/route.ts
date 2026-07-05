@@ -7,10 +7,11 @@ import { KNOWLEDGE_PANEL_INSTALL, PRE_SOLD_AUTHOR } from '@/content/packages'
 
 /**
  * Google Authority Quiz intake (v0.6.12). Validates the answers, scores the
- * six teaching beats server-side, composes the briefing, logs the submission
- * (console + /tmp JSONL, the WTP exhaust), and syncs to GHL as a contact
- * with segment, WTP, book-intent, and quiz-score tags when GHL_API_KEY is
- * present. "not-sure" is a valid, unscored answer on every quiz beat.
+ * eight teaching beats server-side, composes the briefing, logs the
+ * submission (console + /tmp JSONL, the WTP exhaust), and syncs to GHL as a
+ * contact with segment, WTP, book-intent, and quiz-score tags when
+ * GHL_API_KEY is present. "not-sure" is a valid, unscored answer on every
+ * quiz beat.
  *
  * Market-pricing facts sourced from Kalicube's published pricing pages
  * (done-for-you service starts at $12,000; reputable range $3,000 to
@@ -21,20 +22,24 @@ export const runtime = 'nodejs'
 
 const QUIZ_CORRECT: Record<string, string> = {
   q_panel: 'earned',
+  q_stakes: 'whatever-found',
   q_mechanism: 'podcast',
   q_seed: 'wikidata',
   q_ai: 'entity-data',
   q_wikipedia: 'no-guarantee',
   q_market: 'three-to-eighteen',
+  q_book: 'book',
 }
 
 const CHOICES: Record<string, string[]> = {
   q_panel: ['paid', 'earned', 'anyone', 'not-sure'],
+  q_stakes: ['nothing', 'whatever-found', 'error', 'not-sure'],
   q_mechanism: ['press', 'podcast', 'backlinks', 'not-sure'],
   q_seed: ['website', 'wikidata', 'linkedin', 'not-sure'],
   q_ai: ['made-up', 'entity-data', 'social', 'not-sure'],
   q_wikipedia: ['pay', 'no-guarantee', 'celebrity', 'not-sure'],
   q_market: ['five-hundred', 'two-k', 'three-to-eighteen', 'not-sure'],
+  q_book: ['mba', 'book', 'social', 'not-sure'],
   role: ['executive', 'author', 'entrepreneur', 'professional'],
   book: ['published', 'writing', 'someday', 'none'],
   budget: ['under-5k', '5-15k', '15-40k', '40k-plus', 'depends'],
@@ -54,10 +59,12 @@ type Briefing = {
 
 const KNOW_NOW = [
   'A Knowledge Panel is earned from Google’s Knowledge Graph. It cannot be bought. It gets built signal by signal, and that assembly is the work.',
+  'The search page about you exists whether or not you shape it. A panel turns it into a verified identity you author.',
   'One podcast feeds several trusted sources at once: an IMDb credit, guest-appearance citations, and an indexable body of work in your own voice.',
   'Wikidata is the seed surface, your own site is the Entity Home, and rented profiles count least.',
   'AI answer engines read the same entity layer, so fixing it corrects search results and AI answers together.',
   'Nobody can guarantee Wikipedia, and a panel does not depend on it. A guarantee is the tell of a bad vendor.',
+  'A published book generates its own cluster of records (ISBN, retailer author pages, Google Books, library catalogs) that all point back at you.',
 ]
 
 const DEMANDS = [
@@ -89,14 +96,14 @@ function startingPoint(role: string, book: string, firstName: string): string {
 }
 
 function market(): string {
-  return `Reputable specialist services run roughly $3,000 to $18,000, and the category leader’s done-for-you panel service starts at $12,000, typically for the entity work alone. The Knowledge Panel Install is ${KNOWLEDGE_PANEL_INSTALL.priceDisplay} flat, paid up front or split into 12 monthly payments of $1,000, and it includes the podcast, IMDb, press, and a year of monthly verification that others price separately, when they offer them at all.`
+  return `Reputable specialist services run roughly $3,000 to $18,000, and the leading specialist’s done-for-you service starts at $12,000, typically for the entity work alone. The Knowledge Panel Install is ${KNOWLEDGE_PANEL_INSTALL.priceDisplay} flat, paid up front or split into 12 monthly payments of $1,000, and it includes the podcast, IMDb, press, and a year of monthly verification that others price separately, when they offer them at all.`
 }
 
 function psaParagraph(book: string): string | null {
   if (book !== 'published' && book !== 'writing' && book !== 'someday') {
     return null
   }
-  return `One more thing your answers surfaced: a book is on your map. The authority layer is also the launch infrastructure a book needs, and that is what the ${PRE_SOLD_AUTHOR.name} exists for: ${PRE_SOLD_AUTHOR.priceDisplay} over ${PRE_SOLD_AUTHOR.timelineDisplay}, application only, a finished book from your own voice built on top of the panel work. It is here when you want that conversation, and not before.`
+  return `One more thing your answers surfaced: a book is on your map. As the quiz covered, a published book generates its own cluster of Google-readable records, and the authority layer is also the launch infrastructure a book needs. That is what the ${PRE_SOLD_AUTHOR.name} exists for: ${PRE_SOLD_AUTHOR.priceDisplay} over ${PRE_SOLD_AUTHOR.timelineDisplay}, application only, a finished book from your own voice built on top of the panel work. It is here when you want that conversation, and not before.`
 }
 
 export async function POST(req: Request) {
@@ -136,11 +143,13 @@ export async function POST(req: Request) {
 
   const answers = {
     q_panel: raw.q_panel as string,
+    q_stakes: raw.q_stakes as string,
     q_mechanism: raw.q_mechanism as string,
     q_seed: raw.q_seed as string,
     q_ai: raw.q_ai as string,
     q_wikipedia: raw.q_wikipedia as string,
     q_market: raw.q_market as string,
+    q_book: raw.q_book as string,
     role: raw.role as string,
     book: raw.book as string,
     budget: raw.budget as string,
@@ -158,11 +167,11 @@ export async function POST(req: Request) {
   const briefing: Briefing = {
     score,
     scoreLine:
-      score >= 5
-        ? `You knew ${score} of 6 going in. You are ahead of most of the market.`
-        : score >= 3
-          ? `You knew ${score} of 6 going in. Most executives score lower.`
-          : `You knew ${score} of 6 going in. That is normal, and it is exactly why this layer is an edge.`,
+      score >= 7
+        ? `You knew ${score} of 8 going in. You are ahead of most of the market.`
+        : score >= 4
+          ? `You knew ${score} of 8 going in. Most executives score lower.`
+          : `You knew ${score} of 8 going in. That is normal, and it is exactly why this layer is an edge.`,
     knowNow: KNOW_NOW,
     startingPoint: startingPoint(answers.role, answers.book, answers.firstName),
     market: market(),
@@ -207,13 +216,13 @@ export async function POST(req: Request) {
       `Submitted: ${record.submittedAt}`,
       '',
       `Name: ${fullName}`,
-      `Quiz score: ${score} of 6`,
+      `Quiz score: ${score} of 8`,
       `Role: ${answers.role}`,
       `Book status: ${answers.book}`,
       `Informed WTP: ${answers.budget}`,
       `Book intent: ${bookIntent ? 'yes' : 'no'}`,
       '',
-      `Quiz answers: panel=${answers.q_panel}, mechanism=${answers.q_mechanism}, seed=${answers.q_seed}, ai=${answers.q_ai}, wikipedia=${answers.q_wikipedia}, market=${answers.q_market}`,
+      `Quiz answers: panel=${answers.q_panel}, stakes=${answers.q_stakes}, mechanism=${answers.q_mechanism}, seed=${answers.q_seed}, ai=${answers.q_ai}, wikipedia=${answers.q_wikipedia}, market=${answers.q_market}, book=${answers.q_book}`,
     ].join('\n'),
   })
 
