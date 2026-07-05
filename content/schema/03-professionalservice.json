@@ -2,14 +2,14 @@
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": "https://podcastnetwork.org/the-package/#service",
-  "name": "Pre-Sold Author Package",
+  "name": "Pre-Sold Author Build",
   "url": "https://podcastnetwork.org/the-package/",
-  "description": "A six-month build that produces a finished book from the client's own voice, plus a launched podcast, an audio voice clone, and the author authority infrastructure to position the book for pre-sales. Application only. Pre-sales depend on execution and market fit and are not guaranteed.",
-  "serviceType": "Authority and book launch",
+  "description": "A six-month build that produces a finished book from the client's own voice, plus a launched podcast, an audio voice clone, and the launch infrastructure to position the book for pre-sales. Application only. Pre-sales depend on execution and market fit and are not guaranteed.",
+  "serviceType": "Author and book launch build",
   "category": [
     "Book publishing",
     "Podcast production",
-    "Author authority",
+    "Author launch",
     "Voice cloning",
     "Personal brand"
   ],
@@ -27,12 +27,12 @@
   ],
   "audience": {
     "@type": "BusinessAudience",
-    "audienceType": "Executives, authors, entrepreneurs, and professionals who want a finished book and the author authority infrastructure around it"
+    "audienceType": "Executives, authors, entrepreneurs, and professionals who want a finished book and the launch infrastructure around it"
   },
   "offers": {
     "@type": "Offer",
     "@id": "https://podcastnetwork.org/the-package/#offer",
-    "name": "Pre-Sold Author Package",
+    "name": "Pre-Sold Author Build",
     "url": "https://podcastnetwork.org/the-package/",
     "price": "36000",
     "priceCurrency": "USD",
@@ -53,7 +53,7 @@
       "price": "36000",
       "priceCurrency": "USD",
       "valueAddedTaxIncluded": false,
-      "description": "Paid up front, or split into twelve monthly payments of $3,000 at no extra cost; delivery runs the first six months. If the client takes the Legacy Publishing option, Legacy earns 10% of net book sales as royalty with no upfront fee."
+      "description": "Paid up front, or split into twelve monthly payments of $3,000 at no extra cost; delivery runs the first six months and payments seven through twelve fund ongoing monitoring and maintenance. If the client takes the Legacy Publishing option, Legacy earns 10% of net book sales as royalty with no upfront fee."
     },
     "seller": {
       "@id": "https://podcastnetwork.org/#organization"
@@ -64,7 +64,7 @@
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "@id": "https://podcastnetwork.org/the-package/#catalog",
-    "name": "What the Pre-Sold Author Package includes",
+    "name": "What the Pre-Sold Author Build includes",
     "itemListElement": [
       {
         "@type": "Offer",
@@ -87,14 +87,14 @@
         "itemOffered": {
           "@type": "Service",
           "name": "The Voice Clone",
-          "description": "An audio voice clone and a voice corpus, both exclusive to this package, used to produce audio in the client's voice and kept by the client."
+          "description": "An audio voice clone and a voice corpus, both exclusive to this build, used to produce audio in the client's voice and kept by the client."
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "The Authority Build",
+          "name": "The Launch Build",
           "description": "Bio pages, contributor citation surfaces, a Wikidata Person entry, author profiles across major platforms, a full website if needed, podcast tour placements, and a coordinated launch sequence positioning the book for pre-sales."
         }
       }
