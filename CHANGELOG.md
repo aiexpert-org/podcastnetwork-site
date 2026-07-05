@@ -1,6 +1,29 @@
 # CHANGELOG
 
-## v0.6.5 — Knowledge Panel Install repriced to $12,000 (2026-07-04, late)
+## v0.6.7 — Knowledge Panel Install: $10,000 flat, even-split plan (2026-07-04, final)
+
+- Brett's final pricing call for the night, superseding both of the
+  evening's earlier moves (the v0.6.5 $12,000 reprice and an unlogged
+  v0.6.6 pay-in-full discount structure that lived for roughly an hour):
+  the Knowledge Panel Install is $10,000, paid up front or split into
+  twelve equal monthly payments (about $833 a month) at no extra cost. No
+  discount in either direction. Both-packages total returns to $46,000.
+  Pre-Sold Author unchanged at $36,000, paid in full.
+- "Divide it evenly" ships as 12 payments across the 12-month term. Ten
+  payments of $1,000 is a one-field edit in packages.ts plus the FAQ
+  payment-terms answer if Brett prefers round numbers.
+- PackagePayment simplifies to a single planDisplay sentence rendered on
+  the homepage PathCard, the KP route intro and closing CTA, and the
+  assessment recommendation price line. The KP JSON-LD returns to a
+  single 10000 offer with the split noted in its price specification. FAQ
+  payload cover, both-packages, versus-diy, and payment-terms answers all
+  read $10,000 / $46,000.
+- GHL notes: the plan needs a 12-cycle recurring product (cents rounding
+  settled on the final payment) plus the paid-in-full product, and the
+  contract template needs missed-installment terms before the first plan
+  close. NEXT-STEPS item 7 updated.
+
+## v0.6.5 — Knowledge Panel Install repriced to $12,000 (2026-07-04, late) [SUPERSEDED by v0.6.7]
 
 - Brett's lock, later the same evening: the Knowledge Panel Install moves
   from $10,000 to $12,000; the both-packages total moves from $46,000 to
