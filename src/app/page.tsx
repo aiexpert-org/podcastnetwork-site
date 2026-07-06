@@ -10,57 +10,20 @@ import { InstantReport } from '@/components/home/PresenceScoreHero'
 import { PricingSection } from '@/components/home/PricingSection'
 import { type CaseStudyStatic } from '@/components/case-studies/LiveCaseStudyCard'
 import { FAQBlock } from '@/components/ui/FAQBlock'
-import { HOME_FAQ } from '@/content/home-faq'
 import { SchemaGraph } from '@/components/seo/SchemaGraph'
-import { homeSchema } from '@/lib/schema-graph'
+import { homeSchema, faqItemsForUi } from '@/lib/schema-graph'
 import { Button } from '@/components/Button'
-import {
-  BRAND_SERP_BUILD,
-  PRE_SOLD_AUTHOR_BUILD,
-} from '@/content/packages'
 
 export const metadata: Metadata = {
   title: 'PodcastNetwork.org. Google authority, built through your podcast',
   description:
-    'Google and AI have already decided who you are. Run a free instant report of what they actually know, then see the application-only builds that fix it: the Brand SERP Build and the Pre-Sold Author Build.',
+    'Google and AI have already decided who you are. Run a free instant report of what they actually know, then see the application-only answer engine optimization builds that fix it: the Brand SERP Build and the Pre-Sold Author Build.',
   alternates: { canonical: '/' },
 }
 
-/* Section 3: the definition block. Written for answer engines to lift whole
- * and for a first-time visitor to orient in one paragraph. Heading-left,
- * paragraph-right grid. Renders inside the full-viewport sticky wrapper in
- * Home (the CCM curtain), so it carries no section margin of its own. */
-function Definition() {
-  return (
-    <div id="proof" className="w-full scroll-mt-24">
-      <Container>
-        <FadeIn>
-          <div className="grid grid-cols-1 gap-x-12 gap-y-6 border-y border-neutral-950/10 py-12 lg:grid-cols-3">
-            <h2 className="font-display text-2xl font-medium tracking-tight text-neutral-950">
-              What PodcastNetwork.org does
-            </h2>
-            <p className="text-base text-neutral-600 lg:col-span-2">
-              PodcastNetwork.org builds Google authority for executives,
-              authors, and entrepreneurs who want a formal, Google-recognized
-              personal brand. The mechanism is a podcast: recorded
-              conversations become the credits, citations, and content that
-              Google&apos;s Knowledge Graph and the AI answer engines read as
-              proof you are real. Two application-only builds deliver it: the{' '}
-              {BRAND_SERP_BUILD.priceDisplay} Brand SERP Build and the{' '}
-              {PRE_SOLD_AUTHOR_BUILD.priceDisplay} Pre-Sold Author Build.
-            </p>
-          </div>
-        </FadeIn>
-      </Container>
-    </div>
-  )
-}
-
-/* Section 2: the quiz gateway as a dark card directly under the hero
- * (Brett, 2026-07-05: the black ContactSection block is the strongest
- * thing on the page, so the quiz invitation gets the same treatment).
- * The headline keeps the command form because the hero owns the
- * decided-who-you-are line on this page. */
+/* Section 2: the quiz gateway as a dark card directly under the hero.
+ * NOTE: the 2026-07-05 copy lock's flow omits this section; retained
+ * pending explicit word because it is the homepage's direct quiz path. */
 function AssessmentGateway() {
   return (
     <div id="assessment" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
@@ -93,14 +56,10 @@ function AssessmentGateway() {
   )
 }
 
-/* Live case studies as a stepped stats band, adapted from the Tailwind
- * Plus "Stepped" stats section (Brett's Plus session, 2026-07-05) in the
- * site's monochrome: three cards rising toward the featured build. No
- * fabricated numbers, per the case-study honesty rule: months, phases,
- * and milestones come straight from data/case-studies.json, and the
- * retired per-study routes lost their links instead of redirecting the
- * reader in a circle. The least progressed build sits out rather than
- * padding the band. */
+/* Live case studies as a stepped stats band. NOTE: the 2026-07-05 copy
+ * lock's flow omits this band; retained pending explicit word because it
+ * is the honest-proof cluster. Months, phases, and milestones come from
+ * data/case-studies.json; nothing renders the data cannot back. */
 function CaseStudyBand({ studies }: { studies: CaseStudyStatic[] }) {
   const featured = studies.find((c) => c.variant === 'featured')
   const inLaunch = studies
@@ -171,12 +130,10 @@ function CaseStudyBand({ studies }: { studies: CaseStudyStatic[] }) {
   )
 }
 
-/* Section 4: the three-tier pricing band (Tailwind Plus block, dark with
- * the solar glow) followed by the stepped case-study band. The shared
- * floor block retired 2026-07-05: its rows live in the comparison table. */
+/* Pricing band + proof band. */
 function Packages({ studies }: { studies: CaseStudyStatic[] }) {
   return (
-    <div id="packages" className="scroll-mt-24">
+    <div id="packages" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
       <PricingSection />
       <Container>
         <SectionIntro
@@ -196,19 +153,128 @@ function Packages({ studies }: { studies: CaseStudyStatic[] }) {
   )
 }
 
+/* Two-book showcase, per the 2026-07-05 copy lock: the one place on the
+ * homepage where names appear as authors. Covers load remotely from
+ * mike.partners for now; localizing the binaries into public/books/ is
+ * tracked as a follow-up (GitHub MCP corrupts binary pushes; the
+ * browser-upload path needs the files on Brett's machine). */
+function TwoBookShowcase() {
+  return (
+    <div id="books" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
+      <SectionIntro eyebrow="We wrote the books" title="Two builds. Two books.">
+        <p>
+          Brand SERP Build is the AI-visibility system from AI or Die,
+          installed on you. Pre-Sold Author Build is the write-and-presell
+          system from The Book on How to Write a Book, installed on your
+          book.
+        </p>
+      </SectionIntro>
+      <Container className="mt-16">
+        <FadeIn>
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 sm:grid-cols-2">
+            <div className="flex flex-col rounded-3xl bg-white p-8 ring-1 ring-neutral-950/10">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://mike.partners/wp-content/uploads/2026/05/Ai-or-Die-book-cover-2-2-300x233.png"
+                alt="AI or Die book cover"
+                className="h-48 w-full object-contain"
+              />
+              <h3 className="mt-6 font-display text-xl font-medium tracking-tight text-neutral-950">
+                AI or Die
+              </h3>
+              <p className="mt-1 text-sm text-neutral-600">
+                The Small Business Survival Guide to the Artificial
+                Intelligence Revolution
+              </p>
+              <p className="mt-3 text-sm font-semibold text-neutral-950">
+                By Mike Partners &amp; Brett K. Moore
+              </p>
+              <p className="mt-1 text-sm text-neutral-600">
+                Paperback &amp; Kindle. $17.99 / $9.99.
+              </p>
+              <a
+                href="https://www.amazon.com/dp/B0H343DR1L"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
+              >
+                Buy on Amazon <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+            <div className="flex flex-col rounded-3xl bg-white p-8 ring-1 ring-neutral-950/10">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://mike.partners/wp-content/uploads/2026/05/The-Book-on-How-to-Write-a-Book.png"
+                alt="The Book on How to Write a Book cover"
+                className="h-48 w-full object-contain"
+              />
+              <h3 className="mt-6 font-display text-xl font-medium tracking-tight text-neutral-950">
+                The Book on How to Write a Book
+              </h3>
+              <p className="mt-3 text-sm font-semibold text-neutral-950">
+                By Mike Partners
+              </p>
+              <p className="mt-1 text-sm text-neutral-600">
+                Paperback &amp; Kindle. $17.99 / $9.99.
+              </p>
+              <a
+                href="https://www.amazon.com/dp/B0H2Z1H7DR"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
+              >
+                Buy on Amazon <span aria-hidden="true">&rarr;</span>
+              </a>
+              <p className="mt-4 text-xs text-neutral-500">
+                30+ authors published using this system.
+              </p>
+            </div>
+          </div>
+        </FadeIn>
+      </Container>
+    </div>
+  )
+}
+
+/* FAQ, per the copy lock: three concept sections, always visible, with the
+ * questions pulled from the same payload the FAQPage JSON-LD emits. */
+const FAQ_GROUPS = [
+  {
+    heading: 'About the diagnostic.',
+    ids: ['diagnostic-data', 'diagnostic-storage'],
+  },
+  {
+    heading: 'About the builds.',
+    ids: ['vs-seo-agency', 'why-6-to-12-months', 'why-reddit'],
+  },
+  {
+    heading: 'About delivery and results.',
+    ids: ['panel-guarantee', 'what-do-i-own'],
+  },
+]
+
 function Faq() {
   return (
     <div id="faq" className="scroll-mt-24">
       <SectionIntro
-        eyebrow="Questions"
+        eyebrow="Three questions people ask"
         title="Frequently asked questions"
         className="mt-24 sm:mt-32 lg:mt-40"
       />
       <Container className="mt-16">
         <FadeIn>
           <div className="mx-auto max-w-3xl">
-            <FAQBlock items={HOME_FAQ} />
-            <p className="mt-6 text-sm text-neutral-600">
+            {FAQ_GROUPS.map((group) => (
+              <div key={group.heading} className="mt-10 first:mt-0">
+                <h3 className="font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
+                  {group.heading}
+                </h3>
+                <div className="mt-4">
+                  <FAQBlock items={faqItemsForUi(group.ids)} />
+                </div>
+              </div>
+            ))}
+            <p className="mt-8 text-sm text-neutral-600">
               More questions?{' '}
               <Link
                 href="/apply/"
@@ -218,6 +284,40 @@ function Faq() {
                 <span aria-hidden="true">&rarr;</span>
               </Link>
             </p>
+          </div>
+        </FadeIn>
+      </Container>
+    </div>
+  )
+}
+
+/* Founders sub-section, per the copy lock: the second and last place
+ * names appear on the homepage. The /founders route is still redirected
+ * to the homepage; reviving it is tracked as a follow-up. */
+function FoundersTeaser() {
+  return (
+    <div id="founders-teaser" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
+      <Container>
+        <FadeIn>
+          <div className="border-t border-neutral-950/10 pt-12">
+            <p className="text-base font-semibold text-neutral-950">
+              Brett K. Moore. Co-founder + CEO.
+            </p>
+            <p className="mt-1 text-base font-semibold text-neutral-950">
+              Mike Partners. Co-founder + Chief AI Officer.
+            </p>
+            <p className="mt-4 max-w-2xl text-base text-neutral-600">
+              We built PodcastNetwork.org to install the entity
+              infrastructure Google and AI already trust, for people who
+              need to be recognized without waiting for the algorithm to
+              catch up.
+            </p>
+            <Link
+              href="/founders/"
+              className="mt-6 inline-block text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
+            >
+              Read the full story <span aria-hidden="true">&rarr;</span>
+            </Link>
           </div>
         </FadeIn>
       </Container>
@@ -237,10 +337,8 @@ export default function Home() {
     <>
       <SchemaGraph schema={homeSchema()} />
 
-      {/* Section 1: hero + Tier 1 Instant Report. The anchor lives on a
-          wrapping div because Container does not forward unknown props.
-          H1 locked per Brett 2026-07-05; the subhead is Brett's primary
-          phrasing (2026-07-05 relay), three lines at the max-w-3xl cap. */}
+      {/* Section 1: hero + Tier 1 Instant Report + trust bar. H1 locked;
+          subhead and trust bar per the 2026-07-05 copy lock. */}
       <div id="report" className="scroll-mt-24">
         <Container className="mt-24 sm:mt-32 md:mt-40">
           {/* Transform-only entrance: this block holds the LCP headline, so it
@@ -250,43 +348,37 @@ export default function Home() {
               Google and AI have already decided who you are.
             </h1>
             <p className="mt-6 text-xl text-neutral-600">
-              Every deal, meeting, and reference check starts with a search
-              in Google or an AI chat, and what comes up gets shaped with or
-              without you. Enter your website or LinkedIn to see what they
-              know about you and what&apos;s missing.
+              Every buyer, hire, and reference call starts with a search in
+              Google, ChatGPT, Claude, or Perplexity. What comes up gets
+              written with or without you. Drop your URL to see what
+              they&apos;ve decided.
             </p>
           </div>
           <InstantReport />
+          {/* Trust bar, name-free per the copy lock. */}
+          <p className="mt-12 border-t border-neutral-950/10 pt-6 text-sm text-neutral-500">
+            Answer engine optimization for executives, authors, and
+            entrepreneurs. Application-only.
+          </p>
         </Container>
       </div>
 
-      {/* Section 2: quiz gateway, dark card */}
+      {/* Section 2: quiz gateway, dark card (retained; see note above) */}
       <AssessmentGateway />
 
-      {/* Sections 3 + 4: the CCM sticky-over curtain (Brett's
-          createchurchmedia.com reference). The definition pins at the top
-          of the viewport and fully occupies it (min-h-screen, content
-          centered); the opaque rounded pricing band climbs over it at
-          native scroll speed by stacking order alone. No opacity
-          animation, no runway: the viewport-height geometry supplies the
-          overlap. motion-safe gates the pin, so prefers-reduced-motion
-          reads the page in natural block flow. The pricing section itself
-          is not sticky: it is three-plus viewports tall, and a sticky
-          element taller than its container's remaining space never pins;
-          the curtain comes entirely from the previous section pinning. */}
-      <div className="relative mt-24 sm:mt-32 lg:mt-40">
-        <div className="z-0 flex min-h-screen items-center motion-safe:sticky motion-safe:top-0">
-          <Definition />
-        </div>
-        <div className="relative z-10">
-          <Packages studies={studies} />
-        </div>
-      </div>
+      {/* Section 3: three-tier pricing + proof band */}
+      <Packages studies={studies} />
+
+      {/* Section 4: two-book showcase */}
+      <TwoBookShowcase />
 
       {/* Section 5: FAQ */}
       <Faq />
 
-      {/* Section 6: apply CTA */}
+      {/* Section 6: founders teaser */}
+      <FoundersTeaser />
+
+      {/* Section 7: terminal CTA */}
       <div id="apply-cta" className="scroll-mt-24">
         <ContactSection />
       </div>

@@ -16,25 +16,17 @@ import {
 /**
  * Adapted in full from the Tailwind Plus "Three tiers with feature
  * comparison" pricing section, harvested from Brett's Plus session
- * (2026-07-05). Translation map: indigo becomes solar on the dark band,
- * the pink-violet glow ellipse becomes a solar glow, data-attribute
- * styling becomes clsx on a featured flag, tier submit buttons become
- * application links, and the frequency toggle is the Pay monthly / Pay
- * up front pair (same total either way; the only discount on the page is
- * the bundle's 10 percent, which attaches to scope, never to payment
- * timing). Pure CSS toggle via :has(); server component.
+ * (2026-07-05). Pure CSS toggle via :has(); server component.
  *
- * FINAL tier arrangement and names (Brett, 2026-07-05, naming lock):
- * Ultimate Entity Build ($54,000, left anchor, standard card, Save
- * $6,000 chip, no compare-at strikes), Pre-Sold Author Build ($36,000,
- * featured middle: white panel, solar ring, glow centered behind it),
+ * Copy per the 2026-07-05 homepage copy lock: eyebrow only (The builds.),
+ * no H2, no sub-paragraph, locked short blurbs per card. Tier order and
+ * treatments per the final naming lock: Ultimate Entity Build ($54,000,
+ * left anchor, standard card, Save $6,000 chip), Pre-Sold Author Build
+ * ($36,000, featured middle: white panel, solar ring, centered glow),
  * Brand SERP Build ($24,000, right, standard). Old anchors live on as
- * invisible alias spans inside each card because URL fragments cannot be
- * server-redirected. The entrance curtain lives in page.tsx (the CCM
- * sticky-over pattern: pinned full-viewport definition, this opaque band
- * climbing over it; no opacity animation anywhere). Reddit citation
- * strategy bullets (2026-07-05 scope add) are placeholder wording
- * pending the copy chat's batch.
+ * invisible alias spans. Flagged for the walk-through: the locked PSA
+ * blurb reads "Brand SERP Build plus manuscript..." while the comparison
+ * table's PSA column continues to reflect the standalone-build scope.
  */
 
 function CheckIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -79,7 +71,7 @@ const TIERS: Tier[] = [
     anchorId: 'ultimate-entity-build',
     legacyAnchorId: 'the-full-build',
     name: ULTIMATE_ENTITY_BUILD.name,
-    description: 'Both builds, run in parallel by one team. The book lands inside the first 6 months; the panel work runs the year.',
+    description: 'Everything. Both builds, running together. Save $6,000.',
     monthly: ULTIMATE_ENTITY_BUILD.payment.monthlyDisplay,
     upfront: ULTIMATE_ENTITY_BUILD.priceDisplay,
     monthlyNote: `12 payments, ${ULTIMATE_ENTITY_BUILD.priceDisplay} total`,
@@ -98,7 +90,7 @@ const TIERS: Tier[] = [
     anchorId: 'pre-sold-author-build',
     legacyAnchorId: 'pre-sold-author',
     name: PRE_SOLD_AUTHOR_BUILD.name,
-    description: 'A finished book from your own voice, plus the launch. Delivered in 6 months, application only.',
+    description: 'The book that sells itself before it ships. Brand SERP Build plus manuscript, launch, and pre-sale. 30+ authors already published.',
     monthly: PRE_SOLD_AUTHOR_BUILD.payment.monthlyDisplay,
     upfront: PRE_SOLD_AUTHOR_BUILD.priceDisplay,
     monthlyNote: `12 payments, ${PRE_SOLD_AUTHOR_BUILD.priceDisplay} total`,
@@ -111,7 +103,7 @@ const TIERS: Tier[] = [
     anchorId: 'brand-serp-build',
     legacyAnchorId: 'knowledge-panel',
     name: BRAND_SERP_BUILD.name,
-    description: 'The Google recognition layer, verified for a year. 12 months, application only.',
+    description: 'The foundation. Google, Wikidata, and every major AI answer engine, recognizing you as the entity you already are.',
     monthly: BRAND_SERP_BUILD.payment.monthlyDisplay,
     upfront: BRAND_SERP_BUILD.priceDisplay,
     monthlyNote: `12 payments, ${BRAND_SERP_BUILD.priceDisplay} total`,
@@ -175,18 +167,9 @@ export function PricingSection() {
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
           <div className="relative z-10">
             <p className="text-center font-display text-sm font-semibold tracking-wider text-neutral-400 uppercase">
-              Pricing
+              The builds.
             </p>
-            <h2 className="mx-auto mt-6 max-w-4xl text-center font-display text-4xl font-medium tracking-tight text-balance text-white sm:text-5xl">
-              Choose your build.
-            </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-center text-lg font-medium text-pretty text-neutral-400 sm:text-xl/8">
-              The Ultimate Entity Build (both builds, 10 percent off), the
-              Pre-Sold Author Build, or the Brand SERP Build on its own.
-              Application only, and the total is the same whichever way you
-              pay.
-            </p>
-            <div className="mt-12 flex justify-center">
+            <div className="mt-10 flex justify-center">
               <fieldset aria-label="How you would pay">
                 <div className="grid grid-cols-2 gap-x-1 rounded-full bg-white/5 p-1 text-center text-xs/5 font-semibold text-white">
                   <label className="group relative cursor-pointer rounded-full px-3 py-1.5 has-[:checked]:bg-solar">
