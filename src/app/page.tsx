@@ -12,48 +12,12 @@ import { type CaseStudyStatic } from '@/components/case-studies/LiveCaseStudyCar
 import { FAQBlock } from '@/components/ui/FAQBlock'
 import { SchemaGraph } from '@/components/seo/SchemaGraph'
 import { homeSchema, faqItemsForUi } from '@/lib/schema-graph'
-import { Button } from '@/components/Button'
 
 export const metadata: Metadata = {
   title: 'PodcastNetwork.org. Google authority, built through your podcast',
   description:
     'Google and AI have already decided who you are. Run a free instant report of what they actually know, then see the application-only answer engine optimization builds that fix it: the Brand SERP Build and the Pre-Sold Author Build.',
   alternates: { canonical: '/' },
-}
-
-/* Section 2: the quiz gateway as a dark card directly under the hero.
- * NOTE: the 2026-07-05 copy lock's flow omits this section; retained
- * pending explicit word because it is the homepage's direct quiz path. */
-function AssessmentGateway() {
-  return (
-    <div id="assessment" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
-      <Container>
-        <FadeIn className="-mx-6 rounded-4xl bg-neutral-950 px-6 py-16 sm:mx-0 sm:py-20 md:px-12">
-          <div className="mx-auto max-w-4xl">
-            <p className="font-display text-sm font-semibold tracking-wider text-neutral-400 uppercase">
-              The three-minute quiz
-            </p>
-            <h2 className="mt-6 font-display text-3xl font-medium text-balance text-white sm:text-4xl">
-              Take control of your Google Knowledge Panel.
-            </h2>
-            <p className="mt-6 max-w-2xl text-base text-neutral-300">
-              The report shows what Google and AI know about you today. In
-              three minutes, learn how that record gets written and how to
-              take control of what they say about you.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-              <Button href="/assessment/" invert>
-                Take the quiz
-              </Button>
-              <p className="text-sm text-neutral-400">
-                Free. About three minutes.
-              </p>
-            </div>
-          </div>
-        </FadeIn>
-      </Container>
-    </div>
-  )
 }
 
 /* Live case studies as a stepped stats band. NOTE: the 2026-07-05 copy
@@ -376,22 +340,15 @@ export default function Home() {
         </Container>
       </div>
 
-      {/* Section 2: quiz gateway, dark card (retained; see note above) */}
-      <AssessmentGateway />
-
-      {/* Section 3: three-tier pricing + proof band */}
       <Packages studies={studies} />
 
-      {/* Section 4: two-book showcase */}
       <TwoBookShowcase />
 
-      {/* Section 5: FAQ */}
       <Faq />
 
-      {/* Section 6: founders teaser */}
       <FoundersTeaser />
 
-      {/* Section 7: terminal CTA */}
+
       <div id="apply-cta" className="scroll-mt-24">
         <ContactSection />
       </div>
