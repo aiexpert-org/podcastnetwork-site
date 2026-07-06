@@ -125,6 +125,7 @@ export function homeSchema(): SchemaNode {
       isPartOf: { "@id": `${BASE}/#website` },
       breadcrumb: { "@id": `${BASE}/#breadcrumb` },
       about: { "@id": `${BASE}/the-package/#service` },
+      mainEntity: { "@id": `${BASE}/#organization` },
       inLanguage: "en-US",
     },
     breadcrumb(`${BASE}/#breadcrumb`, [HOME_CRUMB]),

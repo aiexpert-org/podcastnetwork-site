@@ -13,7 +13,7 @@ export const siteConfig = {
     process.env.NEXT_PUBLIC_URL ??
     "http://localhost:3000"
   ).replace(/\/$/, ""),
-  ogImage: "/og/og-default.png",
+  ogImage: "/opengraph-image",
   author: "PodcastNetwork.org",
   email: "brett@podcastnetwork.org",
   links: {

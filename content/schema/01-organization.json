@@ -13,10 +13,8 @@
   "logo": {
     "@type": "ImageObject",
     "@id": "https://podcastnetwork.org/#logo",
-    "url": "https://podcastnetwork.org/brand/logo-primary.png",
-    "contentUrl": "https://podcastnetwork.org/brand/logo-primary.png",
-    "width": 1200,
-    "height": 1200,
+    "url": "https://podcastnetwork.org/icon.svg",
+    "contentUrl": "https://podcastnetwork.org/icon.svg",
     "caption": "PodcastNetwork.org logo"
   },
   "image": {
@@ -29,7 +27,7 @@
     {
       "@type": "Person",
       "@id": "https://podcastnetwork.org/about/#brett-k-moore",
-      "name": "Brett K Moore"
+      "name": "Brett K. Moore"
     },
     {
       "@type": "Person",
@@ -93,8 +91,8 @@
   ],
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Honolulu",
-    "addressRegion": "HI",
+    "addressLocality": "Indianapolis",
+    "addressRegion": "IN",
     "addressCountry": "US"
   },
   "sameAs": [

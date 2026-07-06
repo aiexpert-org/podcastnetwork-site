@@ -359,7 +359,10 @@ export default function Home() {
           {/* Transform-only entrance: this block holds the LCP headline, so it
               must be visible before hydration. */}
           <div className="pn-rise max-w-3xl">
-            <h1 className="font-display text-5xl font-medium tracking-tight text-balance text-neutral-950 sm:text-6xl">
+            <p className="text-xs font-semibold tracking-widest text-neutral-500 uppercase">
+              Answer engine optimization
+            </p>
+            <h1 className="mt-4 font-display text-5xl font-medium tracking-tight text-balance text-neutral-950 sm:text-6xl">
               Google and AI have already decided who you are.
             </h1>
             <p className="mt-6 text-xl text-neutral-600">
@@ -370,11 +373,6 @@ export default function Home() {
             </p>
           </div>
           <InstantReport />
-          {/* Trust bar, name-free per the copy lock. */}
-          <p className="mt-12 border-t border-neutral-950/10 pt-6 text-sm text-neutral-500">
-            Answer engine optimization for executives, authors, and
-            entrepreneurs. Application-only.
-          </p>
         </Container>
       </div>
 

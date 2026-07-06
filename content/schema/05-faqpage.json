@@ -19,7 +19,7 @@
       "name": "What data do you actually pull to generate my report?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Live queries to Google's Knowledge Graph API, Wikidata SPARQL, your homepage's structured data, the SERP API for citation surfaces, and a direct query to ChatGPT asking about you. No third-party trackers, no scraping, no stored data."
+        "text": "Live queries to Google's Knowledge Graph API, Wikidata SPARQL, your homepage's structured data, the SERP API for citation surfaces, and a Google AI Overview check that shows whether Google's own AI summarizes you. No third-party trackers, no scraping, no stored data."
       }
     },
     {
