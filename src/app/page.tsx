@@ -363,10 +363,10 @@ export default function Home() {
               Google and AI have already decided who you are.
             </h1>
             <p className="mt-6 text-xl text-neutral-600">
-              Every buyer, hire, and reference call starts with a search in
-              Google, ChatGPT, Claude, or Perplexity. What comes up gets
-              written with or without you. Drop your URL to see what
-              they&apos;ve decided.
+              Every deal, meeting, and reference check starts with a search in
+              Google or an AI chat, and what comes up gets shaped with or
+              without you. Enter your website or LinkedIn to see what they know
+              about you and what&apos;s missing.
             </p>
           </div>
           <InstantReport />
