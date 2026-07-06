@@ -17,7 +17,7 @@
     "https://podcastnetwork.org/about/brett-k-moore-3x4.jpg",
     "https://podcastnetwork.org/about/brett-k-moore-16x9.jpg"
   ],
-  "description": "Co-founder and CEO of PodcastNetwork.org. AI-native operator running a portfolio of businesses from Hawaii. Co-author of AI or Die. Co-founder of AI Expert and Apex Podcast Co. Owner of Brett K. Moore (personal brand), Legacy Publishing, and The Brand Spine.",
+  "description": "Co-founder and CEO of PodcastNetwork.org. AI-native operator running a portfolio of businesses from Indianapolis. Co-author of AI or Die. Co-founder of AI Expert and Apex Podcast Co. Owner of Brett K. Moore (personal brand) and Legacy Publishing.",
   "jobTitle": "Co-founder and CEO",
   "worksFor": [
     {
@@ -40,11 +40,6 @@
       "@type": "Organization",
       "name": "Legacy Publishing",
       "url": "https://legacypublishing.com/"
-    },
-    {
-      "@type": "Organization",
-      "name": "The Brand Spine",
-      "url": "https://thebrandspine.com/"
     }
   ],
   "founder": [
@@ -57,8 +52,8 @@
     "@type": "Place",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Honolulu",
-      "addressRegion": "HI",
+      "addressLocality": "Indianapolis",
+      "addressRegion": "IN",
       "addressCountry": "US"
     }
   },

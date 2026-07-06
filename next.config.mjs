@@ -31,8 +31,7 @@ const nextConfig = {
       { source: '/the-method/:path*', destination: '/#packages', permanent: false },
       { source: '/case-studies', destination: '/#packages', permanent: false },
       { source: '/case-studies/:path*', destination: '/#packages', permanent: false },
-      { source: '/founders', destination: '/#proof', permanent: false },
-      { source: '/founders/:path*', destination: '/#proof', permanent: false },
+      // /founders revived as a live route (2026-07-05).
       { source: '/the-package', destination: '/#pre-sold-author', permanent: false },
       { source: '/the-package/:path*', destination: '/#pre-sold-author', permanent: false },
       { source: '/knowledge-panel-install', destination: '/#knowledge-panel', permanent: false },

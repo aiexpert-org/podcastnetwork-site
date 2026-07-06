@@ -311,10 +311,10 @@ export function foundersSchema(): SchemaNode {
     node(mikePayload),
     node(bookPayload),
     {
-      "@type": "ProfilePage",
-      "@id": `${BASE}/founders/#profilepage`,
+      "@type": "CollectionPage",
+      "@id": `${BASE}/founders/#collection`,
       url: `${BASE}/founders/`,
-      mainEntity: { "@id": `${BASE}/about/#brett-k-moore` },
+      name: "Founders of PodcastNetwork.org",
       about: [
         { "@id": `${BASE}/about/#brett-k-moore` },
         { "@id": `${BASE}/about/#mike-partners` },
@@ -325,6 +325,50 @@ export function foundersSchema(): SchemaNode {
     breadcrumb(`${BASE}/founders/#breadcrumb`, [
       HOME_CRUMB,
       { name: "Founders", item: `${BASE}/founders/` },
+    ]),
+  ]);
+}
+
+export function brettProfileSchema(): SchemaNode {
+  return graph([
+    node(orgPayload),
+    node(brettPayload),
+    node(mikePayload),
+    node(bookPayload),
+    {
+      "@type": "ProfilePage",
+      "@id": `${BASE}/founders/brett-k-moore/#profilepage`,
+      url: `${BASE}/founders/brett-k-moore/`,
+      mainEntity: { "@id": `${BASE}/about/#brett-k-moore` },
+      isPartOf: { "@id": `${BASE}/#website` },
+      inLanguage: "en-US",
+    },
+    breadcrumb(`${BASE}/founders/brett-k-moore/#breadcrumb`, [
+      HOME_CRUMB,
+      { name: "Founders", item: `${BASE}/founders/` },
+      { name: "Brett K. Moore", item: `${BASE}/founders/brett-k-moore/` },
+    ]),
+  ]);
+}
+
+export function mikeProfileSchema(): SchemaNode {
+  return graph([
+    node(orgPayload),
+    node(mikePayload),
+    node(brettPayload),
+    node(bookPayload),
+    {
+      "@type": "ProfilePage",
+      "@id": `${BASE}/founders/mike-partners/#profilepage`,
+      url: `${BASE}/founders/mike-partners/`,
+      mainEntity: { "@id": `${BASE}/about/#mike-partners` },
+      isPartOf: { "@id": `${BASE}/#website` },
+      inLanguage: "en-US",
+    },
+    breadcrumb(`${BASE}/founders/mike-partners/#breadcrumb`, [
+      HOME_CRUMB,
+      { name: "Founders", item: `${BASE}/founders/` },
+      { name: "Mike Partners", item: `${BASE}/founders/mike-partners/` },
     ]),
   ]);
 }
