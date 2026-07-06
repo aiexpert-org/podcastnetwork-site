@@ -29,6 +29,7 @@ const LOADING_PHASES = [
   'Reading your page',
   'Asking Google Knowledge Graph',
   'Checking Wikidata and Wikipedia',
+  'Checking Google AI Overviews',
   'Writing your findings',
 ]
 
@@ -132,19 +133,21 @@ export function InstantReport() {
   const fetchSeo = useCallback(async (input: string, runId: number) => {
     setSeo({ phase: 'pending' })
     try {
-      const psiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(input)}&category=seo&strategy=mobile`
-      const res = await fetch(psiUrl, { signal: AbortSignal.timeout(35_000) })
+      const res = await fetch(
+        `/api/seo-score/?url=${encodeURIComponent(input)}`,
+        { signal: AbortSignal.timeout(50_000) },
+      )
       if (runIdRef.current !== runId) return
       if (!res.ok) {
         setSeo({ phase: 'unavailable' })
         return
       }
       const json = (await res.json()) as {
-        lighthouseResult?: { categories?: { seo?: { score?: number } } }
+        status: 'ok' | 'unavailable'
+        seoScore?: number
       }
-      const raw = json.lighthouseResult?.categories?.seo?.score
-      if (typeof raw === 'number') {
-        setSeo({ phase: 'done', seoScore: Math.round(raw * 100) })
+      if (json.status === 'ok' && typeof json.seoScore === 'number') {
+        setSeo({ phase: 'done', seoScore: json.seoScore })
       } else {
         setSeo({ phase: 'unavailable' })
       }

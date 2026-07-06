@@ -16,7 +16,8 @@ import { fetchGoogleKg, fetchWikidata } from '../entity-lookup/sources'
  * PageSpeed Insights runs 10 to 25 seconds; the client slots it in when it
  * lands so these findings stay in the 3-to-5-second window.
  *
- * Stack: SerpAPI + Google Cloud (Knowledge Graph + PageSpeed). No OpenAI.
+ * Stack: SerpAPI (AI Overview + LinkedIn resolution) + Google Cloud
+ * (Knowledge Graph + PageSpeed). No OpenAI.
  */
 
 export const runtime = 'nodejs'
@@ -34,6 +35,7 @@ export type PresenceFinding = {
     | 'schema'
     | 'citations'
     | 'entity-home'
+    | 'ai-overview'
   label: string
   status: FindingStatus
   /** Short verifiable fact line, e.g. the Q-number or the mentions count. */
@@ -274,6 +276,36 @@ function wikidataQNumber(sameAs: { label: string; url: string }[]): string | nul
   return null
 }
 
+type AiOverviewResult =
+  | { status: 'found'; snippet: string }
+  | { status: 'missing' }
+  | { status: 'unavailable' }
+
+async function checkGoogleAiOverview(
+  entityName: string,
+): Promise<AiOverviewResult> {
+  const key = process.env.SERPAPI_KEY
+  if (!key) return { status: 'unavailable' }
+  try {
+    const res = await fetch(
+      `https://serpapi.com/search.json?engine=google&q=${encodeURIComponent(entityName)}&api_key=${key}`,
+      { signal: AbortSignal.timeout(10_000) },
+    )
+    if (!res.ok) return { status: 'unavailable' }
+    const json = (await res.json()) as {
+      ai_overview?: {
+        text_blocks?: { text?: string; type?: string; snippet?: string }[]
+      }
+    }
+    if (!json.ai_overview?.text_blocks?.length) return { status: 'missing' }
+    const block = json.ai_overview.text_blocks[0]
+    const text = block?.snippet ?? block?.text ?? ''
+    if (!text) return { status: 'missing' }
+    return { status: 'found', snippet: text.slice(0, 500) }
+  } catch {
+    return { status: 'unavailable' }
+  }
+}
 
 export async function GET(req: Request) {
   const params = new URL(req.url).searchParams
@@ -429,10 +461,11 @@ export async function GET(req: Request) {
 
   // ---- Off-page checks, in parallel --------------------------------------
 
-  const [kg, wikidata, wikipedia] = await Promise.all([
+  const [kg, wikidata, wikipedia, aiOverview] = await Promise.all([
     fetchGoogleKg(entityName),
     fetchWikidata(entityName),
     searchWikipedia(entityName),
+    checkGoogleAiOverview(entityName),
   ])
 
   const findings: PresenceFinding[] = []
@@ -534,6 +567,35 @@ export async function GET(req: Request) {
     detail: homeDetail,
     fix: homeStatus === 'found' ? null : 'kp',
   })
+
+  if (aiOverview.status === 'found') {
+    findings.push({
+      id: 'ai-overview',
+      label: 'Google AI Overview',
+      status: 'found',
+      evidence: 'live via Google Search',
+      detail: aiOverview.snippet,
+      fix: null,
+    })
+  } else if (aiOverview.status === 'missing') {
+    findings.push({
+      id: 'ai-overview',
+      label: 'Google AI Overview',
+      status: 'missing',
+      evidence: null,
+      detail: `Google has not generated an AI Overview for "${entityName}". The AI answer layer has nothing to work with yet.`,
+      fix: 'kp',
+    })
+  } else {
+    findings.push({
+      id: 'ai-overview',
+      label: 'Google AI Overview',
+      status: 'unavailable',
+      evidence: null,
+      detail: 'The AI Overview check did not complete for this scan. Run the report again in a minute.',
+      fix: null,
+    })
+  }
 
   const report: InstantReportPayload = {
     input: normalized,
