@@ -10,7 +10,7 @@ import { applySchema } from '@/lib/schema-graph'
 export const metadata: Metadata = {
   title: 'Apply. The application is the diagnostic',
   description:
-    'The intake opens with a live schema validator. Paste your URL, see your current authority baseline, then answer six questions. We respond within two business days.',
+    'Paste your URL and see what AI answer engines actually know about you. Six questions, two business days. Your AEO diagnostic starts here.',
   alternates: { canonical: '/apply/' },
 }
 

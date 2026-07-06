@@ -7,7 +7,7 @@
 export const siteConfig = {
   name: "PodcastNetwork.org",
   description:
-    "PodcastNetwork.org builds Google authority for executives, authors, and entrepreneurs who want to be recognized as a real entity. Two paths: a Knowledge Panel Install and a Pre-Sold Author Package. Real signals, application only.",
+    "PodcastNetwork.org builds entity visibility so AI answer engines recognize you. Two paths: Knowledge Panel Install and Pre-Sold Author Package.",
   url: (
     process.env.NEXT_PUBLIC_SITE_URL ??
     process.env.NEXT_PUBLIC_URL ??
