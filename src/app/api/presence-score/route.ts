@@ -16,11 +16,7 @@ import { fetchGoogleKg, fetchWikidata } from '../entity-lookup/sources'
  * PageSpeed Insights runs 10 to 25 seconds; the client slots it in when it
  * lands so these findings stay in the 3-to-5-second window.
  *
- * Finding 7 (2026-07-05, Brett via Dispatch): a live AI answer engine
- * check. gpt-4o-mini is asked who the resolved entity is; the reply is
- * classified found, partial, or missing. Copy is placeholder pending the
- * copy chat's batch; mechanics are final. Requires OPENAI_API_KEY, and
- * degrades to unavailable without it, like the other keyed lookups.
+ * Stack: SerpAPI + Google Cloud (Knowledge Graph + PageSpeed). No OpenAI.
  */
 
 export const runtime = 'nodejs'
@@ -38,7 +34,6 @@ export type PresenceFinding = {
     | 'schema'
     | 'citations'
     | 'entity-home'
-    | 'ai-answer'
   label: string
   status: FindingStatus
   /** Short verifiable fact line, e.g. the Q-number or the mentions count. */
@@ -279,57 +274,6 @@ function wikidataQNumber(sameAs: { label: string; url: string }[]): string | nul
   return null
 }
 
-/**
- * Finding 7: ask an AI answer engine directly. gpt-4o-mini, temperature 0,
- * with a sentinel instruction so the no-information case is classifiable
- * without guessing. Hedge patterns downgrade to partial; a confident answer
- * that never names the entity also reads partial. Roughly a cent per
- * uncached call; results ride the same 15-minute report cache.
- */
-async function askAiAnswerEngine(
-  entityName: string,
-): Promise<{ status: FindingStatus }> {
-  const key = process.env.OPENAI_API_KEY
-  if (!key) return { status: 'unavailable' }
-  try {
-    const res = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${key}`,
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o-mini',
-        temperature: 0,
-        max_tokens: 150,
-        messages: [
-          {
-            role: 'user',
-            content: `In one short paragraph: who or what is "${entityName}"? If you do not have reliable information about this specific person or organization, reply exactly: NO RELIABLE INFORMATION`,
-          },
-        ],
-      }),
-      signal: AbortSignal.timeout(8000),
-    })
-    if (!res.ok) return { status: 'unavailable' }
-    const json = (await res.json()) as {
-      choices?: { message?: { content?: string } }[]
-    }
-    const answer = json.choices?.[0]?.message?.content?.trim() ?? ''
-    if (!answer) return { status: 'unavailable' }
-    if (/NO RELIABLE INFORMATION/i.test(answer)) return { status: 'missing' }
-    const hedged =
-      /don't have|do not have|not aware|no (specific|reliable) information|unable to (find|verify)|could(n't| not) find|not familiar|may refer to|several (people|individuals)/i.test(
-        answer,
-      )
-    if (hedged) return { status: 'partial' }
-    const token = entityName.split(/\s+/)[0]?.toLowerCase() ?? ''
-    const named = token.length >= 3 && answer.toLowerCase().includes(token)
-    return { status: named ? 'found' : 'partial' }
-  } catch {
-    return { status: 'unavailable' }
-  }
-}
 
 export async function GET(req: Request) {
   const params = new URL(req.url).searchParams
@@ -485,11 +429,10 @@ export async function GET(req: Request) {
 
   // ---- Off-page checks, in parallel --------------------------------------
 
-  const [kg, wikidata, wikipedia, aiAnswer] = await Promise.all([
+  const [kg, wikidata, wikipedia] = await Promise.all([
     fetchGoogleKg(entityName),
     fetchWikidata(entityName),
     searchWikipedia(entityName),
-    askAiAnswerEngine(entityName),
   ])
 
   const findings: PresenceFinding[] = []
@@ -591,47 +534,6 @@ export async function GET(req: Request) {
     detail: homeDetail,
     fix: homeStatus === 'found' ? null : 'kp',
   })
-
-  // Finding 7: the AI answer layer, queried live. Placeholder copy pending
-  // the copy chat's title, detail, and attribution language.
-  if (aiAnswer.status === 'found') {
-    findings.push({
-      id: 'ai-answer',
-      label: 'AI answer engine check',
-      status: 'found',
-      evidence: 'gpt-4o-mini, asked live',
-      detail: `Asked directly, the AI answer engine describes "${entityName}" with specifics. The answer layer already recognizes you.`,
-      fix: null,
-    })
-  } else if (aiAnswer.status === 'partial') {
-    findings.push({
-      id: 'ai-answer',
-      label: 'AI answer engine check',
-      status: 'partial',
-      evidence: 'gpt-4o-mini, asked live',
-      detail: `Asked directly, the AI answer engine returns a hedged or generic answer about "${entityName}". Recognizable, but thin.`,
-      fix: 'kp',
-    })
-  } else if (aiAnswer.status === 'missing') {
-    findings.push({
-      id: 'ai-answer',
-      label: 'AI answer engine check',
-      status: 'missing',
-      evidence: 'gpt-4o-mini, asked live',
-      detail: `Asked directly, the AI answer engine cannot identify "${entityName}". The answer layer has nothing to work with.`,
-      fix: 'kp',
-    })
-  } else {
-    findings.push({
-      id: 'ai-answer',
-      label: 'AI answer engine check',
-      status: 'unavailable',
-      evidence: null,
-      detail:
-        'The AI answer check did not complete for this scan. Run the report again in a minute.',
-      fix: null,
-    })
-  }
 
   const report: InstantReportPayload = {
     input: normalized,
