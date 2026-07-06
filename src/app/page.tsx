@@ -154,10 +154,9 @@ function Packages({ studies }: { studies: CaseStudyStatic[] }) {
 }
 
 /* Two-book showcase, per the 2026-07-05 copy lock: the one place on the
- * homepage where names appear as authors. Covers load remotely from
- * mike.partners for now; localizing the binaries into public/books/ is
- * tracked as a follow-up (GitHub MCP corrupts binary pushes; the
- * browser-upload path needs the files on Brett's machine). */
+ * homepage where names appear as authors. Covers are the full-resolution
+ * flat covers (Brett-approved art), served locally from public/books,
+ * committed byte-perfect via the browser upload path. */
 function TwoBookShowcase() {
   return (
     <div id="books" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
@@ -172,62 +171,78 @@ function TwoBookShowcase() {
       <Container className="mt-16">
         <FadeIn>
           <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 sm:grid-cols-2">
-            <div className="flex flex-col rounded-3xl bg-white p-8 ring-1 ring-neutral-950/10">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://mike.partners/wp-content/uploads/2026/05/Ai-or-Die-book-cover-2-2-300x233.png"
-                alt="AI or Die book cover"
-                className="h-48 w-full object-contain"
-              />
-              <h3 className="mt-6 font-display text-xl font-medium tracking-tight text-neutral-950">
-                AI or Die
-              </h3>
-              <p className="mt-1 text-sm text-neutral-600">
-                The Small Business Survival Guide to the Artificial
-                Intelligence Revolution
-              </p>
-              <p className="mt-3 text-sm font-semibold text-neutral-950">
-                By Mike Partners &amp; Brett K. Moore
-              </p>
-              <p className="mt-1 text-sm text-neutral-600">
-                Paperback &amp; Kindle. $17.99 / $9.99.
-              </p>
-              <a
-                href="https://www.amazon.com/dp/B0H343DR1L"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
-              >
-                Buy on Amazon <span aria-hidden="true">&rarr;</span>
-              </a>
+            <div className="flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-neutral-950/10">
+              <div className="flex items-center justify-center bg-neutral-50 p-10">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/books/ai-or-die.jpg"
+                  alt="AI or Die book cover"
+                  width={1707}
+                  height={2560}
+                  className="h-72 w-auto rounded-md shadow-xl ring-1 ring-neutral-950/10"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-8">
+                <h3 className="font-display text-xl font-medium tracking-tight text-neutral-950">
+                  AI or Die
+                </h3>
+                <p className="mt-1 text-sm text-neutral-600">
+                  The Small Business Survival Guide to the Artificial
+                  Intelligence Revolution
+                </p>
+                <p className="mt-3 text-sm font-semibold text-neutral-950">
+                  By Mike Partners &amp; Brett K. Moore
+                </p>
+                <p className="mt-1 text-sm text-neutral-600">
+                  Paperback &amp; Kindle. $17.99 / $9.99.
+                </p>
+                <a
+                  href="https://www.amazon.com/dp/B0H343DR1L"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto pt-6 text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
+                >
+                  Buy on Amazon <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
             </div>
-            <div className="flex flex-col rounded-3xl bg-white p-8 ring-1 ring-neutral-950/10">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://mike.partners/wp-content/uploads/2026/05/The-Book-on-How-to-Write-a-Book.png"
-                alt="The Book on How to Write a Book cover"
-                className="h-48 w-full object-contain"
-              />
-              <h3 className="mt-6 font-display text-xl font-medium tracking-tight text-neutral-950">
-                The Book on How to Write a Book
-              </h3>
-              <p className="mt-3 text-sm font-semibold text-neutral-950">
-                By Mike Partners
-              </p>
-              <p className="mt-1 text-sm text-neutral-600">
-                Paperback &amp; Kindle. $17.99 / $9.99.
-              </p>
-              <a
-                href="https://www.amazon.com/dp/B0H2Z1H7DR"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
-              >
-                Buy on Amazon <span aria-hidden="true">&rarr;</span>
-              </a>
-              <p className="mt-4 text-xs text-neutral-500">
-                30+ authors published using this system.
-              </p>
+            <div className="flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-neutral-950/10">
+              <div className="flex items-center justify-center bg-neutral-50 p-10">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/books/the-book-on-how-to-write-a-book.jpg"
+                  alt="The Book on How to Write a Book cover"
+                  width={1716}
+                  height={2560}
+                  className="h-72 w-auto rounded-md shadow-xl ring-1 ring-neutral-950/10"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-8">
+                <h3 className="font-display text-xl font-medium tracking-tight text-neutral-950">
+                  The Book on How to Write a Book
+                </h3>
+                <p className="mt-1 text-sm text-neutral-600">
+                  A Systems Approach to Quickly Write and Sell a Book as an
+                  Executive
+                </p>
+                <p className="mt-3 text-sm font-semibold text-neutral-950">
+                  By Mike Partners
+                </p>
+                <p className="mt-1 text-sm text-neutral-600">
+                  Paperback &amp; Kindle. $17.99 / $9.99.
+                </p>
+                <a
+                  href="https://www.amazon.com/dp/B0H2Z1H7DR"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto pt-6 text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
+                >
+                  Buy on Amazon <span aria-hidden="true">&rarr;</span>
+                </a>
+                <p className="mt-4 text-xs text-neutral-500">
+                  30+ authors published using this system.
+                </p>
+              </div>
             </div>
           </div>
         </FadeIn>
