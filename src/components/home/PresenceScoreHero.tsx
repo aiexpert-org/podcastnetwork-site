@@ -4,15 +4,16 @@
  * Instant Presence Report (Tier 1 of the two-tier diagnostic).
  *
  * File name retained through the v0.6.4 pivot to keep the diff reviewable;
- * rename to InstantReport.tsx in the post-pitch cleanup. The 0-to-10
- * aggregate score is gone per Brett's 2026-07-04 evening lock: real findings
+ * rename to InstantReport.tsx in the post-pitch cleanup. Real findings
  * only, no email gate, each miss labeled with the build that fixes it.
- * Fix labels follow the 2026-07-05 final naming lock: Brand SERP Build and
- * Pre-Sold Author Build.
+ * Copy per the 2026-07-05 homepage copy lock: results header, helper
+ * line, placeholder, and the Tier 2 transition. The transition's
+ * ten-questions and recommendation wording is the locked text implemented
+ * verbatim and flagged: it contradicts the in-session quiz locks (no
+ * question counts; review, never recommendation).
  */
 
 import { useCallback, useRef, useState } from 'react'
-import Link from 'next/link'
 import clsx from 'clsx'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -217,7 +218,7 @@ export function InstantReport() {
             type="text"
             inputMode="url"
             autoComplete="url"
-            placeholder="your-site.com or linkedin.com/in/you"
+            placeholder="Enter your website or LinkedIn profile URL here"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             className="block w-full rounded-xl border border-neutral-300 bg-white px-6 py-4 text-base text-neutral-950 transition placeholder:text-neutral-500 focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/5 focus:outline-hidden"
@@ -232,7 +233,7 @@ export function InstantReport() {
         </div>
       </form>
       <p className="mt-3 text-xs text-neutral-500">
-        Free. Takes about five seconds. No signup needed.
+        Free. Real data. Five seconds. No signup.
       </p>
 
       <AnimatePresence>
@@ -259,7 +260,7 @@ export function InstantReport() {
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold tracking-wide text-neutral-500 uppercase">
-                  Instant presence report
+                  Here’s what they know.
                 </p>
                 <p className="mt-2 font-display text-2xl font-medium tracking-tight text-neutral-950">
                   {report.entityName}
@@ -272,11 +273,6 @@ export function InstantReport() {
                 signals in place
               </p>
             </div>
-
-            <p className="mt-4 text-sm text-neutral-600">
-              Every line below is a real signal Google reads, checked live just
-              now.
-            </p>
 
             <ul
               role="list"
@@ -340,17 +336,13 @@ export function InstantReport() {
 
             <div className="mt-6 border-t border-neutral-950/10 pt-6">
               <p className="text-sm text-neutral-600">
-                Want to know why your page looks like this, and what it would
-                take to change it? That is what the quiz is for.
+                Want to see what your specific fix looks like? Ten questions,
+                five minutes, personalized recommendation.
               </p>
-              <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-4">
-                <Button href="/assessment/">Take the quiz</Button>
-                <Link
-                  href="/#packages"
-                  className="text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
-                >
-                  See the builds <span aria-hidden="true">&rarr;</span>
-                </Link>
+              <div className="mt-4">
+                <Button href="/assessment/">
+                  Continue <span aria-hidden="true">&rarr;</span>
+                </Button>
               </div>
             </div>
           </motion.div>

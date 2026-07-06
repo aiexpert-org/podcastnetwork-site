@@ -105,12 +105,13 @@ export function faqItemsForUi(
 
 export function homeSchema(): SchemaNode {
   const questions = faqQuestions([
-    "what-does-pre-sold-author-cover",
-    "what-does-knowledge-panel-install-cover",
-    "both-packages-together",
-    "is-this-just-for-real-estate",
-    "no-podcast-yet",
-    "versus-diy",
+    "diagnostic-data",
+    "diagnostic-storage",
+    "vs-seo-agency",
+    "why-6-to-12-months",
+    "why-reddit",
+    "panel-guarantee",
+    "what-do-i-own",
   ]);
 
   return graph([
@@ -120,7 +121,7 @@ export function homeSchema(): SchemaNode {
       "@type": "WebPage",
       "@id": `${BASE}/#webpage`,
       url: `${BASE}/`,
-      name: "PodcastNetwork.org: two paths to Google authority",
+      name: "PodcastNetwork.org: answer engine optimization for executives, authors, and entrepreneurs",
       isPartOf: { "@id": `${BASE}/#website` },
       breadcrumb: { "@id": `${BASE}/#breadcrumb` },
       about: { "@id": `${BASE}/the-package/#service` },
