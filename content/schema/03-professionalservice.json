@@ -1,0 +1,110 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://podcastnetwork.org/the-package/#service",
+  "name": "Pre-Sold Author Build",
+  "url": "https://podcastnetwork.org/the-package/",
+  "description": "A six-month build that produces a finished book from the client's own voice, plus a launched podcast, an audio voice clone, and the launch infrastructure to position the book for pre-sales. Application only. Pre-sales depend on execution and market fit and are not guaranteed.",
+  "serviceType": "Author and book launch build",
+  "category": [
+    "Book publishing",
+    "Podcast production",
+    "Author launch",
+    "Voice cloning",
+    "Personal brand"
+  ],
+  "brand": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "provider": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "areaServed": [
+    { "@type": "Country", "name": "United States" },
+    { "@type": "Country", "name": "Canada" },
+    { "@type": "Country", "name": "United Kingdom" },
+    { "@type": "Country", "name": "Australia" }
+  ],
+  "audience": {
+    "@type": "BusinessAudience",
+    "audienceType": "Executives, authors, entrepreneurs, and professionals who want a finished book and the launch infrastructure around it"
+  },
+  "offers": {
+    "@type": "Offer",
+    "@id": "https://podcastnetwork.org/the-package/#offer",
+    "name": "Pre-Sold Author Build",
+    "url": "https://podcastnetwork.org/the-package/",
+    "price": "36000",
+    "priceCurrency": "USD",
+    "priceValidUntil": "2026-12-31",
+    "availability": "https://schema.org/InStock",
+    "eligibleDuration": {
+      "@type": "QuantitativeValue",
+      "value": 6,
+      "unitCode": "MON"
+    },
+    "eligibleQuantity": {
+      "@type": "QuantitativeValue",
+      "value": 1,
+      "unitText": "engagement"
+    },
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "price": "36000",
+      "priceCurrency": "USD",
+      "valueAddedTaxIncluded": false,
+      "description": "Paid up front, or split into twelve monthly payments of $3,000 at no extra cost; delivery runs the first six months and payments seven through twelve fund ongoing monitoring and maintenance. If the client takes the Legacy Publishing option, Legacy earns 10% of net book sales as royalty with no upfront fee."
+    },
+    "seller": {
+      "@id": "https://podcastnetwork.org/#organization"
+    }
+  },
+  "priceRange": "$$$$",
+  "termsOfService": "https://podcastnetwork.org/legal/terms/",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "@id": "https://podcastnetwork.org/the-package/#catalog",
+    "name": "What the Pre-Sold Author Build includes",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "The Book",
+          "description": "Eight private interviews become a finished manuscript delivered by month three. Publishing option through Legacy Publishing at 10% of net royalties, with cover, interior layout, ARC copies, and retail distribution."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "The Podcast",
+          "description": "A launched show, recorded with guests or produced from the client's voice clone, which earns an IMDb Person page through the podcast credit. Setup, branding, hosting, and distribution handled."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "The Voice Clone",
+          "description": "An audio voice clone and a voice corpus, both exclusive to this build, used to produce audio in the client's voice and kept by the client."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "The Launch Build",
+          "description": "Bio pages, contributor citation surfaces, a Wikidata Person entry, author profiles across major platforms, a full website if needed, podcast tour placements, and a coordinated launch sequence positioning the book for pre-sales."
+        }
+      }
+    ]
+  },
+  "additionalType": ["https://schema.org/Service"],
+  "duration": "P6M",
+  "estimatedDuration": {
+    "@type": "QuantitativeValue",
+    "value": 6,
+    "unitText": "months"
+  }
+}

@@ -1,0 +1,64 @@
+import { AiOrDieGraphInset } from '@/components/case-studies/AiOrDieGraphInset'
+import { AiOrDieMetrics } from '@/components/case-studies/AiOrDieMetrics'
+import { BookSchemaBlock } from '@/components/case-studies/BookSchemaBlock'
+import { SchemaGraph } from '@/components/seo/SchemaGraph'
+import { aiOrDieSchema } from '@/lib/schema-graph'
+
+export const caseStudy = {
+  client: 'Brett K Moore + Mike Partners',
+  title: 'AI or Die',
+  description:
+    'Before the Pre-Sold Author Package was ever offered to an outside author, the founders ran the full package on themselves. AI or Die launched 2026-06-24. The metrics on this page refresh hourly.',
+  summary: [
+    'The founders ran the Pre-Sold Author Package on themselves before selling it to anyone. Same book pipeline through Legacy Publishing. Same podcast-driven audience build. Same knowledge panel work. Same waitlist mechanics.',
+    'AI or Die launched 2026-06-24. This page reports the launch in progress, live, with metrics that refresh hourly.',
+  ],
+  date: '2026-06-24',
+  service: 'Pre-Sold Author Package',
+  status: 'Launched 2026-06-24',
+}
+
+export const metadata = {
+  title: 'AI or Die. The founder-run case study',
+  description: caseStudy.description,
+  alternates: { canonical: '/case-studies/ai-or-die/' },
+}
+
+<SchemaGraph schema={aiOrDieSchema()} />
+
+## The anchor case study
+
+Before the Pre-Sold Author Package was ever offered to an outside author, Brett K Moore and Mike Partners ran the full package on themselves. Same book pipeline through Legacy Publishing. Same podcast-driven audience build. Same knowledge panel work. Same waitlist mechanics. If the sequence had not produced the outcomes, we would have rebuilt it before taking a single outside author's payment.
+
+<AiOrDieGraphInset />
+
+## The launch, happening now
+
+The book launched 2026-06-24. What you see below is not a projection or a retrospective assembled after the fact. It is the launch in progress, and it refreshes hourly.
+
+<AiOrDieMetrics variant="full" />
+
+## The actual JSON-LD behind the entity
+
+This is the Book entity as it ships in this page's own structured data. Google reads exactly this.
+
+<BookSchemaBlock />
+
+## The arc, as it ran
+
+<TagList>
+  <TagListItem>Book (Legacy Publishing JV)</TagListItem>
+  <TagListItem>Podcast network launch</TagListItem>
+  <TagListItem>Knowledge Panel entity work</TagListItem>
+  <TagListItem>Pre-sold audience build</TagListItem>
+</TagList>
+
+**Day 1 to 30.** Manuscript work in flight with Legacy Publishing. Podcast production stood up. Entity Home built. Knowledge panel work seeded on Wikidata.
+
+**Day 30 to 90.** Podcast in-market and shipping episodes on cadence. Knowledge panel indexing in motion. Guest appearance sequence live. Waitlist accepting sign-ups.
+
+**Day 90 to 180.** Manuscript into final production with Legacy. Knowledge panels maturing. Guest appearance count building. Waitlist growing toward the Day 180 pre-order target.
+
+**Day 180.** Book launched 2026-06-24. Pre-orders converted. Knowledge panel entity work live and indexing. Podcast established in-market.
+
+The Pre-Sold Author Package works because the founders ran it on themselves first. Every author inside the current cohort runs the same sequence, on the same 180-day clock, through the same Legacy Publishing pipeline. AI or Die is the case study we shipped so that no outside author has to be the first.

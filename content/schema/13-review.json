@@ -1,0 +1,79 @@
+{
+  "$comment": "Review pattern for case study testimonials. Every cleared testimonial ships as a Review entity attached to the ProfessionalService (the Pre-Sold Author Package). The Homepage Section 7 testimonial rhythm and every case study page's pull quotes hydrate from this shape. Do not ship placeholder testimonials in the JSON-LD, in line with the copy rule; only ship entries once the quote is cleared with the reviewer.",
+  "@context": "https://schema.org",
+  "@type": "Review",
+  "@id": "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/#review",
+  "name": "{{REVIEW_HEADLINE}}",
+  "reviewBody": "{{REVIEW_BODY_TWO_TO_FOUR_SENTENCES}}",
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "{{RATING_VALUE_1_TO_5}}",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "author": {
+    "@type": "Person",
+    "@id": "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/#person",
+    "name": "{{REVIEWER_FULL_NAME}}",
+    "jobTitle": "{{REVIEWER_JOB_TITLE}}",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "{{REVIEWER_ORG_NAME}}",
+      "url": "{{REVIEWER_ORG_URL}}"
+    },
+    "url": "{{REVIEWER_HOMEPAGE_URL}}",
+    "image": "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/headshot-1x1.jpg",
+    "sameAs": [
+      "{{REVIEWER_LINKEDIN_URL}}",
+      "{{REVIEWER_X_URL}}"
+    ]
+  },
+  "datePublished": "{{DATE_PUBLISHED_ISO_8601}}",
+  "publisher": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "itemReviewed": {
+    "@id": "https://podcastnetwork.org/the-package/#service"
+  },
+  "positiveNotes": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "{{POSITIVE_NOTE_1}}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{POSITIVE_NOTE_2}}"
+      }
+    ]
+  },
+  "$example_populated_ai_or_die": {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    "@id": "https://podcastnetwork.org/case-studies/ai-or-die/#review-legacy-publishing",
+    "name": "The stack works because they built it while writing the book",
+    "reviewBody": "Brett and Mike ran the Pre-Sold Author Package on themselves before selling it. That is what makes this a real product. The book, the podcast, the knowledge panel, and the pre-sold list all landed on the same day. That is not a marketing artifact; that is a build discipline. We took Legacy in as the publisher because the manuscript was a Legacy manuscript from the first draft, and the launch mechanics were built to feed our list at the same time.",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "{{LEGACY_PUBLISHING_PARTNER_NAME}}",
+      "jobTitle": "Managing Partner",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Legacy Publishing",
+        "url": "https://legacypublishing.com/"
+      }
+    },
+    "datePublished": "{{AI_OR_DIE_LAUNCH_ISO_DATE}}",
+    "publisher": { "@id": "https://podcastnetwork.org/#organization" },
+    "itemReviewed": { "@id": "https://podcastnetwork.org/the-package/#service" }
+  }
+}

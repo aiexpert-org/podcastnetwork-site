@@ -1,0 +1,148 @@
+{
+  "$comment": "SpeakingEvent template. Schema.org uses Event (with subclass hints via keywords and eventAttendanceMode) rather than a native SpeakingEvent type. This template uses Event with an added additionalType hint. Emit one instance per confirmed author speaking engagement (conference keynote, podcast guest appearance, panel, workshop). The author's Person page @graph aggregates all their upcoming and past events. Google surfaces validated Event schemas in Rich Results and in Knowledge Panels.",
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "additionalType": "https://schema.org/BusinessEvent",
+  "@id": "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/events/#event-{{EVENT_SLUG}}",
+  "name": "{{EVENT_NAME}}",
+  "alternateName": "{{EVENT_SHORT_NAME}}",
+  "description": "{{EVENT_DESCRIPTION_UNDER_500_CHARS}}",
+  "url": "{{EVENT_HOMEPAGE_URL}}",
+  "startDate": "{{START_DATE_ISO_8601}}",
+  "endDate": "{{END_DATE_ISO_8601}}",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "{{ATTENDANCE_MODE_URL}}",
+  "location": {
+    "@type": "{{LOCATION_TYPE}}",
+    "name": "{{VENUE_NAME}}",
+    "url": "{{VENUE_URL}}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{VENUE_STREET}}",
+      "addressLocality": "{{VENUE_CITY}}",
+      "addressRegion": "{{VENUE_REGION}}",
+      "postalCode": "{{VENUE_POSTAL_CODE}}",
+      "addressCountry": "{{VENUE_COUNTRY_CODE}}"
+    }
+  },
+  "image": [
+    "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/events/{{EVENT_SLUG}}-16x9.jpg"
+  ],
+  "organizer": {
+    "@type": "Organization",
+    "name": "{{ORGANIZER_NAME}}",
+    "url": "{{ORGANIZER_URL}}"
+  },
+  "performer": {
+    "@id": "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/#person"
+  },
+  "workPerformed": {
+    "@type": "CreativeWork",
+    "name": "{{TALK_TITLE}}",
+    "abstract": "{{TALK_ABSTRACT}}",
+    "author": {
+      "@id": "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/#person"
+    }
+  },
+  "about": [
+    { "@type": "Thing", "name": "{{TOPIC_1}}" },
+    { "@type": "Thing", "name": "{{TOPIC_2}}" }
+  ],
+  "audience": {
+    "@type": "BusinessAudience",
+    "audienceType": "{{AUDIENCE_DESCRIPTION}}"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "{{TICKET_URL}}",
+    "price": "{{TICKET_PRICE}}",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+    "validFrom": "{{TICKET_ON_SALE_DATE_ISO_8601}}"
+  },
+  "recordedIn": {
+    "@type": "VideoObject",
+    "@id": "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/events/{{EVENT_SLUG}}/#recording",
+    "url": "{{RECORDING_URL}}",
+    "embedUrl": "{{RECORDING_EMBED_URL}}"
+  },
+  "isAccessibleForFree": "{{IS_FREE_BOOLEAN}}",
+  "inLanguage": "en-US",
+  "$attendance_mode_options": {
+    "$comment": "Use one of these URLs in eventAttendanceMode above:",
+    "in-person": "https://schema.org/OfflineEventAttendanceMode",
+    "online": "https://schema.org/OnlineEventAttendanceMode",
+    "hybrid": "https://schema.org/MixedEventAttendanceMode"
+  },
+  "$location_type_options": {
+    "$comment": "Use one of these values in location.@type above:",
+    "in-person": "Place",
+    "online": "VirtualLocation",
+    "hybrid_needs_both_locations": "See Schema.org docs for hybrid: emit both a Place and a VirtualLocation"
+  },
+  "$populated_examples": {
+    "podcast_guest_appearance": {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "additionalType": "https://schema.org/BusinessEvent",
+      "@id": "https://podcastnetwork.org/case-studies/michele-okimura/events/#event-in-a-moment-launch",
+      "name": "In a Moment Podcast Launch Episode with Michele Okimura",
+      "description": "Michele Okimura launches In a Moment inside the PodcastNetwork.org network as part of her Pre-Sold Author Package Month 1 podcast pillar.",
+      "url": "https://podcastnetwork.org/network/in-a-moment/episode-1/",
+      "startDate": "2026-08-15T09:00:00-10:00",
+      "endDate": "2026-08-15T10:00:00-10:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+      "location": {
+        "@type": "VirtualLocation",
+        "url": "https://podcastnetwork.org/network/in-a-moment/episode-1/"
+      },
+      "performer": {
+        "@id": "https://podcastnetwork.org/case-studies/michele-okimura/#person"
+      },
+      "organizer": {
+        "@id": "https://podcastnetwork.org/#organization"
+      }
+    },
+    "keynote_speech": {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "additionalType": "https://schema.org/BusinessEvent",
+      "@id": "https://podcastnetwork.org/case-studies/ai-or-die/events/#exp-shareholder-summit-2026",
+      "name": "AI or Die keynote at the eXp Realty Shareholder Summit 2026",
+      "description": "Brett K Moore and Mike Partners deliver the anchor keynote for the AI or Die book launch tour at the eXp Realty Shareholder Summit.",
+      "url": "https://podcastnetwork.org/case-studies/ai-or-die/events/exp-shareholder-summit-2026/",
+      "startDate": "2026-10-15T09:00:00-04:00",
+      "endDate": "2026-10-15T10:30:00-04:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "eXp Realty Shareholder Summit",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Orlando",
+          "addressRegion": "FL",
+          "addressCountry": "US"
+        }
+      },
+      "performer": [
+        { "@id": "https://podcastnetwork.org/about/#brett-k-moore" },
+        { "@id": "https://podcastnetwork.org/about/#mike-partners" }
+      ],
+      "organizer": {
+        "@type": "Organization",
+        "name": "eXp Realty",
+        "url": "https://exprealty.com/"
+      },
+      "workPerformed": {
+        "@type": "CreativeWork",
+        "name": "AI or Die: how the operator layer changes when the LLM becomes a colleague",
+        "author": [
+          { "@id": "https://podcastnetwork.org/about/#brett-k-moore" },
+          { "@id": "https://podcastnetwork.org/about/#mike-partners" }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "@id": "https://podcastnetwork.org/the-method/#howto",
+  "name": "How to produce a book and author authority in 6 months",
+  "description": "The six-step method behind the Pre-Sold Author Package: a finished book from your own voice, a podcast, an audio voice clone, and the author authority to launch, on a single 180-day clock. Structured so Google can feature the framework in AI Overviews and Rich Results.",
+  "url": "https://podcastnetwork.org/the-method/",
+  "image": [
+    "https://podcastnetwork.org/the-method/hero-16x9.jpg",
+    "https://podcastnetwork.org/the-method/timeline-3x1.jpg"
+  ],
+  "inLanguage": "en-US",
+  "totalTime": "P180D",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "USD",
+    "value": "36000"
+  },
+  "supply": [
+    {
+      "@type": "HowToSupply",
+      "name": "Expertise worth a book and the willingness to sit for eight interviews"
+    },
+    {
+      "@type": "HowToSupply",
+      "name": "Source material to draw from (interviews, prior talks, articles, or a manuscript in hand)"
+    },
+    {
+      "@type": "HowToSupply",
+      "name": "Six months of runway before the target launch window"
+    }
+  ],
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": "PodcastNetwork.org production and authority infrastructure"
+    },
+    {
+      "@type": "HowToTool",
+      "name": "Legacy Publishing editorial and production team"
+    },
+    {
+      "@type": "HowToTool",
+      "name": "Audio voice clone and voice corpus"
+    }
+  ],
+  "performer": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "@id": "https://podcastnetwork.org/the-method/#step-1",
+      "position": 1,
+      "name": "Days 1 to 30: Foundation",
+      "text": "Kickoff, discovery, and voice work happen in the first week. The podcast launches by Day 30 with branding, cover art, hosting, and distribution to the major directories. The Wikidata Person entry seeds and author authority surfaces begin. Interviews start, or the manuscript enters editorial.",
+      "url": "https://podcastnetwork.org/the-method/#month-1",
+      "image": "https://podcastnetwork.org/the-method/step-1-foundation.jpg",
+      "timeRequired": "P30D"
+    },
+    {
+      "@type": "HowToStep",
+      "@id": "https://podcastnetwork.org/the-method/#step-2",
+      "position": 2,
+      "name": "Days 30 to 60: Manuscript and Podcast Cadence",
+      "text": "Podcast in-market with weekly episodes. The manuscript takes shape from the interviews and the voice corpus. Author authority signals accumulate through structured markup and citations. First tranche of top-tier guest appearances confirmed. A waitlist landing page goes live with a book-preview lead magnet.",
+      "url": "https://podcastnetwork.org/the-method/#month-2",
+      "image": "https://podcastnetwork.org/the-method/step-2-kickoff.jpg",
+      "timeRequired": "P30D"
+    },
+    {
+      "@type": "HowToStep",
+      "@id": "https://podcastnetwork.org/the-method/#step-3",
+      "position": 3,
+      "name": "Days 60 to 90: Manuscript Delivery and Handoff",
+      "text": "The finished manuscript is delivered by month three. If the client takes the Legacy Publishing option, the manuscript hands off for cover design, interior layout, ARC copies, blurb sourcing, and retail distribution. Guest appearances hit their second tranche and the list keeps building.",
+      "url": "https://podcastnetwork.org/the-method/#month-3",
+      "image": "https://podcastnetwork.org/the-method/step-3-handoff.jpg",
+      "timeRequired": "P30D"
+    },
+    {
+      "@type": "HowToStep",
+      "@id": "https://podcastnetwork.org/the-method/#step-4",
+      "position": 4,
+      "name": "Days 90 to 120: Pre-Sell Sequence",
+      "text": "The pre-sell sequence hits volume. Podcast guest appearances convert listeners into waitlist signups. Launch-list growth accelerates through the middle third. Cover reveal moment. Author authority surfaces continue to corroborate the entity.",
+      "url": "https://podcastnetwork.org/the-method/#month-4",
+      "image": "https://podcastnetwork.org/the-method/step-4-presell.jpg",
+      "timeRequired": "P30D"
+    },
+    {
+      "@type": "HowToStep",
+      "@id": "https://podcastnetwork.org/the-method/#step-5",
+      "position": 5,
+      "name": "Days 120 to 150: Author Authority and Launch List",
+      "text": "Author authority surfaces mature and reinforce each other. The launch-list warm-up sequence runs. The waitlist opens for pre-orders. Retail placement locks with Legacy. Media hits scheduled for launch week. The podcast catalog continues to fill.",
+      "url": "https://podcastnetwork.org/the-method/#month-5",
+      "image": "https://podcastnetwork.org/the-method/step-5-panel.jpg",
+      "timeRequired": "P30D"
+    },
+    {
+      "@type": "HowToStep",
+      "@id": "https://podcastnetwork.org/the-method/#step-6",
+      "position": 6,
+      "name": "Days 150 to 180: Book Launch and Handoff",
+      "text": "Launch week executes. The book goes on sale into the audience the client has been building. A recognized author entity is in place. Legacy runs retail. PodcastNetwork.org runs launch-week coordination and a 30-day post-launch report. At Day 180 the client owns a book, a podcast, and an author platform that keeps compounding. How the launch performs depends on execution and market fit.",
+      "url": "https://podcastnetwork.org/the-method/#month-6",
+      "image": "https://podcastnetwork.org/the-method/step-6-launch.jpg",
+      "timeRequired": "P30D"
+    }
+  ],
+  "yield": "A published book, a live podcast, an audio voice clone, and a recognized author entity, with the audience opted in on launch day. Pre-sales depend on execution and market fit.",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://podcastnetwork.org/the-method/"
+  }
+}

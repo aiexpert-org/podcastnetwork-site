@@ -1,5 +1,9 @@
 import clsx from 'clsx'
 
+/*
+ * Studio's Offices slot, repurposed as the PN contact block. Same API so
+ * RootLayout and ContactSection keep their Studio structure.
+ */
 function Office({
   name,
   children,
@@ -32,19 +36,23 @@ export function Offices({
   return (
     <ul role="list" {...props}>
       <li>
-        <Office name="PodcastNetwork.org" invert={invert}>
-          brett@podcastnetwork.org
+        <Office name="Indianapolis" invert={invert}>
+          Operating base
           <br />
-          Indianapolis, Indiana
+          United States
         </Office>
       </li>
       <li>
-        <Office name="Production" invert={invert}>
-          <a href="https://apexpodcast.co" className="underline">
-            apexpodcast.co
+        <Office name="Email" invert={invert}>
+          <a
+            href="mailto:brett@podcastnetwork.org"
+            className={clsx(
+              'transition',
+              invert ? 'hover:text-white' : 'hover:text-neutral-950',
+            )}
+          >
+            brett@podcastnetwork.org
           </a>
-          <br />
-          Apex Podcast Co (PREP partner)
         </Office>
       </li>
     </ul>

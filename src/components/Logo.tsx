@@ -1,7 +1,16 @@
 import clsx from 'clsx'
 
+/*
+ * Brand mark (v0.6.9, per Brett 2026-07-04): wordmark only, no icon.
+ * PodcastNetwork in ink, .org muted; inverted on dark panels.
+ *
+ * The old entity-graph Logomark below is retired from the header and footer
+ * but kept exported for possible favicon or asset reuse. Logo still accepts
+ * filled/fillOnHover as no-ops so existing call sites compile unchanged.
+ */
 export function Logomark({
   invert = false,
+  filled = false,
   ...props
 }: React.ComponentPropsWithoutRef<'svg'> & {
   invert?: boolean
@@ -9,17 +18,52 @@ export function Logomark({
 }) {
   return (
     <svg viewBox="0 0 32 32" aria-hidden="true" {...props}>
+      <g
+        className={invert ? 'stroke-white' : 'stroke-neutral-950'}
+        strokeWidth="1.5"
+      >
+        <path d="M16 17 16 6.5" />
+        <path d="M16 17 6.5 24.5" />
+        <path d="M16 17 25.5 24.5" />
+      </g>
       <circle
         cx="16"
-        cy="16"
-        r="14"
-        className={invert ? 'fill-white' : 'fill-neutral-950'}
+        cy="6"
+        r="3"
+        className={clsx(
+          'fill-none stroke-[1.5]',
+          invert ? 'stroke-white' : 'stroke-neutral-950',
+        )}
+      />
+      <circle
+        cx="6"
+        cy="25"
+        r="3"
+        className={clsx(
+          'fill-none stroke-[1.5]',
+          invert ? 'stroke-white' : 'stroke-neutral-950',
+        )}
+      />
+      <circle
+        cx="26"
+        cy="25"
+        r="3"
+        className={clsx(
+          'fill-none stroke-[1.5]',
+          invert ? 'stroke-white' : 'stroke-neutral-950',
+        )}
       />
       <circle
         cx="16"
-        cy="16"
-        r="5"
-        className={invert ? 'fill-neutral-950' : 'fill-white'}
+        cy="17"
+        r="4.75"
+        className={clsx(
+          'stroke-[1.5] transition-all duration-300',
+          invert ? 'stroke-white' : 'stroke-neutral-950',
+          filled
+            ? 'fill-solar'
+            : 'fill-transparent group-hover/logo:fill-solar',
+        )}
       />
     </svg>
   )
@@ -28,35 +72,27 @@ export function Logomark({
 export function Logo({
   className,
   invert = false,
+  filled: _filled = false,
+  fillOnHover: _fillOnHover = false,
   ...props
-}: React.ComponentPropsWithoutRef<'svg'> & {
+}: React.ComponentPropsWithoutRef<'div'> & {
   invert?: boolean
   filled?: boolean
   fillOnHover?: boolean
 }) {
   return (
-    <svg
-      viewBox="0 0 240 32"
-      aria-label="PodcastNetwork.org"
-      className={clsx(className)}
-      {...props}
-    >
-      <Logomark preserveAspectRatio="xMinYMid meet" invert={invert} />
-      <text
-        x="40"
-        y="22"
+    <div className={clsx('flex items-center', className)} {...props}>
+      <span
         className={clsx(
-          'font-display text-[18px] font-semibold',
-          invert ? 'fill-white' : 'fill-neutral-950',
+          'font-display text-xl font-semibold tracking-tight whitespace-nowrap',
+          invert ? 'text-white' : 'text-neutral-950',
         )}
       >
         PodcastNetwork
-        <tspan
-          className={invert ? 'fill-white/60' : 'fill-neutral-500'}
-        >
+        <span className={invert ? 'text-neutral-400' : 'text-neutral-500'}>
           .org
-        </tspan>
-      </text>
-    </svg>
+        </span>
+      </span>
+    </div>
   )
 }

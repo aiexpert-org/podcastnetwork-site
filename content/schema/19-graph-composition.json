@@ -1,0 +1,435 @@
+{
+  "$comment": "The composed @graph patterns. Every URL on podcastnetwork.org gets exactly ONE JSON-LD script tag that emits an @context + @graph with all entities relevant to that page. Cross-entity references use @id (never inline duplication). This file is the ground-truth composition reference. When you generate a page, look up the page type here, hydrate the placeholders, and emit the resulting @graph as-is. Every graph has been syntax-checked. No missing commas, no unclosed braces, no dangling @id references. This is the anti-pattern to Kalicube's broken patent portfolio @graph.",
+  "$graphs": {
+    "homepage": {
+      "$route": "/",
+      "$entities_included": ["Organization", "WebSite", "ProfessionalService", "BreadcrumbList", "FAQPage (short-list rendition)"],
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://podcastnetwork.org/#organization",
+          "name": "PodcastNetwork.org",
+          "url": "https://podcastnetwork.org/",
+          "logo": { "@id": "https://podcastnetwork.org/#logo" },
+          "founder": [
+            { "@id": "https://podcastnetwork.org/about/#brett-k-moore" },
+            { "@id": "https://podcastnetwork.org/about/#mike-partners" }
+          ],
+          "sameAs": [
+            "https://www.linkedin.com/company/podcastnetworkorg/",
+            "https://x.com/podcastnetwork",
+            "https://www.wikidata.org/wiki/{{WIKIDATA_Q_NUMBER_ORG}}"
+          ],
+          "$comment_hydrate_from": "01-organization.json"
+        },
+        {
+          "@type": "ImageObject",
+          "@id": "https://podcastnetwork.org/#logo",
+          "url": "https://podcastnetwork.org/brand/logo-primary.png",
+          "width": 1200,
+          "height": 1200
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://podcastnetwork.org/#website",
+          "url": "https://podcastnetwork.org/",
+          "name": "PodcastNetwork.org",
+          "publisher": { "@id": "https://podcastnetwork.org/#organization" },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": { "@type": "EntryPoint", "urlTemplate": "https://podcastnetwork.org/search/?q={search_term_string}" },
+            "query-input": "required name=search_term_string"
+          },
+          "$comment_hydrate_from": "02-website-searchaction.json"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://podcastnetwork.org/#webpage",
+          "url": "https://podcastnetwork.org/",
+          "name": "PodcastNetwork.org: the premium authority launch, delivered in six months",
+          "isPartOf": { "@id": "https://podcastnetwork.org/#website" },
+          "primaryImageOfPage": { "@id": "https://podcastnetwork.org/#logo" },
+          "breadcrumb": { "@id": "https://podcastnetwork.org/#breadcrumb" },
+          "about": { "@id": "https://podcastnetwork.org/the-package/#service" },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://podcastnetwork.org/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://podcastnetwork.org/" }
+          ]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://podcastnetwork.org/the-package/#service",
+          "name": "Pre-Sold Author Package",
+          "provider": { "@id": "https://podcastnetwork.org/#organization" },
+          "offers": { "@id": "https://podcastnetwork.org/the-package/#offer" },
+          "$comment_hydrate_from": "03-professionalservice.json"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://podcastnetwork.org/#faq-homepage",
+          "mainEntity": [
+            { "@id": "https://podcastnetwork.org/faq/#what-does-30k-cover" },
+            { "@id": "https://podcastnetwork.org/faq/#manuscript-in-hand" },
+            { "@id": "https://podcastnetwork.org/faq/#do-you-take-all-applicants" },
+            { "@id": "https://podcastnetwork.org/faq/#no-podcast-yet" },
+            { "@id": "https://podcastnetwork.org/faq/#legacy-jv" },
+            { "@id": "https://podcastnetwork.org/faq/#versus-diy" }
+          ],
+          "$comment": "Homepage renders the short-list six questions. Full 20-item FAQPage lives on /faq/. Both reference the same @id URLs so the QA entities are shared, not duplicated."
+        }
+      ]
+    },
+
+    "the-package": {
+      "$route": "/the-package/",
+      "$entities_included": ["Organization", "ProfessionalService", "Offer", "FAQPage", "BreadcrumbList", "WebPage"],
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "Organization", "@id": "https://podcastnetwork.org/#organization", "name": "PodcastNetwork.org", "url": "https://podcastnetwork.org/" },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://podcastnetwork.org/the-package/#service",
+          "name": "Pre-Sold Author Package",
+          "url": "https://podcastnetwork.org/the-package/",
+          "description": "A finished book, a podcast, a voice clone, and author authority. $36,000. Six months. Application only.",
+          "provider": { "@id": "https://podcastnetwork.org/#organization" },
+          "offers": { "@id": "https://podcastnetwork.org/the-package/#offer" },
+          "hasOfferCatalog": { "@id": "https://podcastnetwork.org/the-package/#catalog" },
+          "aggregateRating": { "@id": "https://podcastnetwork.org/the-package/#rating" },
+          "$comment_hydrate_from": "03-professionalservice.json"
+        },
+        {
+          "@type": "Offer",
+          "@id": "https://podcastnetwork.org/the-package/#offer",
+          "price": "36000",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "seller": { "@id": "https://podcastnetwork.org/#organization" }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://podcastnetwork.org/the-package/#faq-package",
+          "mainEntity": [
+            { "@id": "https://podcastnetwork.org/faq/#what-does-30k-cover" },
+            { "@id": "https://podcastnetwork.org/faq/#six-months-not-24" },
+            { "@id": "https://podcastnetwork.org/faq/#manuscript-in-hand" },
+            { "@id": "https://podcastnetwork.org/faq/#no-podcast-yet" },
+            { "@id": "https://podcastnetwork.org/faq/#legacy-jv" },
+            { "@id": "https://podcastnetwork.org/faq/#knowledge-panel-mechanics" },
+            { "@id": "https://podcastnetwork.org/faq/#pre-sold-audience-mechanics" },
+            { "@id": "https://podcastnetwork.org/faq/#payment-terms" },
+            { "@id": "https://podcastnetwork.org/faq/#refund" },
+            { "@id": "https://podcastnetwork.org/faq/#what-if-i-slip" },
+            { "@id": "https://podcastnetwork.org/faq/#versus-diy" },
+            { "@id": "https://podcastnetwork.org/faq/#application-timeline" }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://podcastnetwork.org/the-package/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://podcastnetwork.org/" },
+            { "@type": "ListItem", "position": 2, "name": "The Pre-Sold Author Package", "item": "https://podcastnetwork.org/the-package/" }
+          ]
+        }
+      ]
+    },
+
+    "the-method": {
+      "$route": "/the-method/",
+      "$entities_included": ["Organization", "Course", "HowTo", "BreadcrumbList", "WebPage"],
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "Organization", "@id": "https://podcastnetwork.org/#organization" },
+        {
+          "@type": "Course",
+          "@id": "https://podcastnetwork.org/the-method/#course",
+          "name": "The 180-Day Premium Authority Launch Method",
+          "$comment_hydrate_from": "15-course.json"
+        },
+        {
+          "@type": "HowTo",
+          "@id": "https://podcastnetwork.org/the-method/#howto",
+          "name": "How to produce a book and author authority in 6 months",
+          "$comment_hydrate_from": "16-howto.json"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://podcastnetwork.org/the-method/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://podcastnetwork.org/" },
+            { "@type": "ListItem", "position": 2, "name": "The Method", "item": "https://podcastnetwork.org/the-method/" }
+          ]
+        }
+      ]
+    },
+
+    "case-study-detail-ai-or-die": {
+      "$route": "/case-studies/ai-or-die/",
+      "$entities_included": ["Organization", "Person (Brett)", "Person (Mike)", "Book", "PodcastSeries", "Review", "BreadcrumbList", "WebPage"],
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "Organization", "@id": "https://podcastnetwork.org/#organization" },
+        { "@type": "Person", "@id": "https://podcastnetwork.org/about/#brett-k-moore", "name": "Brett K Moore", "$comment_hydrate_from": "10-person-brett.json" },
+        { "@type": "Person", "@id": "https://podcastnetwork.org/about/#mike-partners", "name": "Mike Partners", "$comment_hydrate_from": "11-person-mike.json" },
+        {
+          "@type": "Book",
+          "@id": "https://podcastnetwork.org/book/#book",
+          "name": "AI or Die",
+          "author": [
+            { "@id": "https://podcastnetwork.org/about/#brett-k-moore" },
+            { "@id": "https://podcastnetwork.org/about/#mike-partners" }
+          ],
+          "publisher": { "@type": "Organization", "name": "Legacy Publishing", "url": "https://legacypublishing.com/" },
+          "$comment_hydrate_from": "06-book.json"
+        },
+        {
+          "@type": "PodcastSeries",
+          "@id": "https://podcastnetwork.org/podcast/#series",
+          "name": "{{PODCAST_NAME}}",
+          "author": [
+            { "@id": "https://podcastnetwork.org/about/#brett-k-moore" },
+            { "@id": "https://podcastnetwork.org/about/#mike-partners" }
+          ],
+          "publisher": { "@id": "https://podcastnetwork.org/#organization" },
+          "$comment_hydrate_from": "07-podcastseries.json"
+        },
+        {
+          "@type": "Review",
+          "@id": "https://podcastnetwork.org/case-studies/ai-or-die/#review-legacy-publishing",
+          "itemReviewed": { "@id": "https://podcastnetwork.org/the-package/#service" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+          "author": { "@type": "Person", "name": "{{LEGACY_PARTNER_NAME}}", "worksFor": { "@type": "Organization", "name": "Legacy Publishing" } },
+          "reviewBody": "{{REVIEW_BODY}}",
+          "datePublished": "{{DATE_PUBLISHED_ISO_8601}}",
+          "$comment_hydrate_from": "13-review.json"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://podcastnetwork.org/case-studies/ai-or-die/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://podcastnetwork.org/" },
+            { "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://podcastnetwork.org/case-studies/" },
+            { "@type": "ListItem", "position": 3, "name": "AI or Die", "item": "https://podcastnetwork.org/case-studies/ai-or-die/" }
+          ]
+        }
+      ]
+    },
+
+    "case-study-detail-in-launch-author": {
+      "$route": "/case-studies/{{AUTHOR_SLUG}}/",
+      "$entities_included": ["Organization", "Person (author)", "Book", "PodcastSeries", "BreadcrumbList", "WebPage"],
+      "$note": "Review entity omitted at ship because in-launch authors have not yet provided cleared testimonials. Add Review entity to this graph once cleared with the author.",
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "Organization", "@id": "https://podcastnetwork.org/#organization" },
+        {
+          "@type": "Person",
+          "@id": "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/#person",
+          "name": "{{AUTHOR_FULL_NAME}}",
+          "$comment_hydrate_from": "12-person-author-template.json"
+        },
+        {
+          "@type": "Book",
+          "@id": "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/#book",
+          "name": "{{BOOK_TITLE}}",
+          "author": { "@id": "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/#person" },
+          "publisher": { "@type": "Organization", "name": "Legacy Publishing", "url": "https://legacypublishing.com/" },
+          "datePublished": "{{PROJECTED_LAUNCH_DATE_ISO_8601}}",
+          "$comment_hydrate_from": "06-book.json"
+        },
+        {
+          "@type": "PodcastSeries",
+          "@id": "https://podcastnetwork.org/network/{{AUTHOR_PODCAST_SLUG}}/#series",
+          "name": "{{AUTHOR_PODCAST_NAME}}",
+          "author": { "@id": "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/#person" },
+          "publisher": { "@id": "https://podcastnetwork.org/#organization" },
+          "$comment_hydrate_from": "07-podcastseries.json"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://podcastnetwork.org/" },
+            { "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://podcastnetwork.org/case-studies/" },
+            { "@type": "ListItem", "position": 3, "name": "{{AUTHOR_FULL_NAME}}", "item": "https://podcastnetwork.org/case-studies/{{AUTHOR_SLUG}}/" }
+          ]
+        }
+      ]
+    },
+
+    "faq-page": {
+      "$route": "/faq/",
+      "$entities_included": ["Organization", "FAQPage", "BreadcrumbList", "WebPage"],
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "Organization", "@id": "https://podcastnetwork.org/#organization" },
+        {
+          "@type": "FAQPage",
+          "@id": "https://podcastnetwork.org/faq/#faqpage",
+          "$comment_hydrate_from": "05-faqpage.json"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://podcastnetwork.org/faq/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://podcastnetwork.org/" },
+            { "@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://podcastnetwork.org/faq/" }
+          ]
+        }
+      ]
+    },
+
+    "journal-article": {
+      "$route": "/journal/{{ARTICLE_SLUG}}/",
+      "$entities_included": ["Organization", "Person (author)", "Article", "BreadcrumbList", "WebPage"],
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "Organization", "@id": "https://podcastnetwork.org/#organization" },
+        { "@type": "Person", "@id": "https://podcastnetwork.org/about/#{{AUTHOR_ID}}", "$comment_hydrate_from": "10-person-brett.json OR 11-person-mike.json" },
+        {
+          "@type": "Article",
+          "@id": "https://podcastnetwork.org/journal/{{ARTICLE_SLUG}}/#article",
+          "author": { "@id": "https://podcastnetwork.org/about/#{{AUTHOR_ID}}" },
+          "publisher": { "@id": "https://podcastnetwork.org/#organization" },
+          "$comment_hydrate_from": "09-article.json"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://podcastnetwork.org/journal/{{ARTICLE_SLUG}}/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://podcastnetwork.org/" },
+            { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://podcastnetwork.org/journal/" },
+            { "@type": "ListItem", "position": 3, "name": "{{ARTICLE_TITLE}}", "item": "https://podcastnetwork.org/journal/{{ARTICLE_SLUG}}/" }
+          ]
+        }
+      ]
+    },
+
+    "podcast-episode": {
+      "$route": "/podcast/{{EPISODE_SLUG}}/",
+      "$entities_included": ["Organization", "PodcastSeries", "PodcastEpisode", "VideoObject", "Person (guest)", "BreadcrumbList", "WebPage"],
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "Organization", "@id": "https://podcastnetwork.org/#organization" },
+        { "@type": "PodcastSeries", "@id": "https://podcastnetwork.org/podcast/#series", "$comment_hydrate_from": "07-podcastseries.json" },
+        {
+          "@type": "PodcastEpisode",
+          "@id": "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/#episode",
+          "partOfSeries": { "@id": "https://podcastnetwork.org/podcast/#series" },
+          "$comment_hydrate_from": "08-podcastepisode.json"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://podcastnetwork.org/" },
+            { "@type": "ListItem", "position": 2, "name": "Podcast", "item": "https://podcastnetwork.org/podcast/" },
+            { "@type": "ListItem", "position": 3, "name": "{{EPISODE_TITLE}}", "item": "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/" }
+          ]
+        }
+      ]
+    },
+
+    "about-page": {
+      "$route": "/about/",
+      "$entities_included": ["Organization", "Person (Brett)", "Person (Mike)", "AboutPage", "BreadcrumbList"],
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "Organization", "@id": "https://podcastnetwork.org/#organization", "$comment_hydrate_from": "01-organization.json" },
+        { "@type": "Person", "@id": "https://podcastnetwork.org/about/#brett-k-moore", "$comment_hydrate_from": "10-person-brett.json" },
+        { "@type": "Person", "@id": "https://podcastnetwork.org/about/#mike-partners", "$comment_hydrate_from": "11-person-mike.json" },
+        {
+          "@type": "AboutPage",
+          "@id": "https://podcastnetwork.org/about/#aboutpage",
+          "url": "https://podcastnetwork.org/about/",
+          "mainEntity": [
+            { "@id": "https://podcastnetwork.org/about/#brett-k-moore" },
+            { "@id": "https://podcastnetwork.org/about/#mike-partners" }
+          ],
+          "isPartOf": { "@id": "https://podcastnetwork.org/#website" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://podcastnetwork.org/about/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://podcastnetwork.org/" },
+            { "@type": "ListItem", "position": 2, "name": "About", "item": "https://podcastnetwork.org/about/" }
+          ]
+        }
+      ]
+    },
+
+    "book-page": {
+      "$route": "/book/",
+      "$entities_included": ["Organization", "Book", "Person (Brett)", "Person (Mike)", "BreadcrumbList"],
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "Organization", "@id": "https://podcastnetwork.org/#organization" },
+        { "@type": "Person", "@id": "https://podcastnetwork.org/about/#brett-k-moore" },
+        { "@type": "Person", "@id": "https://podcastnetwork.org/about/#mike-partners" },
+        {
+          "@type": "Book",
+          "@id": "https://podcastnetwork.org/book/#book",
+          "$comment_hydrate_from": "06-book.json"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://podcastnetwork.org/book/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://podcastnetwork.org/" },
+            { "@type": "ListItem", "position": 2, "name": "Book", "item": "https://podcastnetwork.org/book/" }
+          ]
+        }
+      ]
+    },
+
+    "glossary-page": {
+      "$route": "/glossary/",
+      "$entities_included": ["Organization", "DefinedTermSet", "BreadcrumbList"],
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "Organization", "@id": "https://podcastnetwork.org/#organization" },
+        { "@type": "DefinedTermSet", "@id": "https://podcastnetwork.org/glossary/#glossary", "$comment_hydrate_from": "17-definedterm.json" },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://podcastnetwork.org/glossary/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://podcastnetwork.org/" },
+            { "@type": "ListItem", "position": 2, "name": "Glossary", "item": "https://podcastnetwork.org/glossary/" }
+          ]
+        }
+      ]
+    },
+
+    "knowledge-panel-explainer-page": {
+      "$route": "/knowledge-panel/",
+      "$entities_included": ["Organization", "FAQPage", "BreadcrumbList"],
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "Organization", "@id": "https://podcastnetwork.org/#organization" },
+        {
+          "@type": "FAQPage",
+          "@id": "https://podcastnetwork.org/knowledge-panel/#faqpage",
+          "mainEntity": [
+            { "@id": "https://podcastnetwork.org/faq/#knowledge-panel-mechanics" },
+            { "@id": "https://podcastnetwork.org/faq/#six-months-not-24" }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://podcastnetwork.org/knowledge-panel/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://podcastnetwork.org/" },
+            { "@type": "ListItem", "position": 2, "name": "Knowledge Panel", "item": "https://podcastnetwork.org/knowledge-panel/" }
+          ]
+        }
+      ]
+    }
+  }
+}

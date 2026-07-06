@@ -1,0 +1,111 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://podcastnetwork.org/knowledge-panel-install/#service",
+  "name": "Brand SERP Build",
+  "url": "https://podcastnetwork.org/knowledge-panel-install/",
+  "description": "A twelve-month build that makes Google and the AI answer engines recognize the client as a real entity: a Google Knowledge Panel with its qualifying signal set, answer-engine coverage with monthly testing, a Wikipedia and Wikidata attempt, a schema stack, a podcast, press, and a full year of monthly verification and reporting. Application only.",
+  "serviceType": "Brand SERP and entity build",
+  "category": [
+    "Brand SERP",
+    "Google Knowledge Panel",
+    "Entity SEO",
+    "Wikidata entity seeding",
+    "AI answer engine optimization",
+    "Personal brand"
+  ],
+  "brand": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "provider": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "areaServed": [
+    { "@type": "Country", "name": "United States" },
+    { "@type": "Country", "name": "Canada" },
+    { "@type": "Country", "name": "United Kingdom" },
+    { "@type": "Country", "name": "Australia" }
+  ],
+  "audience": {
+    "@type": "BusinessAudience",
+    "audienceType": "Executives, authors, entrepreneurs, and professionals who want a formal, Google-recognized personal brand"
+  },
+  "offers": {
+    "@type": "Offer",
+    "@id": "https://podcastnetwork.org/knowledge-panel-install/#offer",
+    "name": "Brand SERP Build",
+    "url": "https://podcastnetwork.org/knowledge-panel-install/",
+    "price": "24000",
+    "priceCurrency": "USD",
+    "priceValidUntil": "2026-12-31",
+    "availability": "https://schema.org/InStock",
+    "eligibleDuration": {
+      "@type": "QuantitativeValue",
+      "value": 12,
+      "unitCode": "MON"
+    },
+    "eligibleQuantity": {
+      "@type": "QuantitativeValue",
+      "value": 1,
+      "unitText": "engagement"
+    },
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "price": "24000",
+      "priceCurrency": "USD",
+      "valueAddedTaxIncluded": false,
+      "description": "One-time payment of $24,000, or split into twelve monthly payments of $2,000 at no extra cost. Twelve-month build with monthly verification and reporting."
+    },
+    "seller": {
+      "@id": "https://podcastnetwork.org/#organization"
+    }
+  },
+  "priceRange": "$$$",
+  "termsOfService": "https://podcastnetwork.org/legal/terms/",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "@id": "https://podcastnetwork.org/knowledge-panel-install/#catalog",
+    "name": "What the Brand SERP Build includes",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "The Knowledge Panel",
+          "description": "A Google Knowledge Panel with its full qualifying signal set: a Wikidata Q-number, a Wikipedia submission attempt, a Schema.org JSON-LD stack, and first-page ownership of the client's brand search."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "AI Answer Engine Coverage",
+          "description": "Coverage across the major AI assistants with monthly testing, 48 tests over twelve months, confirming accurate and consistent descriptions and flagging drift."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "The Podcast and IMDb",
+          "description": "A podcast with three episodes the client records, launched and produced, earning an IMDb Person page through the podcast credit."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "The Signal Set and Reporting",
+          "description": "A placed article, five press releases, three guest placements on shows doing 10,000+ monthly downloads, social handle consistency, search cleanup, twelve monthly reports, and four quarterly Knowledge Panel verifications."
+        }
+      }
+    ]
+  },
+  "additionalType": ["https://schema.org/Service"],
+  "duration": "P12M",
+  "estimatedDuration": {
+    "@type": "QuantitativeValue",
+    "value": 12,
+    "unitText": "months"
+  }
+}

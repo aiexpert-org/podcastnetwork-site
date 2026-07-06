@@ -1,480 +1,402 @@
 import { type Metadata } from 'next'
 import Link from 'next/link'
 
+import caseStudies from '../../data/case-studies.json'
+import { ContactSection } from '@/components/ContactSection'
 import { Container } from '@/components/Container'
-import { FadeIn, FadeInStagger } from '@/components/FadeIn'
-import { HeroMosaicBackground } from '@/components/HeroMosaic'
+import { FadeIn } from '@/components/FadeIn'
+import { SectionIntro } from '@/components/SectionIntro'
+import { InstantReport } from '@/components/home/PresenceScoreHero'
+import { PricingSection } from '@/components/home/PricingSection'
+import { type CaseStudyStatic } from '@/components/case-studies/LiveCaseStudyCard'
+import { FAQBlock } from '@/components/ui/FAQBlock'
+import { SchemaGraph } from '@/components/seo/SchemaGraph'
+import { homeSchema, faqItemsForUi } from '@/lib/schema-graph'
+import { Button } from '@/components/Button'
 
 export const metadata: Metadata = {
+  title: 'PodcastNetwork.org. Google authority, built through your podcast',
   description:
-    'Done-for-you personal brand infrastructure. Google Knowledge Panel, Wikipedia, press features, podcast bookings, and the full digital footprint that makes authors and executives recognizable online.',
+    'Google and AI have already decided who you are. Run a free instant report of what they actually know, then see the application-only answer engine optimization builds that fix it: the Brand SERP Build and the Pre-Sold Author Build.',
+  alternates: { canonical: '/' },
 }
 
-const services = [
-  {
-    label: 'Search',
-    title: 'Google Knowledge Panel',
-    body: 'We build and verify the authoritative panel that surfaces next to your name in Google search results. This is the guaranteed deliverable in every engagement.',
-  },
-  {
-    label: 'Reference',
-    title: 'Wikipedia & Wikidata',
-    body: 'We research, draft, and submit your Wikipedia author page and Wikidata entry so the encyclopedic record reflects who you actually are.',
-  },
-  {
-    label: 'Credits',
-    title: 'IMDB Profile',
-    body: 'If you have appeared on screen, on stage, or in a podcast that qualifies, we build and verify the IMDB page so the credits trail back to you.',
-  },
-  {
-    label: 'Home base',
-    title: 'Author Website + Schema',
-    body: 'We ship a personal-brand home page, or we add the structured-data markup to your existing site so Google can read who you are without guessing.',
-  },
-  {
-    label: 'Press',
-    title: 'Press & Media Features',
-    body: 'We pitch your story to journalists at publications your readers actually read. Earned coverage, not paid placement.',
-  },
-  {
-    label: 'Distribution',
-    title: 'Podcast Bookings',
-    body: 'We book you on the shows where your buyer is already listening. Pre-qualified audiences, real conversations, durable URLs you can point press to.',
-  },
-  {
-    label: 'Social proof',
-    title: 'Reviews & Reputation',
-    body: 'We drive authentic reviews on Amazon, Goodreads, and the channels that matter for your category. The signal that turns a Google search into a buy decision.',
-  },
-  {
-    label: 'Strategy',
-    title: 'Personal Brand Strategy',
-    body: 'Before anything ships, we lock your positioning, the story, and the audience. Every piece of infrastructure points the same direction.',
-  },
-]
-
-const steps = [
-  {
-    n: '01',
-    title: 'Brand Audit and Onboarding',
-    body: 'We map your current digital footprint, name the gaps, and write a custom rollout plan for your launch.',
-  },
-  {
-    n: '02',
-    title: 'Build the Foundation',
-    body: 'Website, Schema markup, Knowledge Panel, Wikipedia submission, IMDB, Wikidata. The authoritative infrastructure, built right the first time.',
-  },
-  {
-    n: '03',
-    title: 'Pitch, Place, Amplify',
-    body: 'Our team pitches press, books podcasts, and drives reviews. Third-party validation Google and readers actually trust.',
-  },
-  {
-    n: '04',
-    title: 'Ongoing Optimization',
-    body: 'We monitor your presence, update your profiles, and keep adding to it. Personal brand authority compounds when you keep feeding it.',
-  },
-]
-
-const without = [
-  'No Google Knowledge Panel',
-  'No Wikipedia page',
-  'Scattered or no press coverage',
-  'Zero podcast presence',
-  'Missing from IMDB and Wikidata',
-  'Website with no Schema markup',
-  'Few or no credible reviews',
-]
-
-const withUs = [
-  'Verified Google Knowledge Panel',
-  'Wikipedia and Wikidata presence',
-  'Earned press features and media mentions',
-  'Booked on relevant podcasts',
-  'IMDB profile established',
-  'Schema-optimized author website',
-  'Authentic reviews that build trust',
-]
-
-const payInFull = [
-  'Complete brand audit and strategy',
-  'Google Knowledge Panel (guaranteed)',
-  'Wikipedia and Wikidata submission',
-  'IMDB profile setup',
-  'Author website or Schema markup',
-  'Press pitching and media placement',
-  'Podcast booking campaign',
-  'Review generation campaign',
-  '12 months of brand monitoring',
-]
-
-const monthly = [
-  'Everything in Pay in Full',
-  'Spread the investment over 12 months',
-  'Month-by-month progress reports',
-  'Direct access to your brand manager',
-  'Flexible start date',
-]
-
-function Hero() {
+/* Section 2: the quiz gateway as a dark card directly under the hero.
+ * NOTE: the 2026-07-05 copy lock's flow omits this section; retained
+ * pending explicit word because it is the homepage's direct quiz path. */
+function AssessmentGateway() {
   return (
-    <div className="relative">
-      <HeroMosaicBackground />
-      <Container className="relative mt-24 sm:mt-32 lg:mt-40">
-        <FadeIn className="max-w-3xl">
-          <p className="font-display text-sm font-semibold tracking-wider text-neutral-700 uppercase">
-            PodcastNetwork.org. Personal brand infrastructure.
-          </p>
-          <h1 className="mt-6 font-display text-5xl font-medium tracking-tight text-balance text-neutral-950 sm:text-7xl">
-            Done-For-You Personal Brand Launch
-          </h1>
-          <p className="mt-6 font-display text-2xl text-neutral-800 sm:text-3xl">
-            When someone Googles your name, every result should already be
-            in your favor.
-          </p>
-          <p className="mt-6 max-w-2xl text-xl text-neutral-700">
-            We build the full digital presence: Google Knowledge Panel,
-            Wikipedia, IMDB, press features, podcast bookings, and the author
-            website that ties it all together. Done for you, by our team.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              href="#apply"
-              className="inline-flex items-center rounded-full bg-[var(--color-cta)] px-6 py-3 text-base font-semibold text-[var(--color-cta-ink)] transition hover:bg-[var(--color-cta-hover)]"
-            >
-              Launch My Personal Brand
-              <span aria-hidden="true" className="ml-2">
-                →
-              </span>
-            </Link>
-            <Link
-              href="#services"
-              className="inline-flex items-center rounded-full bg-neutral-950 px-6 py-3 text-base font-semibold text-white transition hover:bg-neutral-800"
-            >
-              See What is Included
-            </Link>
+    <div id="assessment" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
+      <Container>
+        <FadeIn className="-mx-6 rounded-4xl bg-neutral-950 px-6 py-16 sm:mx-0 sm:py-20 md:px-12">
+          <div className="mx-auto max-w-4xl">
+            <p className="font-display text-sm font-semibold tracking-wider text-neutral-400 uppercase">
+              The three-minute quiz
+            </p>
+            <h2 className="mt-6 font-display text-3xl font-medium text-balance text-white sm:text-4xl">
+              Take control of your Google Knowledge Panel.
+            </h2>
+            <p className="mt-6 max-w-2xl text-base text-neutral-300">
+              The report shows what Google and AI know about you today. In
+              three minutes, learn how that record gets written and how to
+              take control of what they say about you.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <Button href="/assessment/" invert>
+                Take the quiz
+              </Button>
+              <p className="text-sm text-neutral-400">
+                Free. About three minutes.
+              </p>
+            </div>
           </div>
         </FadeIn>
       </Container>
-      <div className="h-24 sm:h-32" />
     </div>
   )
 }
 
-function Problem() {
-  return (
-    <Container className="mt-24 sm:mt-32 lg:mt-40" id="problem">
-      <FadeIn className="max-w-3xl">
-        <p className="font-display text-sm font-semibold tracking-wider text-neutral-700 uppercase">
-          The Problem
-        </p>
-        <h2 className="mt-4 font-display text-4xl font-medium tracking-tight text-neutral-950 sm:text-5xl">
-          Great authors and executives are invisible online.
-        </h2>
-        <p className="mt-6 text-lg text-neutral-700">
-          You have done the work. You wrote the book, ran the company,
-          accumulated the expertise. But when a journalist, a podcast host, or
-          a prospect Googles your name, nothing comes up. That gap is the
-          problem we exist to fix.
-        </p>
-      </FadeIn>
-      <FadeInStagger className="mt-16 grid gap-8 sm:grid-cols-2 lg:gap-12">
-        <FadeIn>
-          <div className="rounded-3xl border border-neutral-200 bg-neutral-50 p-8 sm:p-10">
-            <p className="font-display text-sm font-semibold tracking-wider text-neutral-500 uppercase">
-              Without Us
-            </p>
-            <ul
-              role="list"
-              className="mt-6 divide-y divide-neutral-200 text-neutral-700"
-            >
-              {without.map((item) => (
-                <li key={item} className="py-3 first:pt-0 last:pb-0">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </FadeIn>
-        <FadeIn>
-          <div className="rounded-3xl border border-neutral-950 bg-neutral-950 p-8 text-white sm:p-10">
-            <p className="font-display text-sm font-semibold tracking-wider text-[var(--color-brand-yellow)] uppercase">
-              With Us
-            </p>
-            <ul
-              role="list"
-              className="mt-6 divide-y divide-neutral-800 text-neutral-200"
-            >
-              {withUs.map((item) => (
-                <li key={item} className="py-3 first:pt-0 last:pb-0">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </FadeIn>
-      </FadeInStagger>
-    </Container>
-  )
-}
+/* Live case studies as a stepped stats band. NOTE: the 2026-07-05 copy
+ * lock's flow omits this band; retained pending explicit word because it
+ * is the honest-proof cluster. Months, phases, and milestones come from
+ * data/case-studies.json; nothing renders the data cannot back. */
+function CaseStudyBand({ studies }: { studies: CaseStudyStatic[] }) {
+  const featured = studies.find((c) => c.variant === 'featured')
+  const inLaunch = studies
+    .filter((c) => c.variant === 'in-launch')
+    .sort((a, b) => (b.currentMonth ?? 0) - (a.currentMonth ?? 0))
+  const mid = inLaunch[0]
+  const small = inLaunch[1]
 
-function Services() {
   return (
-    <Container className="mt-24 sm:mt-32 lg:mt-40" id="services">
-      <FadeIn className="max-w-3xl">
-        <p className="font-display text-sm font-semibold tracking-wider text-neutral-700 uppercase">
-          Your Digital Footprint
-        </p>
-        <h2 className="mt-4 font-display text-4xl font-medium tracking-tight text-neutral-950 sm:text-5xl">
-          Everything you need to be recognized as an authority.
-        </h2>
-        <p className="mt-6 text-lg text-neutral-700">
-          We do not just get you press. We build the entire infrastructure of
-          personal brand legitimacy.
-        </p>
-        <p className="mt-4 inline-flex rounded-full bg-[var(--color-cta)] px-4 py-1 text-sm font-semibold text-[var(--color-cta-ink)]">
-          Knowledge Panel guaranteed
-        </p>
-      </FadeIn>
-      <FadeInStagger className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        {services.map((s) => (
-          <FadeIn key={s.title}>
-            <div className="h-full rounded-3xl border border-neutral-200 bg-white p-6">
-              <p className="font-display text-xs font-semibold tracking-wider text-neutral-500 uppercase">
-                {s.label}
+    <FadeIn>
+      <div className="mx-auto mt-12 flex max-w-2xl flex-col gap-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-end">
+        {small && (
+          <div className="flex flex-col-reverse justify-between gap-x-16 gap-y-8 rounded-2xl bg-neutral-50 p-8 ring-1 ring-neutral-950/5 sm:w-3/4 sm:max-w-md sm:flex-row-reverse sm:items-end lg:w-72 lg:max-w-none lg:flex-none lg:flex-col lg:items-start">
+            <p className="flex-none font-display text-3xl font-medium tracking-tight text-neutral-950">
+              Month {small.currentMonth} of {small.totalMonths}
+            </p>
+            <div className="sm:w-80 sm:shrink lg:w-auto lg:flex-none">
+              <p className="text-lg font-semibold tracking-tight text-neutral-950">
+                {small.title}. {small.currentPhase}.
               </p>
-              <h3 className="mt-4 font-display text-lg font-semibold text-neutral-950">
-                {s.title}
-              </h3>
-              <p className="mt-3 text-sm text-neutral-700">{s.body}</p>
+              {small.nextMilestone && (
+                <p className="mt-2 text-base/7 text-neutral-600">
+                  Next milestone: {small.nextMilestone.label}. Published by{' '}
+                  {small.publisher}.
+                </p>
+              )}
             </div>
-          </FadeIn>
-        ))}
-      </FadeInStagger>
-      <FadeIn className="mt-10 max-w-3xl">
-        <p className="text-sm text-neutral-600">
-          We guarantee your Google Knowledge Panel. Every other placement is
-          actively pursued. Results vary by author platform and timeline.
-        </p>
-      </FadeIn>
-    </Container>
-  )
-}
-
-function HowItWorks() {
-  return (
-    <Container className="mt-24 sm:mt-32 lg:mt-40" id="how-it-works">
-      <FadeIn className="max-w-3xl">
-        <p className="font-display text-sm font-semibold tracking-wider text-neutral-700 uppercase">
-          How It Works
-        </p>
-        <h2 className="mt-4 font-display text-4xl font-medium tracking-tight text-neutral-950 sm:text-5xl">
-          From invisible to undeniable.
-        </h2>
-      </FadeIn>
-      <FadeInStagger className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        {steps.map((step) => (
-          <FadeIn key={step.n}>
-            <div className="h-full rounded-3xl border border-neutral-200 bg-white p-6">
-              <p className="font-display text-sm font-semibold tracking-wider text-neutral-700 uppercase">
-                Step {step.n}
+          </div>
+        )}
+        {mid && (
+          <div className="flex flex-col-reverse justify-between gap-x-16 gap-y-8 rounded-2xl bg-neutral-950 p-8 sm:flex-row-reverse sm:items-end lg:w-full lg:max-w-sm lg:flex-auto lg:flex-col lg:items-start lg:gap-y-44">
+            <p className="flex-none font-display text-3xl font-medium tracking-tight text-white">
+              Month {mid.currentMonth} of {mid.totalMonths}
+            </p>
+            <div className="sm:w-80 sm:shrink lg:w-auto lg:flex-none">
+              <p className="text-lg font-semibold tracking-tight text-white">
+                {mid.title}. {mid.currentPhase}.
               </p>
-              <h3 className="mt-4 font-display text-xl font-semibold text-neutral-950">
-                {step.title}
-              </h3>
-              <p className="mt-3 text-sm text-neutral-700">{step.body}</p>
+              {mid.nextMilestone && (
+                <p className="mt-2 text-base/7 text-neutral-400">
+                  Next milestone: {mid.nextMilestone.label}. Published by{' '}
+                  {mid.publisher}.
+                </p>
+              )}
             </div>
-          </FadeIn>
-        ))}
-      </FadeInStagger>
-    </Container>
+          </div>
+        )}
+        {featured && (
+          <div className="flex flex-col-reverse justify-between gap-x-16 gap-y-8 rounded-2xl bg-white p-8 shadow-2xl ring-1 ring-neutral-950/10 sm:w-11/12 sm:max-w-xl sm:flex-row-reverse sm:items-end lg:w-full lg:max-w-none lg:flex-auto lg:flex-col lg:items-start lg:gap-y-28">
+            <p className="flex-none font-display text-3xl font-medium tracking-tight text-neutral-950">
+              Month 6 of 6. Launched.
+            </p>
+            <div className="sm:w-80 sm:shrink lg:w-auto lg:flex-none">
+              <p className="text-lg font-semibold tracking-tight text-neutral-950">
+                {featured.title}, published by {featured.publisher} on June
+                24, 2026.
+              </p>
+              <p className="mt-2 text-base/7 text-neutral-600">
+                We ran the six-month arc on ourselves: the podcast, the
+                pre-sell, the finished book. The case study we can prove
+                because we still own it.
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    </FadeIn>
   )
 }
 
-function Pricing() {
+/* Pricing band + proof band. */
+function Packages({ studies }: { studies: CaseStudyStatic[] }) {
   return (
-    <Container className="mt-24 sm:mt-32 lg:mt-40" id="pricing">
-      <FadeIn className="max-w-3xl">
-        <p className="font-display text-sm font-semibold tracking-wider text-neutral-700 uppercase">
-          Investment
-        </p>
-        <h2 className="mt-4 font-display text-4xl font-medium tracking-tight text-neutral-950 sm:text-5xl">
-          One package. Total authority.
-        </h2>
-        <p className="mt-6 text-lg text-neutral-700">
-          Everything we do is included. No menu, no hidden fees. One scope,
-          two ways to pay.
-        </p>
-      </FadeIn>
-      <FadeInStagger className="mt-16 grid gap-8 lg:grid-cols-2 lg:gap-12">
-        <FadeIn>
-          <div className="h-full rounded-3xl border border-neutral-950 bg-neutral-950 p-8 text-white sm:p-10">
-            <p className="font-display text-sm font-semibold tracking-wider text-[var(--color-brand-yellow)] uppercase">
-              Pay in Full
-            </p>
-            <p className="mt-4 font-display text-6xl font-medium tracking-tight text-white">
-              $10,000
-            </p>
-            <p className="mt-2 text-sm text-neutral-300">
-              One-time payment. Best value.
-            </p>
-            <ul
-              role="list"
-              className="mt-8 divide-y divide-neutral-800 text-neutral-200"
-            >
-              {payInFull.map((item) => (
-                <li key={item} className="py-3 first:pt-0 last:pb-0">
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-10">
-              <Link
-                href="#apply"
-                className="inline-flex items-center rounded-full bg-[var(--color-cta)] px-6 py-3 text-base font-semibold text-[var(--color-cta-ink)] transition hover:bg-[var(--color-cta-hover)]"
-              >
-                Get Started
-                <span aria-hidden="true" className="ml-2">
-                  →
-                </span>
-              </Link>
-            </div>
-          </div>
-        </FadeIn>
-        <FadeIn>
-          <div className="h-full rounded-3xl border border-neutral-200 bg-white p-8 sm:p-10">
-            <p className="font-display text-sm font-semibold tracking-wider text-neutral-700 uppercase">
-              Monthly Plan
-            </p>
-            <p className="mt-4 font-display text-6xl font-medium tracking-tight text-neutral-950">
-              $847
-              <span className="text-2xl text-neutral-500">/mo</span>
-            </p>
-            <p className="mt-2 text-sm text-neutral-600">
-              12-month commitment. Same deliverables.
-            </p>
-            <ul
-              role="list"
-              className="mt-8 divide-y divide-neutral-200 text-neutral-700"
-            >
-              {monthly.map((item) => (
-                <li key={item} className="py-3 first:pt-0 last:pb-0">
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-10">
-              <Link
-                href="#apply"
-                className="inline-flex items-center rounded-full bg-neutral-950 px-6 py-3 text-base font-semibold text-white transition hover:bg-neutral-800"
-              >
-                Get Started
-                <span aria-hidden="true" className="ml-2">
-                  →
-                </span>
-              </Link>
-            </div>
-          </div>
-        </FadeIn>
-      </FadeInStagger>
-      <FadeIn className="mt-10 max-w-3xl">
-        <p className="text-sm text-neutral-600">
-          Not sure which option fits? Fill out the form below and we will
-          discuss on a call.
-        </p>
-      </FadeIn>
-    </Container>
-  )
-}
-
-function Apply() {
-  return (
-    <Container className="mt-24 sm:mt-32 lg:mt-40" id="apply">
-      <FadeIn className="max-w-3xl">
-        <p className="font-display text-sm font-semibold tracking-wider text-neutral-700 uppercase">
-          Get Started
-        </p>
-        <h2 className="mt-4 font-display text-4xl font-medium tracking-tight text-neutral-950 sm:text-5xl">
-          Ready to launch your personal brand?
-        </h2>
-        <p className="mt-6 text-lg text-neutral-700">
-          Tell us about yourself and your book or business. We will review
-          your current digital presence and reach out to discuss your custom
-          launch plan.
-        </p>
-      </FadeIn>
-      <FadeIn className="mt-16 max-w-2xl">
-        <form className="space-y-6">
-          <label className="block">
-            <span className="block font-display text-sm font-semibold tracking-wider text-neutral-950">
-              Full Name *
-            </span>
-            <input
-              type="text"
-              name="name"
-              required
-              className="mt-2 block w-full rounded-2xl border border-neutral-300 bg-transparent px-4 py-3 text-base text-neutral-950 transition focus:border-neutral-950 focus:outline-none"
-            />
-          </label>
-          <label className="block">
-            <span className="block font-display text-sm font-semibold tracking-wider text-neutral-950">
-              Email *
-            </span>
-            <input
-              type="email"
-              name="email"
-              required
-              className="mt-2 block w-full rounded-2xl border border-neutral-300 bg-transparent px-4 py-3 text-base text-neutral-950 transition focus:border-neutral-950 focus:outline-none"
-            />
-          </label>
-          <label className="block">
-            <span className="block font-display text-sm font-semibold tracking-wider text-neutral-950">
-              Phone (optional)
-            </span>
-            <input
-              type="tel"
-              name="phone"
-              className="mt-2 block w-full rounded-2xl border border-neutral-300 bg-transparent px-4 py-3 text-base text-neutral-950 transition focus:border-neutral-950 focus:outline-none"
-            />
-          </label>
-          <label className="block">
-            <span className="block font-display text-sm font-semibold tracking-wider text-neutral-950">
-              Tell us about your book and background *
-            </span>
-            <textarea
-              name="background"
-              required
-              rows={5}
-              className="mt-2 block w-full rounded-2xl border border-neutral-300 bg-transparent px-4 py-3 text-base text-neutral-950 transition focus:border-neutral-950 focus:outline-none"
-            />
-          </label>
-          <button
-            type="submit"
-            className="inline-flex items-center rounded-full bg-[var(--color-cta)] px-6 py-3 text-base font-semibold text-[var(--color-cta-ink)] transition hover:bg-[var(--color-cta-hover)]"
-          >
-            Launch My Personal Brand
-            <span aria-hidden="true" className="ml-2">
-              →
-            </span>
-          </button>
-          <p className="text-sm text-neutral-600">
-            No commitment. We will reach out within one business day.
+    <div id="packages" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
+      <PricingSection />
+      <Container>
+        <SectionIntro
+          eyebrow="In the wild"
+          title="Where the current builds stand."
+          className="mt-24"
+        >
+          <p>
+            One finished on our own name and two underway for clients.
+            Months, phases, and next milestones exactly as they stand today.
+            Nothing projected.
           </p>
-        </form>
-      </FadeIn>
-    </Container>
+        </SectionIntro>
+        <CaseStudyBand studies={studies} />
+      </Container>
+    </div>
+  )
+}
+
+/* Two-book showcase, per the 2026-07-05 copy lock: the one place on the
+ * homepage where names appear as authors. Covers are the full-resolution
+ * flat covers (Brett-approved art), served locally from public/books,
+ * committed byte-perfect via the browser upload path. */
+function TwoBookShowcase() {
+  return (
+    <div id="books" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
+      <SectionIntro eyebrow="We wrote the books" title="Two builds. Two books.">
+        <p>
+          Brand SERP Build is the AI-visibility system from AI or Die,
+          installed on you. Pre-Sold Author Build is the write-and-presell
+          system from The Book on How to Write a Book, installed on your
+          book.
+        </p>
+      </SectionIntro>
+      <Container className="mt-16">
+        <FadeIn>
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 sm:grid-cols-2">
+            <div className="flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-neutral-950/10">
+              <div className="flex items-center justify-center bg-neutral-50 p-10">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/books/ai-or-die.jpg"
+                  alt="AI or Die book cover"
+                  width={1707}
+                  height={2560}
+                  className="h-72 w-auto rounded-md shadow-xl ring-1 ring-neutral-950/10"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-8">
+                <h3 className="font-display text-xl font-medium tracking-tight text-neutral-950">
+                  AI or Die
+                </h3>
+                <p className="mt-1 text-sm text-neutral-600">
+                  The Small Business Survival Guide to the Artificial
+                  Intelligence Revolution
+                </p>
+                <p className="mt-3 text-sm font-semibold text-neutral-950">
+                  By Mike Partners &amp; Brett K. Moore
+                </p>
+                <p className="mt-1 text-sm text-neutral-600">
+                  Paperback &amp; Kindle. $17.99 / $9.99.
+                </p>
+                <a
+                  href="https://www.amazon.com/dp/B0H343DR1L"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto pt-6 text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
+                >
+                  Buy on Amazon <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </div>
+            <div className="flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-neutral-950/10">
+              <div className="flex items-center justify-center bg-neutral-50 p-10">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/books/the-book-on-how-to-write-a-book.jpg"
+                  alt="The Book on How to Write a Book cover"
+                  width={1716}
+                  height={2560}
+                  className="h-72 w-auto rounded-md shadow-xl ring-1 ring-neutral-950/10"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-8">
+                <h3 className="font-display text-xl font-medium tracking-tight text-neutral-950">
+                  The Book on How to Write a Book
+                </h3>
+                <p className="mt-1 text-sm text-neutral-600">
+                  A Systems Approach to Quickly Write and Sell a Book as an
+                  Executive
+                </p>
+                <p className="mt-3 text-sm font-semibold text-neutral-950">
+                  By Mike Partners
+                </p>
+                <p className="mt-1 text-sm text-neutral-600">
+                  Paperback &amp; Kindle. $17.99 / $9.99.
+                </p>
+                <a
+                  href="https://www.amazon.com/dp/B0H2Z1H7DR"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto pt-6 text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
+                >
+                  Buy on Amazon <span aria-hidden="true">&rarr;</span>
+                </a>
+                <p className="mt-4 text-xs text-neutral-500">
+                  30+ authors published using this system.
+                </p>
+              </div>
+            </div>
+          </div>
+        </FadeIn>
+      </Container>
+    </div>
+  )
+}
+
+/* FAQ, per the copy lock: three concept sections, always visible, with the
+ * questions pulled from the same payload the FAQPage JSON-LD emits. */
+const FAQ_GROUPS = [
+  {
+    heading: 'About the diagnostic.',
+    ids: ['diagnostic-data', 'diagnostic-storage'],
+  },
+  {
+    heading: 'About the builds.',
+    ids: ['vs-seo-agency', 'why-6-to-12-months', 'why-reddit'],
+  },
+  {
+    heading: 'About delivery and results.',
+    ids: ['panel-guarantee', 'what-do-i-own'],
+  },
+]
+
+function Faq() {
+  return (
+    <div id="faq" className="scroll-mt-24">
+      <SectionIntro
+        eyebrow="Three questions people ask"
+        title="Frequently asked questions"
+        className="mt-24 sm:mt-32 lg:mt-40"
+      />
+      <Container className="mt-16">
+        <FadeIn>
+          <div className="mx-auto max-w-3xl">
+            {FAQ_GROUPS.map((group) => (
+              <div key={group.heading} className="mt-10 first:mt-0">
+                <h3 className="font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
+                  {group.heading}
+                </h3>
+                <div className="mt-4">
+                  <FAQBlock items={faqItemsForUi(group.ids)} />
+                </div>
+              </div>
+            ))}
+            <p className="mt-8 text-sm text-neutral-600">
+              More questions?{' '}
+              <Link
+                href="/apply/"
+                className="font-semibold text-signal transition hover:text-signal-dark"
+              >
+                Ask them inside the application{' '}
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </p>
+          </div>
+        </FadeIn>
+      </Container>
+    </div>
+  )
+}
+
+/* Founders sub-section, per the copy lock: the second and last place
+ * names appear on the homepage. The /founders route is still redirected
+ * to the homepage; reviving it is tracked as a follow-up. */
+function FoundersTeaser() {
+  return (
+    <div id="founders-teaser" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
+      <Container>
+        <FadeIn>
+          <div className="border-t border-neutral-950/10 pt-12">
+            <p className="text-base font-semibold text-neutral-950">
+              Brett K. Moore. Co-founder + CEO.
+            </p>
+            <p className="mt-1 text-base font-semibold text-neutral-950">
+              Mike Partners. Co-founder + Chief AI Officer.
+            </p>
+            <p className="mt-4 max-w-2xl text-base text-neutral-600">
+              We built PodcastNetwork.org to install the entity
+              infrastructure Google and AI already trust, for people who
+              need to be recognized without waiting for the algorithm to
+              catch up.
+            </p>
+            <Link
+              href="/founders/"
+              className="mt-6 inline-block text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
+            >
+              Read the full story <span aria-hidden="true">&rarr;</span>
+            </Link>
+          </div>
+        </FadeIn>
+      </Container>
+    </div>
   )
 }
 
 export default function Home() {
+  const studies = Object.values(
+    caseStudies as unknown as Record<string, CaseStudyStatic | string>,
+  ).filter(
+    (c): c is CaseStudyStatic =>
+      typeof c === 'object' && c !== null && 'slug' in c,
+  )
+
   return (
     <>
-      <Hero />
-      <Problem />
-      <Services />
-      <HowItWorks />
-      <Pricing />
-      <Apply />
+      <SchemaGraph schema={homeSchema()} />
+
+      {/* Section 1: hero + Tier 1 Instant Report + trust bar. H1 locked;
+          subhead and trust bar per the 2026-07-05 copy lock. */}
+      <div id="report" className="scroll-mt-24">
+        <Container className="mt-24 sm:mt-32 md:mt-40">
+          {/* Transform-only entrance: this block holds the LCP headline, so it
+              must be visible before hydration. */}
+          <div className="pn-rise max-w-3xl">
+            <h1 className="font-display text-5xl font-medium tracking-tight text-balance text-neutral-950 sm:text-6xl">
+              Google and AI have already decided who you are.
+            </h1>
+            <p className="mt-6 text-xl text-neutral-600">
+              Every deal, meeting, and reference check starts with a search in
+              Google or an AI chat, and what comes up gets shaped with or
+              without you. Enter your website or LinkedIn to see what they know
+              about you and what&apos;s missing.
+            </p>
+          </div>
+          <InstantReport />
+          {/* Trust bar, name-free per the copy lock. */}
+          <p className="mt-12 border-t border-neutral-950/10 pt-6 text-sm text-neutral-500">
+            Answer engine optimization for executives, authors, and
+            entrepreneurs. Application-only.
+          </p>
+        </Container>
+      </div>
+
+      {/* Section 2: quiz gateway, dark card (retained; see note above) */}
+      <AssessmentGateway />
+
+      {/* Section 3: three-tier pricing + proof band */}
+      <Packages studies={studies} />
+
+      {/* Section 4: two-book showcase */}
+      <TwoBookShowcase />
+
+      {/* Section 5: FAQ */}
+      <Faq />
+
+      {/* Section 6: founders teaser */}
+      <FoundersTeaser />
+
+      {/* Section 7: terminal CTA */}
+      <div id="apply-cta" className="scroll-mt-24">
+        <ContactSection />
+      </div>
     </>
   )
 }

@@ -1,0 +1,77 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": "https://podcastnetwork.org/journal/{{ARTICLE_SLUG}}/#article",
+  "url": "https://podcastnetwork.org/journal/{{ARTICLE_SLUG}}/",
+  "headline": "{{ARTICLE_HEADLINE_UNDER_110_CHARS}}",
+  "alternativeHeadline": "{{ARTICLE_ALTERNATIVE_HEADLINE}}",
+  "description": "{{ARTICLE_META_DESCRIPTION_UNDER_160_CHARS}}",
+  "abstract": "{{ARTICLE_ABSTRACT_ONE_PARAGRAPH}}",
+  "articleSection": "Journal",
+  "articleBody": "{{ARTICLE_FULL_TEXT_OR_OMIT_IF_TOO_LONG_TO_INLINE}}",
+  "wordCount": "{{WORD_COUNT}}",
+  "inLanguage": "en-US",
+  "keywords": "{{KEYWORDS_COMMA_SEPARATED}}",
+  "genre": ["Business", "Publishing", "Authority Marketing"],
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "{{TOPIC_1}}"
+    },
+    {
+      "@type": "Thing",
+      "name": "{{TOPIC_2}}"
+    }
+  ],
+  "mentions": [
+    {
+      "@id": "https://podcastnetwork.org/the-package/#service"
+    },
+    {
+      "@id": "https://podcastnetwork.org/#organization"
+    }
+  ],
+  "author": {
+    "@id": "https://podcastnetwork.org/about/#{{AUTHOR_ID}}"
+  },
+  "editor": {
+    "@id": "https://podcastnetwork.org/about/#brett-k-moore"
+  },
+  "publisher": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "image": [
+    "https://podcastnetwork.org/journal/{{ARTICLE_SLUG}}/hero-16x9.jpg",
+    "https://podcastnetwork.org/journal/{{ARTICLE_SLUG}}/hero-4x3.jpg",
+    "https://podcastnetwork.org/journal/{{ARTICLE_SLUG}}/hero-1x1.jpg"
+  ],
+  "datePublished": "{{DATE_PUBLISHED_ISO_8601}}",
+  "dateModified": "{{DATE_MODIFIED_ISO_8601}}",
+  "isPartOf": {
+    "@id": "https://podcastnetwork.org/journal/#collection"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://podcastnetwork.org/journal/{{ARTICLE_SLUG}}/"
+  },
+  "copyrightYear": "{{COPYRIGHT_YEAR}}",
+  "copyrightHolder": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "license": "https://podcastnetwork.org/legal/terms/",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".article-headline", ".article-lead"]
+  },
+  "potentialAction": {
+    "@type": "ReadAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://podcastnetwork.org/journal/{{ARTICLE_SLUG}}/"
+    }
+  },
+  "sameAs": [
+    "https://www.linkedin.com/pulse/{{ARTICLE_SLUG}}",
+    "https://podcastnetwork.substack.com/p/{{ARTICLE_SLUG}}"
+  ]
+}

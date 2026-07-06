@@ -1,36 +1,46 @@
-# Studio
+# podcastnetwork-site
 
-Studio is a [Tailwind Plus](https://tailwindcss.com/plus) site template built using [Tailwind CSS](https://tailwindcss.com) and [Next.js](https://nextjs.org).
+Path B v0.5 dream-site rebuild of [podcastnetwork.org](https://podcastnetwork.org).
+The site is a live product demo of authority architecture: the homepage hero
+is an interactive entity graph, visitors can render their own entity graph
+from live data, a draggable six-month playhead mutates the hero, case studies
+pull live metrics, and the application opens with a working schema validator.
 
-## Getting started
+The old README is archived at `_archive-2026-07-01.md`. Rollback tag:
+`v0-legacy-2026-07-01`.
 
-To get started with this template, first install the npm dependencies:
+## Stack
+
+Next.js 16 (App Router) · React 19 · TypeScript strict · Tailwind v4 ·
+React Flow 11 + d3-force (entity graph) · Framer Motion · react-hook-form +
+zod · SWR · Resend · Vercel Analytics + PostHog.
+
+## Develop
 
 ```bash
-npm install
+pnpm install
+cp .env.example .env.local   # fill in keys
+pnpm dev
 ```
 
-Next, run the development server:
+## Key paths
 
-```bash
-npm run dev
-```
+| Path | What |
+|---|---|
+| `src/components/hero/` | EntityGraphHero (D3 + React Flow hybrid) |
+| `src/components/demo/` | YouSearchDemo, SixMonthPlayhead, PlayheadContext |
+| `src/components/validator/` | SchemaValidator |
+| `src/components/case-studies/` | LiveCaseStudyCard, AiOrDieMetrics |
+| `src/components/application/` | ApplicationDiagnostic wizard |
+| `src/app/api/` | entity-lookup, schema-scan, case-study-data, apply |
+| `src/lib/schema-graph.ts` | JSON-LD composition from content/schema payloads |
+| `content/schema/` | The 19 shipped JSON-LD payloads (source of truth) |
+| `data/` | Entity graph, playhead keyframes, case studies, founders |
 
-Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
+## Build docs
 
-## Customizing
+- `CHANGELOG.md` — every autonomous decision from the v0.5 build session.
+- `NEXT-STEPS.md` — stubs, deferred items, and Brett-action items.
 
-You can start editing this template by modifying the files in the `/src` folder. The site will auto-update as you edit these files.
-
-## License
-
-This site template is a commercial product and is licensed under the [Tailwind Plus license](https://tailwindcss.com/plus/license).
-
-## Learn more
-
-To learn more about the technologies used in this site template, see the following resources:
-
-- [Tailwind CSS](https://tailwindcss.com/docs) - the official Tailwind CSS documentation
-- [Next.js](https://nextjs.org/docs) - the official Next.js documentation
-- [Framer Motion](https://www.framer.com/docs/) - the official Framer Motion documentation
-- [MDX](https://mdxjs.com/) - the official MDX documentation
+Full specs live in Google Drive at
+`Brett K Moore HQ/01-Businesses/PodcastNetwork.org/rebuild-2026-07-01/`.

@@ -1,0 +1,151 @@
+{
+  "@context": "https://schema.org",
+  "@type": "PodcastEpisode",
+  "@id": "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/#episode",
+  "url": "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/",
+  "episodeNumber": "{{EPISODE_NUMBER}}",
+  "seasonNumber": "{{SEASON_NUMBER}}",
+  "name": "{{EPISODE_TITLE}}",
+  "alternateName": "{{EPISODE_SHORT_TITLE}}",
+  "description": "{{EPISODE_DESCRIPTION}}",
+  "abstract": "{{EPISODE_ABSTRACT_ONE_SENTENCE}}",
+  "datePublished": "{{DATE_PUBLISHED_ISO_8601}}",
+  "dateCreated": "{{DATE_RECORDED_ISO_8601}}",
+  "dateModified": "{{DATE_MODIFIED_ISO_8601}}",
+  "duration": "{{DURATION_ISO_8601}}",
+  "timeRequired": "{{DURATION_ISO_8601}}",
+  "inLanguage": "en-US",
+  "isFamilyFriendly": true,
+  "keywords": "{{KEYWORDS_COMMA_SEPARATED}}",
+  "genre": ["Business", "Entrepreneurship"],
+  "image": [
+    "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/artwork-3000x3000.jpg",
+    "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/artwork-1400x1400.jpg"
+  ],
+  "partOfSeries": {
+    "@id": "https://podcastnetwork.org/podcast/#series"
+  },
+  "publisher": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "productionCompany": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "author": [
+    { "@id": "https://podcastnetwork.org/about/#brett-k-moore" },
+    { "@id": "https://podcastnetwork.org/about/#mike-partners" }
+  ],
+  "actor": [
+    {
+      "@type": "PerformanceRole",
+      "characterName": "Host",
+      "actor": {
+        "@id": "https://podcastnetwork.org/about/#brett-k-moore"
+      },
+      "roleName": "Host"
+    },
+    {
+      "@type": "PerformanceRole",
+      "characterName": "Host",
+      "actor": {
+        "@id": "https://podcastnetwork.org/about/#mike-partners"
+      },
+      "roleName": "Host"
+    },
+    {
+      "@type": "PerformanceRole",
+      "characterName": "Guest",
+      "actor": {
+        "@type": "Person",
+        "@id": "{{GUEST_ENTITY_URL}}#person",
+        "name": "{{GUEST_NAME}}",
+        "jobTitle": "{{GUEST_JOB_TITLE}}",
+        "url": "{{GUEST_URL}}",
+        "sameAs": [
+          "{{GUEST_LINKEDIN_URL}}",
+          "{{GUEST_X_URL}}",
+          "https://www.wikidata.org/wiki/{{GUEST_WIKIDATA_Q_NUMBER}}"
+        ]
+      },
+      "roleName": "Guest"
+    }
+  ],
+  "associatedMedia": [
+    {
+      "@type": "MediaObject",
+      "@id": "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/#audio",
+      "contentUrl": "https://media.podcastnetwork.org/{{EPISODE_SLUG}}.mp3",
+      "encodingFormat": "audio/mpeg",
+      "duration": "{{DURATION_ISO_8601}}",
+      "fileSize": "{{FILE_SIZE_BYTES}}",
+      "requiresSubscription": false
+    },
+    {
+      "@type": "VideoObject",
+      "@id": "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/#video",
+      "name": "{{EPISODE_TITLE}} (Video Version)",
+      "description": "{{EPISODE_DESCRIPTION}}",
+      "contentUrl": "https://media.podcastnetwork.org/{{EPISODE_SLUG}}.mp4",
+      "embedUrl": "https://www.youtube.com/embed/{{YOUTUBE_VIDEO_ID}}",
+      "thumbnailUrl": "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/thumbnail-1280x720.jpg",
+      "uploadDate": "{{DATE_PUBLISHED_ISO_8601}}",
+      "duration": "{{DURATION_ISO_8601}}",
+      "encodingFormat": "video/mp4",
+      "publisher": {
+        "@id": "https://podcastnetwork.org/#organization"
+      }
+    }
+  ],
+  "transcript": "{{TRANSCRIPT_URL}}",
+  "hasPart": [
+    {
+      "@type": "Clip",
+      "@id": "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/#chapter-1",
+      "name": "{{CHAPTER_1_NAME}}",
+      "startOffset": 0,
+      "endOffset": "{{CHAPTER_1_END_SECONDS}}",
+      "url": "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/#t={{CHAPTER_1_START_SECONDS}}"
+    },
+    {
+      "@type": "Clip",
+      "@id": "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/#chapter-2",
+      "name": "{{CHAPTER_2_NAME}}",
+      "startOffset": "{{CHAPTER_2_START_SECONDS}}",
+      "endOffset": "{{CHAPTER_2_END_SECONDS}}",
+      "url": "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/#t={{CHAPTER_2_START_SECONDS}}"
+    },
+    {
+      "@type": "Clip",
+      "@id": "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/#chapter-3",
+      "name": "{{CHAPTER_3_NAME}}",
+      "startOffset": "{{CHAPTER_3_START_SECONDS}}",
+      "endOffset": "{{CHAPTER_3_END_SECONDS}}",
+      "url": "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/#t={{CHAPTER_3_START_SECONDS}}"
+    }
+  ],
+  "potentialAction": [
+    {
+      "@type": "ListenAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/",
+        "inLanguage": "en-US",
+        "actionPlatform": [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/MobileWebPlatform",
+          "http://schema.org/IOSPlatform",
+          "http://schema.org/AndroidPlatform"
+        ]
+      }
+    }
+  ],
+  "sameAs": [
+    "https://podcasts.apple.com/us/podcast/{{EPISODE_SLUG}}/id{{APPLE_PODCASTS_EPISODE_ID}}",
+    "https://open.spotify.com/episode/{{SPOTIFY_EPISODE_ID}}",
+    "https://www.youtube.com/watch?v={{YOUTUBE_VIDEO_ID}}"
+  ],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://podcastnetwork.org/podcast/{{EPISODE_SLUG}}/"
+  }
+}

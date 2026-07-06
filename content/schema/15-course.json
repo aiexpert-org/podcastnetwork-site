@@ -1,0 +1,96 @@
+{
+  "$comment": "Course schema for the Pre-Sold Author Package methodology. The package itself is a ProfessionalService (03-professionalservice.json); this Course entity represents the METHODOLOGY page (/the-method) as structured educational content. Ship this only inside the @graph for /the-method. Do not attach Course markup to /the-package (that would be a Google structured data violation).",
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "@id": "https://podcastnetwork.org/the-method/#course",
+  "name": "The 180-Day Pre-Sold Author Method",
+  "alternateName": "The Six-Month Book and Authority Method",
+  "url": "https://podcastnetwork.org/the-method/",
+  "description": "The documented methodology behind the Pre-Sold Author Package: how a finished book, a podcast, an audio voice clone, and author authority get built in parallel on a single 180-day clock, with one manuscript delivered by month three and a coordinated launch at Day 180.",
+  "image": [
+    "https://podcastnetwork.org/the-method/hero-16x9.jpg",
+    "https://podcastnetwork.org/the-method/timeline-3x1.jpg"
+  ],
+  "inLanguage": "en-US",
+  "learningResourceType": "Documented methodology",
+  "educationalLevel": "Professional",
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "Executive, author, or entrepreneur building a book and personal brand"
+  },
+  "teaches": [
+    "How a book, a podcast, a voice clone, and author authority compound when built in parallel instead of in sequence",
+    "How interviews and a voice corpus compress a manuscript from months of drafting to a delivery by month three",
+    "How author authority surfaces (bio pages, contributor citations, a Wikidata Person entry) corroborate each other",
+    "How the Legacy Publishing option runs after the manuscript is finished without stalling the launch sequence"
+  ],
+  "about": [
+    { "@type": "Thing", "name": "Book publishing" },
+    { "@type": "Thing", "name": "Podcast production" },
+    { "@type": "Thing", "name": "Author authority" },
+    { "@type": "Thing", "name": "Voice cloning" },
+    { "@type": "Thing", "name": "Personal brand" }
+  ],
+  "provider": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "publisher": {
+    "@id": "https://podcastnetwork.org/#organization"
+  },
+  "author": [
+    { "@id": "https://podcastnetwork.org/about/#brett-k-moore" },
+    { "@id": "https://podcastnetwork.org/about/#mike-partners" }
+  ],
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "@id": "https://podcastnetwork.org/the-method/#course-instance",
+    "name": "Pre-Sold Author Package cohort",
+    "courseMode": "Blended (asynchronous documentation plus synchronous operator delivery)",
+    "courseWorkload": "PT2H",
+    "instructor": [
+      { "@id": "https://podcastnetwork.org/about/#brett-k-moore" },
+      { "@id": "https://podcastnetwork.org/about/#mike-partners" }
+    ],
+    "location": {
+      "@type": "VirtualLocation",
+      "url": "https://podcastnetwork.org/apply/"
+    }
+  },
+  "hasPart": [
+    {
+      "@type": "Course",
+      "@id": "https://podcastnetwork.org/the-method/#module-1-foundation",
+      "name": "Module 1: Foundation (Days 1 to 30)",
+      "description": "Kickoff, voice work, and editorial planning. The podcast launches by Day 30. The Wikidata Person entry seeds and author authority surfaces begin. Interviews start.",
+      "position": 1
+    },
+    {
+      "@type": "Course",
+      "@id": "https://podcastnetwork.org/the-method/#module-2-build",
+      "name": "Module 2: Build (Days 30 to 90)",
+      "description": "The manuscript takes shape from the interviews and voice corpus. Podcast episodes ship. Author authority signals accumulate. The first wave of guest appearances feeds the list build.",
+      "position": 2
+    },
+    {
+      "@type": "Course",
+      "@id": "https://podcastnetwork.org/the-method/#module-3-pre-sell",
+      "name": "Module 3: The Pre-Sell (Days 90 to 180)",
+      "description": "The finished manuscript moves into cover, interior layout, and production through the Legacy Publishing option. Author authority surfaces mature. Guest appearances peak and the waitlist opens for pre-orders.",
+      "position": 3
+    },
+    {
+      "@type": "Course",
+      "@id": "https://podcastnetwork.org/the-method/#module-4-launch",
+      "name": "Module 4: Launch (Day 180)",
+      "description": "Book on sale. Podcast at scale. A recognized author entity. The audience opted in. Legacy runs retail. PodcastNetwork.org runs launch-week coordination and a post-launch report.",
+      "position": 4
+    }
+  ],
+  "offers": {
+    "@id": "https://podcastnetwork.org/the-package/#offer"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://podcastnetwork.org/the-method/"
+  }
+}

@@ -1,0 +1,128 @@
+import { type Metadata } from 'next'
+import Link from 'next/link'
+
+import caseStudies from '../../../data/case-studies.json'
+import { Border } from '@/components/Border'
+import { Button } from '@/components/Button'
+import { ContactSection } from '@/components/ContactSection'
+import { Container } from '@/components/Container'
+import { FadeIn } from '@/components/FadeIn'
+import { PageIntro } from '@/components/PageIntro'
+import {
+  LiveCaseStudyCard,
+  type CaseStudyStatic,
+} from '@/components/case-studies/LiveCaseStudyCard'
+import { SchemaGraph } from '@/components/seo/SchemaGraph'
+import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
+import { caseStudiesHubSchema } from '@/lib/schema-graph'
+
+function CaseStudyList({ entries }: { entries: Array<MDXEntry<CaseStudy>> }) {
+  return (
+    <Container className="mt-24 sm:mt-32 lg:mt-40">
+      <FadeIn>
+        <h2 className="font-display text-2xl font-semibold text-neutral-950">
+          Case studies
+        </h2>
+      </FadeIn>
+      <div className="mt-10 space-y-20 sm:space-y-24 lg:space-y-32">
+        {entries.map((caseStudy) => (
+          <FadeIn key={caseStudy.href}>
+            <article>
+              <Border className="grid grid-cols-3 gap-x-8 gap-y-8 pt-16">
+                <div className="col-span-full sm:flex sm:items-center sm:justify-between sm:gap-x-8 lg:col-span-1 lg:block">
+                  <div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
+                    <h3 className="text-sm font-semibold text-neutral-950">
+                      {caseStudy.client}
+                    </h3>
+                  </div>
+                  <div className="mt-1 flex gap-x-4 sm:mt-0 lg:block">
+                    <p className="text-sm tracking-tight text-neutral-950 after:ml-4 after:font-semibold after:text-neutral-300 after:content-['/'] lg:mt-2 lg:after:hidden">
+                      {caseStudy.service}
+                    </p>
+                    <p className="text-sm text-neutral-950 lg:mt-2">
+                      {caseStudy.status}
+                    </p>
+                  </div>
+                </div>
+                <div className="col-span-full lg:col-span-2 lg:max-w-2xl">
+                  <p className="font-display text-4xl font-medium text-neutral-950">
+                    <Link href={caseStudy.href}>{caseStudy.title}</Link>
+                  </p>
+                  <div className="mt-6 space-y-6 text-base text-neutral-600">
+                    {caseStudy.summary.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                  <div className="mt-8 flex">
+                    <Button
+                      href={caseStudy.href}
+                      aria-label={`Read case study: ${caseStudy.client}`}
+                    >
+                      Read case study
+                    </Button>
+                  </div>
+                </div>
+              </Border>
+            </article>
+          </FadeIn>
+        ))}
+      </div>
+    </Container>
+  )
+}
+
+export const metadata: Metadata = {
+  title: 'Case Studies. Live entity pages',
+  description:
+    'The graphs we have built and the ones we are building right now. AI or Die with live metrics, plus three in-launch authors reporting honest state on the 180-day clock.',
+  alternates: { canonical: '/case-studies/' },
+}
+
+export default async function CaseStudiesPage() {
+  const entries = await loadCaseStudies()
+  const studies = Object.values(
+    caseStudies as unknown as Record<string, CaseStudyStatic | string>,
+  ).filter(
+    (c): c is CaseStudyStatic =>
+      typeof c === 'object' && c !== null && 'slug' in c,
+  )
+  const featured = studies.find((c) => c.variant === 'featured')
+  const inLaunch = studies.filter((c) => c.variant === 'in-launch')
+
+  return (
+    <>
+      <SchemaGraph schema={caseStudiesHubSchema()} />
+
+      <PageIntro
+        eyebrow="In the wild"
+        title="The graphs we have built. And the ones we are building right now."
+      >
+        <p>
+          One anchor case study the founders ran on themselves, reporting live
+          data. Three in-launch authors reporting honest state on the 180-day
+          clock. Where a number does not yet exist, there is no number. That is
+          the standard we publish against.
+        </p>
+      </PageIntro>
+
+      <Container className="mt-16 sm:mt-20">
+        <FadeIn>
+          {featured && <LiveCaseStudyCard data={featured} headingLevel="h2" />}
+        </FadeIn>
+        <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3">
+          {inLaunch.map((c) => (
+            <FadeIn key={c.slug} className="flex">
+              <div className="w-full">
+                <LiveCaseStudyCard data={c} headingLevel="h2" />
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </Container>
+
+      <CaseStudyList entries={entries} />
+
+      <ContactSection />
+    </>
+  )
+}

@@ -13,7 +13,52 @@ import { unifiedConditional } from 'unified-conditional'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
+  trailingSlash: true,
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
+  async redirects() {
+    // 3-surface architecture (2026-07-04): Home + Apply + Legal. The five
+    // marketing routes and every legacy path route to homepage anchors.
+    // Route files for the killed pages remain in the tree until the
+    // post-pitch cleanup; these redirects fire before the filesystem, so
+    // the routes are unreachable.
+    return [
+      // Killed marketing routes (2026-07-04 collapse).
+      { source: '/the-method', destination: '/#packages', permanent: false },
+      { source: '/the-method/:path*', destination: '/#packages', permanent: false },
+      { source: '/case-studies', destination: '/#packages', permanent: false },
+      { source: '/case-studies/:path*', destination: '/#packages', permanent: false },
+      // /founders revived as a live route (2026-07-05).
+      { source: '/the-package', destination: '/#pre-sold-author', permanent: false },
+      { source: '/the-package/:path*', destination: '/#pre-sold-author', permanent: false },
+      { source: '/knowledge-panel-install', destination: '/#knowledge-panel', permanent: false },
+      { source: '/knowledge-panel-install/:path*', destination: '/#knowledge-panel', permanent: false },
+
+      // Legacy paths from the pre-rebuild sitemaps.
+      { source: '/book', destination: '/#pre-sold-author', permanent: false },
+      { source: '/book/:path*', destination: '/#pre-sold-author', permanent: false },
+      { source: '/podcast', destination: '/#packages', permanent: false },
+      { source: '/podcast/:path*', destination: '/#packages', permanent: false },
+      { source: '/about', destination: '/#proof', permanent: false },
+      { source: '/about/:path*', destination: '/#proof', permanent: false },
+      { source: '/faq', destination: '/#faq', permanent: false },
+      { source: '/journal', destination: '/#packages', permanent: false },
+      { source: '/journal/:path*', destination: '/#packages', permanent: false },
+      { source: '/methodology', destination: '/#packages', permanent: false },
+      { source: '/pre-sold-author-package', destination: '/#pre-sold-author', permanent: false },
+      { source: '/pillars/:path*', destination: '/#pre-sold-author', permanent: false },
+      { source: '/knowledge-panel', destination: '/#knowledge-panel', permanent: false },
+      { source: '/contact', destination: '/apply/', permanent: false },
+      { source: '/work', destination: '/#packages', permanent: false },
+      { source: '/work/:path*', destination: '/#packages', permanent: false },
+      { source: '/privacy', destination: '/legal/privacy/', permanent: false },
+      { source: '/terms', destination: '/legal/terms/', permanent: false },
+      { source: '/cookies', destination: '/legal/privacy/', permanent: false },
+    ]
+  },
 }
 
 function remarkMDXLayout(source, metaName) {
@@ -67,12 +112,10 @@ export default async function config() {
         [
           unifiedConditional,
           [
-            new RegExp(`^${escapeStringRegexp(path.resolve('src/app/blog'))}`),
-            [[remarkMDXLayout, '@/app/blog/wrapper', 'article']],
-          ],
-          [
-            new RegExp(`^${escapeStringRegexp(path.resolve('src/app/work'))}`),
-            [[remarkMDXLayout, '@/app/work/wrapper', 'caseStudy']],
+            new RegExp(
+              `^${escapeStringRegexp(path.resolve('src/app/case-studies'))}`,
+            ),
+            [[remarkMDXLayout, '@/app/case-studies/wrapper', 'caseStudy']],
           ],
         ],
       ],

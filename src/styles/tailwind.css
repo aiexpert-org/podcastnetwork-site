@@ -2,7 +2,21 @@
 @import './base.css';
 @import './typography.css' layer(components);
 
-@theme {
+/*
+ * PodcastNetwork.org v0.6 — Studio chassis with the Editorial Premium palette
+ * overlaid on Studio's monochrome baseline.
+ *
+ * Studio ships neutral-950 text on white. We remap the neutral scale to the
+ * locked Editorial Premium tokens (Vellum ground, Papyrus surfaces, Publisher
+ * Ink text, Slate muted) so every Studio component picks up the palette
+ * without per-component edits. Source of truth:
+ * rebuild-2026-07-01/path-b-v0.5/03-cinematic-dark-palette-override.md
+ */
+
+/* `static` forces every token to emit as a :root custom property; the entity
+ * graph reads its node colors via inline var(--color-entity-*) references
+ * Tailwind cannot see, so tree-shaking would strip them. */
+@theme static {
   --text-*: initial;
   --text-xs: 0.75rem;
   --text-xs--line-height: 1rem;
@@ -29,34 +43,365 @@
 
   --radius-4xl: 2.5rem;
 
+  /* Mona Sans is injected by next/font in app/layout.tsx (preloaded, swap). */
   --font-sans:
-    Mona Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    var(--font-mona-sans), ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
 
   --font-display:
-    Mona Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    var(--font-mona-sans), ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
 
   --font-display--font-variation-settings: 'wdth' 125;
 
   --font-display-length: 2;
 
-  /* PN.org brand tokens. Yellow sourced from CCM (#EEDD47) per the 2026-06-29
-     PN rebuild brief: shared brand color across the network. Ink stays
-     near-black; CTA buttons read yellow on ink. */
-  --color-cta: #eedd47;
-  --color-cta-hover: #e3cf2a;
-  --color-cta-ink: #0a0a0a;
-  --color-brand-yellow: #eedd47;
+  /* Playfair Display: reserved editorial serif accent (pullquotes, select
+   * moments). Injected by next/font in app/layout.tsx. */
+  --font-serif: var(--font-playfair), 'Iowan Old Style', Georgia, serif;
+
+  /* JetBrains Mono: technical readouts in the schema validator + live
+   * metrics. Injected by next/font in app/layout.tsx. */
+  --font-mono:
+    var(--font-jetbrains), 'SF Mono', 'Cascadia Code', Menlo, Consolas,
+    monospace;
+
+  /* ------------------------------------------------------------------ */
+  /* Editorial Premium overlay on Studio's neutral scale                 */
+  /* ------------------------------------------------------------------ */
+
+  /* White ground, per Brett 2026-07-04: the actual Studio DNA. Solar Yellow
+   * #FFDD05 is the CTA/accent color only; everything else runs neutral. The
+   * gray ramp stays warm (stone) so it sits with the warm ink and the
+   * yellow accent. */
+  --color-neutral-50: #fafaf9;
+  --color-neutral-100: #f5f5f4;
+  --color-neutral-200: #e7e5e4;
+  --color-neutral-300: #d6d3d1;
+  --color-neutral-400: #a8a29e;
+  --color-neutral-500: #78716c;
+  --color-neutral-600: #57534e;
+  --color-neutral-700: #44403c;
+  --color-neutral-800: #292524;
+  --color-neutral-900: #1c1917;
+  --color-neutral-950: #14140f;
+
+  /* Named palette tokens (killer components + page code reference these) */
+  --color-solar: #ffdd05;
+  /* Legacy alias from the cream-era code; now the white ground. */
+  --color-vellum: #ffffff;
+  --color-papyrus: #faf8f5;
+
+  /* Dark viz surface ground */
+  --color-viz-ink: #12172a;
+  --color-viz-ink-raised: #1a2138;
+  --color-viz-border: #2a3352;
+
+  /* Text. Ink shifted to the warm near-black Brett locked with the Solar
+   * ground (13.7:1 on #FFDD05). */
+  --color-ink: #14140f;
+  --color-slate: #475569;
+  --color-fog: #94a3b8;
+
+  /* Accents */
+  --color-foil: #c4a365;
+  /* Darkened again for the Solar ground: 5.1:1 on #FFDD05, so eyebrow-size
+   * bronze text clears AA on yellow as well as on Papyrus. */
+  --color-foil-dark: #6b5830;
+  --color-foil-bright: #e5c88e;
+  --color-signal: #1e40af;
+  --color-signal-dark: #152f80;
+
+  /* Entity graph node colors — light ground variants */
+  --color-entity-person: #c4a365;
+  --color-entity-person-border: #8b7343;
+  --color-entity-org: #1e40af;
+  --color-entity-org-border: #152f80;
+  --color-entity-book: #b91c1c;
+  --color-entity-book-border: #7f1313;
+  --color-entity-podcast: #4d7c0f;
+  --color-entity-podcast-border: #365409;
+  --color-entity-event: #b45309;
+  --color-entity-event-border: #7c3a06;
+  --color-entity-webpage: #6b21a8;
+  --color-entity-webpage-border: #4a1774;
+  --color-entity-award: #0f766e;
+  --color-entity-award-border: #0a5551;
+
+  /* Entity graph node colors — dark ground variants (hero, validator output) */
+  --color-entity-dark-person: #c4a365;
+  --color-entity-dark-person-glow: #e5c88e;
+  --color-entity-dark-org: #4a90e2;
+  --color-entity-dark-org-glow: #7fb3eb;
+  --color-entity-dark-book: #ef4444;
+  --color-entity-dark-book-glow: #f87171;
+  --color-entity-dark-podcast: #10b981;
+  --color-entity-dark-podcast-glow: #34d399;
+  --color-entity-dark-event: #f59e0b;
+  --color-entity-dark-event-glow: #fbbf24;
+  --color-entity-dark-webpage: #a855f7;
+  --color-entity-dark-webpage-glow: #c084fc;
+  --color-entity-dark-award: #14b8a6;
+  --color-entity-dark-award-glow: #5eead4;
+
+  /* Status */
+  --color-success: #059669;
+  --color-success-bright: #10b981;
+  --color-warning: #d97706;
+  --color-warning-bright: #f59e0b;
+  --color-error: #dc2626;
+  --color-error-bright: #ef4444;
+  --color-info: #1e40af;
 }
 
-html {
-  text-wrap: pretty;
+@layer base {
+  body {
+    font-feature-settings: 'ss01', 'kern';
+    text-rendering: optimizeLegibility;
+  }
+
+  code,
+  pre,
+  [data-mono] {
+    font-family: var(--font-mono);
+    font-variant-ligatures: none;
+    font-feature-settings: 'tnum', 'zero';
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-foil);
+    color: var(--color-ink);
+  }
 }
 
-h1,
-h2,
-h3,
-h4 {
-  text-wrap: balance;
+@layer components {
+  /* Killer-component type helpers carried over from v0.5. Display classes
+   * inherit Studio's Mona Sans display voice (wdth 125). */
+  .text-display-2 {
+    font-family: var(--font-display);
+    font-variation-settings: 'wdth' 125;
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  .text-h1 {
+    font-family: var(--font-display);
+    font-variation-settings: 'wdth' 125;
+    font-size: clamp(2rem, 3.75vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  .text-h2 {
+    font-family: var(--font-display);
+    font-variation-settings: 'wdth' 125;
+    font-size: clamp(1.625rem, 2.8vw, 2.25rem);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    font-weight: 500;
+  }
+
+  .text-h3 {
+    font-size: 1.5rem;
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+    font-weight: 600;
+  }
+
+  .text-h4 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
+  .text-eyebrow {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .text-lead {
+    font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    font-weight: 400;
+  }
+
+  .text-body-sm {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .text-caption {
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    letter-spacing: 0.01em;
+    font-weight: 500;
+  }
+
+  .text-micro {
+    font-size: 0.75rem;
+    line-height: 1.45;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+  }
+
+  .text-mono-body {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .text-mono-tab {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    line-height: 1.4;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .text-pullquote {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    font-weight: 400;
+    font-style: italic;
+  }
+}
+
+@layer utilities {
+  .measure {
+    max-width: 68ch;
+  }
+}
+
+/* Dual-direction marquee logo cloud (CCM parallax pattern). Two rows scroll
+ * opposite ways at a slow, even pace; content is duplicated once so the
+ * -50% translate loops seamlessly. Hover pauses both rows. */
+.pn-marquee {
+  --pn-marquee-duration: 135s;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.pn-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: pn-marquee-left var(--pn-marquee-duration) linear infinite;
+}
+
+.pn-marquee-track--reverse {
+  animation-name: pn-marquee-right;
+}
+
+.pn-marquee:hover .pn-marquee-track,
+.pn-marquee:focus-within .pn-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes pn-marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pn-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pn-marquee-track {
+    animation: none !important;
+  }
+}
+
+/* Transform-only hero entrance. The homepage H1 is the LCP element; an
+ * opacity fade would hold LCP hostage to hydration, so it rises without
+ * fading. Dropped under prefers-reduced-motion. */
+@keyframes pn-rise-loop {
+  from {
+    transform: translateY(24px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.pn-rise {
+  animation: pn-rise-loop 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pn-rise {
+    animation: none !important;
+  }
+}
+
+/* Entity graph edge entry animation (dark viz surfaces). */
+@keyframes pn-edge-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Idle ambient drift on graph nodes: gentle vertical float, phase-offset per
+ * node via inline animation-delay. Dropped under prefers-reduced-motion. */
+@keyframes pn-float-loop {
+  0%,
+  100% {
+    translate: 0 -3px;
+  }
+  50% {
+    translate: 0 3px;
+  }
+}
+
+.pn-float {
+  animation-name: pn-float-loop;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pn-float {
+    animation: none !important;
+  }
+}
+
+/* React Flow overrides for the dark viz surfaces. */
+.react-flow__node {
+  cursor: pointer;
+}
+
+.react-flow__node:focus-visible {
+  outline: 2px solid var(--color-foil);
+  outline-offset: 4px;
+  border-radius: 8px;
 }

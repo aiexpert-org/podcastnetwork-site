@@ -2,7 +2,6 @@
 
 import {
   createContext,
-  useContext,
   useEffect,
   useId,
   useRef,
@@ -17,7 +16,7 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Footer } from '@/components/Footer'
 import { GridPattern } from '@/components/GridPattern'
-import { Logo, Logomark } from '@/components/Logo'
+import { Logo } from '@/components/Logo'
 import { Offices } from '@/components/Offices'
 import { SocialMedia } from '@/components/SocialMedia'
 
@@ -43,6 +42,37 @@ function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
+/* 3-surface architecture (Brett, 2026-07-04 evening): the desktop nav is
+ * anchor links into the homepage sections plus the Apply pill. The killed
+ * routes redirect to the legacy anchors, which live on as alias spans
+ * inside the pricing cards. Labels per the 2026-07-05 final naming lock. */
+const NAV_ITEMS = [
+  { title: 'Brand SERP', href: '/#brand-serp-build' },
+  { title: 'Pre-Sold Author', href: '/#pre-sold-author-build' },
+  { title: 'FAQ', href: '/#faq' },
+]
+
+function DesktopNavigation({ invert = false }: { invert?: boolean }) {
+  return (
+    <nav className="hidden items-center gap-x-7 lg:flex" aria-label="Main">
+      {NAV_ITEMS.map((item) => (
+        <Link
+          key={item.href}
+          href={item.href}
+          className={clsx(
+            'text-sm font-medium transition',
+            invert
+              ? 'text-neutral-200 hover:text-white'
+              : 'text-neutral-700 hover:text-neutral-950',
+          )}
+        >
+          {item.title}
+        </Link>
+      ))}
+    </nav>
+  )
+}
+
 function Header({
   panelId,
   icon: Icon,
@@ -58,30 +88,15 @@ function Header({
   toggleRef: React.RefObject<HTMLButtonElement | null>
   invert?: boolean
 }) {
-  let { logoHovered, setLogoHovered } = useContext(RootLayoutContext)!
-
   return (
     <Container>
       <div className="flex items-center justify-between">
-        <Link
-          href="/"
-          aria-label="Home"
-          onMouseEnter={() => setLogoHovered(true)}
-          onMouseLeave={() => setLogoHovered(false)}
-        >
-          <Logomark
-            className="h-8 sm:hidden"
-            invert={invert}
-            filled={logoHovered}
-          />
-          <Logo
-            className="hidden h-8 sm:block"
-            invert={invert}
-            filled={logoHovered}
-          />
+        <Link href="/" aria-label="Home">
+          <Logo className="h-8" invert={invert} />
         </Link>
-        <div className="flex items-center gap-x-8">
-          <Button href="/#apply" invert={invert}>
+        <div className="flex items-center gap-x-7">
+          <DesktopNavigation invert={invert} />
+          <Button href="/apply/" invert={invert}>
             Apply
           </Button>
           <button
@@ -91,7 +106,7 @@ function Header({
             aria-expanded={expanded ? 'true' : 'false'}
             aria-controls={panelId}
             className={clsx(
-              'group -m-2.5 rounded-full p-2.5 transition',
+              'group -m-2.5 rounded-full p-2.5 transition lg:hidden',
               invert ? 'hover:bg-white/10' : 'hover:bg-neutral-950/10',
             )}
             aria-label="Toggle navigation"
@@ -143,12 +158,16 @@ function Navigation() {
   return (
     <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
-        <NavigationItem href="/#services">What We Do</NavigationItem>
-        <NavigationItem href="/#how-it-works">How It Works</NavigationItem>
+        <NavigationItem href="/#brand-serp-build">
+          Brand SERP
+        </NavigationItem>
+        <NavigationItem href="/#pre-sold-author-build">
+          Pre-Sold Author
+        </NavigationItem>
       </NavigationRow>
       <NavigationRow>
-        <NavigationItem href="/#pricing">Investment</NavigationItem>
-        <NavigationItem href="/#apply">Apply</NavigationItem>
+        <NavigationItem href="/#faq">FAQ</NavigationItem>
+        <NavigationItem href="/assessment/">The Assessment</NavigationItem>
       </NavigationRow>
     </nav>
   )
@@ -208,16 +227,20 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
           />
         </div>
 
+        {/* Collapsed, this panel must render at exactly 0px: height 0 alone
+            is not enough because padding wins over height, which is where
+            the stray 8px black bar came from (Brett, 2026-07-05). The
+            padding lives inside the expanded content instead. */}
         <motion.div
           layout
           id={panelId}
-          style={{ height: expanded ? 'auto' : '0.5rem' }}
-          className="relative z-50 overflow-hidden bg-neutral-950 pt-2"
+          style={{ height: expanded ? 'auto' : '0rem' }}
+          className="relative z-50 overflow-hidden bg-neutral-950"
           aria-hidden={expanded ? undefined : 'true'}
           inert={expanded ? undefined : true}
         >
           <motion.div layout className="bg-neutral-800">
-            <div ref={navRef} className="bg-neutral-950 pt-14 pb-16">
+            <div ref={navRef} className="bg-neutral-950 pt-16 pb-16">
               <Header
                 invert
                 panelId={panelId}
@@ -239,7 +262,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
                 <div className="grid grid-cols-1 gap-y-10 pt-10 pb-16 sm:grid-cols-2 sm:pt-16">
                   <div>
                     <h2 className="font-display text-base font-semibold text-white">
-                      Our offices
+                      Reach us directly
                     </h2>
                     <Offices
                       invert
@@ -259,9 +282,16 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
         </motion.div>
       </header>
 
+      {/* The 40px top radius (and the black strip above, collapsed to 0rem)
+          existed for the expanding menu. With the drawer closed the sheet
+          squares off so no black shows at the top of the page (Brett,
+          2026-07-05). Both return while the menu is open. */}
       <motion.div
         layout
-        style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}
+        style={{
+          borderTopLeftRadius: expanded ? 40 : 0,
+          borderTopRightRadius: expanded ? 40 : 0,
+        }}
         className="relative flex flex-auto overflow-hidden bg-white pt-14"
       >
         <motion.div
