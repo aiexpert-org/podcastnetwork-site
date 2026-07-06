@@ -1,8 +1,11 @@
+import Link from 'next/link'
+
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { Offices } from '@/components/Offices'
 
+/* Terminal CTA per the 2026-07-05 homepage copy lock. */
 export function ContactSection() {
   return (
     <Container className="mt-24 sm:mt-32 lg:mt-40">
@@ -10,17 +13,19 @@ export function ContactSection() {
         <div className="mx-auto max-w-4xl">
           <div className="max-w-xl">
             <h2 className="font-display text-3xl font-medium text-balance text-white sm:text-4xl">
-              The application is the diagnostic
+              You&apos;ve seen the diagnostic. You&apos;ve seen the builds.
+              You know what&apos;s missing.
             </h2>
-            <p className="mt-6 text-base text-neutral-300">
-              Paste any URL that represents your public presence and we render
-            your authority baseline in real time. The honest map comes first
-              on every engagement we run.
-            </p>
-            <div className="mt-6 flex">
-              <Button href="/apply" invert>
-                Start the diagnostic
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <Button href="/apply/" invert>
+                Apply for a build <span aria-hidden="true">&rarr;</span>
               </Button>
+              <Link
+                href="/#report"
+                className="text-sm text-neutral-300 transition hover:text-white"
+              >
+                Or run the diagnostic on a different URL.
+              </Link>
             </div>
             <div className="mt-10 border-t border-white/10 pt-10">
               <h3 className="font-display text-base font-semibold text-white">

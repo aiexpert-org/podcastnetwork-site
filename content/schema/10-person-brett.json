@@ -2,11 +2,11 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "@id": "https://podcastnetwork.org/about/#brett-k-moore",
-  "name": "Brett K Moore",
+  "name": "Brett K. Moore",
   "givenName": "Brett",
   "additionalName": "K",
   "familyName": "Moore",
-  "alternateName": ["Brett Moore", "Brett K. Moore"],
+  "alternateName": ["Brett Moore", "Brett K Moore"],
   "url": "https://brettkmoore.com/",
   "mainEntityOfPage": {
     "@type": "WebPage",
@@ -17,7 +17,7 @@
     "https://podcastnetwork.org/about/brett-k-moore-3x4.jpg",
     "https://podcastnetwork.org/about/brett-k-moore-16x9.jpg"
   ],
-  "description": "Co-founder and CEO of PodcastNetwork.org. AI-native operator running a portfolio of businesses from Hawaii. Co-author of AI or Die. Co-founder of AI Expert and Apex Podcast Co. Owner of Brett K Moore (personal brand), Legacy Publishing, and The Brand Spine.",
+  "description": "Co-founder and CEO of PodcastNetwork.org. AI-native operator running a portfolio of businesses from Hawaii. Co-author of AI or Die. Co-founder of AI Expert and Apex Podcast Co. Owner of Brett K. Moore (personal brand), Legacy Publishing, and The Brand Spine.",
   "jobTitle": "Co-founder and CEO",
   "worksFor": [
     {
@@ -74,7 +74,7 @@
     "name": "United States"
   },
   "knowsAbout": [
-    "Authority marketing",
+    "Answer engine optimization",
     "Podcast networks",
     "Book publishing",
     "Google Knowledge Panel",
@@ -120,7 +120,7 @@
   "brand": [
     {
       "@type": "Brand",
-      "name": "Brett K Moore",
+      "name": "Brett K. Moore",
       "url": "https://brettkmoore.com/"
     }
   ],
@@ -128,17 +128,13 @@
     { "@id": "https://podcastnetwork.org/#organization" }
   ],
   "sameAs": [
-    "https://www.linkedin.com/in/brettkmoore/",
+    "https://www.linkedin.com/in/brettkmoore",
+    "https://www.instagram.com/brettkmoore",
+    "https://www.youtube.com/@brettkmoore",
     "https://x.com/brettkmoore",
     "https://www.facebook.com/brettkmoore",
-    "https://www.instagram.com/brettkmoore/",
-    "https://www.youtube.com/@brettkmoore",
-    "https://www.tiktok.com/@brettkmoore",
-    "https://github.com/brettkmoore",
-    "https://brettkmoore.com/",
-    "https://www.crunchbase.com/person/brett-k-moore",
-    "https://muckrack.com/brett-k-moore",
-    "https://www.f6s.com/brettkmoore",
+    "https://www.threads.net/@brettkmoore",
+    "https://brettkmoore.com",
     "https://en.wikipedia.org/wiki/{{WIKIPEDIA_ARTICLE_SLUG_BRETT}}",
     "https://www.wikidata.org/wiki/{{WIKIDATA_Q_NUMBER_BRETT}}"
   ]

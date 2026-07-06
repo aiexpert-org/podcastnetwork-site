@@ -87,8 +87,8 @@ function DiagnosticCallout() {
         Start with your URL
       </h2>
       <p className="mt-4 text-sm text-neutral-700">
-        The application opens with a schema scan of your public presence. See
-        your authority baseline before you fill in a single form field.
+        The application opens with a schema scan of your public presence.
+        See what the engines read before you fill in a single form field.
       </p>
       <Link
         href="/apply"
