@@ -132,17 +132,19 @@ export function InstantReport() {
   const fetchSeo = useCallback(async (input: string, runId: number) => {
     setSeo({ phase: 'pending' })
     try {
-      const res = await fetch(
-        `/api/seo-score/?url=${encodeURIComponent(input)}`,
-        { signal: AbortSignal.timeout(50_000) },
-      )
+      const psiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(input)}&category=seo&strategy=mobile`
+      const res = await fetch(psiUrl, { signal: AbortSignal.timeout(35_000) })
       if (runIdRef.current !== runId) return
-      const json = (await res.json()) as
-        | { status: 'ok'; seoScore: number }
-        | { status: 'unavailable' }
-        | { error: string }
-      if ('status' in json && json.status === 'ok') {
-        setSeo({ phase: 'done', seoScore: json.seoScore })
+      if (!res.ok) {
+        setSeo({ phase: 'unavailable' })
+        return
+      }
+      const json = (await res.json()) as {
+        lighthouseResult?: { categories?: { seo?: { score?: number } } }
+      }
+      const raw = json.lighthouseResult?.categories?.seo?.score
+      if (typeof raw === 'number') {
+        setSeo({ phase: 'done', seoScore: Math.round(raw * 100) })
       } else {
         setSeo({ phase: 'unavailable' })
       }
@@ -205,6 +207,8 @@ export function InstantReport() {
   // after the owned-schema row for website inputs.
   const beforeSeo = report?.findings.slice(0, 3) ?? []
   const afterSeo = report?.findings.slice(3) ?? []
+  const seoResolved = report?.inputKind === 'website' && seo?.phase === 'done'
+  const seoFound = seoResolved && seo!.seoScore >= 90
 
   return (
     <div className="mt-10 max-w-2xl">
@@ -267,10 +271,10 @@ export function InstantReport() {
                 </p>
               </div>
               <p className="text-sm text-neutral-600">
-                {report.findings.filter((f) => f.status === 'found').length} of{' '}
-                {report.findings.length +
-                  (report.inputKind === 'website' ? 1 : 0)}{' '}
-                signals in place
+                {report.findings.filter((f) => f.status === 'found').length +
+                  (seoFound ? 1 : 0)}{' '}
+                of {report.findings.length + (seoResolved ? 1 : 0)} signals in
+                place
               </p>
             </div>
 
@@ -289,7 +293,7 @@ export function InstantReport() {
                 />
               ))}
 
-              {report.inputKind === 'website' && seo && (
+              {report.inputKind === 'website' && seo && seo.phase !== 'unavailable' && (
                 <FindingRow
                   label="Lighthouse SEO score"
                   status={
