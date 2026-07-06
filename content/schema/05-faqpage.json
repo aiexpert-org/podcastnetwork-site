@@ -15,6 +15,69 @@
   "mainEntity": [
     {
       "@type": "Question",
+      "@id": "https://podcastnetwork.org/faq/#diagnostic-data",
+      "name": "What data do you actually pull to generate my report?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Live queries to Google's Knowledge Graph API, Wikidata SPARQL, your homepage's structured data, the SERP API for citation surfaces, and a direct query to ChatGPT asking about you. No third-party trackers, no scraping, no stored data."
+      }
+    },
+    {
+      "@type": "Question",
+      "@id": "https://podcastnetwork.org/faq/#diagnostic-storage",
+      "name": "Is what I put in stored anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The URL is cached for 15 minutes to prevent duplicate API calls. Nothing else is stored. No email required, no cookies dropped, no analytics on your input."
+      }
+    },
+    {
+      "@type": "Question",
+      "@id": "https://podcastnetwork.org/faq/#vs-seo-agency",
+      "name": "How is this different from an SEO agency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SEO agencies chase rankings for keywords. We install the entities Google's Knowledge Graph and AI answer engines already trust. Different work, different infrastructure, different outcome."
+      }
+    },
+    {
+      "@type": "Question",
+      "@id": "https://podcastnetwork.org/faq/#why-6-to-12-months",
+      "name": "Why does it take 6 to 12 months?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wikidata takes 30 to 90 days for entity approval. Google's Knowledge Graph rebuilds every quarter. AI answer engines cite you based on citation surfaces that need to accumulate. We're not slow. The underlying systems are."
+      }
+    },
+    {
+      "@type": "Question",
+      "@id": "https://podcastnetwork.org/faq/#why-reddit",
+      "name": "Why is Reddit citation strategy inside a Google visibility build?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Roughly 40 percent of AI answer engine citations across ChatGPT, Claude, and Perplexity come from Reddit. Executives with formal careers don't naturally think of Reddit as a career-authority platform. That's exactly why it's an underused citation surface. And that's the opening."
+      }
+    },
+    {
+      "@type": "Question",
+      "@id": "https://podcastnetwork.org/faq/#panel-guarantee",
+      "name": "What if my Google Knowledge Panel doesn't appear?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We install the infrastructure that makes panels possible. Panels themselves are Google's editorial decision. No vendor can guarantee them. What we do guarantee: verifiable Wikidata entity, structured data indexed, AI answer engines recognizing you."
+      }
+    },
+    {
+      "@type": "Question",
+      "@id": "https://podcastnetwork.org/faq/#what-do-i-own",
+      "name": "What do I own when we're done?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Everything. The Wikidata Q-number is yours forever. The schema markup lives on your domain. The Reddit account, the citation surfaces, the entity home, all owned by you. We install. We don't hold hostage."
+      }
+    },
+    {
+      "@type": "Question",
       "@id": "https://podcastnetwork.org/faq/#what-does-pre-sold-author-cover",
       "name": "What does the Pre-Sold Author Build cover?",
       "acceptedAnswer": {
@@ -181,7 +244,7 @@
       "name": "What is AI or Die and how does it relate to the builds?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "AI or Die is the book co-authored by Brett K Moore and Mike Partners, the co-founders of PodcastNetwork.org, published under the Legacy Publishing partnership. It is the case study we ran on ourselves before selling to anyone else: we built the book, the infrastructure, and the launch around it using the same methods behind the builds. Its launch is the anchor case study on the site, with live metrics that refresh on their own schedule."
+        "text": "AI or Die is the book co-authored by Brett K. Moore and Mike Partners, the co-founders of PodcastNetwork.org, published under the Legacy Publishing partnership. It is the case study we ran on ourselves before selling to anyone else: we built the book, the infrastructure, and the launch around it using the same methods behind the builds. Its launch is the anchor case study on the site, with live metrics that refresh on their own schedule."
       }
     },
     {
@@ -190,7 +253,7 @@
       "name": "Who runs PodcastNetwork.org?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Brett K Moore and Mike Partners are the co-founders, 50/50 equity split. Brett is co-founder and CEO. Both are co-authors of AI or Die, the anchor case study book, and both are directly involved in every engagement."
+        "text": "Brett K. Moore and Mike Partners are the co-founders, 50/50 equity split. Brett is co-founder and CEO. Both are co-authors of AI or Die, the anchor case study book, and both are directly involved in every engagement."
       }
     }
   ]
