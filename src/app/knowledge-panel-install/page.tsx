@@ -13,9 +13,9 @@ import { faqItemsForUi, knowledgePanelSchema } from '@/lib/schema-graph'
 import { KNOWLEDGE_PANEL_INSTALL } from '@/content/packages'
 
 export const metadata: Metadata = {
-  title: 'The Knowledge Panel Install. $12,000, 12 months',
+  title: 'The Brand SERP Build. $24,000, 12 months',
   description:
-    'A twelve-month build that makes Google and the AI answer engines recognize you as a real entity. Knowledge Panel, Wikipedia and Wikidata, podcast, press, and a year of monthly verification. Paid up front or split into twelve monthly payments of $1,000. Application only.',
+    'A twelve-month build that makes Google and the AI answer engines recognize you as a real entity. Knowledge Panel, Wikipedia and Wikidata, podcast, press, and a year of monthly verification. Paid up front or split into twelve monthly payments of $2,000. Application only.',
   alternates: { canonical: '/knowledge-panel-install/' },
 }
 

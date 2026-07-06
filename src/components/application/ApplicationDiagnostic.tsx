@@ -59,7 +59,7 @@ const STEPS: StepField[] = [
     kind: "final",
     key: "budget",
     question:
-      "Our packages run from $10,000 for the Knowledge Panel Install to $36,000 for the Pre-Sold Author Package. Are you ready to invest at that level?",
+      "Our builds run from $24,000 for the Brand SERP Build to $36,000 for the Pre-Sold Author Build. Are you ready to invest at that level?",
     options: BUDGET_ANSWERS,
   },
 ];

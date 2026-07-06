@@ -94,9 +94,9 @@
         {
           "@type": "ProfessionalService",
           "@id": "https://podcastnetwork.org/the-package/#service",
-          "name": "Pre-Sold Author Package",
+          "name": "Pre-Sold Author Build",
           "url": "https://podcastnetwork.org/the-package/",
-          "description": "A finished book, a podcast, a voice clone, and author authority. $36,000. Six months. Application only.",
+          "description": "A finished book, a podcast, a voice clone, and entity visibility. $36,000. Six months. Application only.",
           "provider": { "@id": "https://podcastnetwork.org/#organization" },
           "offers": { "@id": "https://podcastnetwork.org/the-package/#offer" },
           "hasOfferCatalog": { "@id": "https://podcastnetwork.org/the-package/#catalog" },
