@@ -24,9 +24,9 @@ import {
  * left anchor, standard card, Save $6,000 chip), Pre-Sold Author Build
  * ($36,000, featured middle: white panel, solar ring, centered glow),
  * Brand SERP Build ($24,000, right, standard). Old anchors live on as
- * invisible alias spans. Flagged for the walk-through: the locked PSA
- * blurb reads "Brand SERP Build plus manuscript..." while the comparison
- * table's PSA column continues to reflect the standalone-build scope.
+ * invisible alias spans. Blurbs amended per Brett's 2026-07-07 rulings:
+ * PSA is standalone (no "Brand SERP Build plus"), and the Ultimate blurb
+ * no longer repeats the Save $6,000 the chip already carries.
  */
 
 function CheckIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -71,7 +71,7 @@ const TIERS: Tier[] = [
     anchorId: 'ultimate-entity-build',
     legacyAnchorId: 'the-full-build',
     name: ULTIMATE_ENTITY_BUILD.name,
-    description: 'Everything. Both builds, running together. Save $6,000.',
+    description: 'Everything. Both builds, running together.',
     monthly: ULTIMATE_ENTITY_BUILD.payment.monthlyDisplay,
     upfront: ULTIMATE_ENTITY_BUILD.priceDisplay,
     monthlyNote: `12 payments, ${ULTIMATE_ENTITY_BUILD.priceDisplay} total`,
@@ -90,7 +90,7 @@ const TIERS: Tier[] = [
     anchorId: 'pre-sold-author-build',
     legacyAnchorId: 'pre-sold-author',
     name: PRE_SOLD_AUTHOR_BUILD.name,
-    description: 'The book that sells itself before it ships. Brand SERP Build plus manuscript, launch, and pre-sale. 30+ authors already published.',
+    description: 'The book that sells itself before it ships. Manuscript, launch, and pre-sale. 30+ authors already published.',
     monthly: PRE_SOLD_AUTHOR_BUILD.payment.monthlyDisplay,
     upfront: PRE_SOLD_AUTHOR_BUILD.priceDisplay,
     monthlyNote: `12 payments, ${PRE_SOLD_AUTHOR_BUILD.priceDisplay} total`,

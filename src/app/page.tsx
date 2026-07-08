@@ -22,8 +22,8 @@ export const metadata: Metadata = {
 }
 
 /* Section 2: the quiz gateway as a dark card directly under the hero.
- * NOTE: the 2026-07-05 copy lock's flow omits this section; retained
- * pending explicit word because it is the homepage's direct quiz path. */
+ * Brett ruled 2026-07-07: keep (alongside the case-study band); both to
+ * be drafted into the copy lock post-pitch. */
 function AssessmentGateway() {
   return (
     <div id="assessment" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
@@ -56,10 +56,9 @@ function AssessmentGateway() {
   )
 }
 
-/* Live case studies as a stepped stats band. NOTE: the 2026-07-05 copy
- * lock's flow omits this band; retained pending explicit word because it
- * is the honest-proof cluster. Months, phases, and milestones come from
- * data/case-studies.json; nothing renders the data cannot back. */
+/* Live case studies as a stepped stats band. Brett ruled 2026-07-07:
+ * keep. Months, phases, and milestones come from data/case-studies.json;
+ * nothing renders the data cannot back. */
 function CaseStudyBand({ studies }: { studies: CaseStudyStatic[] }) {
   const featured = studies.find((c) => c.variant === 'featured')
   const inLaunch = studies
@@ -252,7 +251,9 @@ function TwoBookShowcase() {
 }
 
 /* FAQ, per the copy lock: three concept sections, always visible, with the
- * questions pulled from the same payload the FAQPage JSON-LD emits. */
+ * questions pulled from the same payload the FAQPage JSON-LD emits.
+ * Eyebrow reworded per Brett 2026-07-07 (the locked "Three questions"
+ * sat over seven questions). */
 const FAQ_GROUPS = [
   {
     heading: 'About the diagnostic.',
@@ -272,7 +273,7 @@ function Faq() {
   return (
     <div id="faq" className="scroll-mt-24">
       <SectionIntro
-        eyebrow="Three questions people ask"
+        eyebrow="Questions people ask"
         title="Frequently asked questions"
         className="mt-24 sm:mt-32 lg:mt-40"
       />
@@ -376,7 +377,7 @@ export default function Home() {
         </Container>
       </div>
 
-      {/* Section 2: quiz gateway, dark card (retained; see note above) */}
+      {/* Section 2: quiz gateway, dark card (kept per Brett 2026-07-07) */}
       <AssessmentGateway />
 
       {/* Section 3: three-tier pricing + proof band */}

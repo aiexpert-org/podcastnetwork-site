@@ -7,10 +7,10 @@
  * rename to InstantReport.tsx in the post-pitch cleanup. Real findings
  * only, no email gate, each miss labeled with the build that fixes it.
  * Copy per the 2026-07-05 homepage copy lock: results header, helper
- * line, placeholder, and the Tier 2 transition. The transition's
- * ten-questions and recommendation wording is the locked text implemented
- * verbatim and flagged: it contradicts the in-session quiz locks (no
- * question counts; review, never recommendation).
+ * line, placeholder. The Tier 2 transition was rewritten per Brett's
+ * 2026-07-07 ruling: the locked ten-questions/recommendation wording
+ * broke the quiz rules (no question counts; review, never
+ * recommendation), and the quiz rules win.
  */
 
 import { useCallback, useRef, useState } from 'react'
@@ -343,8 +343,8 @@ export function InstantReport() {
 
             <div className="mt-6 border-t border-neutral-950/10 pt-6">
               <p className="text-sm text-neutral-600">
-                Want to see what your specific fix looks like? Ten questions,
-                five minutes, personalized recommendation.
+                Want to see what your specific fix looks like? Five minutes,
+                and you&apos;ll know.
               </p>
               <div className="mt-4">
                 <Button href="/assessment/">
