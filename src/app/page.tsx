@@ -7,7 +7,6 @@ import { FadeIn } from '@/components/FadeIn'
 import { SectionIntro } from '@/components/SectionIntro'
 import { InstantReport } from '@/components/home/PresenceScoreHero'
 import { PricingSection } from '@/components/home/PricingSection'
-import { FAQBlock } from '@/components/ui/FAQBlock'
 import { SchemaGraph } from '@/components/seo/SchemaGraph'
 import { homeSchema, faqItemsForUi } from '@/lib/schema-graph'
 import { Button } from '@/components/Button'
@@ -55,12 +54,9 @@ function AssessmentGateway() {
 }
 
 /* The plan: month-by-month walk of the first six months, on the Tailwind
- * Plus Stats "Timeline" chassis inside a dark band. Replaces the client
- * case-study band per Brett 2026-07-07 (unknown names carry no proof
- * weight on a one-page site; the real objection after pricing is "what
- * happens after I pay"). Content grounded in the package deliverables
- * and the service schema. Solar markers are ambient-on-dark, allowed by
- * the solar rule. */
+ * Plus Stats "Timeline" chassis inside a dark band. Content grounded in
+ * the package deliverables and the service schema. Solar markers are
+ * ambient-on-dark, allowed by the solar rule. */
 const MONTHS = [
   {
     n: 1,
@@ -112,8 +108,7 @@ function SixMonthPlan() {
             What the first six months look like.
           </h2>
           <p className="mt-6 max-w-2xl text-base text-neutral-300">
-            The same arc every build runs. Month by month, in the order it
-            happens.
+            The arc every build runs, from signing to launch.
           </p>
           <div className="mt-12 grid grid-cols-1 gap-x-8 gap-y-10 overflow-hidden sm:grid-cols-2 lg:grid-cols-3">
             {MONTHS.map((m) => (
@@ -156,10 +151,10 @@ function Packages() {
   )
 }
 
-/* The playbooks, on the Tailwind Plus "Split with image" chassis with the
- * covers rendered as CSS 3D paperbacks on dark panels (faint solar glow,
- * ambient-on-dark). The books do two jobs: proof we wrote the method, and
- * a low-commitment first step before the application. */
+/* The playbooks. Per Brett 2026-07-07: each book renders as a stylized
+ * Amazon listing inside a browser-window frame, on the dark glow panel.
+ * Marketplace proof for scrollers who will never click through. Prices
+ * intentionally omitted (Amazon controls them). */
 const BOOKS = [
   {
     slug: 'ai-or-die',
@@ -169,11 +164,10 @@ const BOOKS = [
       'The Small Business Survival Guide to the Artificial Intelligence Revolution',
     narrative:
       "How Google's Knowledge Graph and the AI answer engines decide who gets recognized, and how to install yourself in that layer. The Brand SERP Build runs this system on you.",
-    credit: 'By Mike Partners & Brett K. Moore',
-    format: 'Paperback & Kindle. $17.99 / $9.99.',
+    credit: 'Mike Partners & Brett K. Moore',
     href: 'https://www.amazon.com/dp/B0H343DR1L',
+    asin: 'B0H343DR1L',
     src: '/books/ai-or-die.jpg',
-    spine: '#155e66',
     reverse: false,
   },
   {
@@ -184,64 +178,80 @@ const BOOKS = [
       'A Systems Approach to Quickly Write and Sell a Book as an Executive',
     narrative:
       'How an executive writes a real book from their own voice and sells it before it ships. The Pre-Sold Author Build runs this system on your book.',
-    credit: 'By Mike Partners',
-    format: 'Paperback & Kindle. $17.99 / $9.99.',
+    credit: 'Mike Partners',
     href: 'https://www.amazon.com/dp/B0H2Z1H7DR',
+    asin: 'B0H2Z1H7DR',
     src: '/books/the-book-on-how-to-write-a-book.jpg',
-    spine: '#0a0a0a',
     reverse: true,
   },
 ]
 
-function Book3D({
+function StarIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+  return (
+    <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" {...props}>
+      <path
+        fillRule="evenodd"
+        d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+        clipRule="evenodd"
+      />
+    </svg>
+  )
+}
+
+function ListingWindow({
+  title,
+  subtitle,
+  credit,
+  asin,
   src,
-  alt,
-  spine,
 }: {
+  title: string
+  subtitle: string
+  credit: string
+  asin: string
   src: string
-  alt: string
-  spine: string
 }) {
   return (
-    <div style={{ perspective: '1000px' }}>
-      <div
-        className="relative transition-transform duration-500 [transform:rotateY(-30deg)] [transform-style:preserve-3d] group-hover:[transform:rotateY(-16deg)]"
-        style={{ width: 220, height: 330 }}
-      >
-        {/* Front cover */}
+    <div className="w-full max-w-md overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-white/10 transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.6)]">
+      {/* Browser chrome */}
+      <div className="flex items-center gap-1.5 border-b border-neutral-200 bg-neutral-100 px-4 py-2.5">
+        <span className="size-2.5 rounded-full bg-neutral-300" />
+        <span className="size-2.5 rounded-full bg-neutral-300" />
+        <span className="size-2.5 rounded-full bg-neutral-300" />
+        <span className="ml-3 min-w-0 flex-1 truncate rounded-md bg-white px-3 py-1 font-mono text-[11px] text-neutral-500 ring-1 ring-neutral-950/5">
+          amazon.com/dp/{asin}
+        </span>
+      </div>
+      {/* Listing body */}
+      <div className="flex gap-5 p-5 sm:gap-6 sm:p-6">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={src}
-          alt={alt}
-          width={220}
-          height={330}
-          className="absolute inset-0 h-full w-full rounded-l-xs rounded-r-md object-cover"
-          style={{ transform: 'translateZ(15px)' }}
+          alt={`${title} book cover`}
+          width={107}
+          height={160}
+          className="h-40 w-auto flex-none rounded-sm shadow-md ring-1 ring-neutral-950/10"
         />
-        {/* Page block on the right edge */}
-        <div
-          aria-hidden="true"
-          className="absolute"
-          style={{
-            top: 3,
-            bottom: 3,
-            left: 0,
-            width: 29,
-            transform: 'translateX(205px) rotateY(90deg)',
-            background:
-              'linear-gradient(90deg,#e8e6e1 0%,#fdfdfb 8%,#e8e6e1 16%,#fdfdfb 24%,#e8e6e1 32%,#fdfdfb 40%,#e8e6e1 48%,#fdfdfb 56%,#e8e6e1 64%,#fdfdfb 72%,#e8e6e1 80%,#fdfdfb 88%,#e8e6e1 100%)',
-          }}
-        />
-        {/* Back cover */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 rounded-l-xs rounded-r-md"
-          style={{
-            background: spine,
-            transform: 'translateZ(-15px)',
-            boxShadow: '-12px 0 40px 10px rgba(0,0,0,0.45)',
-          }}
-        />
+        <div className="min-w-0">
+          <p className="text-sm/5 font-semibold text-neutral-950">
+            {title}: {subtitle}
+          </p>
+          <p className="mt-1 text-xs text-neutral-600">by {credit}</p>
+          <div className="mt-2 flex items-center gap-0.5">
+            {[0, 1, 2, 3, 4].map((i) => (
+              <StarIcon key={i} className="size-3.5 text-amber-400" />
+            ))}
+            <span className="ml-1.5 text-xs font-medium text-neutral-600">
+              5.0
+            </span>
+          </div>
+          <p className="mt-3 text-xs font-semibold text-neutral-950">
+            Paperback &amp; Kindle
+          </p>
+          <span className="mt-4 inline-block rounded-full bg-solar px-4 py-1.5 text-xs font-semibold text-neutral-950">
+            View on Amazon
+          </span>
+        </div>
       </div>
     </div>
   )
@@ -269,8 +279,8 @@ function PlaybooksShowcase() {
                   aria-label={`${book.title} on Amazon`}
                   className={
                     book.reverse
-                      ? 'group relative flex items-center justify-center overflow-hidden rounded-3xl bg-neutral-950 px-10 py-14 lg:order-last lg:py-20'
-                      : 'group relative flex items-center justify-center overflow-hidden rounded-3xl bg-neutral-950 px-10 py-14 lg:py-20'
+                      ? 'group relative flex items-center justify-center overflow-hidden rounded-3xl bg-neutral-950 px-6 py-12 sm:px-10 lg:order-last lg:py-16'
+                      : 'group relative flex items-center justify-center overflow-hidden rounded-3xl bg-neutral-950 px-6 py-12 sm:px-10 lg:py-16'
                   }
                 >
                   <div
@@ -281,10 +291,12 @@ function PlaybooksShowcase() {
                         'radial-gradient(ellipse 65% 55% at 50% 62%, rgba(255,221,5,0.16), transparent)',
                     }}
                   />
-                  <Book3D
+                  <ListingWindow
+                    title={book.title}
+                    subtitle={book.subtitle}
+                    credit={book.credit}
+                    asin={book.asin}
                     src={book.src}
-                    alt={`${book.title} book cover`}
-                    spine={book.spine}
                   />
                 </a>
                 <div>
@@ -301,9 +313,11 @@ function PlaybooksShowcase() {
                     {book.narrative}
                   </p>
                   <p className="mt-6 text-sm font-semibold text-neutral-950">
-                    {book.credit}
+                    By {book.credit}
                   </p>
-                  <p className="mt-1 text-sm text-neutral-600">{book.format}</p>
+                  <p className="mt-1 text-sm text-neutral-600">
+                    Paperback &amp; Kindle on Amazon.
+                  </p>
                   <a
                     href={book.href}
                     target="_blank"
@@ -322,22 +336,22 @@ function PlaybooksShowcase() {
   )
 }
 
-/* FAQ, per the copy lock: three concept sections, always visible, with the
- * questions pulled from the same payload the FAQPage JSON-LD emits.
- * Eyebrow reworded per Brett 2026-07-07. Always-open redesign lands in
- * the next pass. */
+/* FAQ: questions AND answers always visible per Brett 2026-07-07 (no
+ * accordions; the answers are the point). Grouped by buyer objection.
+ * Same faqItemsForUi payload the FAQPage JSON-LD emits, so on-page text
+ * and schema stay in lockstep. */
 const FAQ_GROUPS = [
   {
-    heading: 'About the diagnostic.',
-    ids: ['diagnostic-data', 'diagnostic-storage'],
-  },
-  {
-    heading: 'About the builds.',
+    heading: 'How it works',
     ids: ['vs-seo-agency', 'why-6-to-12-months', 'why-reddit'],
   },
   {
-    heading: 'About delivery and results.',
-    ids: ['panel-guarantee', 'what-do-i-own'],
+    heading: 'What you get and keep',
+    ids: ['what-do-i-own', 'panel-guarantee'],
+  },
+  {
+    heading: 'The instant report',
+    ids: ['diagnostic-data', 'diagnostic-storage'],
   },
 ]
 
@@ -351,18 +365,30 @@ function Faq() {
       />
       <Container className="mt-16">
         <FadeIn>
-          <div className="mx-auto max-w-3xl">
+          <div className="space-y-16">
             {FAQ_GROUPS.map((group) => (
-              <div key={group.heading} className="mt-10 first:mt-0">
-                <h3 className="font-display text-sm font-semibold tracking-wider text-neutral-950 uppercase">
+              <div
+                key={group.heading}
+                className="grid grid-cols-1 gap-x-8 gap-y-6 border-t border-neutral-950/10 pt-10 lg:grid-cols-12"
+              >
+                <h3 className="font-display text-lg font-semibold text-neutral-950 lg:col-span-4">
                   {group.heading}
                 </h3>
-                <div className="mt-4">
-                  <FAQBlock items={faqItemsForUi(group.ids)} />
-                </div>
+                <dl className="space-y-10 lg:col-span-8">
+                  {faqItemsForUi(group.ids).map((item) => (
+                    <div key={item.question}>
+                      <dt className="text-base font-semibold text-neutral-950">
+                        {item.question}
+                      </dt>
+                      <dd className="mt-2 text-base/7 text-neutral-600">
+                        {item.answer}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
             ))}
-            <p className="mt-8 text-sm text-neutral-600">
+            <p className="border-t border-neutral-950/10 pt-8 text-sm text-neutral-600">
               More questions?{' '}
               <Link
                 href="/apply/"
@@ -380,8 +406,8 @@ function Faq() {
 }
 
 /* Founders sub-section, per the copy lock: the second and last place
- * names appear on the homepage. The /founders page is live and now in
- * the header nav. */
+ * names appear on the homepage. The /founders page is live and in the
+ * header nav. */
 function FoundersTeaser() {
   return (
     <div id="founders-teaser" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
