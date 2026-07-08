@@ -6,7 +6,7 @@ import { syncAssessmentToGhl } from '../apply/ghl'
 import { BRAND_SERP_BUILD, PRE_SOLD_AUTHOR_BUILD } from '@/content/packages'
 
 /**
- * Google Authority Quiz intake (v0.6.12). Validates the answers, scores the
+ * Google Entity Review intake (v0.6.12). Validates the answers, scores the
  * eight teaching beats server-side, composes the review, logs the
  * submission (console + /tmp JSONL, the WTP exhaust), and syncs to GHL as a
  * contact with segment, WTP, book-intent, and quiz-score tags when
@@ -261,7 +261,7 @@ export async function POST(req: Request) {
     budget: answers.budget,
     recommendation: bookIntent ? 'kp-book-intent' : 'kp',
     noteBody: [
-      'PodcastNetwork.org Google Authority Quiz',
+      'PodcastNetwork.org Google Entity Review',
       `Submitted: ${record.submittedAt}`,
       '',
       `Name: ${fullName}`,

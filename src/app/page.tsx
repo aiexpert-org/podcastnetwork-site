@@ -1,21 +1,19 @@
 import { type Metadata } from 'next'
 import Link from 'next/link'
 
-import caseStudies from '../../data/case-studies.json'
 import { ContactSection } from '@/components/ContactSection'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { SectionIntro } from '@/components/SectionIntro'
 import { InstantReport } from '@/components/home/PresenceScoreHero'
 import { PricingSection } from '@/components/home/PricingSection'
-import { type CaseStudyStatic } from '@/components/case-studies/LiveCaseStudyCard'
 import { FAQBlock } from '@/components/ui/FAQBlock'
 import { SchemaGraph } from '@/components/seo/SchemaGraph'
 import { homeSchema, faqItemsForUi } from '@/lib/schema-graph'
 import { Button } from '@/components/Button'
 
 export const metadata: Metadata = {
-  title: 'PodcastNetwork.org. Google authority, built through your podcast',
+  title: 'PodcastNetwork.org. Answer engine optimization, built through your podcast',
   description:
     'Google and AI have already decided who you are. Run a free instant report of what they actually know, then see the application-only answer engine optimization builds that fix it: the Brand SERP Build and the Pre-Sold Author Build.',
   alternates: { canonical: '/' },
@@ -56,99 +54,12 @@ function AssessmentGateway() {
   )
 }
 
-/* Live case studies as a stepped stats band. NOTE: the 2026-07-05 copy
- * lock's flow omits this band; retained pending explicit word because it
- * is the honest-proof cluster. Months, phases, and milestones come from
- * data/case-studies.json; nothing renders the data cannot back. */
-function CaseStudyBand({ studies }: { studies: CaseStudyStatic[] }) {
-  const featured = studies.find((c) => c.variant === 'featured')
-  const inLaunch = studies
-    .filter((c) => c.variant === 'in-launch')
-    .sort((a, b) => (b.currentMonth ?? 0) - (a.currentMonth ?? 0))
-  const mid = inLaunch[0]
-  const small = inLaunch[1]
-
-  return (
-    <FadeIn>
-      <div className="mx-auto mt-12 flex max-w-2xl flex-col gap-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-end">
-        {small && (
-          <div className="flex flex-col-reverse justify-between gap-x-16 gap-y-8 rounded-2xl bg-neutral-50 p-8 ring-1 ring-neutral-950/5 sm:w-3/4 sm:max-w-md sm:flex-row-reverse sm:items-end lg:w-72 lg:max-w-none lg:flex-none lg:flex-col lg:items-start">
-            <p className="flex-none font-display text-3xl font-medium tracking-tight text-neutral-950">
-              Month {small.currentMonth} of {small.totalMonths}
-            </p>
-            <div className="sm:w-80 sm:shrink lg:w-auto lg:flex-none">
-              <p className="text-lg font-semibold tracking-tight text-neutral-950">
-                {small.title}. {small.currentPhase}.
-              </p>
-              {small.nextMilestone && (
-                <p className="mt-2 text-base/7 text-neutral-600">
-                  Next milestone: {small.nextMilestone.label}. Published by{' '}
-                  {small.publisher}.
-                </p>
-              )}
-            </div>
-          </div>
-        )}
-        {mid && (
-          <div className="flex flex-col-reverse justify-between gap-x-16 gap-y-8 rounded-2xl bg-neutral-950 p-8 sm:flex-row-reverse sm:items-end lg:w-full lg:max-w-sm lg:flex-auto lg:flex-col lg:items-start lg:gap-y-44">
-            <p className="flex-none font-display text-3xl font-medium tracking-tight text-white">
-              Month {mid.currentMonth} of {mid.totalMonths}
-            </p>
-            <div className="sm:w-80 sm:shrink lg:w-auto lg:flex-none">
-              <p className="text-lg font-semibold tracking-tight text-white">
-                {mid.title}. {mid.currentPhase}.
-              </p>
-              {mid.nextMilestone && (
-                <p className="mt-2 text-base/7 text-neutral-400">
-                  Next milestone: {mid.nextMilestone.label}. Published by{' '}
-                  {mid.publisher}.
-                </p>
-              )}
-            </div>
-          </div>
-        )}
-        {featured && (
-          <div className="flex flex-col-reverse justify-between gap-x-16 gap-y-8 rounded-2xl bg-white p-8 shadow-2xl ring-1 ring-neutral-950/10 sm:w-11/12 sm:max-w-xl sm:flex-row-reverse sm:items-end lg:w-full lg:max-w-none lg:flex-auto lg:flex-col lg:items-start lg:gap-y-28">
-            <p className="flex-none font-display text-3xl font-medium tracking-tight text-neutral-950">
-              Month 6 of 6. Launched.
-            </p>
-            <div className="sm:w-80 sm:shrink lg:w-auto lg:flex-none">
-              <p className="text-lg font-semibold tracking-tight text-neutral-950">
-                {featured.title}, published by {featured.publisher} on June
-                24, 2026.
-              </p>
-              <p className="mt-2 text-base/7 text-neutral-600">
-                We ran the six-month arc on ourselves: the podcast, the
-                pre-sell, the finished book. The case study we can prove
-                because we still own it.
-              </p>
-            </div>
-          </div>
-        )}
-      </div>
-    </FadeIn>
-  )
-}
-
-/* Pricing band + proof band. */
-function Packages({ studies }: { studies: CaseStudyStatic[] }) {
+/* Pricing section. The "In the wild" case study band was removed
+ * 2026-07-08 per copy lock flow alignment (Seth pitch). */
+function Packages() {
   return (
     <div id="packages" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
       <PricingSection />
-      <Container>
-        <SectionIntro
-          eyebrow="In the wild"
-          title="Where the current builds stand."
-          className="mt-24"
-        >
-          <p>
-            One finished on our own name and two underway for clients.
-            Months, phases, and next milestones exactly as they stand today.
-            Nothing projected.
-          </p>
-        </SectionIntro>
-        <CaseStudyBand studies={studies} />
-      </Container>
     </div>
   )
 }
@@ -341,13 +252,6 @@ function FoundersTeaser() {
 }
 
 export default function Home() {
-  const studies = Object.values(
-    caseStudies as unknown as Record<string, CaseStudyStatic | string>,
-  ).filter(
-    (c): c is CaseStudyStatic =>
-      typeof c === 'object' && c !== null && 'slug' in c,
-  )
-
   return (
     <>
       <SchemaGraph schema={homeSchema()} />
@@ -379,8 +283,8 @@ export default function Home() {
       {/* Section 2: quiz gateway, dark card (retained; see note above) */}
       <AssessmentGateway />
 
-      {/* Section 3: three-tier pricing + proof band */}
-      <Packages studies={studies} />
+      {/* Section 3: three-tier pricing */}
+      <Packages />
 
       {/* Section 4: two-book showcase */}
       <TwoBookShowcase />

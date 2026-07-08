@@ -52,7 +52,7 @@ export default function OgImage() {
               maxWidth: 900,
             }}
           >
-            Google authority, built through your podcast.
+            Answer engine optimization, built through your podcast.
           </div>
         </div>
       </div>

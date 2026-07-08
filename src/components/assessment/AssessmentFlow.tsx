@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * The Google Authority Quiz (v0.6.12, per Brett): ask-guess-reveal.
+ * The Google Entity Review (v0.6.12, per Brett): ask-guess-reveal.
  *
  * Eight teaching beats, situation questions, an outcomes multi-select that
  * primes one informed WTP question, then contact details (first name, last
@@ -369,7 +369,7 @@ export function AssessmentFlow() {
         className="rounded-3xl bg-white p-8 ring-1 ring-neutral-950/10 sm:p-10"
       >
         <p className="text-sm font-semibold tracking-wide text-neutral-500 uppercase">
-          Your Google Authority Review
+          Your Google Entity Review
         </p>
         <h2 className="mt-3 font-display text-3xl font-medium tracking-tight text-neutral-950">
           {briefing.scoreLine}

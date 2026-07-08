@@ -14,8 +14,8 @@
  *
  * FINAL NAMING LOCK 2026-07-05 (Brett via Dispatch, ends the ping-pong):
  * Ultimate Entity Build (the bundle), Pre-Sold Author Build, Brand SERP
- * Build. Supersedes, in order: Knowledge Panel Install, Google Authority
- * Install (20 minutes), Brand SERP Install, Both Packages Bundle, and The
+ * Build. Supersedes, in order: Knowledge Panel Install, Google Entity Review
+ * (formerly Google Authority Install, 20 minutes), Brand SERP Install, Both Packages Bundle, and The
  * Full Build. The Pre-Sold Author PACKAGE name (locked 2026-06-11) is
  * renamed on the site; vault offering docs and Legacy JV materials still
  * carry Package and need their own pass. The three live GHL products

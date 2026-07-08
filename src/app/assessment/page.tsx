@@ -6,7 +6,7 @@ import { PageIntro } from '@/components/PageIntro'
 import { AssessmentFlow } from '@/components/assessment/AssessmentFlow'
 
 export const metadata: Metadata = {
-  title: 'The Google Authority Quiz',
+  title: 'The Google Entity Review',
   description:
     'Google and AI have already decided who you are. In three minutes, learn how to take control of your Google Knowledge Panel and what AI says about you.',
   alternates: { canonical: '/assessment/' },
