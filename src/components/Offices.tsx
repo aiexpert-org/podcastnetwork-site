@@ -2,7 +2,9 @@ import clsx from 'clsx'
 
 /*
  * Studio's Offices slot, repurposed as the PN contact block. Same API so
- * RootLayout and ContactSection keep their Studio structure.
+ * RootLayout and ContactSection keep their Studio structure. State-only
+ * location per Brett 2026-07-07 (based in South Carolina; no city
+ * published).
  */
 function Office({
   name,
@@ -36,7 +38,7 @@ export function Offices({
   return (
     <ul role="list" {...props}>
       <li>
-        <Office name="Indianapolis" invert={invert}>
+        <Office name="South Carolina" invert={invert}>
           Operating base
           <br />
           United States

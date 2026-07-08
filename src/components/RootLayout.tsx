@@ -43,12 +43,13 @@ function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 }
 
 /* 3-surface architecture (Brett, 2026-07-04 evening): the desktop nav is
- * anchor links into the homepage sections plus the Apply pill. The killed
- * routes redirect to the legacy anchors, which live on as alias spans
- * inside the pricing cards. Labels per the 2026-07-05 final naming lock. */
+ * anchor links into the homepage sections plus the Apply pill. Founders
+ * added 2026-07-07 (the page existed but nothing linked to it). Labels
+ * per the 2026-07-05 final naming lock. */
 const NAV_ITEMS = [
   { title: 'Brand SERP', href: '/#brand-serp-build' },
   { title: 'Pre-Sold Author', href: '/#pre-sold-author-build' },
+  { title: 'Founders', href: '/founders/' },
   { title: 'FAQ', href: '/#faq' },
 ]
 
@@ -166,8 +167,12 @@ function Navigation() {
         </NavigationItem>
       </NavigationRow>
       <NavigationRow>
+        <NavigationItem href="/founders/">Founders</NavigationItem>
         <NavigationItem href="/#faq">FAQ</NavigationItem>
+      </NavigationRow>
+      <NavigationRow>
         <NavigationItem href="/assessment/">The Assessment</NavigationItem>
+        <NavigationItem href="/apply/">Apply</NavigationItem>
       </NavigationRow>
     </nav>
   )
