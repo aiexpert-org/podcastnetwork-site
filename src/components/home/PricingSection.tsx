@@ -27,7 +27,14 @@ import {
  * invisible alias spans. Blurbs amended per Brett's 2026-07-07 rulings:
  * PSA is standalone (no "Brand SERP Build plus"), and the Ultimate blurb
  * no longer repeats the Save $6,000 the chip already carries.
+ *
+ * Per Brett 2026-07-07: the comparison table highlights the Ultimate
+ * Entity Build column (TABLE_HIGHLIGHT below), decoupled from the
+ * featured card treatment, which stays on the Pre-Sold Author Build.
  */
+
+/** Which tier's column the comparison table outlines in solar. */
+const TABLE_HIGHLIGHT: TierKey = 'both'
 
 function CheckIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -373,7 +380,7 @@ export function PricingSection() {
                 <div key={tier.key} className="border-t border-neutral-950/10">
                   <div
                     className={clsx(
-                      tier.featured ? 'border-solar' : 'border-transparent',
+                      tier.key === TABLE_HIGHLIGHT ? 'border-solar' : 'border-transparent',
                       '-mt-px w-72 border-t-2 pt-10 md:w-80',
                     )}
                   >
@@ -397,7 +404,7 @@ export function PricingSection() {
                           />
                           <div
                             className={clsx(
-                              tier.featured
+                              tier.key === TABLE_HIGHLIGHT
                                 ? 'ring-2 ring-solar'
                                 : 'ring-1 ring-neutral-950/10',
                               'relative rounded-lg bg-white shadow-xs sm:rounded-none sm:bg-transparent sm:shadow-none sm:ring-0',
@@ -415,7 +422,7 @@ export function PricingSection() {
                                   <dd className="flex items-center justify-end sm:justify-center sm:px-4">
                                     <Cell
                                       value={feature.tiers[tier.key]}
-                                      featured={tier.featured}
+                                      featured={tier.key === TABLE_HIGHLIGHT}
                                     />
                                   </dd>
                                 </div>
@@ -425,7 +432,7 @@ export function PricingSection() {
                           <div
                             aria-hidden="true"
                             className={clsx(
-                              tier.featured
+                              tier.key === TABLE_HIGHLIGHT
                                 ? 'ring-2 ring-solar'
                                 : 'ring-1 ring-neutral-950/10',
                               'pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 rounded-lg sm:block',
@@ -450,7 +457,7 @@ export function PricingSection() {
                 <div key={tier.key} aria-hidden="true" className="-mt-px">
                   <div
                     className={clsx(
-                      tier.featured ? 'border-solar' : 'border-transparent',
+                      tier.key === TABLE_HIGHLIGHT ? 'border-solar' : 'border-transparent',
                       'border-t-2 pt-10',
                     )}
                   >
@@ -512,7 +519,7 @@ export function PricingSection() {
                                 <span className="relative size-full py-3">
                                   <Cell
                                     value={feature.tiers[tier.key]}
-                                    featured={tier.featured}
+                                    featured={tier.key === TABLE_HIGHLIGHT}
                                   />
                                 </span>
                               </td>
@@ -529,7 +536,7 @@ export function PricingSection() {
                         <div
                           key={tier.key}
                           className={clsx(
-                            tier.featured
+                            tier.key === TABLE_HIGHLIGHT
                               ? 'ring-2 ring-solar'
                               : 'ring-1 ring-neutral-950/10',
                             'rounded-lg',
