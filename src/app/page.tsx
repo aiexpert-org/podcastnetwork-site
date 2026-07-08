@@ -22,8 +22,8 @@ export const metadata: Metadata = {
 }
 
 /* Section 2: the quiz gateway as a dark card directly under the hero.
- * Brett ruled 2026-07-07: keep (alongside the case-study band); both to
- * be drafted into the copy lock post-pitch. */
+ * Brett ruled 2026-07-07: keep (alongside the case-study timeline); both
+ * to be drafted into the copy lock post-pitch. */
 function AssessmentGateway() {
   return (
     <div id="assessment" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
@@ -56,80 +56,66 @@ function AssessmentGateway() {
   )
 }
 
-/* Live case studies as a stepped stats band. Brett ruled 2026-07-07:
- * keep. Months, phases, and milestones come from data/case-studies.json;
- * nothing renders the data cannot back. */
-function CaseStudyBand({ studies }: { studies: CaseStudyStatic[] }) {
+/* Live case studies as a timeline, adapted from the Tailwind Plus Stats
+ * "Timeline" section (harvested from Brett's Plus session 2026-07-07).
+ * Months, phases, and milestones come from data/case-studies.json;
+ * nothing renders the data cannot back. Date accents stay ink on white
+ * per the solar rule (solar is CTA-only on white surfaces). */
+function CaseStudyTimeline({ studies }: { studies: CaseStudyStatic[] }) {
   const featured = studies.find((c) => c.variant === 'featured')
   const inLaunch = studies
     .filter((c) => c.variant === 'in-launch')
-    .sort((a, b) => (b.currentMonth ?? 0) - (a.currentMonth ?? 0))
-  const mid = inLaunch[0]
-  const small = inLaunch[1]
+    .sort((a, b) => (a.currentMonth ?? 0) - (b.currentMonth ?? 0))
+
+  const items = [
+    ...inLaunch.map((s) => ({
+      key: s.slug,
+      marker: `Month ${s.currentMonth} of ${s.totalMonths}`,
+      title: `${s.title}. ${s.currentPhase}.`,
+      description: s.nextMilestone
+        ? `Next milestone: ${s.nextMilestone.label}. Published by ${s.publisher}.`
+        : `Published by ${s.publisher}.`,
+    })),
+    ...(featured
+      ? [
+          {
+            key: featured.slug,
+            marker: 'Month 6 of 6. Launched.',
+            title: `${featured.title}, published by ${featured.publisher} on June 24, 2026.`,
+            description:
+              'We ran the six-month arc on ourselves: the podcast, the pre-sell, the finished book. The case study we can prove because we still own it.',
+          },
+        ]
+      : []),
+  ]
 
   return (
     <FadeIn>
-      <div className="mx-auto mt-12 flex max-w-2xl flex-col gap-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-end">
-        {small && (
-          <div className="flex flex-col-reverse justify-between gap-x-16 gap-y-8 rounded-2xl bg-neutral-50 p-8 ring-1 ring-neutral-950/5 sm:w-3/4 sm:max-w-md sm:flex-row-reverse sm:items-end lg:w-72 lg:max-w-none lg:flex-none lg:flex-col lg:items-start">
-            <p className="flex-none font-display text-3xl font-medium tracking-tight text-neutral-950">
-              Month {small.currentMonth} of {small.totalMonths}
-            </p>
-            <div className="sm:w-80 sm:shrink lg:w-auto lg:flex-none">
-              <p className="text-lg font-semibold tracking-tight text-neutral-950">
-                {small.title}. {small.currentPhase}.
-              </p>
-              {small.nextMilestone && (
-                <p className="mt-2 text-base/7 text-neutral-600">
-                  Next milestone: {small.nextMilestone.label}. Published by{' '}
-                  {small.publisher}.
-                </p>
-              )}
+      <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 overflow-hidden lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        {items.map((item) => (
+          <div key={item.key}>
+            <div className="flex items-center text-sm/6 font-semibold text-neutral-950">
+              <svg viewBox="0 0 4 4" aria-hidden="true" className="mr-4 size-1 flex-none">
+                <circle r={2} cx={2} cy={2} fill="currentColor" />
+              </svg>
+              {item.marker}
+              <div
+                aria-hidden="true"
+                className="absolute -ml-2 h-px w-screen -translate-x-full bg-neutral-950/10 sm:-ml-4 lg:static lg:-mr-6 lg:ml-8 lg:w-auto lg:flex-auto lg:translate-x-0"
+              />
             </div>
-          </div>
-        )}
-        {mid && (
-          <div className="flex flex-col-reverse justify-between gap-x-16 gap-y-8 rounded-2xl bg-neutral-950 p-8 sm:flex-row-reverse sm:items-end lg:w-full lg:max-w-sm lg:flex-auto lg:flex-col lg:items-start lg:gap-y-44">
-            <p className="flex-none font-display text-3xl font-medium tracking-tight text-white">
-              Month {mid.currentMonth} of {mid.totalMonths}
+            <p className="mt-6 text-lg/8 font-semibold tracking-tight text-neutral-950">
+              {item.title}
             </p>
-            <div className="sm:w-80 sm:shrink lg:w-auto lg:flex-none">
-              <p className="text-lg font-semibold tracking-tight text-white">
-                {mid.title}. {mid.currentPhase}.
-              </p>
-              {mid.nextMilestone && (
-                <p className="mt-2 text-base/7 text-neutral-400">
-                  Next milestone: {mid.nextMilestone.label}. Published by{' '}
-                  {mid.publisher}.
-                </p>
-              )}
-            </div>
+            <p className="mt-1 text-base/7 text-neutral-600">{item.description}</p>
           </div>
-        )}
-        {featured && (
-          <div className="flex flex-col-reverse justify-between gap-x-16 gap-y-8 rounded-2xl bg-white p-8 shadow-2xl ring-1 ring-neutral-950/10 sm:w-11/12 sm:max-w-xl sm:flex-row-reverse sm:items-end lg:w-full lg:max-w-none lg:flex-auto lg:flex-col lg:items-start lg:gap-y-28">
-            <p className="flex-none font-display text-3xl font-medium tracking-tight text-neutral-950">
-              Month 6 of 6. Launched.
-            </p>
-            <div className="sm:w-80 sm:shrink lg:w-auto lg:flex-none">
-              <p className="text-lg font-semibold tracking-tight text-neutral-950">
-                {featured.title}, published by {featured.publisher} on June
-                24, 2026.
-              </p>
-              <p className="mt-2 text-base/7 text-neutral-600">
-                We ran the six-month arc on ourselves: the podcast, the
-                pre-sell, the finished book. The case study we can prove
-                because we still own it.
-              </p>
-            </div>
-          </div>
-        )}
+        ))}
       </div>
     </FadeIn>
   )
 }
 
-/* Pricing band + proof band. */
+/* Pricing band + proof timeline. */
 function Packages({ studies }: { studies: CaseStudyStatic[] }) {
   return (
     <div id="packages" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
@@ -146,105 +132,111 @@ function Packages({ studies }: { studies: CaseStudyStatic[] }) {
             Nothing projected.
           </p>
         </SectionIntro>
-        <CaseStudyBand studies={studies} />
+        <CaseStudyTimeline studies={studies} />
       </Container>
     </div>
   )
 }
 
-/* Two-book showcase, per the 2026-07-05 copy lock: the one place on the
- * homepage where names appear as authors. Covers are the full-resolution
- * flat covers (Brett-approved art), served locally from public/books,
- * committed byte-perfect via the browser upload path. */
-function TwoBookShowcase() {
+/* The playbooks, adapted from the Tailwind Plus "Split with image"
+ * content section (harvested from Brett's Plus session 2026-07-07).
+ * Reframed per Brett: the books are the published systems behind the
+ * builds and the way to study the method before applying. Whole cover
+ * panel links to Amazon. Covers served locally from public/books. */
+const BOOKS = [
+  {
+    slug: 'ai-or-die',
+    eyebrow: 'The Brand SERP Build playbook',
+    title: 'AI or Die',
+    subtitle:
+      'The Small Business Survival Guide to the Artificial Intelligence Revolution',
+    narrative:
+      "How Google's Knowledge Graph and the AI answer engines decide who gets recognized, and how to install yourself in that layer. The Brand SERP Build runs this system on you.",
+    credit: 'By Mike Partners & Brett K. Moore',
+    format: 'Paperback & Kindle. $17.99 / $9.99.',
+    href: 'https://www.amazon.com/dp/B0H343DR1L',
+    src: '/books/ai-or-die.jpg',
+    width: 1707,
+    height: 2560,
+    reverse: false,
+  },
+  {
+    slug: 'the-book-on-how-to-write-a-book',
+    eyebrow: 'The Pre-Sold Author Build playbook',
+    title: 'The Book on How to Write a Book',
+    subtitle: 'A Systems Approach to Quickly Write and Sell a Book as an Executive',
+    narrative:
+      'How an executive writes a real book from their own voice and sells it before it ships. The Pre-Sold Author Build runs this system on your book.',
+    credit: 'By Mike Partners',
+    format: 'Paperback & Kindle. $17.99 / $9.99.',
+    href: 'https://www.amazon.com/dp/B0H2Z1H7DR',
+    src: '/books/the-book-on-how-to-write-a-book.jpg',
+    width: 1716,
+    height: 2560,
+    reverse: true,
+  },
+]
+
+function PlaybooksShowcase() {
   return (
     <div id="books" className="mt-24 scroll-mt-24 sm:mt-32 lg:mt-40">
-      <SectionIntro eyebrow="We wrote the books" title="Two builds. Two books.">
+      <SectionIntro eyebrow="The playbooks" title="We wrote the systems we sell.">
         <p>
-          Brand SERP Build is the AI-visibility system from AI or Die,
-          installed on you. Pre-Sold Author Build is the write-and-presell
-          system from The Book on How to Write a Book, installed on your
-          book.
+          Every build follows a system we published first. Read either book
+          to see the full method before you apply.
         </p>
       </SectionIntro>
       <Container className="mt-16">
-        <FadeIn>
-          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 sm:grid-cols-2">
-            <div className="flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-neutral-950/10">
-              <div className="flex items-center justify-center bg-neutral-50 p-10">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/books/ai-or-die.jpg"
-                  alt="AI or Die book cover"
-                  width={1707}
-                  height={2560}
-                  className="h-72 w-auto rounded-md shadow-xl ring-1 ring-neutral-950/10"
-                />
-              </div>
-              <div className="flex flex-1 flex-col p-8">
-                <h3 className="font-display text-xl font-medium tracking-tight text-neutral-950">
-                  AI or Die
-                </h3>
-                <p className="mt-1 text-sm text-neutral-600">
-                  The Small Business Survival Guide to the Artificial
-                  Intelligence Revolution
-                </p>
-                <p className="mt-3 text-sm font-semibold text-neutral-950">
-                  By Mike Partners &amp; Brett K. Moore
-                </p>
-                <p className="mt-1 text-sm text-neutral-600">
-                  Paperback &amp; Kindle. $17.99 / $9.99.
-                </p>
+        <div className="space-y-16 lg:space-y-24">
+          {BOOKS.map((book) => (
+            <FadeIn key={book.slug}>
+              <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
                 <a
-                  href="https://www.amazon.com/dp/B0H343DR1L"
+                  href={book.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-auto pt-6 text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
+                  aria-label={`${book.title} on Amazon`}
+                  className={
+                    book.reverse
+                      ? 'group flex items-center justify-center rounded-3xl bg-neutral-50 p-10 ring-1 ring-neutral-950/5 lg:order-last lg:p-16'
+                      : 'group flex items-center justify-center rounded-3xl bg-neutral-50 p-10 ring-1 ring-neutral-950/5 lg:p-16'
+                  }
                 >
-                  Buy on Amazon <span aria-hidden="true">&rarr;</span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={book.src}
+                    alt={`${book.title} book cover`}
+                    width={book.width}
+                    height={book.height}
+                    className="h-80 w-auto rounded-md shadow-xl ring-1 ring-neutral-950/10 transition duration-300 group-hover:-translate-y-1 group-hover:shadow-2xl"
+                  />
                 </a>
+                <div>
+                  <p className="text-sm font-semibold tracking-wider text-neutral-500 uppercase">
+                    {book.eyebrow}
+                  </p>
+                  <h3 className="mt-3 font-display text-2xl font-medium tracking-tight text-neutral-950 sm:text-3xl">
+                    {book.title}
+                  </h3>
+                  <p className="mt-1 text-base text-neutral-600">{book.subtitle}</p>
+                  <p className="mt-6 text-base/7 text-neutral-600">{book.narrative}</p>
+                  <p className="mt-6 text-sm font-semibold text-neutral-950">
+                    {book.credit}
+                  </p>
+                  <p className="mt-1 text-sm text-neutral-600">{book.format}</p>
+                  <a
+                    href={book.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 inline-block text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
+                  >
+                    Read it on Amazon <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
               </div>
-            </div>
-            <div className="flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-neutral-950/10">
-              <div className="flex items-center justify-center bg-neutral-50 p-10">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/books/the-book-on-how-to-write-a-book.jpg"
-                  alt="The Book on How to Write a Book cover"
-                  width={1716}
-                  height={2560}
-                  className="h-72 w-auto rounded-md shadow-xl ring-1 ring-neutral-950/10"
-                />
-              </div>
-              <div className="flex flex-1 flex-col p-8">
-                <h3 className="font-display text-xl font-medium tracking-tight text-neutral-950">
-                  The Book on How to Write a Book
-                </h3>
-                <p className="mt-1 text-sm text-neutral-600">
-                  A Systems Approach to Quickly Write and Sell a Book as an
-                  Executive
-                </p>
-                <p className="mt-3 text-sm font-semibold text-neutral-950">
-                  By Mike Partners
-                </p>
-                <p className="mt-1 text-sm text-neutral-600">
-                  Paperback &amp; Kindle. $17.99 / $9.99.
-                </p>
-                <a
-                  href="https://www.amazon.com/dp/B0H2Z1H7DR"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-auto pt-6 text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
-                >
-                  Buy on Amazon <span aria-hidden="true">&rarr;</span>
-                </a>
-                <p className="mt-4 text-xs text-neutral-500">
-                  30+ authors published using this system.
-                </p>
-              </div>
-            </div>
-          </div>
-        </FadeIn>
+            </FadeIn>
+          ))}
+        </div>
       </Container>
     </div>
   )
@@ -353,8 +345,8 @@ export default function Home() {
     <>
       <SchemaGraph schema={homeSchema()} />
 
-      {/* Section 1: hero + Tier 1 Instant Report + trust bar. H1 locked;
-          subhead and trust bar per the 2026-07-05 copy lock. */}
+      {/* Section 1: hero + Tier 1 Instant Report. Eyebrow + brand-agnostic
+          subhead per Brett; no trust bar (removed 2026-07-07). */}
       <div id="report" className="scroll-mt-24">
         <Container className="mt-24 sm:mt-32 md:mt-40">
           {/* Transform-only entrance: this block holds the LCP headline, so it
@@ -380,11 +372,11 @@ export default function Home() {
       {/* Section 2: quiz gateway, dark card (kept per Brett 2026-07-07) */}
       <AssessmentGateway />
 
-      {/* Section 3: three-tier pricing + proof band */}
+      {/* Section 3: three-tier pricing + proof timeline */}
       <Packages studies={studies} />
 
-      {/* Section 4: two-book showcase */}
-      <TwoBookShowcase />
+      {/* Section 4: the playbooks */}
+      <PlaybooksShowcase />
 
       {/* Section 5: FAQ */}
       <Faq />

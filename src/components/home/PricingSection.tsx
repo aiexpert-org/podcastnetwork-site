@@ -25,8 +25,8 @@ import {
  * ($36,000, featured middle: white panel, solar ring, centered glow),
  * Brand SERP Build ($24,000, right, standard). Old anchors live on as
  * invisible alias spans. Blurbs amended per Brett's 2026-07-07 rulings:
- * PSA is standalone (no "Brand SERP Build plus"), and the Ultimate blurb
- * no longer repeats the Save $6,000 the chip already carries.
+ * PSA is standalone, the Ultimate blurb no longer repeats the chip's
+ * Save $6,000, and the 30+ authors claim is removed site-wide.
  *
  * Per Brett 2026-07-07: the comparison table highlights the Ultimate
  * Entity Build column (TABLE_HIGHLIGHT below), decoupled from the
@@ -97,7 +97,7 @@ const TIERS: Tier[] = [
     anchorId: 'pre-sold-author-build',
     legacyAnchorId: 'pre-sold-author',
     name: PRE_SOLD_AUTHOR_BUILD.name,
-    description: 'The book that sells itself before it ships. Manuscript, launch, and pre-sale. 30+ authors already published.',
+    description: 'The book that sells itself before it ships. Manuscript, launch, and pre-sale.',
     monthly: PRE_SOLD_AUTHOR_BUILD.payment.monthlyDisplay,
     upfront: PRE_SOLD_AUTHOR_BUILD.priceDisplay,
     monthlyNote: `12 payments, ${PRE_SOLD_AUTHOR_BUILD.priceDisplay} total`,
