@@ -15,7 +15,7 @@ import foundersData from '../../../data/founders.json'
 export const metadata: Metadata = {
   title: 'Founders. We ran the method on ourselves first',
   description:
-    'Brett K. Moore and Mike Partners, co-founders of PodcastNetwork.org. Co-authors of AI or Die. The entity visibility method tested on themselves before anyone else.',
+    'Brett K Moore and Mike Partners, co-founders of PodcastNetwork.org. Co-authors of AI or Die. The entity visibility method tested on themselves before anyone else.',
   alternates: { canonical: '/founders/' },
 }
 
@@ -32,7 +32,7 @@ export default function FoundersPage() {
         title="We ran the method on ourselves first."
       >
         <p>
-          We are Brett K. Moore and Mike Partners, co-founders of
+          We are Brett K Moore and Mike Partners, co-founders of
           PodcastNetwork.org. Fifty-fifty. That split was locked on day one and
           it has not moved. We co-authored AI or Die, launched it through our
           own sequence, and built the machine that pre-sold it. Then we
