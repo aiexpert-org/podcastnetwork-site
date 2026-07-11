@@ -9,9 +9,9 @@ import { SchemaGraph } from '@/components/seo/SchemaGraph'
 import { brettProfileSchema } from '@/lib/schema-graph'
 
 export const metadata: Metadata = {
-  title: 'Brett K. Moore. Co-founder and CEO of PodcastNetwork.org',
+  title: 'Brett K Moore. Co-founder and CEO of PodcastNetwork.org',
   description:
-    'Brett K. Moore is the co-founder and CEO of PodcastNetwork.org, co-author of AI or Die, and a multi-business operator building entity visibility infrastructure for executives and authors.',
+    'Brett K Moore is the co-founder and CEO of PodcastNetwork.org, co-author of AI or Die, and a multi-business operator building entity visibility infrastructure for executives and authors.',
   alternates: { canonical: '/founders/brett-k-moore/' },
 }
 
@@ -22,7 +22,7 @@ export default function BrettPage() {
 
       <PageIntro
         eyebrow="Co-founder + CEO"
-        title="Brett K. Moore"
+        title="Brett K Moore"
       >
         <p>
           Co-founder and CEO of PodcastNetwork.org. Co-author of{' '}
