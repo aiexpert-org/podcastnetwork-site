@@ -12,7 +12,7 @@ import {
   recordUpstreamFailure,
   recordUpstreamSuccess,
   shouldSkipUpstream,
-} from '@/lib/server-cache-shim'
+} from '@/lib/upstream-guard'
 import { extractStructuredData } from '../schema-scan/extract'
 import { fetchGoogleKg, fetchWikidata } from '../entity-lookup/sources'
 
