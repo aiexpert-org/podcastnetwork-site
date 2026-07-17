@@ -1,5 +1,5 @@
 import { type Metadata } from 'next'
-import { Playfair_Display, JetBrains_Mono } from 'next/font/google'
+import { Playfair_Display, JetBrains_Mono, Fraunces, Inter, IBM_Plex_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
 import { Analytics } from '@vercel/analytics/react'
 
@@ -71,6 +71,34 @@ const jetbrains = JetBrains_Mono({
   preload: false,
 })
 
+/* Client Portal fonts (v0.2). Loaded here so the CSS variables register at
+ * <html>, exposed to Tailwind via src/styles/portal-tokens.css. Skipped on
+ * marketing preload because portal traffic is a small fraction of hits. */
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-fraunces',
+  display: 'swap',
+  preload: false,
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-inter',
+  display: 'swap',
+  preload: false,
+})
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-ibm-plex-mono',
+  display: 'swap',
+  preload: false,
+})
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -107,7 +135,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      className={`h-full bg-white text-base antialiased ${azoSans.variable} ${playfair.variable} ${jetbrains.variable}`}
+      className={`h-full bg-white text-base antialiased ${azoSans.variable} ${playfair.variable} ${jetbrains.variable} ${fraunces.variable} ${inter.variable} ${ibmPlexMono.variable}`}
     >
       <body className="flex min-h-full flex-col">
         <RootLayout>{children}</RootLayout>

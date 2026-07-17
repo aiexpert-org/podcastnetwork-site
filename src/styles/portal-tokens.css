@@ -1,0 +1,113 @@
+/*
+ * Client Portal tokens (v0.2).
+ *
+ * Palette: Charcoal + Warm Cream + Warm Amber. Deliberately warmer + more
+ * editorial than the marketing chrome so the portal reads as a
+ * differentiated fulfillment surface. Portal-only — marketing routes
+ * keep the Editorial Premium palette registered in tailwind.css.
+ *
+ * Fonts: Fraunces (serif display), Inter (sans body), IBM Plex Mono
+ * (mono). Loaded via next/font in src/app/layout.tsx and exposed here as
+ * --font-portal-serif / --font-portal-sans / --font-portal-mono.
+ *
+ * Tokens register via @theme so Tailwind v4 generates utilities like
+ * bg-portal-cream, text-portal-ink, font-portal-serif. The .portal-scope
+ * class inherits the sans body font by default and namespaces any typography
+ * overrides so the portal cannot bleed into marketing pages.
+ */
+
+@theme static {
+  --color-portal-cream: #f6f1e8;
+  --color-portal-ink: #1a1a1a;
+  --color-portal-ink-soft: #2b2b2b;
+  --color-portal-amber: #c9871a;
+  --color-portal-amber-tint: #f4e4c8;
+  --color-portal-muted: #6b6357;
+  --color-portal-line: #e8e0d0;
+  --color-portal-surface: #ffffff;
+  --color-portal-surface-raised: #fbf7ef;
+
+  --font-portal-serif:
+    var(--font-fraunces), 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --font-portal-sans:
+    var(--font-inter), 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-portal-mono:
+    var(--font-ibm-plex-mono), 'IBM Plex Mono', 'JetBrains Mono', 'SF Mono',
+    monospace;
+}
+
+.portal-scope {
+  font-family: var(--font-portal-sans);
+  color: var(--color-portal-ink);
+  background-color: var(--color-portal-cream);
+  font-feature-settings: 'ss01', 'cv02', 'cv11';
+}
+
+.portal-scope h1,
+.portal-scope h2,
+.portal-scope h3 {
+  font-family: var(--font-portal-serif);
+  letter-spacing: -0.015em;
+}
+
+.portal-scope :focus-visible {
+  outline: 2px solid var(--color-portal-amber);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.portal-scope [data-mono],
+.portal-scope code {
+  font-family: var(--font-portal-mono);
+  font-feature-settings: 'zero', 'tnum';
+}
+
+/* Prose block for the MDX-rendered sections (voice corpus, learn stubs).
+ * Scopes reset so Studio's typography.css cannot leak in on portal routes. */
+.portal-scope .prose-portal :where(h2) {
+  font-family: var(--font-portal-serif);
+  font-size: 1.5rem;
+  line-height: 1.3;
+  margin: 2rem 0 0.75rem;
+  color: var(--color-portal-ink);
+}
+.portal-scope .prose-portal :where(h3) {
+  font-family: var(--font-portal-serif);
+  font-size: 1.25rem;
+  line-height: 1.35;
+  margin: 1.5rem 0 0.5rem;
+  color: var(--color-portal-ink);
+}
+.portal-scope .prose-portal :where(p) {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-portal-ink-soft);
+  margin: 0 0 1rem;
+  text-wrap: pretty;
+  max-width: 68ch;
+}
+.portal-scope .prose-portal :where(ul, ol) {
+  padding-left: 1.25rem;
+  margin: 0 0 1.25rem;
+  color: var(--color-portal-ink-soft);
+}
+.portal-scope .prose-portal :where(li) {
+  margin: 0.375rem 0;
+  line-height: 1.6;
+}
+.portal-scope .prose-portal :where(strong) {
+  color: var(--color-portal-ink);
+}
+.portal-scope .prose-portal :where(a) {
+  color: var(--color-portal-amber);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.portal-scope .prose-portal :where(blockquote) {
+  border-left: 3px solid var(--color-portal-amber);
+  padding: 0.5rem 0 0.5rem 1.25rem;
+  margin: 1.5rem 0;
+  font-family: var(--font-portal-serif);
+  font-style: italic;
+  color: var(--color-portal-ink);
+}

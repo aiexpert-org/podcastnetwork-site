@@ -1,0 +1,76 @@
+{
+  "archetypes": [
+    {
+      "id": "concierge",
+      "name": "The Concierge",
+      "shortDescription": "The person who anticipates before anyone asks.",
+      "keyStrength": "Making other people feel taken care of.",
+      "communicationStyle": "Warm, specific, personally tailored. Signals attention to detail through named people, places, and preferences.",
+      "watchOut": "Can under-communicate their own needs.",
+      "worksWellWith": ["strategist", "visionary"]
+    },
+    {
+      "id": "strategist",
+      "name": "The Strategist",
+      "shortDescription": "The pattern hunter who sees three moves ahead.",
+      "keyStrength": "Compounding today's decisions into a defensible position.",
+      "communicationStyle": "Framework-first, structured, long-view. Speaks in tradeoffs, unit economics, and second-order effects.",
+      "watchOut": "Can under-index on the emotional read of a room.",
+      "worksWellWith": ["analyst", "producer"]
+    },
+    {
+      "id": "analyst",
+      "name": "The Analyst",
+      "shortDescription": "The truth-checker who wants the model, not the story.",
+      "keyStrength": "Landing a decision on the strongest available evidence.",
+      "communicationStyle": "Precise, sourced, quantified. Prefers a table to a paragraph.",
+      "watchOut": "Can slow a decision that a rougher signal could carry.",
+      "worksWellWith": ["strategist", "producer"]
+    },
+    {
+      "id": "visionary",
+      "name": "The Visionary",
+      "shortDescription": "The one who describes a future the rest of us then help build.",
+      "keyStrength": "Making a bigger version of the plan feel obvious.",
+      "communicationStyle": "Metaphor-heavy, generative, energetic. Paints a picture that people want to stand inside.",
+      "watchOut": "Can float above the operational reality of shipping.",
+      "worksWellWith": ["producer", "strategist"]
+    },
+    {
+      "id": "advocate",
+      "name": "The Advocate",
+      "shortDescription": "The one who carries a mission into every room they enter.",
+      "keyStrength": "Turning a cause into commitment from others.",
+      "communicationStyle": "Convicted, specific about who is being served, tied to outcomes that matter beyond the balance sheet.",
+      "watchOut": "Can read as strident when the audience is not yet convinced.",
+      "worksWellWith": ["storyteller", "guide"]
+    },
+    {
+      "id": "storyteller",
+      "name": "The Storyteller",
+      "shortDescription": "The one who makes the point land through scene, character, and voice.",
+      "keyStrength": "Turning an argument into an experience the audience remembers.",
+      "communicationStyle": "Concrete, sensory, human. Reaches for the specific story over the general claim.",
+      "watchOut": "Can bury the ask under the narrative.",
+      "worksWellWith": ["advocate", "visionary"]
+    },
+    {
+      "id": "producer",
+      "name": "The Producer",
+      "shortDescription": "The one who moves projects from talk into shipped work.",
+      "keyStrength": "Getting a real thing into real hands on a real date.",
+      "communicationStyle": "Action-first, deadline-anchored, concise. Names the next step in every message.",
+      "watchOut": "Can ship past a thoughtful edit.",
+      "worksWellWith": ["strategist", "analyst"]
+    },
+    {
+      "id": "guide",
+      "name": "The Guide",
+      "shortDescription": "The one who teaches the shape of the problem so others can solve it.",
+      "keyStrength": "Building capability in the people around you.",
+      "communicationStyle": "Patient, principle-led, question-heavy. Draws the map instead of walking the path.",
+      "watchOut": "Can over-teach when the room needs a decision.",
+      "worksWellWith": ["advocate", "storyteller"]
+    }
+  ]
+}

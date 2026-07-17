@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import './base.css';
 @import './typography.css' layer(components);
+@import './portal-tokens.css';
 
 /*
  * PodcastNetwork.org v0.6 — Studio chassis with the Editorial Premium palette
@@ -11,6 +12,10 @@
  * Ink text, Slate muted) so every Studio component picks up the palette
  * without per-component edits. Source of truth:
  * rebuild-2026-07-01/path-b-v0.5/03-cinematic-dark-palette-override.md
+ *
+ * The Client Portal (added v0.2 on 2026-07-17) sits under its own token set
+ * imported above from ./portal-tokens.css so portal routes read the Charcoal +
+ * Warm Cream + Warm Amber palette without touching marketing tokens.
  */
 
 /* `static` forces every token to emit as a :root custom property; the entity
