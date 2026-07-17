@@ -2,7 +2,23 @@
  * The three data sources behind the You Search demo. Each adapter returns a
  * normalized SourceResult or null (null = no data / error; the fan-out never
  * fails the request because one source failed).
+ *
+ * fetchGoogleKg and fetchSerpApi are wrapped in the upstream-guard circuit
+ * breaker so a repeated key or quota failure stops hammering the API and
+ * writes a structured log line naming the actual failure kind. See
+ * src/lib/upstream-guard.ts for the breaker + last-good semantics.
  */
+
+import {
+  classifyUpstreamFailure,
+  getLastGood,
+  logUpstreamFailure,
+  peekResponseSnippet,
+  putLastGood,
+  recordUpstreamFailure,
+  recordUpstreamSuccess,
+  shouldSkipUpstream,
+} from "@/lib/upstream-guard";
 
 export type SourceEntity = {
   name: string;
@@ -31,16 +47,36 @@ function mapKgType(types: string[] | string | undefined): "Person" | "Organizati
 
 export async function fetchSerpApi(q: string): Promise<SourceResult> {
   const key = process.env.SERPAPI_KEY;
-  if (!key) return { entity: null, status: "error" };
+  if (!key) {
+    logUpstreamFailure("serpapi", q, "missing-key", {
+      message: "SERPAPI_KEY not set in this environment",
+    });
+    return { entity: null, status: "error" };
+  }
 
+  if (shouldSkipUpstream("serpapi", q)) {
+    const cached = getLastGood<SourceResult>("serpapi", q);
+    if (cached) return cached;
+    return { entity: null, status: "error" };
+  }
+
+  let res: Response | null = null;
   try {
     const url = `https://serpapi.com/search.json?engine=google&q=${encodeURIComponent(q)}&api_key=${key}`;
-    let res = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS) });
+    res = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS) });
     if (res.status === 429) {
       await new Promise((r) => setTimeout(r, 500));
       res = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS) });
     }
-    if (!res.ok) return { entity: null, status: "error" };
+    if (!res.ok) {
+      const kind = classifyUpstreamFailure(res, null);
+      const snippet = await peekResponseSnippet(res);
+      logUpstreamFailure("serpapi", q, kind, { status: res.status, snippet });
+      recordUpstreamFailure("serpapi", q, kind);
+      const cached = getLastGood<SourceResult>("serpapi", q);
+      if (cached) return cached;
+      return { entity: null, status: "error" };
+    }
 
     const json = (await res.json()) as {
       knowledge_graph?: {
@@ -53,9 +89,15 @@ export async function fetchSerpApi(q: string): Promise<SourceResult> {
       };
     };
     const kg = json.knowledge_graph;
-    if (!kg?.title) return { entity: null, status: "no-data" };
+    if (!kg?.title) {
+      // No-data is a valid answer, not an outage. Do not trip the breaker.
+      recordUpstreamSuccess("serpapi", q);
+      const result: SourceResult = { entity: null, status: "no-data" };
+      putLastGood("serpapi", q, result);
+      return result;
+    }
 
-    return {
+    const result: SourceResult = {
       status: "ok",
       entity: {
         name: kg.title,
@@ -68,7 +110,18 @@ export async function fetchSerpApi(q: string): Promise<SourceResult> {
           .map((p) => ({ label: p.name ?? "Profile", url: p.link! })),
       },
     };
-  } catch {
+    recordUpstreamSuccess("serpapi", q);
+    putLastGood("serpapi", q, result);
+    return result;
+  } catch (err) {
+    const kind = classifyUpstreamFailure(res, err);
+    logUpstreamFailure("serpapi", q, kind, {
+      status: res?.status,
+      message: err instanceof Error ? err.message : String(err),
+    });
+    recordUpstreamFailure("serpapi", q, kind);
+    const cached = getLastGood<SourceResult>("serpapi", q);
+    if (cached) return cached;
     return { entity: null, status: "error" };
   }
 }
@@ -176,14 +229,37 @@ export async function fetchWikidata(q: string): Promise<SourceResult> {
 
 export async function fetchGoogleKg(q: string): Promise<SourceResult> {
   const key = process.env.GOOGLE_KG_API_KEY;
-  if (!key) return { entity: null, status: "error" };
+  if (!key) {
+    logUpstreamFailure("google-kg", q, "missing-key", {
+      message: "GOOGLE_KG_API_KEY not set in this environment",
+    });
+    return { entity: null, status: "error" };
+  }
 
+  if (shouldSkipUpstream("google-kg", q)) {
+    const cached = getLastGood<SourceResult>("google-kg", q);
+    if (cached) return cached;
+    return { entity: null, status: "error" };
+  }
+
+  let res: Response | null = null;
   try {
-    const res = await fetch(
+    res = await fetch(
       `https://kgsearch.googleapis.com/v1/entities:search?query=${encodeURIComponent(q)}&key=${key}&limit=3`,
       { signal: AbortSignal.timeout(TIMEOUT_MS) },
     );
-    if (!res.ok) return { entity: null, status: "error" };
+    if (!res.ok) {
+      const kind = classifyUpstreamFailure(res, null);
+      const snippet = await peekResponseSnippet(res);
+      logUpstreamFailure("google-kg", q, kind, {
+        status: res.status,
+        snippet,
+      });
+      recordUpstreamFailure("google-kg", q, kind);
+      const cached = getLastGood<SourceResult>("google-kg", q);
+      if (cached) return cached;
+      return { entity: null, status: "error" };
+    }
     const json = (await res.json()) as {
       itemListElement?: {
         result?: {
@@ -196,14 +272,20 @@ export async function fetchGoogleKg(q: string): Promise<SourceResult> {
       }[];
     };
     const result = json.itemListElement?.[0]?.result;
-    if (!result?.name) return { entity: null, status: "no-data" };
+    if (!result?.name) {
+      // No entity for that name is a valid answer, not an outage.
+      recordUpstreamSuccess("google-kg", q);
+      const payload: SourceResult = { entity: null, status: "no-data" };
+      putLastGood("google-kg", q, payload);
+      return payload;
+    }
 
     const sameAs: { label: string; url: string }[] = [];
     if (result.detailedDescription?.url) {
       sameAs.push({ label: "Wikipedia", url: result.detailedDescription.url });
     }
 
-    return {
+    const payload: SourceResult = {
       status: "ok",
       entity: {
         name: result.name,
@@ -214,7 +296,18 @@ export async function fetchGoogleKg(q: string): Promise<SourceResult> {
         sameAs,
       },
     };
-  } catch {
+    recordUpstreamSuccess("google-kg", q);
+    putLastGood("google-kg", q, payload);
+    return payload;
+  } catch (err) {
+    const kind = classifyUpstreamFailure(res, err);
+    logUpstreamFailure("google-kg", q, kind, {
+      status: res?.status,
+      message: err instanceof Error ? err.message : String(err),
+    });
+    recordUpstreamFailure("google-kg", q, kind);
+    const cached = getLastGood<SourceResult>("google-kg", q);
+    if (cached) return cached;
     return { entity: null, status: "error" };
   }
 }
