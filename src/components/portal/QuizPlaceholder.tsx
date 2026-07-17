@@ -1,25 +1,21 @@
 /*
- * Communication DNA Quiz placeholder. v0.2 will import the 95-question
- * component (Concierge / Strategist / Analyst / Visionary / Advocate) once
- * the JSON conversion lands from session local_cd5290a6-16d4-4346-b174-bba5dc556a16.
+ * Retained for backward compatibility with any v0.1 import path. The real
+ * runner now lives at src/app/portal/[authorSlug]/quiz/QuizRunner.tsx and
+ * mounts directly from the /quiz route.
  */
 export function QuizPlaceholder() {
   return (
-    <div className="rounded-2xl border border-neutral-200 bg-white p-8 text-center">
-      <p className="text-xs uppercase tracking-widest text-neutral-500 font-semibold">
-        Coming in v0.2
+    <div className="rounded-2xl border border-portal-line bg-portal-surface p-8 text-center">
+      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-portal-muted">
+        Quiz
       </p>
-      <h3 className="mt-3 text-xl font-semibold text-neutral-950">
+      <h3 className="mt-3 font-portal-serif text-xl font-semibold text-portal-ink">
         Communication DNA Quiz
       </h3>
-      <p className="mt-3 text-sm text-neutral-600 max-w-md mx-auto">
-        95 questions across 5 archetypes. Once you finish, your result
-        anchors every piece of copy PodcastNetwork.org writes on your
-        behalf.
+      <p className="mx-auto mt-3 max-w-md text-sm text-portal-muted">
+        Take the assessment inside your portal. Your result anchors every
+        piece of copy PodcastNetwork.org writes on your behalf.
       </p>
-      <div className="mt-6 inline-flex items-center rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold text-neutral-700">
-        Wiring in — v0.2
-      </div>
     </div>
   )
 }

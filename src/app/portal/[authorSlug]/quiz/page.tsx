@@ -2,7 +2,19 @@ import { notFound } from 'next/navigation'
 
 import { findAuthorBySlug } from '@/lib/portal/authors'
 import { loadPortalDoc } from '@/lib/portal/mdx'
-import { QuizPlaceholder } from '@/components/portal/QuizPlaceholder'
+import { getSupabaseServerClient } from '@/lib/portal/supabase-server'
+import { QuizRunner } from './QuizRunner'
+import { QuizResult } from './QuizResult'
+import questions from '../../../../../content/portal/quiz/questions.json'
+import archetypes from '../../../../../content/portal/quiz/archetypes.json'
+
+type QuizResultRow = {
+  id: string
+  dominant_archetype: string | null
+  secondary_archetype: string | null
+  archetype_scores: Record<string, number>
+  submitted_at: string
+}
 
 export default async function QuizPage({
   params,
@@ -14,30 +26,65 @@ export default async function QuizPage({
   if (!author) return notFound()
 
   const doc = await loadPortalDoc(authorSlug, 'quiz')
+  const supabase = await getSupabaseServerClient()
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  let history: QuizResultRow[] = []
+  if (user) {
+    const { data } = await supabase
+      .from('portal_quiz_results')
+      .select('id, dominant_archetype, secondary_archetype, archetype_scores, submitted_at')
+      .eq('user_id', user.id)
+      .order('submitted_at', { ascending: false })
+    history = (data as QuizResultRow[] | null) ?? []
+  }
+
+  const latest = history[0] ?? null
 
   return (
-    <div className="space-y-8 max-w-5xl">
+    <div className="max-w-5xl space-y-8">
       <header>
-        <p className="text-xs uppercase tracking-widest text-neutral-500 font-semibold">
+        <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-portal-muted">
           Section 4
         </p>
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-neutral-950">
+        <h1 className="mt-2 font-portal-serif text-4xl font-semibold tracking-tight text-portal-ink">
           Communication DNA Quiz
         </h1>
-        <p className="mt-2 text-base text-neutral-600 max-w-2xl">
-          The 95-question Pentatype assessment. Five archetypes: Concierge,
-          Strategist, Analyst, Visionary, Advocate. Your result anchors every
-          piece of copy PodcastNetwork.org writes on your behalf.
+        <p className="mt-2 max-w-2xl text-base text-portal-muted">
+          The Pentatype family of assessments in an 8-archetype configuration
+          for authors. Your dominant + secondary archetype anchors every piece
+          of copy PodcastNetwork.org writes on your behalf.
+        </p>
+        <p className="mt-3 text-xs text-portal-muted">
+          v0.2 scaffold: 16 sample questions across 8 archetypes. The full
+          95-question deck lands in v0.2.1.
         </p>
       </header>
 
       {doc?.html && (
-        <section className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm prose prose-neutral max-w-none">
+        <section className="prose-portal rounded-2xl border border-portal-line bg-portal-surface p-6 shadow-sm">
           <div dangerouslySetInnerHTML={{ __html: doc.html }} />
         </section>
       )}
 
-      <QuizPlaceholder />
+      {latest ? (
+        <QuizResult
+          latest={latest}
+          history={history}
+          archetypes={archetypes.archetypes}
+          questions={questions.questions}
+          scale={questions.meta.scale}
+        />
+      ) : (
+        <QuizRunner
+          questions={questions.questions}
+          scale={questions.meta.scale}
+          archetypes={archetypes.archetypes}
+        />
+      )}
     </div>
   )
 }

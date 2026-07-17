@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "version": "0.2.0-scaffold",
+    "totalTarget": 95,
+    "questionCount": 16,
+    "note": "Scaffold deck for the v0.2 pilot. Two questions per archetype so the end-to-end scoring flow ships. The full 95-question set lands in v0.2.1 from the parallel-session build (local_cd5290a6-16d4-4346-b174-bba5dc556a16). Each question is a Likert statement rated 1 to 5. Weights are 1 unless a follow-up calibration says otherwise.",
+    "scale": {
+      "min": 1,
+      "max": 5,
+      "labels": {
+        "1": "Strongly disagree",
+        "2": "Disagree",
+        "3": "Neutral",
+        "4": "Agree",
+        "5": "Strongly agree"
+      }
+    }
+  },
+  "questions": [
+    { "id": "q01", "archetype": "concierge", "weight": 1, "text": "I set up small systems that make other people's lives easier before they ask." },
+    { "id": "q02", "archetype": "concierge", "weight": 1, "text": "I remember small preferences and details about the people I work with." },
+    { "id": "q03", "archetype": "strategist", "weight": 1, "text": "I think about how today's moves compound over the next three to five years." },
+    { "id": "q04", "archetype": "strategist", "weight": 1, "text": "I catch patterns across projects that other people treat as unrelated." },
+    { "id": "q05", "archetype": "analyst", "weight": 1, "text": "Before a decision I want to see the numbers, the source, and the base rate." },
+    { "id": "q06", "archetype": "analyst", "weight": 1, "text": "I trust a clean model over a story every time." },
+    { "id": "q07", "archetype": "visionary", "weight": 1, "text": "I get bored quickly when the room is talking about tactics instead of what's possible." },
+    { "id": "q08", "archetype": "visionary", "weight": 1, "text": "I can hold a picture of the future in enough detail to describe it to others." },
+    { "id": "q09", "archetype": "advocate", "weight": 1, "text": "I take on the fight for people who cannot advocate for themselves in the room." },
+    { "id": "q10", "archetype": "advocate", "weight": 1, "text": "I read a mission before I read a business plan." },
+    { "id": "q11", "archetype": "storyteller", "weight": 1, "text": "I reach for a specific story or scene when I want people to actually feel the point." },
+    { "id": "q12", "archetype": "storyteller", "weight": 1, "text": "I edit sentences out loud until they sound the way a human would say them." },
+    { "id": "q13", "archetype": "producer", "weight": 1, "text": "I would rather ship something at 80 percent than talk about it at 100 percent." },
+    { "id": "q14", "archetype": "producer", "weight": 1, "text": "When a project stalls, I am usually the one who moves it back into motion." },
+    { "id": "q15", "archetype": "guide", "weight": 1, "text": "When someone I care about is stuck, I want to teach them the shape of the problem rather than solve it for them." },
+    { "id": "q16", "archetype": "guide", "weight": 1, "text": "People come to me for perspective more often than they come for tactics." }
+  ]
+}
