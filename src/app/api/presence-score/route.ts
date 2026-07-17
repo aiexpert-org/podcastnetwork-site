@@ -3,6 +3,16 @@ import { lookup } from 'node:dns/promises'
 import { isIP } from 'node:net'
 
 import { cacheGet, cacheSet, rateLimit, sha256 } from '@/lib/server-cache'
+import {
+  classifyUpstreamFailure,
+  getLastGood,
+  logUpstreamFailure,
+  peekResponseSnippet,
+  putLastGood,
+  recordUpstreamFailure,
+  recordUpstreamSuccess,
+  shouldSkipUpstream,
+} from '@/lib/upstream-guard'
 import { extractStructuredData } from '../schema-scan/extract'
 import { fetchGoogleKg, fetchWikidata } from '../entity-lookup/sources'
 
@@ -18,6 +28,11 @@ import { fetchGoogleKg, fetchWikidata } from '../entity-lookup/sources'
  *
  * Stack: SerpAPI (AI Overview + LinkedIn resolution) + Google Cloud
  * (Knowledge Graph + PageSpeed). No OpenAI.
+ *
+ * Upstream calls to SerpAPI + Google KG are wrapped in the upstream-guard
+ * circuit breaker (src/lib/upstream-guard.ts) so a repeated key or quota
+ * failure stops hammering the API and writes a structured log line naming
+ * the actual failure kind.
  */
 
 export const runtime = 'nodejs'
@@ -195,37 +210,69 @@ async function resolveLinkedInNameViaSearch(
   slug: string,
 ): Promise<string | null> {
   const key = process.env.SERPAPI_KEY
-  if (!key) return null
+  if (!key) {
+    logUpstreamFailure('serpapi', `linkedin:${slug}`, 'missing-key', {
+      message: 'SERPAPI_KEY not set (LinkedIn name resolution)',
+    })
+    return null
+  }
+  if (shouldSkipUpstream('serpapi', `linkedin:${slug}`)) {
+    return getLastGood<string | null>('serpapi', `linkedin:${slug}`) ?? null
+  }
+  let res: Response | null = null
   try {
-    const res = await fetch(
+    res = await fetch(
       `https://serpapi.com/search.json?engine=google&q=${encodeURIComponent(`linkedin.com/in/${slug}`)}&num=5&api_key=${key}`,
       { signal: AbortSignal.timeout(8000) },
     )
-    if (!res.ok) return null
+    if (!res.ok) {
+      const kind = classifyUpstreamFailure(res, null)
+      const snippet = await peekResponseSnippet(res)
+      logUpstreamFailure('serpapi', `linkedin:${slug}`, kind, {
+        status: res.status,
+        snippet,
+      })
+      recordUpstreamFailure('serpapi', `linkedin:${slug}`, kind)
+      return getLastGood<string | null>('serpapi', `linkedin:${slug}`) ?? null
+    }
     const json = (await res.json()) as {
       knowledge_graph?: { title?: string }
       organic_results?: { link?: string; title?: string }[]
     }
-    if (json.knowledge_graph?.title) return json.knowledge_graph.title
-    const organic = (json.organic_results ?? []).filter(
-      (r) => r.link && r.title && /linkedin\.com\/in\//i.test(r.link),
-    )
-    // Exact slug match first; otherwise Google's top profile result for the
-    // query (covers near-miss slugs typed live in a demo).
-    const match =
-      organic.find((r) =>
-        r.link!.toLowerCase().includes(`/in/${slug.toLowerCase()}`),
-      ) ?? organic[0]
-    if (match?.title) {
-      const name = cleanTitle(match.title)
-      // Guard against junk titles ("LinkedIn", "Sign Up").
-      if (name.length >= 4 && !/linkedin|sign\s?up|log\s?in/i.test(name)) {
-        return name
+    let name: string | null = null
+    if (json.knowledge_graph?.title) name = json.knowledge_graph.title
+    if (!name) {
+      const organic = (json.organic_results ?? []).filter(
+        (r) => r.link && r.title && /linkedin\.com\/in\//i.test(r.link),
+      )
+      // Exact slug match first; otherwise Google's top profile result for the
+      // query (covers near-miss slugs typed live in a demo).
+      const match =
+        organic.find((r) =>
+          r.link!.toLowerCase().includes(`/in/${slug.toLowerCase()}`),
+        ) ?? organic[0]
+      if (match?.title) {
+        const candidate = cleanTitle(match.title)
+        // Guard against junk titles ("LinkedIn", "Sign Up").
+        if (
+          candidate.length >= 4 &&
+          !/linkedin|sign\s?up|log\s?in/i.test(candidate)
+        ) {
+          name = candidate
+        }
       }
     }
-    return null
-  } catch {
-    return null
+    recordUpstreamSuccess('serpapi', `linkedin:${slug}`)
+    putLastGood('serpapi', `linkedin:${slug}`, name)
+    return name
+  } catch (err) {
+    const kind = classifyUpstreamFailure(res, err)
+    logUpstreamFailure('serpapi', `linkedin:${slug}`, kind, {
+      status: res?.status,
+      message: err instanceof Error ? err.message : String(err),
+    })
+    recordUpstreamFailure('serpapi', `linkedin:${slug}`, kind)
+    return getLastGood<string | null>('serpapi', `linkedin:${slug}`) ?? null
   }
 }
 
@@ -285,24 +332,71 @@ async function checkGoogleAiOverview(
   entityName: string,
 ): Promise<AiOverviewResult> {
   const key = process.env.SERPAPI_KEY
-  if (!key) return { status: 'unavailable' }
+  if (!key) {
+    logUpstreamFailure('serpapi-ai-overview', entityName, 'missing-key', {
+      message: 'SERPAPI_KEY not set (AI Overview check)',
+    })
+    return { status: 'unavailable' }
+  }
+  if (shouldSkipUpstream('serpapi-ai-overview', entityName)) {
+    const cached = getLastGood<AiOverviewResult>(
+      'serpapi-ai-overview',
+      entityName,
+    )
+    if (cached) return cached
+    return { status: 'unavailable' }
+  }
+  let res: Response | null = null
   try {
-    const res = await fetch(
+    res = await fetch(
       `https://serpapi.com/search.json?engine=google&q=${encodeURIComponent(entityName)}&api_key=${key}`,
       { signal: AbortSignal.timeout(10_000) },
     )
-    if (!res.ok) return { status: 'unavailable' }
+    if (!res.ok) {
+      const kind = classifyUpstreamFailure(res, null)
+      const snippet = await peekResponseSnippet(res)
+      logUpstreamFailure('serpapi-ai-overview', entityName, kind, {
+        status: res.status,
+        snippet,
+      })
+      recordUpstreamFailure('serpapi-ai-overview', entityName, kind)
+      const cached = getLastGood<AiOverviewResult>(
+        'serpapi-ai-overview',
+        entityName,
+      )
+      if (cached) return cached
+      return { status: 'unavailable' }
+    }
     const json = (await res.json()) as {
       ai_overview?: {
         text_blocks?: { text?: string; type?: string; snippet?: string }[]
       }
     }
-    if (!json.ai_overview?.text_blocks?.length) return { status: 'missing' }
-    const block = json.ai_overview.text_blocks[0]
-    const text = block?.snippet ?? block?.text ?? ''
-    if (!text) return { status: 'missing' }
-    return { status: 'found', snippet: text.slice(0, 500) }
-  } catch {
+    let result: AiOverviewResult
+    if (!json.ai_overview?.text_blocks?.length) {
+      result = { status: 'missing' }
+    } else {
+      const block = json.ai_overview.text_blocks[0]
+      const text = block?.snippet ?? block?.text ?? ''
+      result = text
+        ? { status: 'found', snippet: text.slice(0, 500) }
+        : { status: 'missing' }
+    }
+    recordUpstreamSuccess('serpapi-ai-overview', entityName)
+    putLastGood('serpapi-ai-overview', entityName, result)
+    return result
+  } catch (err) {
+    const kind = classifyUpstreamFailure(res, err)
+    logUpstreamFailure('serpapi-ai-overview', entityName, kind, {
+      status: res?.status,
+      message: err instanceof Error ? err.message : String(err),
+    })
+    recordUpstreamFailure('serpapi-ai-overview', entityName, kind)
+    const cached = getLastGood<AiOverviewResult>(
+      'serpapi-ai-overview',
+      entityName,
+    )
+    if (cached) return cached
     return { status: 'unavailable' }
   }
 }
