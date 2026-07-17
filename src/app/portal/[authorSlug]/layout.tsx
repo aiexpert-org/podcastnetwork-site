@@ -1,10 +1,13 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 
-import { findAuthorBySlug } from '@/lib/portal/authors'
+import {
+  findAuthorBySlug,
+  fetchAuthorRowBySlug,
+} from '@/lib/portal/authors'
 import { loadPortalDoc } from '@/lib/portal/mdx'
-import { Sidebar } from '@/components/portal/Sidebar'
-import { TopBar } from '@/components/portal/TopBar'
+import { getSupabaseServerClient } from '@/lib/portal/supabase-server'
+import { PortalShell } from '@/components/portal/PortalShell'
 
 export async function generateMetadata({
   params,
@@ -19,7 +22,7 @@ export async function generateMetadata({
   }
 }
 
-export default async function PortalLayout({
+export default async function PortalAuthorLayout({
   children,
   params,
 }: {
@@ -30,21 +33,29 @@ export default async function PortalLayout({
   const author = findAuthorBySlug(authorSlug)
   if (!author) return notFound()
 
+  // Prefer the live portal_authors row for display fields (book title +
+  // cover art). Fall back to the MDX config file, then to the static
+  // AuthorEntry so the page renders even before the DB is fully seeded.
+  const supabase = await getSupabaseServerClient()
+  const dbAuthor = await fetchAuthorRowBySlug(supabase, authorSlug)
   const config = await loadPortalDoc(authorSlug, 'config')
-  const bookTitle = (config?.data.bookTitle as string) ?? author.bookTitle
-  const currentPhase = (config?.data.currentPhase as string) ?? author.currentPhase
+
+  const bookTitle =
+    dbAuthor?.book_title ??
+    (config?.data.bookTitle as string) ??
+    author.bookTitle
+  const bookCoverUrl = dbAuthor?.book_cover_url ?? null
+  const currentPhase =
+    (config?.data.currentPhase as string) ?? author.currentPhase
 
   return (
-    <div className="min-h-screen bg-neutral-50 flex">
-      <Sidebar
-        authorSlug={authorSlug}
-        authorName={author.name}
-        bookTitle={bookTitle}
-      />
-      <div className="flex-1 flex flex-col min-w-0">
-        <TopBar author={author} currentPhase={currentPhase} />
-        <main className="flex-1 px-6 py-10 lg:px-10">{children}</main>
-      </div>
-    </div>
+    <PortalShell
+      author={author}
+      currentPhase={currentPhase}
+      bookTitle={bookTitle}
+      bookCoverUrl={bookCoverUrl}
+    >
+      {children}
+    </PortalShell>
   )
 }

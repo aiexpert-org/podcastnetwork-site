@@ -1,27 +1,34 @@
 import clsx from 'clsx'
 
-type Phase = 'pending' | 'in-progress' | 'review' | 'complete'
+export type Phase = 'pending' | 'in-progress' | 'review' | 'complete'
 
 const LABELS: Record<Phase, string> = {
-  'pending': 'Pending',
-  'in-progress': 'In Progress',
-  'review': 'In Review',
-  'complete': 'Complete',
+  pending: 'Pending',
+  'in-progress': 'In progress',
+  review: 'In review',
+  complete: 'Complete',
 }
 
 const STYLES: Record<Phase, string> = {
-  'pending': 'bg-neutral-100 text-neutral-700 border-neutral-200',
-  'in-progress': 'bg-solar text-neutral-950 border-yellow-500/40',
-  'review': 'bg-blue-50 text-blue-900 border-blue-200',
-  'complete': 'bg-emerald-50 text-emerald-900 border-emerald-200',
+  pending: 'bg-portal-surface text-portal-muted border-portal-line',
+  'in-progress': 'bg-portal-amber-tint text-portal-ink border-portal-amber/40',
+  review: 'bg-portal-surface text-portal-amber border-portal-amber/40',
+  complete: 'bg-emerald-50 text-emerald-900 border-emerald-200',
 }
 
+/*
+ * Phase badge for the milestones list and section cards. Refactored under
+ * v0.2 to draw from the portal token set. Interface unchanged from v0.1
+ * so consuming pages (dashboard, audiobook, manuscript) do not need edits.
+ */
 export function PhaseBadge({ phase }: { phase: Phase }) {
   return (
-    <span className={clsx(
-      'inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold',
-      STYLES[phase],
-    )}>
+    <span
+      className={clsx(
+        'inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold',
+        STYLES[phase],
+      )}
+    >
       {LABELS[phase]}
     </span>
   )

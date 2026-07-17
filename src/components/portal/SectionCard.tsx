@@ -20,22 +20,25 @@ export function SectionCard({
     <Link
       href={href}
       className={clsx(
-        'group flex flex-col rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md',
+        'group flex flex-col rounded-2xl border border-portal-line bg-portal-surface p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-portal-amber/40 hover:shadow-md',
         className,
       )}
     >
-      <div className="flex items-start justify-between mb-3">
-        <span className="text-xs uppercase tracking-widest text-neutral-500 font-semibold">
+      <div className="mb-3 flex items-start justify-between">
+        <span className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-portal-muted">
           {eyebrow}
         </span>
         {status}
       </div>
-      <h3 className="text-lg font-semibold text-neutral-950 mb-2 group-hover:text-neutral-800">
+      <h3 className="mb-2 font-portal-serif text-xl font-semibold text-portal-ink group-hover:text-portal-ink-soft">
         {title}
       </h3>
-      <p className="text-sm text-neutral-600 flex-1">{description}</p>
-      <span className="mt-4 inline-flex items-center text-sm font-medium text-neutral-950 group-hover:underline">
-        Open<span className="ml-1" aria-hidden>→</span>
+      <p className="flex-1 text-sm text-portal-muted">{description}</p>
+      <span className="mt-4 inline-flex items-center text-sm font-medium text-portal-ink group-hover:text-portal-amber">
+        Open
+        <span className="ml-1" aria-hidden>
+          {'→'}
+        </span>
       </span>
     </Link>
   )
