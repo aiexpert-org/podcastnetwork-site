@@ -347,7 +347,7 @@ export function brettProfileSchema(): SchemaNode {
     breadcrumb(`${BASE}/founders/brett-k-moore/#breadcrumb`, [
       HOME_CRUMB,
       { name: "Founders", item: `${BASE}/founders/` },
-      { name: "Brett K. Moore", item: `${BASE}/founders/brett-k-moore/` },
+      { name: "Brett K Moore", item: `${BASE}/founders/brett-k-moore/` },
     ]),
   ]);
 }

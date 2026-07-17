@@ -164,7 +164,7 @@ const BOOKS = [
       'The Small Business Survival Guide to the Artificial Intelligence Revolution',
     narrative:
       "How Google's Knowledge Graph and the AI answer engines decide who gets recognized, and how to install yourself in that layer. The Brand SERP Build runs this system on you.",
-    credit: 'Mike Partners & Brett K. Moore',
+    credit: 'Mike Partners & Brett K Moore',
     href: 'https://www.amazon.com/dp/B0H343DR1L',
     asin: 'B0H343DR1L',
     src: '/books/ai-or-die.jpg',
@@ -415,7 +415,7 @@ function FoundersTeaser() {
         <FadeIn>
           <div className="border-t border-neutral-950/10 pt-12">
             <p className="text-base font-semibold text-neutral-950">
-              Brett K. Moore. Co-founder + CEO.
+              Brett K Moore. Co-founder + CEO.
             </p>
             <p className="mt-1 text-base font-semibold text-neutral-950">
               Mike Partners. Co-founder + Chief AI Officer.

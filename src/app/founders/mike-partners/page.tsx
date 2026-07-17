@@ -159,7 +159,7 @@ export default function MikePage() {
               href="/founders/brett-k-moore/"
               className="text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
             >
-              Brett K. Moore, Co-founder <span aria-hidden="true">&rarr;</span>
+              Brett K Moore, Co-founder <span aria-hidden="true">&rarr;</span>
             </Link>
             <Link
               href="/founders/"

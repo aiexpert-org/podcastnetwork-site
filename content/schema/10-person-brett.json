@@ -2,7 +2,7 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "@id": "https://podcastnetwork.org/about/#brett-k-moore",
-  "name": "Brett K. Moore",
+  "name": "Brett K Moore",
   "givenName": "Brett",
   "additionalName": "K",
   "familyName": "Moore",
@@ -17,7 +17,7 @@
     "https://podcastnetwork.org/about/brett-k-moore-3x4.jpg",
     "https://podcastnetwork.org/about/brett-k-moore-16x9.jpg"
   ],
-  "description": "Co-founder and CEO of PodcastNetwork.org. AI-native operator running a portfolio of businesses from Indianapolis. Co-author of AI or Die. Co-founder of AI Expert and Apex Podcast Co. Owner of Brett K. Moore (personal brand) and Legacy Publishing.",
+  "description": "Co-founder and CEO of PodcastNetwork.org. AI-native operator running a portfolio of businesses from Indianapolis. Co-author of AI or Die. Co-founder of AI Expert and Apex Podcast Co. Owner of Brett K Moore (personal brand) and Legacy Publishing.",
   "jobTitle": "Co-founder and CEO",
   "worksFor": [
     {
@@ -115,7 +115,7 @@
   "brand": [
     {
       "@type": "Brand",
-      "name": "Brett K. Moore",
+      "name": "Brett K Moore",
       "url": "https://brettkmoore.com/"
     }
   ],
