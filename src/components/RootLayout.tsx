@@ -322,6 +322,13 @@ export function RootLayout({ children }: { children: React.ReactNode }) {
   let pathname = usePathname()
   let [logoHovered, setLogoHovered] = useState(false)
 
+  // Client Portal renders its own chrome (sidebar + top bar). Skip the
+  // marketing header/footer for every /portal/* route — the portal layout
+  // provides its own frame. Added 2026-07-17 with the portal v0.1 build.
+  if (pathname?.startsWith('/portal')) {
+    return <>{children}</>
+  }
+
   return (
     <RootLayoutContext.Provider value={{ logoHovered, setLogoHovered }}>
       <RootLayoutInner key={pathname}>{children}</RootLayoutInner>
