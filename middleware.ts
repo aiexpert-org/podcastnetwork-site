@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServerClient } from '@supabase/ssr'
+import { createServerClient, type CookieOptions } from '@supabase/ssr'
 
 /*
  * Client Portal auth wall (v0.2). Every /portal/* path except
@@ -16,6 +16,8 @@ import { createServerClient } from '@supabase/ssr'
 export const config = {
   matcher: ['/portal/:path*'],
 }
+
+type CookieRecord = { name: string; value: string; options?: CookieOptions }
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -36,7 +38,7 @@ export async function middleware(request: NextRequest) {
         getAll() {
           return request.cookies.getAll()
         },
-        setAll(cookiesToSet) {
+        setAll(cookiesToSet: CookieRecord[]) {
           cookiesToSet.forEach(({ name, value }) =>
             request.cookies.set(name, value),
           )

@@ -1,6 +1,8 @@
 import { cookies } from 'next/headers'
-import { createServerClient } from '@supabase/ssr'
+import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { createClient } from '@supabase/supabase-js'
+
+type CookieRecord = { name: string; value: string; options?: CookieOptions }
 
 /*
  * Server-side Supabase client for Server Components + Route Handlers.
@@ -17,7 +19,7 @@ export async function getSupabaseServerClient() {
         getAll() {
           return cookieStore.getAll()
         },
-        setAll(cookiesToSet) {
+        setAll(cookiesToSet: CookieRecord[]) {
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options),
