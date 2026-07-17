@@ -1,21 +1,17 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
+import { getSupabaseServerClient } from '@/lib/portal/supabase-server'
 
-import { PORTAL_SESSION_COOKIE } from '@/lib/portal/auth'
-
-export const runtime = 'nodejs'
-
-export async function POST(request: NextRequest) {
-  const response = NextResponse.redirect(new URL('/portal/login/', request.url), 303)
-  response.cookies.set(PORTAL_SESSION_COOKIE, '', {
-    httpOnly: true,
-    secure: true,
-    sameSite: 'lax',
-    path: '/',
-    maxAge: 0,
-  })
-  return response
+async function signOutAndRedirect(request: Request) {
+  const supabase = await getSupabaseServerClient()
+  await supabase.auth.signOut()
+  const url = new URL('/portal/login/', request.url)
+  return NextResponse.redirect(url, { status: 303 })
 }
 
-export async function GET(request: NextRequest) {
-  return POST(request)
+export async function POST(request: Request) {
+  return signOutAndRedirect(request)
+}
+
+export async function GET(request: Request) {
+  return signOutAndRedirect(request)
 }

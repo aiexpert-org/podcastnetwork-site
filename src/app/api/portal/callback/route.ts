@@ -1,44 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import {
-  PORTAL_SESSION_COOKIE,
-  PORTAL_SESSION_MAX_AGE_S,
-  createPortalSession,
-  verifyMagicLinkToken,
-} from '@/lib/portal/auth'
-
-export const runtime = 'nodejs'
-
 /*
- * GET /api/portal/callback?token=...
- *
- * The magic link points here. We verify the token, mint a session cookie,
- * and 302 to the ?next= path (or the author's dashboard).
+ * Legacy v0.1 callback endpoint. Any v0.1 HMAC magic link that still hits
+ * this URL after the v0.2 cutover is expired by construction. Bounce the
+ * user to the login page with an expired flag so they request a fresh
+ * Supabase magic link.
  */
 export async function GET(request: NextRequest) {
-  const token = request.nextUrl.searchParams.get('token')
-  if (!token) {
-    return NextResponse.redirect(new URL('/portal/login/?err=missing', request.url))
-  }
-
-  const payload = await verifyMagicLinkToken(token)
-  if (!payload) {
-    return NextResponse.redirect(new URL('/portal/login/?err=expired', request.url))
-  }
-
-  const session = await createPortalSession(payload.email, payload.authorSlug)
-  const destination =
-    payload.next && payload.next.startsWith('/portal/')
-      ? payload.next
-      : `/portal/${payload.authorSlug}/`
-
-  const response = NextResponse.redirect(new URL(destination, request.url))
-  response.cookies.set(PORTAL_SESSION_COOKIE, session, {
-    httpOnly: true,
-    secure: true,
-    sameSite: 'lax',
-    path: '/',
-    maxAge: PORTAL_SESSION_MAX_AGE_S,
-  })
-  return response
+  const { origin } = new URL(request.url)
+  return NextResponse.redirect(`${origin}/portal/login/?err=expired`)
 }
