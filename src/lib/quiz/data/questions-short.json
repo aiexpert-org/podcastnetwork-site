@@ -1,0 +1,407 @@
+[
+  {
+    "section": "grammar",
+    "dimension": "Active Voice",
+    "stem": "Spot the Voice Shift\n\nWhich of the following sentences is written in passive voice?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Churchill rallied the nation with his speeches."
+      },
+      {
+        "label": "B",
+        "text": "The nation was rallied by Churchill's speeches."
+      },
+      {
+        "label": "C",
+        "text": "Churchill's speeches rallied an entire nation."
+      },
+      {
+        "label": "D",
+        "text": "\"We shall fight on the beaches,\" Churchill declared."
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "\"The nation was rallied\" places the receiver of the action (the nation) in the subject position. The other three options all use active constructions where the doer leads the sentence.",
+    "dimensionTested": "Sentence Construction",
+    "id": 101
+  },
+  {
+    "section": "grammar",
+    "dimension": "Sentence Architecture",
+    "stem": "Name That Sentence Type\n\n\"It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness.\" (Charles Dickens, *A Tale of Two Cities*)\n\nWhat sentence type is this?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Simple sentence"
+      },
+      {
+        "label": "B",
+        "text": "Compound sentence"
+      },
+      {
+        "label": "C",
+        "text": "Complex sentence"
+      },
+      {
+        "label": "D",
+        "text": "Fragment"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Dickens chains together multiple independent clauses joined by commas. Each clause could stand alone as its own sentence, making this a compound structure (and a famously long one).",
+    "dimensionTested": "Sentence Architecture",
+    "id": 102
+  },
+  {
+    "section": "grammar",
+    "dimension": "Sentence Rhythm",
+    "stem": "Punctuation Personality\n\nA writer consistently uses short, punchy sentences. Periods everywhere. Rarely a comma in sight. What does this punctuation pattern signal?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Uncertainty and hesitation"
+      },
+      {
+        "label": "B",
+        "text": "Urgency, confidence, and directness"
+      },
+      {
+        "label": "C",
+        "text": "Academic formality"
+      },
+      {
+        "label": "D",
+        "text": "A writer who hasn't learned comma rules yet"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Frequent periods create a staccato rhythm that reads as decisive and direct. This is a deliberate stylistic choice, not a grammar gap. Hemingway built an entire career on it.",
+    "dimensionTested": "Punctuation as Voice",
+    "id": 103
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "The Power of Repetition\n\n\"I have a dream that one day this nation will rise up... I have a dream that one day on the red hills of Georgia... I have a dream that my four little children...\" (Martin Luther King Jr.)\n\nWhat rhetorical device is King using here?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Chiasmus"
+      },
+      {
+        "label": "B",
+        "text": "Anaphora"
+      },
+      {
+        "label": "C",
+        "text": "Litotes"
+      },
+      {
+        "label": "D",
+        "text": "Hyperbole"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Anaphora is the repetition of a word or phrase at the beginning of successive clauses. King repeats \"I have a dream\" to build emotional momentum, making each new vision land harder than the last.",
+    "dimensionTested": "Rhetorical Devices",
+    "id": 104
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "The Mirror Flip\n\n\"Ask not what your country can do for you; ask what you can do for your country.\" (John F. Kennedy)\n\nThis famous line is an example of:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Anaphora"
+      },
+      {
+        "label": "B",
+        "text": "Simile"
+      },
+      {
+        "label": "C",
+        "text": "Antimetabole"
+      },
+      {
+        "label": "D",
+        "text": "Alliteration"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Antimetabole repeats words in reverse order to create a contrasting meaning. Kennedy flips \"country/you\" into \"you/country,\" turning a passive expectation into an active call to duty.",
+    "dimensionTested": "Rhetorical Devices",
+    "id": 105
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "The Rule of Three\n\n\"Government of the people, by the people, for the people.\" (Abraham Lincoln, Gettysburg Address)\n\nThis structure is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Anaphora"
+      },
+      {
+        "label": "B",
+        "text": "Tricolon"
+      },
+      {
+        "label": "C",
+        "text": "Metaphor"
+      },
+      {
+        "label": "D",
+        "text": "Paradox"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A tricolon is a series of three parallel elements. Lincoln's three prepositional phrases build on each other and create a rhythm that feels complete. Two would feel unfinished. Four would feel like a list.",
+    "dimensionTested": "Rhetorical Devices",
+    "id": 106
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "Seeing Is Believing\n\n\"All the world's a stage, and all the men and women merely players.\" (William Shakespeare, *As You Like It*)\n\nWhat device is Shakespeare using?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Simile"
+      },
+      {
+        "label": "B",
+        "text": "Metaphor"
+      },
+      {
+        "label": "C",
+        "text": "Hyperbole"
+      },
+      {
+        "label": "D",
+        "text": "Personification"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Shakespeare doesn't say the world is *like* a stage (that would be a simile). He says it *is* a stage, making a direct equivalence. That direct claim is what makes a metaphor hit harder than a comparison.",
+    "dimensionTested": "Rhetorical Devices",
+    "id": 107
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "The Elegant Reversal\n\n\"Let us never negotiate out of fear, but let us never fear to negotiate.\" (John F. Kennedy)\n\nThis is another example of which device?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Tricolon"
+      },
+      {
+        "label": "B",
+        "text": "Anaphora"
+      },
+      {
+        "label": "C",
+        "text": "Chiasmus"
+      },
+      {
+        "label": "D",
+        "text": "Irony"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Chiasmus reverses the grammatical structure of a parallel phrase. \"Negotiate/fear\" flips into \"fear/negotiate,\" creating a balanced, memorable contrast. It is closely related to antimetabole but focuses on structure rather than exact word repetition.",
+    "dimensionTested": "Rhetorical Devices",
+    "id": 108
+  },
+  {
+    "section": "logic",
+    "dimension": "Style Register",
+    "stem": "Match the Register\n\nYou are writing a product announcement for a Fortune 500 company's investor relations page. Which opening line fits the context best?",
+    "options": [
+      {
+        "label": "A",
+        "text": "\"Hey everyone, we just dropped something huge.\""
+      },
+      {
+        "label": "B",
+        "text": "\"We are pleased to announce the launch of our next-generation platform.\""
+      },
+      {
+        "label": "C",
+        "text": "\"YOU WON'T BELIEVE WHAT WE JUST BUILT.\""
+      },
+      {
+        "label": "D",
+        "text": "\"So yeah, we made a thing. It's pretty cool.\""
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Investor relations requires a formal register that signals professionalism and credibility. Options A and D are too casual, and C reads like clickbait. The formal tone in B matches what that audience expects.",
+    "dimensionTested": "Register and Formality",
+    "id": 109
+  },
+  {
+    "section": "logic",
+    "dimension": "Humor and Tone",
+    "stem": "Reading the Room\n\nA nonprofit sends a fundraising email that opens: \"Per our analysis of quarterly giving trends, we are requesting a contribution to sustain operational capacity.\"\n\nWhat is wrong with this tone?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It is too emotional"
+      },
+      {
+        "label": "B",
+        "text": "It is too informal"
+      },
+      {
+        "label": "C",
+        "text": "It sounds like a corporate memo, not a human asking for help"
+      },
+      {
+        "label": "D",
+        "text": "Nothing. This is exactly how fundraising should sound."
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Fundraising works through emotional connection and personal storytelling. This opening reads like an internal budget report. The language creates distance when the goal is to bring the reader closer.",
+    "dimensionTested": "Tone and Audience Alignment",
+    "id": 110
+  },
+  {
+    "section": "logic",
+    "dimension": "Humor and Tone",
+    "stem": "Tone Detective\n\nRead these two sentences and identify the tonal shift:\n\nVersion A: \"We're rethinking how teams collaborate.\"\nVersion B: \"The way teams collaborate is broken.\"\n\nWhat is the primary difference in tone?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Version A is optimistic and forward-looking; Version B is confrontational and urgent"
+      },
+      {
+        "label": "B",
+        "text": "Version A is formal; Version B is casual"
+      },
+      {
+        "label": "C",
+        "text": "They say the same thing in the same tone"
+      },
+      {
+        "label": "D",
+        "text": "Version A is passive; Version B is active"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Both sentences address the same topic, but Version A frames it as opportunity while Version B frames it as a problem. That framing choice changes the emotional response completely, even though the underlying message is similar.",
+    "dimensionTested": "Tonal Range",
+    "id": 111
+  },
+  {
+    "section": "voice",
+    "dimension": "Opening Patterns",
+    "stem": "The Opening Move\n\n\"It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.\" (Jane Austen, *Pride and Prejudice*)\n\nWhat makes this opening line effective as a voice signature?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It states a straightforward fact"
+      },
+      {
+        "label": "B",
+        "text": "It uses irony to immediately establish the author's sharp, satirical perspective"
+      },
+      {
+        "label": "C",
+        "text": "It asks the reader a direct question"
+      },
+      {
+        "label": "D",
+        "text": "It uses emotional language to create sympathy"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Austen opens with a statement that sounds like universal truth but is actually dripping with irony. Nobody actually believes this is universally acknowledged. That gap between what is said and what is meant tells you everything about the voice you are about to spend 300 pages with.",
+    "dimensionTested": "Opening Patterns and Voice Signature",
+    "id": 112
+  },
+  {
+    "section": "voice",
+    "dimension": "Storytelling",
+    "stem": "Story Structure as Identity\n\nA brand always opens its case studies with a specific client's name, a concrete problem, and the exact moment things changed. This pattern is an example of:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Poor writing (too formulaic)"
+      },
+      {
+        "label": "B",
+        "text": "A signature narrative structure that builds trust through consistency"
+      },
+      {
+        "label": "C",
+        "text": "Academic citation style"
+      },
+      {
+        "label": "D",
+        "text": "SEO optimization"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Repeating a narrative structure across content creates recognition. The audience learns what to expect, and that predictability becomes part of the brand's identity. Consistency in storytelling is a voice decision, not a limitation.",
+    "dimensionTested": "Narrative Voice and Story Architecture",
+    "id": 113
+  },
+  {
+    "section": "application",
+    "dimension": "Audience-Driven Voice Adaptation",
+    "stem": "Pick the Winner\n\nYou are writing a landing page headline for busy startup founders. Which option will perform best?",
+    "options": [
+      {
+        "label": "A",
+        "text": "\"Our Comprehensive Suite of Integrated Solutions for Scaling Organizations\""
+      },
+      {
+        "label": "B",
+        "text": "\"Grow faster. Waste less. Start today.\""
+      },
+      {
+        "label": "C",
+        "text": "\"A Thoroughly Researched Approach to Organizational Growth Metrics\""
+      },
+      {
+        "label": "D",
+        "text": "\"Welcome to our website! We do lots of things for lots of people.\""
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Startup founders are time-starved and action-oriented. Short, punchy, benefit-driven language matches their mindset. The other options are either too vague, too corporate, or too generic to earn a second glance.",
+    "dimensionTested": "Audience-Driven Voice Adaptation",
+    "id": 114
+  },
+  {
+    "section": "application",
+    "dimension": "Contextual Voice Calibration",
+    "stem": "Context Is Everything\n\nA law firm needs to send an email to a client whose case just had a major setback. Which draft strikes the right balance?",
+    "options": [
+      {
+        "label": "A",
+        "text": "\"Hey! So, bad news. We lost the motion. But don't worry, it'll be fine. LOL.\""
+      },
+      {
+        "label": "B",
+        "text": "\"After careful review of today's ruling, we want to walk you through what happened, what it means for your case, and the options ahead.\""
+      },
+      {
+        "label": "C",
+        "text": "\"Pursuant to the adjudicatory proceedings of the aforementioned date, the tribunal rendered a disposition adverse to the petitioner's motion.\""
+      },
+      {
+        "label": "D",
+        "text": "\"We lost. Here's what's next.\""
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A legal setback requires a tone that is honest, calm, and structured. Option A is wildly inappropriate. Option C buries the message in jargon. Option D is too blunt for a sensitive moment. Option B acknowledges the situation and immediately offers a path forward.",
+    "dimensionTested": "Contextual Voice Calibration",
+    "id": 115
+  }
+]

@@ -1,0 +1,2486 @@
+[
+  {
+    "section": "grammar",
+    "dimension": "Sentence Architecture",
+    "stem": "Ernest Hemingway built his reputation on stripped-down prose, yet the opening sentence of *The Old Man and the Sea* reads:\n\n*\"He was an old man who fished alone in a skiff in the Gulf Stream and he had gone eighty-four days now without taking a fish.\"*\n\nWhat sentence architecture type is this?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Simple sentence"
+      },
+      {
+        "label": "B",
+        "text": "Compound sentence"
+      },
+      {
+        "label": "C",
+        "text": "Complex sentence"
+      },
+      {
+        "label": "D",
+        "text": "Compound-complex sentence"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "This sentence contains two independent clauses (\"He was an old man\" and \"he had gone eighty-four days now without taking a fish\") connected by \"and,\" plus a dependent relative clause (\"who fished alone in a skiff in the Gulf Stream\"). Even the writer most associated with simplicity opened his masterwork with a compound-complex sentence. Sentence architecture often operates at a level beneath what readers consciously notice.",
+    "dimensionTested": "Dimension 1 (Sentence Architecture Types), compound-complex identification.",
+    "id": 1
+  },
+  {
+    "section": "grammar",
+    "dimension": "Sentence Architecture",
+    "stem": "Which of these famous opening lines is a complex sentence (one independent clause combined with at least one dependent clause)?",
+    "options": [
+      {
+        "label": "A",
+        "text": "\"Call me Ishmael.\" (Herman Melville, *Moby-Dick*)"
+      },
+      {
+        "label": "B",
+        "text": "\"It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.\" (Jane Austen, *Pride and Prejudice*)"
+      },
+      {
+        "label": "C",
+        "text": "\"It was a bright cold day in April, and the clocks were striking thirteen.\" (George Orwell, *1984*)"
+      },
+      {
+        "label": "D",
+        "text": "\"So it goes.\" (Kurt Vonnegut, *Slaughterhouse-Five*)"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Austen's opening has one independent clause (\"It is a truth universally acknowledged\") modified by a dependent noun clause (\"that a single man in possession of a good fortune must be in want of a wife\"). Options A and D are simple sentences. Option C is a compound sentence (two independent clauses joined by \"and\"). Complex sentences create hierarchy between ideas, letting the writer signal which information is primary and which is subordinate.",
+    "dimensionTested": "Dimension 1 (Sentence Architecture Types), complex sentence identification.",
+    "id": 2
+  },
+  {
+    "section": "grammar",
+    "dimension": "Sentence Rhythm",
+    "stem": "Consider this progression:\n\n*\"The project ran over budget. The timeline slipped. Three key hires quit. And then the board approved the next phase anyway.\"*\n\nThe first three sentences average five words each. The final sentence nearly triples in length. What does this rhythm pattern create?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A periodic sentence"
+      },
+      {
+        "label": "B",
+        "text": "A cumulative sentence"
+      },
+      {
+        "label": "C",
+        "text": "A staccato-to-legato shift that emphasizes the final idea"
+      },
+      {
+        "label": "D",
+        "text": "An example of hypotaxis"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Short, punchy sentences create a staccato rhythm (rapid, clipped beats like drumstrokes). When the writer shifts to a longer sentence, the change in pace draws the reader's attention to the payoff. This staccato-to-legato technique is a staple of persuasive and narrative writing. Gary Provost's famous writing exercise demonstrates that same-length sentences create monotony, while variation creates music. Mapping a communicator's sentence-length variance reveals whether they write with rhythmic intention or on autopilot.",
+    "dimensionTested": "Dimension 2 (Sentence Length and Rhythm), rhythmic pacing and emphasis.",
+    "id": 3
+  },
+  {
+    "section": "grammar",
+    "dimension": "Sentence Rhythm",
+    "stem": "Read this passage from a keynote talk transcript:\n\n*\"We spent four years building that product. Four years. And one pivot made it irrelevant. Gone. Just like that.\"*\n\n\"Gone.\" and \"Just like that.\" are examples of:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Run-on sentences"
+      },
+      {
+        "label": "B",
+        "text": "Intentional sentence fragments used for rhetorical emphasis"
+      },
+      {
+        "label": "C",
+        "text": "Compound predicates"
+      },
+      {
+        "label": "D",
+        "text": "Absolute phrases"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Intentional fragments (incomplete sentences missing a subject, verb, or both) are a deliberate stylistic choice that creates emphasis and rhythmic punch. \"Gone\" has no subject or linking verb. \"Just like that\" has no subject or verb at all. In formal academic writing, fragments are errors. In persuasive communication, they are tools. Mapping a communicator's fragment frequency reveals whether they write by the textbook or by the ear, and whether they trust short bursts to carry emotional weight.",
+    "dimensionTested": "Dimension 2 (Sentence Length and Rhythm), fragment usage and rhythmic effect.",
+    "id": 4
+  },
+  {
+    "section": "grammar",
+    "dimension": "Active Voice",
+    "stem": "Two speechwriters draft the same announcement:\n\nWriter A: *\"The board has decided to restructure the division.\"*\nWriter B: *\"The division will be restructured.\"*\n\nWriter B's version uses passive voice. What does this shift accomplish?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It makes the sentence more formal and authoritative"
+      },
+      {
+        "label": "B",
+        "text": "It removes the agent (who performed the action), deflecting accountability"
+      },
+      {
+        "label": "C",
+        "text": "It shortens the sentence, improving readability"
+      },
+      {
+        "label": "D",
+        "text": "It shifts the tense from present perfect to future"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Passive voice moves the actor out of the spotlight (or removes them entirely). Writer A names the decision-maker (\"The board\"). Writer B buries it. This is why passive voice dominates corporate memos, political statements, and crisis communications. The classic example: \"Mistakes were made\" avoids saying who made them. When analyzing a communicator's voice corpus, a high passive-voice ratio often signals institutional caution, strategic ambiguity, or a habit of depersonalizing responsibility.",
+    "dimensionTested": "Dimension 3 (Voice), passive voice and agent deletion.",
+    "id": 5
+  },
+  {
+    "section": "grammar",
+    "dimension": "Grammatical Mood",
+    "stem": "*\"If I were you, I would reconsider that decision.\"*\n\nThe clause \"If I were you\" uses which grammatical mood?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Indicative"
+      },
+      {
+        "label": "B",
+        "text": "Imperative"
+      },
+      {
+        "label": "C",
+        "text": "Subjunctive"
+      },
+      {
+        "label": "D",
+        "text": "Conditional"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The subjunctive mood expresses hypothetical, wishful, or contrary-to-fact conditions. \"If I were you\" uses \"were\" instead of the expected \"was\" because the speaker is obviously not the other person. It is a condition contrary to reality. The subjunctive is gradually fading from everyday English, so communicators who use it consistently signal either formal training or deliberate grammatical precision. Its presence (or absence) in someone's natural writing is a reliable marker of register and formality level.",
+    "dimensionTested": "Dimension 4 (Mood), subjunctive mood identification.",
+    "id": 6
+  },
+  {
+    "section": "grammar",
+    "dimension": "Tense Patterns",
+    "stem": "A sports broadcaster calls:\n\n*\"He catches the ball on the five-yard line, spins past two defenders, and dives into the end zone!\"*\n\nThe play already happened moments ago, yet the broadcaster uses present tense. What is this technique called?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Progressive aspect"
+      },
+      {
+        "label": "B",
+        "text": "Historical present"
+      },
+      {
+        "label": "C",
+        "text": "Present perfect"
+      },
+      {
+        "label": "D",
+        "text": "Habitual present"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The historical present uses present-tense verbs to narrate past events, creating a sense of immediacy and pulling the audience into the moment as if it were unfolding now. Sportscasters, storytellers, and headline writers (\"Scientists Discover New Species\") all rely on it. In voice corpus analysis, heavy use of the historical present signals a communicator who prioritizes vivid, you-are-there narration over chronological precision.",
+    "dimensionTested": "Dimension 5 (Tense Patterns), historical present tense.",
+    "id": 7
+  },
+  {
+    "section": "grammar",
+    "dimension": "Punctuation",
+    "stem": "*\"The world will little note, nor long remember what we say here; but it can never forget what they did here.\"* (Abraham Lincoln, Gettysburg Address)\n\nLincoln uses a semicolon in this passage. What is the semicolon doing?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Replacing a period between two unrelated sentences"
+      },
+      {
+        "label": "B",
+        "text": "Introducing a list of items"
+      },
+      {
+        "label": "C",
+        "text": "Joining two independent clauses that are closely related but in deliberate contrast"
+      },
+      {
+        "label": "D",
+        "text": "Indicating a pause shorter than a period but longer than a comma"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The semicolon connects two independent clauses that could stand as separate sentences but gain power from their proximity. Lincoln places the semicolon at the pivot between \"what we say\" and \"what they did,\" reinforcing the contrast between words and actions. A period would separate the ideas too cleanly. A comma would create a splice. The semicolon holds both ideas in tension, which is exactly Lincoln's rhetorical intent. Communicators who use semicolons frequently tend to think in balanced pairs and opposing forces.",
+    "dimensionTested": "Dimension 6 (Punctuation Choices), semicolon usage for contrastive pairing.",
+    "id": 8
+  },
+  {
+    "section": "grammar",
+    "dimension": "Punctuation",
+    "stem": "Consider these two versions of the same sentence:\n\nVersion A: *\"There is one thing I know for certain: hard work beats talent when talent refuses to work hard.\"*\nVersion B: *\"There is one thing I know for certain. Hard work beats talent when talent refuses to work hard.\"*\n\nWhat does the colon in Version A accomplish that the period in Version B does not?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The colon signals that the second clause defines or fulfills the promise of the first"
+      },
+      {
+        "label": "B",
+        "text": "The colon creates a longer pause than a period"
+      },
+      {
+        "label": "C",
+        "text": "The colon makes the sentence grammatically correct (the period version is wrong)"
+      },
+      {
+        "label": "D",
+        "text": "The colon signals an upcoming list"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "A colon after an independent clause creates a \"drumroll\" effect: what follows will explain, define, or deliver on what came before. The phrase \"one thing I know for certain\" makes a promise, and the colon hands the reader that payoff in a single beat. A period breaks the promise and delivery into two separate thoughts. Version B is grammatically fine, but it lacks the anticipatory tension. Communicators who use colons frequently tend to build rhetorical setups before delivering their key points.",
+    "dimensionTested": "Dimension 6 (Punctuation Choices), colon as a rhetorical setup device.",
+    "id": 9
+  },
+  {
+    "section": "grammar",
+    "dimension": "Diction",
+    "stem": "Compare these two sentences:\n\nSentence A: *\"We need to facilitate a strategic restructuring of our organizational paradigm.\"*\nSentence B: *\"We need to change how we work.\"*\n\nBoth say roughly the same thing. What is the primary difference in diction?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Sentence A uses active voice; Sentence B uses passive voice"
+      },
+      {
+        "label": "B",
+        "text": "Sentence A uses high-register Latinate vocabulary; Sentence B uses plain Anglo-Saxon vocabulary"
+      },
+      {
+        "label": "C",
+        "text": "Sentence A is grammatically correct; Sentence B is informal and incorrect"
+      },
+      {
+        "label": "D",
+        "text": "Sentence A is concrete; Sentence B is abstract"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "English draws vocabulary from two major root systems: Latin/French (facilitate, strategic, restructuring, organizational, paradigm) and Anglo-Saxon/Germanic (change, how, we, work). Latinate words tend to be longer, more abstract, and more formal. Anglo-Saxon words tend to be shorter, more physical, and more direct. Neither tier is inherently better, but a communicator's default vocabulary tier is one of the strongest signals of their voice identity. Churchill famously chose Anglo-Saxon \"blood, toil, tears, and sweat\" over Latinate alternatives.",
+    "dimensionTested": "Dimension 7 (Diction), vocabulary tier (Latinate vs. Anglo-Saxon).",
+    "id": 10
+  },
+  {
+    "section": "grammar",
+    "dimension": "Diction",
+    "stem": "Read these two descriptions of the same event:\n\nVersion A: *\"The factory's smokestacks belched gray clouds over the river where children used to swim.\"*\nVersion B: *\"Industrial emissions negatively impacted the environmental quality of the surrounding recreational waterways.\"*\n\nThe first version is considered \"concrete\" language. What makes it concrete?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It uses shorter words"
+      },
+      {
+        "label": "B",
+        "text": "It includes sensory details that create a mental image (smokestacks, gray clouds, river, children swimming)"
+      },
+      {
+        "label": "C",
+        "text": "It uses active voice instead of passive"
+      },
+      {
+        "label": "D",
+        "text": "It avoids technical jargon"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Concrete language appeals to the senses: you can see smokestacks, picture gray clouds, imagine children in a river. Abstract language (\"emissions,\" \"environmental quality,\" \"recreational waterways\") refers to categories and concepts that produce no vivid mental picture. The concrete-to-abstract ratio in someone's communication reveals whether they think in images or in categories. Strong persuasive writing tends to anchor abstract arguments in concrete, sensory details, because the brain remembers pictures far more readily than concepts.",
+    "dimensionTested": "Dimension 7 (Diction), concrete vs. abstract language.",
+    "id": 11
+  },
+  {
+    "section": "grammar",
+    "dimension": "Diction",
+    "stem": "*\"The absolutely, utterly, completely unprecedented and thoroughly devastating economic collapse sent shockwaves through every single major global financial institution.\"*\n\nThis sentence suffers from:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Passive voice overuse"
+      },
+      {
+        "label": "B",
+        "text": "High modifier density (too many adjectives and adverbs stacked before each noun)"
+      },
+      {
+        "label": "C",
+        "text": "Mixed metaphors"
+      },
+      {
+        "label": "D",
+        "text": "Tense inconsistency"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Modifier density measures how many adjectives, adverbs, and modifying phrases a communicator attaches to their nouns and verbs. This sentence piles five modifiers (\"absolutely, utterly, completely unprecedented and thoroughly devastating\") before the noun \"collapse\" and three more (\"every single major global\") before \"institution.\" High modifier density often signals a writer who does not trust their nouns and verbs to carry meaning on their own. As Mark Twain advised: \"When you catch an adjective, kill it.\"",
+    "dimensionTested": "Dimension 7 (Diction), modifier density.",
+    "id": 12
+  },
+  {
+    "section": "logic",
+    "dimension": "Argumentation",
+    "stem": "*\"All men are mortal. Socrates is a man. Therefore, Socrates is mortal.\"*\n\nThis is the textbook example of which argumentation structure?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Inductive reasoning"
+      },
+      {
+        "label": "B",
+        "text": "Deductive reasoning"
+      },
+      {
+        "label": "C",
+        "text": "Abductive reasoning"
+      },
+      {
+        "label": "D",
+        "text": "Analogical reasoning"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Deductive reasoning moves from a general principle to a specific conclusion. If the premises are true, the conclusion must be true. The structure is: Major premise + Minor premise = Conclusion. This is the most logically airtight form of argument, and it's the backbone of law, mathematics, and formal philosophy. Communicators who favor deductive reasoning tend to lead with principles, rules, or universal truths before applying them to specific cases.",
+    "dimensionTested": "Dimension 8 (Argumentation Structure), deductive reasoning.",
+    "id": 13
+  },
+  {
+    "section": "logic",
+    "dimension": "Argumentation",
+    "stem": "A CEO tells her team:\n\n*\"Every startup that ignored customer feedback eventually failed. We are a startup. I'll let you connect the dots.\"*\n\nBy leaving the conclusion unstated, she is using which rhetorical device?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Syllogism"
+      },
+      {
+        "label": "B",
+        "text": "Enthymeme"
+      },
+      {
+        "label": "C",
+        "text": "Red herring"
+      },
+      {
+        "label": "D",
+        "text": "Begging the question"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "An enthymeme is a syllogism with one part (usually the conclusion or a premise) deliberately left unstated because the audience can fill it in themselves. The missing conclusion here is obvious: \"Therefore, we must not ignore customer feedback.\" Enthymemes are powerful because they recruit the audience as co-authors of the argument. When listeners complete the logic themselves, they feel ownership of the conclusion and are more likely to accept it. Aristotle considered the enthymeme the single most important tool in persuasion.",
+    "dimensionTested": "Dimension 8 (Argumentation Structure), enthymeme (truncated syllogism).",
+    "id": 14
+  },
+  {
+    "section": "logic",
+    "dimension": "Argumentation",
+    "stem": "A detective arrives at a crime scene and observes: muddy boots by the back door, a broken window, and a missing laptop. She hypothesizes that someone broke in through the window during last night's rainstorm to steal the laptop.\n\nThis reasoning process is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Deductive reasoning"
+      },
+      {
+        "label": "B",
+        "text": "Inductive reasoning"
+      },
+      {
+        "label": "C",
+        "text": "Abductive reasoning"
+      },
+      {
+        "label": "D",
+        "text": "Circular reasoning"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Abductive reasoning starts with an observation and works backward to the most likely explanation. Unlike deduction (which guarantees its conclusion from general premises) or induction (which generalizes from many observed cases), abduction generates the best available hypothesis from incomplete evidence. It is the logic of diagnosis, detective work, and troubleshooting. Communicators who reason abductively tend to say things like \"Here's what I think happened\" or \"The most plausible explanation is...\" They thrive in ambiguity rather than waiting for complete data.",
+    "dimensionTested": "Dimension 8 (Argumentation Structure), abductive reasoning.",
+    "id": 15
+  },
+  {
+    "section": "logic",
+    "dimension": "Framework Thinking",
+    "stem": "A management consultant presents her analysis using \"The Four Pillars of Customer Retention,\" complete with named categories and a diagram showing how they interact.\n\nThis communication pattern is best described as:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Deductive argumentation"
+      },
+      {
+        "label": "B",
+        "text": "Framework thinking (packaging ideas into named, structured models)"
+      },
+      {
+        "label": "C",
+        "text": "Analogical reasoning"
+      },
+      {
+        "label": "D",
+        "text": "Root-cause analysis"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Framework thinkers instinctively organize their ideas into named models, numbered lists, taxonomies, and matrices. \"The Four Pillars,\" \"The Three Horizons,\" \"The 2x2 Matrix.\" This approach makes complex ideas portable and memorable. When analyzing a voice corpus, high framework density suggests a consultant-style mind that packages observations into transferable mental models. The names make ideas \"sticky\" (which is itself a framework concept from Chip and Dan Heath's *Made to Stick*).",
+    "dimensionTested": "Dimension 9 (Framework Thinking), named models and structured packaging.",
+    "id": 16
+  },
+  {
+    "section": "logic",
+    "dimension": "Framework Thinking",
+    "stem": "Which of these responses best demonstrates taxonomic thinking?",
+    "options": [
+      {
+        "label": "A",
+        "text": "\"We should fix this customer churn problem before it gets worse.\""
+      },
+      {
+        "label": "B",
+        "text": "\"Customer churn falls into three categories: price-driven exits, service-failure exits, and natural-lifecycle exits. Each requires a different retention strategy.\""
+      },
+      {
+        "label": "C",
+        "text": "\"In my experience, loyal customers are the backbone of any business.\""
+      },
+      {
+        "label": "D",
+        "text": "\"This churn problem reminds me of what happened at my last company.\""
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Taxonomic thinking classifies messy reality into discrete, named categories and then treats each one differently. Option B does not simply acknowledge a problem; it sorts the problem space into three buckets with distinct treatment paths. This is a hallmark of systematic communicators. Taxonomies appear in phrases like \"There are three types of...\" or \"This falls into two categories.\" Communicators who default to taxonomic structures process complexity by sorting it into organized containers before proposing solutions.",
+    "dimensionTested": "Dimension 9 (Framework Thinking), taxonomy construction.",
+    "id": 17
+  },
+  {
+    "section": "logic",
+    "dimension": "Antithesis",
+    "stem": "*\"That's one small step for man, one giant leap for mankind.\"* (Neil Armstrong, 1969)\n\nThis sentence is built on antithesis. What makes it antithetical?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It uses a metaphor comparing walking to human progress"
+      },
+      {
+        "label": "B",
+        "text": "It places two contrasting ideas (\"small step\" vs. \"giant leap,\" \"man\" vs. \"mankind\") in parallel grammatical structure"
+      },
+      {
+        "label": "C",
+        "text": "It uses alliteration with the repeated \"m\" sounds"
+      },
+      {
+        "label": "D",
+        "text": "It builds from a specific example to a general conclusion"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Antithesis places opposing ideas in deliberately parallel structure so their contrast becomes unmissable. Armstrong's line contrasts scale (\"small\" vs. \"giant\"), action type (\"step\" vs. \"leap\"), and scope (\"man\" vs. \"mankind\"), all while maintaining identical grammatical form: \"one [adjective] [noun] for [noun].\" The parallel structure is what distinguishes antithesis from ordinary contrast. Without the matching grammar, the opposition would still exist but would not land with the same rhythmic force.",
+    "dimensionTested": "Dimension 10 (Antithesis and Contrast), antithesis with parallel structure.",
+    "id": 18
+  },
+  {
+    "section": "logic",
+    "dimension": "Antithesis",
+    "stem": "A brand strategist writes:\n\n*\"A brand is not your logo. It's not your color palette. It's not your tagline. A brand is the gut feeling people get when they hear your name.\"*\n\nThis technique of defining something by first stating what it is NOT is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Anaphora"
+      },
+      {
+        "label": "B",
+        "text": "Litotes"
+      },
+      {
+        "label": "C",
+        "text": "Apophasis"
+      },
+      {
+        "label": "D",
+        "text": "Via negativa (negation-based definition)"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Via negativa (the negative way) defines a concept by systematically eliminating what it is not before revealing what it is. The technique works because it clears away misconceptions before planting the real idea. The audience arrives at the definition having already discarded the wrong answers, which makes the correct definition feel sharper and more precise. Note that the passage also uses anaphora (repeating \"It's not\"), but the overall argumentative move is definition-by-negation. Communicators who favor this pattern tend to anticipate and preempt their audience's assumptions.",
+    "dimensionTested": "Dimension 10 (Antithesis and Contrast), negation-based definition (via negativa).",
+    "id": 19
+  },
+  {
+    "section": "logic",
+    "dimension": "Antithesis",
+    "stem": "*\"We choose to go to the Moon in this decade and do the other things, not because they are easy, but because they are hard.\"* (John F. Kennedy, 1962)\n\nThe \"not because...but because\" structure is an example of:",
+    "options": [
+      {
+        "label": "A",
+        "text": "A concession followed by a rebuttal"
+      },
+      {
+        "label": "B",
+        "text": "A contrastive move that reframes the audience's expected reasoning"
+      },
+      {
+        "label": "C",
+        "text": "A conditional statement"
+      },
+      {
+        "label": "D",
+        "text": "An appeal to authority"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Kennedy anticipates the audience's natural assumption (we pursue things because they are easy, because the path is clear) and explicitly rejects it before substituting his actual reasoning. This is a contrastive reframing: it acknowledges one way of thinking and replaces it with another in a single grammatical turn. It is more powerful than simply stating \"because they are hard\" on its own, because the contrast forces the audience to actively shift their mental model. Contrastive moves are a hallmark of leaders who aim to transform how their audience reasons about a problem.",
+    "dimensionTested": "Dimension 10 (Antithesis and Contrast), contrastive reframing.",
+    "id": 20
+  },
+  {
+    "section": "logic",
+    "dimension": "Causal Reasoning",
+    "stem": "A consultant writes:\n\n*\"Low employee engagement leads to high turnover. High turnover increases hiring costs. Increased hiring costs reduce profitability. Reduced profitability triggers budget cuts. Budget cuts further reduce employee engagement.\"*\n\nWhat type of causal reasoning does this passage demonstrate?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Root-cause analysis"
+      },
+      {
+        "label": "B",
+        "text": "Linear cause-and-effect chain"
+      },
+      {
+        "label": "C",
+        "text": "Circular causation (a self-reinforcing feedback loop)"
+      },
+      {
+        "label": "D",
+        "text": "Correlation presented as causation"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "This passage traces a causal chain where the final effect loops back to reinforce the original cause, creating a vicious cycle. Linear causal chains have a clear starting point and endpoint. Circular causation (or a feedback loop) shows how effects become causes of the next iteration, compounding the problem over time. Communicators who identify feedback loops demonstrate systems thinking. They see beyond \"A causes B\" to recognize that B can circle back and intensify A, which changes the entire nature of the problem and the intervention it requires.",
+    "dimensionTested": "Dimension 11 (Cause and Effect Chains), circular causation and feedback loops.",
+    "id": 21
+  },
+  {
+    "section": "logic",
+    "dimension": "Causal Reasoning",
+    "stem": "A CEO addresses declining sales with two different analyses:\n\nAnalysis A: *\"Sales are down because our Q3 marketing campaign underperformed.\"*\n\nAnalysis B: *\"Sales are down because our Q3 campaign underperformed. The campaign underperformed because we targeted the wrong audience segment. We targeted the wrong segment because our customer research was eighteen months out of date. Our research was outdated because we cut the research budget two years ago.\"*\n\nAnalysis B is an example of:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Inductive reasoning"
+      },
+      {
+        "label": "B",
+        "text": "Deductive reasoning"
+      },
+      {
+        "label": "C",
+        "text": "Root-cause analysis (iteratively asking \"why\" to reach the foundational cause)"
+      },
+      {
+        "label": "D",
+        "text": "Post hoc ergo propter hoc (false causation)"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Root-cause analysis peels back layers of causation by repeatedly asking \"why\" until reaching the foundational cause. Analysis A stops at the first-layer explanation (the campaign). Analysis B traces through four layers to discover that a budget decision two years ago is the real driver. This technique, formalized as \"The Five Whys\" at Toyota, separates surface-level thinkers from systems-level thinkers. In voice corpus analysis, a communicator's causal depth (how many layers they naturally trace before considering a problem \"explained\") is a strong signal of analytical sophistication.",
+    "dimensionTested": "Dimension 11 (Cause and Effect Chains), root-cause analysis and causal depth.",
+    "id": 22
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "Winston Churchill rallied Britain with: \"We shall fight on the beaches, we shall fight on the landing grounds, we shall fight in the fields and in the streets, we shall fight in the hills.\" What rhetorical scheme drives this passage?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Epistrophe"
+      },
+      {
+        "label": "B",
+        "text": "Anaphora"
+      },
+      {
+        "label": "C",
+        "text": "Symploce"
+      },
+      {
+        "label": "D",
+        "text": "Anadiplosis"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Anaphora repeats the same word or phrase at the beginning of successive clauses. Churchill hammers \"We shall fight\" at the start of each clause, building intensity through relentless repetition. It is one of the most common and powerful rhetorical schemes in political oratory, creating a drumbeat rhythm that audiences can feel in their bodies.",
+    "dimensionTested": "Rhetorical schemes (Dimension 12), repetition schemes.",
+    "id": 23
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "Lincoln's Gettysburg Address closes with \"government of the people, by the people, for the people.\" The repetition of \"the people\" at the end of each phrase is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Anaphora"
+      },
+      {
+        "label": "B",
+        "text": "Anadiplosis"
+      },
+      {
+        "label": "C",
+        "text": "Epistrophe"
+      },
+      {
+        "label": "D",
+        "text": "Polysyndeton"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Epistrophe (also called epiphora) repeats a word or phrase at the end of successive clauses. Where anaphora hammers the beginning, epistrophe anchors the ending. Lincoln's triple \"the people\" creates a rhythmic finality that reinforces his central argument about democratic governance. It is anaphora's mirror image.",
+    "dimensionTested": "Rhetorical schemes (Dimension 12), repetition schemes.",
+    "id": 24
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "Frederick Douglass wrote: \"You have seen how a man was made a slave; you shall see how a slave was made a man.\" This reversal of key words is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Chiasmus"
+      },
+      {
+        "label": "B",
+        "text": "Antimetabole"
+      },
+      {
+        "label": "C",
+        "text": "Antithesis"
+      },
+      {
+        "label": "D",
+        "text": "Parallelism"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Antimetabole repeats words in reverse grammatical order: \"man...slave\" flips to \"slave...man.\" It is a specific type of chiasmus that reuses the exact same words, not just the same structure. Douglass uses it to let the reversal of words mirror the reversal of his condition, turning the language of oppression back on itself.",
+    "dimensionTested": "Rhetorical schemes (Dimension 12), repetition schemes.",
+    "id": 25
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "What is the key difference between chiasmus and antimetabole?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Chiasmus uses three elements; antimetabole uses two"
+      },
+      {
+        "label": "B",
+        "text": "Chiasmus reverses grammatical structure (ABBA); antimetabole reverses the exact same words"
+      },
+      {
+        "label": "C",
+        "text": "Chiasmus is ancient Greek; antimetabole is Latin. They mean the same thing"
+      },
+      {
+        "label": "D",
+        "text": "There is no difference; they are perfect synonyms"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Chiasmus is the broader category: any ABBA reversal of structure. Antimetabole is the specific subset where the same words are repeated in reverse order (like JFK's \"Ask not what your country can do for you; ask what you can do for your country\"). A chiasmus that is not antimetabole might reverse the pattern with different words, like Samuel Johnson's \"By day the frolic, and the dance by night\" (time-activity flips to activity-time, but uses different words).",
+    "dimensionTested": "Rhetorical schemes (Dimension 12), repetition schemes.",
+    "id": 26
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "Shakespeare's Marc Antony opens with: \"Friends, Romans, countrymen, lend me your ears.\" The series of three parallel terms (\"Friends, Romans, countrymen\") is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Isocolon"
+      },
+      {
+        "label": "B",
+        "text": "Tricolon"
+      },
+      {
+        "label": "C",
+        "text": "Polysyndeton"
+      },
+      {
+        "label": "D",
+        "text": "Asyndeton"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A tricolon is a series of three parallel words, phrases, or clauses. \"Friends, Romans, countrymen\" builds from personal to civic to national, creating a rhythm that audiences find instinctively satisfying. Tricolons appear everywhere in memorable communication: \"Life, liberty, and the pursuit of happiness.\" \"Blood, sweat, and tears.\" \"The truth, the whole truth, and nothing but the truth.\" Three is the magic number of rhetoric.",
+    "dimensionTested": "Rhetorical schemes (Dimension 12), structural schemes.",
+    "id": 27
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "Julius Caesar reportedly declared: \"Veni, vidi, vici\" (\"I came, I saw, I conquered\"). The punchy, rapid-fire rhythm comes from omitting conjunctions between clauses. This technique is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Polysyndeton"
+      },
+      {
+        "label": "B",
+        "text": "Asyndeton"
+      },
+      {
+        "label": "C",
+        "text": "Ellipsis"
+      },
+      {
+        "label": "D",
+        "text": "Parataxis"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Asyndeton is the deliberate omission of conjunctions (like \"and\") between words or clauses. The standard phrasing would be \"I came and I saw and I conquered,\" but dropping the conjunctions creates a staccato, decisive rhythm. Its opposite, polysyndeton, does the reverse: piling on extra conjunctions for a different effect. Caesar's line is punchy precisely because nothing slows it down.",
+    "dimensionTested": "Rhetorical schemes (Dimension 12), structural schemes.",
+    "id": 28
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "\"And the rain descended, and the floods came, and the winds blew, and beat upon that house.\" (Matthew 7:27) The repeated use of \"and\" in this passage is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Asyndeton"
+      },
+      {
+        "label": "B",
+        "text": "Anaphora"
+      },
+      {
+        "label": "C",
+        "text": "Polysyndeton"
+      },
+      {
+        "label": "D",
+        "text": "Epistrophe"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Polysyndeton deliberately adds more conjunctions than grammatically necessary, usually \"and\" or \"or.\" Where asyndeton speeds things up by cutting conjunctions, polysyndeton slows the reader down, giving each element equal weight and creating a sense of relentless accumulation. The biblical writers used it frequently to suggest overwhelming force. Hemingway borrowed the technique throughout his fiction.",
+    "dimensionTested": "Rhetorical schemes (Dimension 12), structural schemes.",
+    "id": 29
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "Dickens opens A Tale of Two Cities: \"It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness.\" How many rhetorical schemes are operating simultaneously in this passage?",
+    "options": [
+      {
+        "label": "A",
+        "text": "One: anaphora (\"It was\")"
+      },
+      {
+        "label": "B",
+        "text": "Two: anaphora and antithesis"
+      },
+      {
+        "label": "C",
+        "text": "Three: parallelism, anaphora, and antithesis"
+      },
+      {
+        "label": "D",
+        "text": "One: parallelism (the rest are just features of the parallelism)"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "This passage is a masterclass in layered rhetoric. Parallelism provides the repeating grammatical structure (\"It was the ___ of ___\"). Anaphora provides the repeated opening phrase (\"It was\"). And antithesis provides the contrasting content (best/worst, wisdom/foolishness). Great writers often stack multiple devices in a single passage, and identifying all the layers is what separates intermediate analysis from advanced.",
+    "dimensionTested": "Rhetorical schemes (Dimension 12), structural schemes.",
+    "id": 30
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "Alexander Pope wrote in The Rape of the Lock: \"Or stain her honour, or her new brocade.\" The verb \"stain\" governs two very different objects (honour and brocade) in different senses. This device is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Syllepsis"
+      },
+      {
+        "label": "B",
+        "text": "Zeugma"
+      },
+      {
+        "label": "C",
+        "text": "Metonymy"
+      },
+      {
+        "label": "D",
+        "text": "Synecdoche"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Zeugma uses a single word (usually a verb) to govern two or more objects in different senses. \"Stain\" applies literally to the brocade (a fine fabric) but figuratively to honour. The jarring mismatch between the two objects creates humor or irony by yoking together things that don't belong on the same level. Pope uses it here to mock his character's shallow priorities, equating moral reputation with a dress.",
+    "dimensionTested": "Rhetorical schemes (Dimension 12), structural schemes.",
+    "id": 31
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "A politician says: \"I won't even mention my opponent's three ethics violations, his failure to pay taxes, or the ongoing investigation into his finances. I'm above that kind of politics.\" This technique of bringing up a subject by claiming not to bring it up is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Aporia"
+      },
+      {
+        "label": "B",
+        "text": "Apophasis (preterition)"
+      },
+      {
+        "label": "C",
+        "text": "Apostrophe"
+      },
+      {
+        "label": "D",
+        "text": "Concession-rebuttal"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Apophasis (also called preterition or praeteritio) is the rhetorical trick of mentioning something by explicitly stating you will not mention it. The speaker gets to plant damaging information while maintaining the appearance of taking the high road. It is one of the oldest moves in political rhetoric (Cicero was a master), and it remains devastatingly effective because the audience absorbs every detail of what was supposedly left unsaid.",
+    "dimensionTested": "Rhetorical schemes (Dimension 12), argumentative moves.",
+    "id": 32
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Tropes",
+    "stem": "Shakespeare wrote: \"All the world's a stage, and all the men and women merely players.\" This is an example of:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Simile"
+      },
+      {
+        "label": "B",
+        "text": "Metaphor"
+      },
+      {
+        "label": "C",
+        "text": "Analogy"
+      },
+      {
+        "label": "D",
+        "text": "Personification"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A metaphor states that one thing IS another (\"the world's a stage\"), creating a direct identity between two unlike things. A simile would use \"like\" or \"as\" to soften the comparison (\"the world is like a stage\"). The difference matters: metaphor asserts identity while simile only suggests resemblance. Shakespeare's version is more forceful precisely because it collapses the distance between the two ideas.",
+    "dimensionTested": "Rhetorical tropes (Dimension 13).",
+    "id": 33
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Tropes",
+    "stem": "\"The pen is mightier than the sword.\" In this famous line, \"pen\" and \"sword\" are examples of:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Synecdoche"
+      },
+      {
+        "label": "B",
+        "text": "Metaphor"
+      },
+      {
+        "label": "C",
+        "text": "Metonymy"
+      },
+      {
+        "label": "D",
+        "text": "Personification"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Metonymy substitutes a closely associated concept for the thing itself. \"Pen\" stands for written expression and intellectual influence; \"sword\" stands for military force. The critical distinction from synecdoche: metonymy uses an associated concept (the pen is a tool of writing, but writing is not \"made of\" pens), while synecdoche uses a part of the thing itself (like \"hands\" for sailors). Metonymy works through association; synecdoche works through part-whole relationships.",
+    "dimensionTested": "Rhetorical tropes (Dimension 13).",
+    "id": 34
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Tropes",
+    "stem": "A captain shouts \"All hands on deck!\" The word \"hands\" standing in for the whole sailors is an example of:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Metonymy"
+      },
+      {
+        "label": "B",
+        "text": "Synecdoche"
+      },
+      {
+        "label": "C",
+        "text": "Metaphor"
+      },
+      {
+        "label": "D",
+        "text": "Hyperbole"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Synecdoche substitutes a part for the whole (or, less commonly, the whole for a part). \"Hands\" refers to the sailors' entire bodies and persons, not just their literal hands. The classic test: if the substituted word is a physical part of the thing it represents, it is synecdoche. If it is merely associated with it (like \"the crown\" for the monarchy, or \"Hollywood\" for the film industry), it is metonymy.",
+    "dimensionTested": "Rhetorical tropes (Dimension 13).",
+    "id": 35
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Tropes",
+    "stem": "When someone says \"He's not the sharpest tool in the shed,\" they are using understatement through negation to suggest he is unintelligent. This form of understatement is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Meiosis"
+      },
+      {
+        "label": "B",
+        "text": "Litotes"
+      },
+      {
+        "label": "C",
+        "text": "Irony"
+      },
+      {
+        "label": "D",
+        "text": "Euphemism"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Litotes is a specific form of understatement that works through negation: saying what something is NOT in order to imply what it IS. \"Not bad\" means \"good.\" \"Not the brightest\" means \"quite dim.\" It differs from meiosis (general understatement without the negation structure) and irony (which says the opposite of what is meant). Litotes gives the speaker plausible deniability while still making the point land.",
+    "dimensionTested": "Rhetorical tropes (Dimension 13).",
+    "id": 36
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Tropes",
+    "stem": "Identify the correct pairing of tropes in these two lines:\n\nLine 1: \"The wind whispered secrets through the ancient oaks.\"\nLine 2: \"I nearly died of embarrassment.\"",
+    "options": [
+      {
+        "label": "A",
+        "text": "Line 1 is personification; Line 2 is hyperbole"
+      },
+      {
+        "label": "B",
+        "text": "Line 1 is metaphor; Line 2 is litotes"
+      },
+      {
+        "label": "C",
+        "text": "Line 1 is hyperbole; Line 2 is personification"
+      },
+      {
+        "label": "D",
+        "text": "Both lines are metaphor"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Personification gives human qualities to non-human entities. The wind cannot literally \"whisper secrets,\" but attributing that human action makes the scene vivid and alive. Hyperbole is deliberate exaggeration not meant literally. Nobody actually dies from embarrassment, but the overstatement conveys the intensity of the feeling. Both tropes alter the literal meaning of words, which is what makes them tropes (meaning devices) rather than schemes (structural devices).",
+    "dimensionTested": "Rhetorical tropes (Dimension 13).",
+    "id": 37
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Tropes",
+    "stem": "Oscar Wilde wrote: \"I can resist everything except temptation.\" This self-contradicting statement that reveals a deeper truth is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Oxymoron"
+      },
+      {
+        "label": "B",
+        "text": "Paradox"
+      },
+      {
+        "label": "C",
+        "text": "Irony"
+      },
+      {
+        "label": "D",
+        "text": "Litotes"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A paradox is a statement that appears to contradict itself but reveals a truth upon reflection. Wilde's line claims the power to resist \"everything,\" then immediately undercuts itself by excepting the one thing that matters. The key difference from oxymoron: an oxymoron compresses the contradiction into two adjacent words (\"deafening silence\"), while a paradox plays out across a full statement or idea. Paradox invites the audience to think; oxymoron hits them with a flash of contradiction.",
+    "dimensionTested": "Rhetorical tropes (Dimension 13).",
+    "id": 38
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Tropes",
+    "stem": "Martin Luther King Jr. began his \"I Have a Dream\" speech: \"Five score years ago, a great American, in whose symbolic shadow we stand today, signed the Emancipation Proclamation.\" The phrase \"Five score years ago\" is an example of:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Hyperbole"
+      },
+      {
+        "label": "B",
+        "text": "Allusion"
+      },
+      {
+        "label": "C",
+        "text": "Analogy"
+      },
+      {
+        "label": "D",
+        "text": "Aphorism"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "An allusion is an indirect reference to another text, event, or figure that the audience is expected to recognize. King's \"Five score years ago\" deliberately echoes Lincoln's Gettysburg Address (\"Four score and seven years ago\"), linking the civil rights movement to the unfinished promise of emancipation. Allusions work as rhetorical shorthand: they import the weight and authority of the referenced source into the current argument without having to explain the whole connection.",
+    "dimensionTested": "Rhetorical tropes (Dimension 13).",
+    "id": 39
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Sound Patterns",
+    "stem": "\"From forth the fatal loins of these two foes\" (Shakespeare, Romeo and Juliet). The repeated \"f\" sound at the beginning of multiple words is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Assonance"
+      },
+      {
+        "label": "B",
+        "text": "Consonance"
+      },
+      {
+        "label": "C",
+        "text": "Alliteration"
+      },
+      {
+        "label": "D",
+        "text": "Onomatopoeia"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Alliteration is the repetition of initial consonant sounds in closely connected words. Shakespeare packs four \"f\" sounds into a single line: \"from,\" \"forth,\" \"fatal,\" \"foes.\" Alliteration creates rhythm and memorability, which is why it dominates headlines, brand names, and poetry. It specifically refers to consonant sounds at the beginning of words or stressed syllables, not vowel sounds and not sounds buried in the middle or end of words.",
+    "dimensionTested": "Sound patterns (Dimension 14).",
+    "id": 40
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Sound Patterns",
+    "stem": "The line \"I feel the need, the need for speed\" repeats a vowel sound throughout multiple words. The repetition of vowel sounds within nearby words is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Alliteration"
+      },
+      {
+        "label": "B",
+        "text": "Assonance"
+      },
+      {
+        "label": "C",
+        "text": "Consonance"
+      },
+      {
+        "label": "D",
+        "text": "Perfect rhyme"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Assonance is the repetition of vowel sounds within nearby words, regardless of where those sounds fall in each word. The long \"ee\" sound runs through \"feel,\" \"need,\" and \"speed,\" creating an internal music that binds the phrase together. Unlike end-rhyme (which matches sounds at the ends of lines), assonance can occur anywhere within words. It is subtler than alliteration but just as effective for creating cohesion and rhythm.",
+    "dimensionTested": "Sound patterns (Dimension 14).",
+    "id": 41
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Sound Patterns",
+    "stem": "Wilfred Owen wrote: \"And by his smile, I knew that sullen hall.\" The repeated \"l\" sound appearing in the middle and final positions of \"smile,\" \"sullen,\" and \"hall\" is an example of:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Alliteration"
+      },
+      {
+        "label": "B",
+        "text": "Consonance"
+      },
+      {
+        "label": "C",
+        "text": "Assonance"
+      },
+      {
+        "label": "D",
+        "text": "Internal rhyme"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Consonance is the repetition of consonant sounds in any position within nearby words (beginning, middle, or end). While alliteration is limited to initial sounds, consonance captures repeated consonants wherever they appear. Owen was a master of consonance, often using it instead of perfect rhyme to create an unsettling, off-kilter music that mirrored the dissonance of war. In \"smile,\" \"sullen,\" and \"hall,\" the \"l\" sound binds the words together without the neatness of rhyme.",
+    "dimensionTested": "Sound patterns (Dimension 14).",
+    "id": 42
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Appeals",
+    "stem": "A doctor begins a public health presentation by saying: \"In my twenty years of treating infectious diseases at Johns Hopkins, I have seen firsthand what happens when communities ignore vaccination data.\" This opening primarily builds:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Pathos"
+      },
+      {
+        "label": "B",
+        "text": "Logos"
+      },
+      {
+        "label": "C",
+        "text": "Ethos"
+      },
+      {
+        "label": "D",
+        "text": "Kairos"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Ethos is the appeal to credibility, character, and authority. By citing twenty years of experience and a prestigious institution, the doctor establishes trustworthiness before presenting any data or emotional appeal. Ethos answers the audience's unspoken question: \"Why should I listen to you?\" It is often the first rhetorical move in persuasion, because logical arguments and emotional appeals land harder when the audience already trusts the speaker.",
+    "dimensionTested": "Aristotle's Rhetorical Triangle (Dimension 15).",
+    "id": 43
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Appeals",
+    "stem": "\"I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin but by the content of their character.\" King's reference to his own children primarily appeals to:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Ethos"
+      },
+      {
+        "label": "B",
+        "text": "Pathos"
+      },
+      {
+        "label": "C",
+        "text": "Logos"
+      },
+      {
+        "label": "D",
+        "text": "Kairos"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Pathos is the appeal to emotion. By placing his own children into the vision, King transforms an abstract political argument into a deeply personal and human one. The audience feels the weight of a father's hope. Pathos does not mean manipulation; it means connecting your argument to genuine human feelings so the audience cares about the outcome. King's genius was weaving pathos through logical and ethical appeals so they reinforced each other rather than competing.",
+    "dimensionTested": "Aristotle's Rhetorical Triangle (Dimension 15).",
+    "id": 44
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Appeals",
+    "stem": "A speaker argues: \"Nations that trade together go to war less often. Between 1950 and 2000, armed conflicts between major trading partners dropped by 60%, and GDP per capita in open economies grew three times faster than in closed ones.\" This passage primarily appeals to:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Ethos"
+      },
+      {
+        "label": "B",
+        "text": "Pathos"
+      },
+      {
+        "label": "C",
+        "text": "Logos"
+      },
+      {
+        "label": "D",
+        "text": "Kairos"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Logos is the appeal to logic, reason, and evidence. Statistics, data, syllogisms, and structured arguments all fall under logos. This passage provides concrete, verifiable numbers (60% drop, three times faster) to support the claim. The strongest persuasion typically braids all three appeals (ethos, pathos, logos) together, but logos provides the rational backbone that survives scrutiny after the emotional moment passes and the speaker's reputation is no longer in the room.",
+    "dimensionTested": "Aristotle's Rhetorical Triangle (Dimension 15).",
+    "id": 45
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Style Register",
+    "stem": "Match each passage to its correct style register:\n\nPassage 1: \"Look, here's the deal. We cut costs or we close. That's it.\"\nPassage 2: \"After careful review of our financial position, I recommend a measured reduction in operating expenses.\"\nPassage 3: \"We stand at the precipice of ruin, and only the courage of decisive action can pull us back from the abyss that yawns before this great institution.\"",
+    "options": [
+      {
+        "label": "A",
+        "text": "Passage 1 = Grand, Passage 2 = Plain, Passage 3 = Middle"
+      },
+      {
+        "label": "B",
+        "text": "Passage 1 = Plain, Passage 2 = Middle, Passage 3 = Grand"
+      },
+      {
+        "label": "C",
+        "text": "Passage 1 = Middle, Passage 2 = Plain, Passage 3 = Grand"
+      },
+      {
+        "label": "D",
+        "text": "Passage 1 = Plain, Passage 2 = Grand, Passage 3 = Middle"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The three classical registers (genera dicendi) are: Plain (genus humile), which is clear, direct, and conversational (\"here's the deal\"). Middle (genus medium), which is polished and balanced but not ornate (\"careful review,\" \"measured reduction\"). Grand (genus grande), which deploys elevated diction, figurative language, and emotional intensity to move audiences to action (\"precipice of ruin,\" \"abyss that yawns\"). Knowing which register a situation calls for is a core communication skill.",
+    "dimensionTested": "Style Register (Dimension 16).",
+    "id": 46
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Style Register",
+    "stem": "A CEO delivers a somber annual report about layoffs and declining revenue. Midway through, she says: \"And honestly? The whole situation is a total dumpster fire and we just gotta deal with it, folks.\" This sudden shift from formal to colloquial is an example of:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Code-switching"
+      },
+      {
+        "label": "B",
+        "text": "A register violation"
+      },
+      {
+        "label": "C",
+        "text": "Bathos"
+      },
+      {
+        "label": "D",
+        "text": "Both B and C"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "A register violation is an unexpected, jarring shift from one style register to another. Bathos is the specific type where the shift drops from elevated to trivially low, often creating unintentional comedy. The CEO's jump from formal corporate address to casual slang (\"dumpster fire,\" \"gotta deal with it, folks\") is both: a register violation in form and bathos in effect. Skilled communicators use deliberate register shifts for impact (dropping to plain register can signal authenticity), but accidental shifts undermine credibility at the worst possible moment.",
+    "dimensionTested": "Style Register (Dimension 16).",
+    "id": 47
+  },
+  {
+    "section": "voice",
+    "dimension": "Opening Patterns",
+    "stem": "Consider these four opening lines:\n\nWhich opening uses a direct address pattern?",
+    "options": [
+      {
+        "label": "A",
+        "text": "\"The year was 1987, and I was standing in a parking lot holding a cassette tape that would change everything.\""
+      },
+      {
+        "label": "B",
+        "text": "\"You've been there. Staring at a blank page, cursor blinking, wondering if you have anything worth saying.\""
+      },
+      {
+        "label": "C",
+        "text": "\"Seventy-three percent of executives say they cannot distinguish their company's messaging from their competitors'.\""
+      },
+      {
+        "label": "D",
+        "text": "\"What if the voice you've been performing isn't the one your audience actually needs?\""
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Direct address openings speak to the audience in second person and place them inside a shared experience: \"You've been there.\" Option A is an anecdote (personal story with specific detail). Option C is a statistic opening. Option D is a rhetorical question. Direct address creates instant intimacy by assuming shared ground before it has been earned.",
+    "dimensionTested": "17 (Opening patterns)",
+    "id": 48
+  },
+  {
+    "section": "voice",
+    "dimension": "Opening Patterns",
+    "stem": "George Orwell's *1984* opens: \"It was a bright cold day in April, and the clocks were striking thirteen.\"\n\nThis is an example of which opening pattern?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Bold claim"
+      },
+      {
+        "label": "B",
+        "text": "Cold open"
+      },
+      {
+        "label": "C",
+        "text": "Metaphor"
+      },
+      {
+        "label": "D",
+        "text": "Anecdote"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A cold open drops the audience into a scene already in progress, with no preamble or context-setting. Orwell doesn't introduce a narrator, explain the world, or frame a thesis. He places you mid-action in a world where clocks strike thirteen, and you have to catch up. Cold opens generate momentum because they skip the warm-up entirely.",
+    "dimensionTested": "17 (Opening patterns)",
+    "id": 49
+  },
+  {
+    "section": "voice",
+    "dimension": "Closing Patterns",
+    "stem": "A speaker begins a talk with a story about her grandmother's kitchen table. Thirty minutes later, she ends with: \"So I went home, sat down at that same table, and finally wrote the letter.\"\n\nThis closing technique is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Emotional peak"
+      },
+      {
+        "label": "B",
+        "text": "Summary"
+      },
+      {
+        "label": "C",
+        "text": "Callback"
+      },
+      {
+        "label": "D",
+        "text": "Aphorism"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "A callback closes by returning to an image, character, or detail from the opening. It creates structural symmetry and gives the audience the satisfying feeling that the piece was designed as a whole, not improvised. The best callbacks add new meaning to the original image. Here, the kitchen table transforms from a setting detail into a symbol of action.",
+    "dimensionTested": "18 (Closing patterns)",
+    "id": 50
+  },
+  {
+    "section": "voice",
+    "dimension": "Closing Patterns",
+    "stem": "Martin Luther King Jr.'s \"I Have a Dream\" speech ends not with a summary of policy demands but with a soaring vision of freedom ringing \"from every mountainside.\" This closing relies primarily on which pattern?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Call to action"
+      },
+      {
+        "label": "B",
+        "text": "Provocation"
+      },
+      {
+        "label": "C",
+        "text": "Emotional peak"
+      },
+      {
+        "label": "D",
+        "text": "Cliffhanger"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "An emotional peak closing builds to a crescendo of feeling, often using repetition, imagery, and vocal intensity to leave the audience in an elevated state. King does not ask the audience to do something specific (call to action) or challenge them to reconsider a belief (provocation). He raises the emotional stakes until the closing line carries the full weight of the speech's moral vision.",
+    "dimensionTested": "18 (Closing patterns)",
+    "id": 51
+  },
+  {
+    "section": "voice",
+    "dimension": "Storytelling",
+    "stem": "Read this passage:\n\n> \"I walked into the meeting with a 40-slide deck. The CFO looked at slide one, closed his laptop, and said, 'Tell me what you actually need.' I froze. Then I threw out the deck and talked for three minutes. We got the budget.\"\n\nThis anecdote follows a classic storytelling structure. What is it?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Hero's journey (departure, initiation, return)"
+      },
+      {
+        "label": "B",
+        "text": "Setup-conflict-resolution"
+      },
+      {
+        "label": "C",
+        "text": "In medias res with flashback"
+      },
+      {
+        "label": "D",
+        "text": "Nested story (story within a story)"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The passage follows the most common micro-storytelling structure in business communication: setup (walked in with a deck), conflict (the CFO shut it down), resolution (improvised and won the budget). This three-beat pattern works because it creates tension and releases it in a compressed timeframe. Most effective anecdotes in professional settings run under 90 seconds and use exactly this structure.",
+    "dimensionTested": "19 (Storytelling patterns)",
+    "id": 52
+  },
+  {
+    "section": "voice",
+    "dimension": "Storytelling",
+    "stem": "A communicator consistently tells stories like this: \"You're sitting in the waiting room. The receptionist calls your name. You walk in, and the doctor doesn't look up from her screen.\"\n\nWhat storytelling POV is being used, and what effect does it create?",
+    "options": [
+      {
+        "label": "A",
+        "text": "First person. It builds credibility through personal experience."
+      },
+      {
+        "label": "B",
+        "text": "Third person. It creates journalistic distance and objectivity."
+      },
+      {
+        "label": "C",
+        "text": "Second person. It places the audience inside the experience."
+      },
+      {
+        "label": "D",
+        "text": "Omniscient narrator. It gives the audience a god's-eye view."
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Second-person storytelling (\"you walk in, you sit down\") forces the audience to become the protagonist. It is rarer than first or third person and far more immersive when done well. The risk is that it can feel presumptuous if the assumed experience doesn't match the audience's reality. It works best for universal experiences that most listeners can immediately recognize.",
+    "dimensionTested": "19 (Storytelling patterns)",
+    "id": 53
+  },
+  {
+    "section": "voice",
+    "dimension": "Storytelling",
+    "stem": "Compare these two storytelling approaches:\n\nSpeaker A: \"The room smelled like burnt coffee and dry-erase markers. My hands were shaking. I could hear the HVAC system cycling on and off.\"\n\nSpeaker B: \"It was a high-pressure situation. The stakes were significant, and I knew this was a pivotal moment for the entire initiative.\"\n\nSpeaker A is using _______ language, while Speaker B is using _______ language.",
+    "options": [
+      {
+        "label": "A",
+        "text": "Emotional / analytical"
+      },
+      {
+        "label": "B",
+        "text": "Sensory / conceptual"
+      },
+      {
+        "label": "C",
+        "text": "Concrete / abstract"
+      },
+      {
+        "label": "D",
+        "text": "Both B and C are correct"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Speaker A anchors the story in physical detail you can smell, feel, and hear. Speaker B stays in the realm of ideas and labels (\"high-pressure,\" \"pivotal moment\") without grounding them in anything the audience can experience. Both \"sensory vs. conceptual\" and \"concrete vs. abstract\" accurately describe this contrast. The strongest communicators know when each register serves them. Sensory language makes moments vivid and memorable. Conceptual language moves efficiently through ideas. Most people default to conceptual and have to train themselves toward sensory detail.",
+    "dimensionTested": "19 (Storytelling patterns)",
+    "id": 54
+  },
+  {
+    "section": "voice",
+    "dimension": "Humor and Tone",
+    "stem": "A CEO opens a keynote by saying: \"Our competitors released their annual innovation report last week. I read all 200 pages. Twice. I do my best sleeping in the afternoon.\"\n\nThis humor style is best described as:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Self-deprecating"
+      },
+      {
+        "label": "B",
+        "text": "Observational"
+      },
+      {
+        "label": "C",
+        "text": "Absurdist"
+      },
+      {
+        "label": "D",
+        "text": "Sardonic"
+      }
+    ],
+    "correctAnswer": "D",
+    "explanation": "Sardonic humor uses dry, cutting wit to mock a target. Here the target is the competitors' report, not the speaker herself. The joke lands through deadpan misdirection (\"I read all 200 pages. Twice.\") before the sharp turn. Self-deprecating humor targets the speaker. Observational humor points out everyday absurdities without the biting edge. Absurdist humor abandons logical reality entirely. Sardonic tone signals confidence and intellectual sharpness, but overuse can make a communicator seem dismissive.",
+    "dimensionTested": "20 (Humor and tone signals)",
+    "id": 55
+  },
+  {
+    "section": "voice",
+    "dimension": "Humor and Tone",
+    "stem": "On the warm-to-direct spectrum, where would you place this passage?\n\n> \"Look, I'll be honest with you. This strategy isn't working. The numbers don't support it, your team knows it, and if we keep pretending otherwise we're wasting everyone's time. Here's what I'd do instead.\"",
+    "options": [
+      {
+        "label": "A",
+        "text": "Extremely warm (prioritizes relationship over message)"
+      },
+      {
+        "label": "B",
+        "text": "Warm-leaning (softens the message but delivers it)"
+      },
+      {
+        "label": "C",
+        "text": "Direct-leaning (delivers the message with minimal cushioning)"
+      },
+      {
+        "label": "D",
+        "text": "Extremely direct (message only, no relationship maintenance)"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The passage is direct but not brutal. \"I'll be honest with you\" and \"Here's what I'd do instead\" are small relational gestures. The speaker doesn't apologize, hedge, or bury the point in qualifiers, but they also don't attack. This is direct-leaning communication: the message comes first, but the speaker hasn't abandoned the relationship. Extremely direct communication would skip even those small gestures and state the conclusion with no framing at all.",
+    "dimensionTested": "20 (Humor and tone signals)",
+    "id": 56
+  },
+  {
+    "section": "voice",
+    "dimension": "Values And Non-negotiables",
+    "stem": "A thought leader repeatedly uses phrases like \"intellectual honesty,\" \"say the quiet part out loud,\" and \"I'd rather be wrong in public than right in private.\" These are examples of:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Audience frames"
+      },
+      {
+        "label": "B",
+        "text": "Value-laden vocabulary and defended positions"
+      },
+      {
+        "label": "C",
+        "text": "Personal history anchors"
+      },
+      {
+        "label": "D",
+        "text": "Closing patterns"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "When a communicator returns again and again to the same ethical commitments, those phrases become signature markers of their values dimension. \"Intellectual honesty\" is value-laden vocabulary. \"Say the quiet part out loud\" is a defended position (transparency over comfort). These recurring patterns tell the audience what the communicator will fight for, and they build trust through predictability. A voice corpus maps these patterns to identify the communicator's core non-negotiables.",
+    "dimensionTested": "21 (Values and non-negotiables)",
+    "id": 57
+  },
+  {
+    "section": "voice",
+    "dimension": "Values And Non-negotiables",
+    "stem": "Which of the following is the best example of a \"trigger topic\" in a communicator's voice corpus?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A subject they mention frequently and with enthusiasm"
+      },
+      {
+        "label": "B",
+        "text": "A subject that consistently provokes a shift in their tone, intensity, or sentence structure"
+      },
+      {
+        "label": "C",
+        "text": "A subject they avoid entirely in public communication"
+      },
+      {
+        "label": "D",
+        "text": "A subject they only discuss with specific audiences"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "A trigger topic is identified not by frequency or avoidance but by the measurable shift it produces in someone's communication patterns. When a communicator hits a trigger topic, their sentences get shorter, their language gets more absolute (\"always,\" \"never\"), and their hedging disappears. In a voice corpus analysis, trigger topics show up as statistical anomalies in otherwise stable patterns. They reveal what the communicator cares about so deeply that their trained communication habits break down.",
+    "dimensionTested": "21 (Values and non-negotiables)",
+    "id": 58
+  },
+  {
+    "section": "voice",
+    "dimension": "Audience Frames",
+    "stem": "Consider two versions of the same message:\n\nVersion 1: \"You already know this. Your instincts are right. What you need isn't more information. It's permission to act on what you see.\"\n\nVersion 2: \"Let me walk you through the framework. There are four stages, and most people get stuck at stage two. Here's how to move past it.\"\n\nVersion 1 positions the audience as _______, while Version 2 positions them as _______.",
+    "options": [
+      {
+        "label": "A",
+        "text": "Peers / students"
+      },
+      {
+        "label": "B",
+        "text": "Challengers / mentees"
+      },
+      {
+        "label": "C",
+        "text": "Capable insiders / learners needing guidance"
+      },
+      {
+        "label": "D",
+        "text": "Decision-makers / implementers"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Audience positioning is one of the most powerful and invisible choices a communicator makes. Version 1 treats the audience as people who already have the answer. The speaker's role is to validate and activate, not to teach. Version 2 treats the audience as people who lack a framework the speaker possesses. Neither is wrong, but they create fundamentally different power dynamics. A voice corpus reveals which positioning a communicator defaults to, often without realizing it.",
+    "dimensionTested": "22 (Audience frames)",
+    "id": 59
+  },
+  {
+    "section": "voice",
+    "dimension": "Audience Frames",
+    "stem": "A communicator's content has a high \"you\" frequency, low \"we\" frequency, and moderate jargon density. What does this pattern most likely indicate about their audience relationship?",
+    "options": [
+      {
+        "label": "A",
+        "text": "They are writing for a general audience with no assumed shared identity"
+      },
+      {
+        "label": "B",
+        "text": "They are positioning themselves as a challenger or coach, addressing the audience directly while maintaining separation"
+      },
+      {
+        "label": "C",
+        "text": "They are writing collaboratively, emphasizing shared goals"
+      },
+      {
+        "label": "D",
+        "text": "They are writing for technical peers who share their vocabulary"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "High \"you\" frequency means the communicator is constantly addressing the audience directly. Low \"we\" frequency means they are not pulling the audience into a shared identity. This combination creates a coach or challenger dynamic: \"I'm talking to you about your situation.\" If \"we\" were high, it would signal a collaborative or peer frame. The moderate jargon density suggests they expect some expertise but aren't writing exclusively for insiders. These three metrics together paint a clear picture of how someone relates to their audience.",
+    "dimensionTested": "22 (Audience frames)",
+    "id": 60
+  },
+  {
+    "section": "voice",
+    "dimension": "Personal History",
+    "stem": "A former competitive swimmer turned sales trainer consistently uses metaphors like \"staying in your lane,\" \"the flip turn\" (pivoting mid-conversation), and \"negative splits\" (saving energy for the close). These patterns belong to which voice corpus dimension?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Humor and tone signals"
+      },
+      {
+        "label": "B",
+        "text": "Storytelling patterns"
+      },
+      {
+        "label": "C",
+        "text": "Personal history integration (metaphor source domains from lived experience)"
+      },
+      {
+        "label": "D",
+        "text": "Values and non-negotiables"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "When a communicator's metaphors consistently draw from a specific life experience, that experience has become a \"metaphor source domain.\" It is not a conscious rhetorical choice but a deeply embedded pattern shaped by lived experience. A former athlete draws from sport. A former chef draws from kitchens. A voice corpus identifies these source domains because they are among the hardest patterns to fake or imitate. They are fingerprints of authentic voice.",
+    "dimensionTested": "23 (Personal history integration)",
+    "id": 61
+  },
+  {
+    "section": "voice",
+    "dimension": "Personal History",
+    "stem": "Why are \"professional identity anchors\" important in a voice corpus analysis?",
+    "options": [
+      {
+        "label": "A",
+        "text": "They help determine the communicator's target demographic"
+      },
+      {
+        "label": "B",
+        "text": "They reveal which past roles, titles, or professional experiences the communicator uses to establish authority and frame their perspective"
+      },
+      {
+        "label": "C",
+        "text": "They measure how often the communicator mentions their current job title"
+      },
+      {
+        "label": "D",
+        "text": "They track career progression for biographical accuracy"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Professional identity anchors are the roles and experiences a communicator returns to when they need to ground an argument or establish credibility. Someone who repeatedly references \"when I was running a 200-person team\" is anchoring their authority in management scale. Someone who says \"back when I was writing code\" anchors in technical expertise. These anchors persist long after someone has left that role. They reveal not just what the communicator has done, but which experiences they consider most formative to who they are now.",
+    "dimensionTested": "23 (Personal history integration)",
+    "id": 62
+  },
+  {
+    "section": "voice",
+    "dimension": "Audience Frames",
+    "stem": "A founder is sending a cold email to a potential investor. Which draft is more effective?\n\nDraft A:\n> \"Hi Sarah. Thought you'd find this interesting. We built a tool that cuts customer onboarding time by 60%. Three companies are using it. Two more signed this week. Worth a 15-minute call?\"\n\nDraft B:\n> \"Dear Ms. Chen, I hope this email finds you well. I am writing to introduce you to our innovative customer onboarding solution, which has demonstrated significant traction in the marketplace. Our platform offers a comprehensive suite of features designed to transform the onboarding experience. I would welcome the opportunity to schedule a meeting at your earliest convenience to discuss how we might explore potential synergies.\"",
+    "options": [
+      {
+        "label": "A",
+        "text": "Draft A, because cold emails reward brevity, specificity, and a clear ask"
+      },
+      {
+        "label": "B",
+        "text": "Draft B, because formal register signals professionalism to investors"
+      },
+      {
+        "label": "C",
+        "text": "Draft A, but only if the founder already knows the investor personally"
+      },
+      {
+        "label": "D",
+        "text": "Draft B, because it covers more information about the product"
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Cold email is one of the most register-sensitive formats in professional communication. The recipient gives you roughly five seconds. Draft A uses short sentences, concrete numbers (60%, three companies, two more this week), and a specific ask (15 minutes). Draft B buries its message in formality, vague language (\"significant traction,\" \"comprehensive suite\"), and asks for nothing specific. In cold outreach, every word that doesn't earn its place actively works against you.",
+    "dimensionTested": "Application (register matching, audience awareness)",
+    "id": 63
+  },
+  {
+    "section": "voice",
+    "dimension": "Closing Patterns",
+    "stem": "A nonprofit executive director needs to close a fundraising speech at a gala. Which draft creates a stronger ending?\n\nDraft A:\n> \"So tonight, I'm asking you to do something uncomfortable. I'm asking you to give more than you planned. Not because we need it, though we do. Because ten years from now, when someone asks you about the moment this city started to turn around, you'll be able to say, 'I was in that room.'\"\n\nDraft B:\n> \"In conclusion, your generous contributions tonight will go toward supporting our programs across three key areas: education, housing, and workforce development. Your donations are tax-deductible and can be made via the QR code on your table. Thank you for your continued support.\"",
+    "options": [
+      {
+        "label": "A",
+        "text": "Draft B, because donors need practical information to take action"
+      },
+      {
+        "label": "B",
+        "text": "Draft A, because it combines a call to action with an emotional peak and uses future-projection to create urgency"
+      },
+      {
+        "label": "C",
+        "text": "Both are equally effective for different personality types"
+      },
+      {
+        "label": "D",
+        "text": "Draft A, but it should include the QR code information"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Draft A layers three closing patterns: a call to action (\"give more than you planned\"), an emotional peak (the vision of the city turning around), and a technique called future-projection that puts the audience in a specific future moment. Draft B is logistics masquerading as a close. The practical information (QR code, tax deduction) belongs in printed materials or a brief follow-up, not in the final 30 seconds of a speech. A strong closing is about feeling, not process.",
+    "dimensionTested": "Application (closing pattern selection, emotional calibration)",
+    "id": 64
+  },
+  {
+    "section": "voice",
+    "dimension": "Opening Patterns",
+    "stem": "A SaaS company is choosing between two versions of their homepage headline. Which is stronger for converting first-time visitors?\n\nDraft A:\n> \"The Modern Platform for Revenue Operations\"\n\nDraft B:\n> \"Your sales team is leaving $2.4M on the table. We help you find it.\"",
+    "options": [
+      {
+        "label": "A",
+        "text": "Draft A, because it clearly communicates product category"
+      },
+      {
+        "label": "B",
+        "text": "Draft B, because it leads with a specific, quantified problem and implies a solution"
+      },
+      {
+        "label": "C",
+        "text": "Draft A, because \"Revenue Operations\" is a recognized industry term that aids SEO"
+      },
+      {
+        "label": "D",
+        "text": "Both are equally effective depending on brand positioning"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Draft A is a category label. It tells you what the product is but gives no reason to care. Draft B opens with a bold claim (a specific dollar figure tied to a pain point) and positions the company as the solution. For first-time visitors who don't yet know the brand, the question is not \"what is this?\" but \"why should I stay?\" Draft B answers that question in under three seconds. Category labels work once trust is established. Before that, specificity and tension do the work.",
+    "dimensionTested": "Application (opening pattern in marketing context, audience awareness)",
+    "id": 65
+  },
+  {
+    "section": "voice",
+    "dimension": "Style Register",
+    "stem": "A hospital system needs to communicate a data breach to affected patients. Which voice characteristics are most appropriate?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Warm, conversational, first-person plural (\"we\"), short sentences, direct next steps"
+      },
+      {
+        "label": "B",
+        "text": "Formal, clinical, passive voice, legal terminology, lengthy disclaimers"
+      },
+      {
+        "label": "C",
+        "text": "Direct, empathetic, active voice, plain language, specific timelines and actions the patient should take"
+      },
+      {
+        "label": "D",
+        "text": "Casual, apologetic, humor to defuse tension, heavy use of \"I\" from the CEO"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Crisis communication demands a specific voice profile: direct enough to convey urgency, empathetic enough to acknowledge harm, and concrete enough to tell people exactly what to do. Option A is too casual for a data breach. Option B hides behind legal language when transparency is needed most. Option D is tone-deaf (humor in a breach notice). Option C matches voice to context by leading with active voice (\"We discovered,\" not \"It was discovered\"), plain language the average patient can understand, and specific protective actions they should take.",
+    "dimensionTested": "Application (voice-to-context matching, register selection)",
+    "id": 66
+  },
+  {
+    "section": "voice",
+    "dimension": "Audience Frames",
+    "stem": "A leadership consultant is adapting her message for two audiences. Match each audience to the most effective voice approach.\n\nAudience 1: C-suite executives at a Fortune 500 company\nAudience 2: First-time founders at a startup accelerator",
+    "options": [
+      {
+        "label": "A",
+        "text": "Audience 1: peer frame, high jargon, data-heavy, concise. Audience 2: mentor frame, low jargon, story-heavy, encouraging."
+      },
+      {
+        "label": "B",
+        "text": "Audience 1: mentor frame, low jargon, prescriptive. Audience 2: peer frame, high jargon, collaborative."
+      },
+      {
+        "label": "C",
+        "text": "Same voice for both, because authenticity means never changing your communication style."
+      },
+      {
+        "label": "D",
+        "text": "Audience 1: formal and deferential. Audience 2: casual and unstructured."
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Effective communicators adjust their audience frame without abandoning their core voice. C-suite executives expect a peer dynamic (not a lecture), respond to data and concision, and share a common business vocabulary. First-time founders often need a mentor frame because they are navigating unfamiliar territory. They respond to stories that normalize struggle and to direct guidance. Option C represents a common misconception: authenticity lives in your values and patterns, not in refusing to adapt your delivery to the room.",
+    "dimensionTested": "Application (audience frame matching, register adaptation)",
+    "id": 67
+  },
+  {
+    "section": "voice",
+    "dimension": "Application",
+    "stem": "Read this passage from a company blog post:\n\n> \"At TechCorp, we are deeply committed to delivering world-class solutions that drive transformational outcomes for our valued stakeholders. Our team of dedicated professionals works tirelessly to push the boundaries of innovation, creating paradigm-shifting experiences that redefine industry standards.\"\n\nWhat is the primary voice problem?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The sentences are too short"
+      },
+      {
+        "label": "B",
+        "text": "The passage is all abstraction and no specificity, using corporate filler that communicates nothing concrete"
+      },
+      {
+        "label": "C",
+        "text": "The tone is too casual for a corporate blog"
+      },
+      {
+        "label": "D",
+        "text": "The audience frame is wrong"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "This passage contains zero specific information. \"World-class solutions,\" \"transformational outcomes,\" \"paradigm-shifting experiences\" are all abstract labels that could apply to any company in any industry. The reader finishes the paragraph knowing nothing they didn't know before. The fix is concrete detail: what the product actually does, for whom, and what measurable result it produces. This is the most common voice problem in corporate communication, and a voice corpus analysis catches it immediately by measuring the ratio of abstract to concrete language.",
+    "dimensionTested": "Application (voice diagnosis, abstraction vs. specificity)",
+    "id": 68
+  },
+  {
+    "section": "voice",
+    "dimension": "Application",
+    "stem": "A personal brand consultant writes this LinkedIn post:\n\n> \"5 things I learned about leadership this year: 1) Be authentic. 2) Listen more than you talk. 3) Hire people smarter than you. 4) Fail fast. 5) Lead with empathy.\"\n\nA voice corpus analyst would diagnose this as:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Effective use of list format for social media"
+      },
+      {
+        "label": "B",
+        "text": "Strong opening pattern with a specific number hook"
+      },
+      {
+        "label": "C",
+        "text": "Generic, borrowed language with no personal voice markers, original thinking, or lived-experience grounding"
+      },
+      {
+        "label": "D",
+        "text": "Good example of a values-and-non-negotiables statement"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Every item on this list is a cliche that has appeared in thousands of LinkedIn posts. There is nothing that identifies the writer as a specific human being. No personal story, no original framing, no surprising insight, no language that couldn't have been generated by autocomplete. A voice corpus analysis would flag the complete absence of personal history integration, original metaphor, and defended positions. The fix is not better advice. It is grounding each point in a specific experience that only this person could have had.",
+    "dimensionTested": "Application (voice diagnosis, originality and personal voice)",
+    "id": 69
+  },
+  {
+    "section": "voice",
+    "dimension": "Application",
+    "stem": "A consultant sends this follow-up email after a discovery call:\n\n> \"Thanks so much for taking the time to chat today! It was really great getting to know you and your team. I think there's a lot of exciting potential here and I'd love to explore next steps. Let me know when you're free to reconnect and we can dive deeper into things. Looking forward to it!\"\n\nIf you were editing this for voice and effectiveness, what is the single most important change?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Remove the exclamation points"
+      },
+      {
+        "label": "B",
+        "text": "Replace vague enthusiasm (\"exciting potential,\" \"dive deeper into things\") with a specific observation from the call and a concrete proposed next step"
+      },
+      {
+        "label": "C",
+        "text": "Make the tone more formal"
+      },
+      {
+        "label": "D",
+        "text": "Add a signature with credentials"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The email's core problem is that it could have been written before the call happened. Nothing in it proves the sender was actually listening. The fix: reference something specific from the conversation (\"You mentioned your team loses two hours a day to manual reporting\") and propose a concrete next step (\"I'll send over a 2-page diagnostic by Friday\"). Specificity is the difference between a forgettable email and one that builds trust. The exclamation points are a secondary issue. Formality and credentials don't solve the underlying emptiness.",
+    "dimensionTested": "Application (voice editing, specificity, post-call communication)",
+    "id": 70
+  },
+  {
+    "section": "voice",
+    "dimension": "Opening Patterns",
+    "stem": "A keynote speaker opens with:\n\n> \"Good morning, everyone. It's great to be here. I want to talk to you today about innovation. Innovation is important. It's something we all need to think about. And I think by the end of this talk, you'll have some new ideas about it.\"\n\nWhat would you change, and why?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Nothing. This is a standard, professional opening."
+      },
+      {
+        "label": "B",
+        "text": "Add a statistic about innovation to make it more data-driven."
+      },
+      {
+        "label": "C",
+        "text": "Replace the entire opening with a cold open, anecdote, or bold claim that creates immediate tension or curiosity, because the current version wastes the audience's peak attention on empty setup."
+      },
+      {
+        "label": "D",
+        "text": "Just remove \"Good morning, everyone\" and keep the rest."
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The first 30 seconds of a keynote are the highest-attention moment you will get. This opening spends all of it on throat-clearing: greeting, vague topic announcement, and a promise that something might be interesting later. Compare: \"Last March, I watched a $4 billion company kill its best product. On purpose. And it was the smartest thing they ever did.\" That cold open does in two sentences what the original fails to do in five: it makes the audience need to hear what comes next. Opening patterns exist precisely for this moment.",
+    "dimensionTested": "Application (opening pattern revision, attention economics)",
+    "id": 71
+  },
+  {
+    "section": "voice",
+    "dimension": "Application",
+    "stem": "Read this passage and identify the communication archetype:\n\n> \"Here's what nobody in this industry wants to say out loud: your content strategy is a copy of a copy of a copy. You read the same blogs, follow the same frameworks, and wonder why everything you publish sounds like everyone else. Stop optimizing. Start saying something that makes at least one person uncomfortable.\"\n\nWhich archetype best describes this communicator?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The Professor: methodical, evidence-first, builds arguments step by step, values precision over provocation"
+      },
+      {
+        "label": "B",
+        "text": "The Challenger: contrarian, confrontational, names uncomfortable truths, positions themselves against conventional wisdom"
+      },
+      {
+        "label": "C",
+        "text": "The Guide: supportive, process-oriented, leads the audience through transformation, prioritizes safety"
+      },
+      {
+        "label": "D",
+        "text": "The Curator: synthesizes others' ideas, connects dots across domains, values breadth of reference over original argument"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The Challenger archetype is defined by a willingness to confront the audience and the industry head-on. This passage opens by calling out what \"nobody wants to say,\" directly accuses the reader of unoriginal thinking, and closes with an imperative to provoke discomfort. The Challenger's power comes from saying things others won't. Their risk is alienating audiences who aren't ready for confrontation. In a voice corpus, Challengers show high boldness-of-claim scores, frequent imperative sentences, and a tendency to position against the mainstream rather than within it.",
+    "dimensionTested": "Application (archetype identification, voice pattern synthesis)",
+    "id": 72
+  },
+  {
+    "section": "grammar",
+    "dimension": "Diction",
+    "stem": "Consider the following sentence: \"The senator literally exploded when she heard the proposal.\"\n\nWhat is the diction problem?",
+    "options": [
+      {
+        "label": "A",
+        "text": "\"Senator\" should be capitalized"
+      },
+      {
+        "label": "B",
+        "text": "\"Literally\" is used as a dead intensifier, not to indicate something that actually happened"
+      },
+      {
+        "label": "C",
+        "text": "\"Exploded\" is too informal for political writing"
+      },
+      {
+        "label": "D",
+        "text": "\"Proposal\" is too vague a noun"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "\"Literally\" means something happened in fact, not figuratively. Using it as an intensifier for a metaphor (\"exploded\") is a diction error that drains the word of its actual meaning.",
+    "dimensionTested": "Grammar / Diction",
+    "id": 73
+  },
+  {
+    "section": "grammar",
+    "dimension": "Punctuation",
+    "stem": "Which sentence uses the semicolon correctly?",
+    "options": [
+      {
+        "label": "A",
+        "text": "I went to the store; and bought milk."
+      },
+      {
+        "label": "B",
+        "text": "She had three goals; to win, to learn, and to grow."
+      },
+      {
+        "label": "C",
+        "text": "The project failed; no one had tested the assumptions."
+      },
+      {
+        "label": "D",
+        "text": "He was tired; but happy."
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "A semicolon joins two independent clauses that are closely related in meaning. \"The project failed\" and \"no one had tested the assumptions\" are both complete sentences with a clear causal relationship. The other options either misuse the semicolon before a conjunction or before a dependent list.",
+    "dimensionTested": "Grammar / Punctuation",
+    "id": 74
+  },
+  {
+    "section": "grammar",
+    "dimension": "Diction",
+    "stem": "Mark Twain wrote: \"The difference between the almost right word and the right word is really a large matter. 'Tis the difference between the lightning bug and the lightning.\"\n\nTwain's point is a foundational argument for which concept?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Syntax variation"
+      },
+      {
+        "label": "B",
+        "text": "Precise diction"
+      },
+      {
+        "label": "C",
+        "text": "Active voice"
+      },
+      {
+        "label": "D",
+        "text": "Paragraph unity"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Twain is making the case that word selection (diction) is not a matter of preference but of precision. The gap between \"lightning bug\" and \"lightning\" is the gap between approximate meaning and exact meaning.",
+    "dimensionTested": "Grammar / Diction",
+    "id": 75
+  },
+  {
+    "section": "logic",
+    "dimension": "Argumentation",
+    "stem": "A politician says: \"My opponent went to an elite university. You know how those people think.\"\n\nThis is an example of:",
+    "options": [
+      {
+        "label": "A",
+        "text": "A syllogism with a valid major premise"
+      },
+      {
+        "label": "B",
+        "text": "An enthymeme that hides a questionable premise"
+      },
+      {
+        "label": "C",
+        "text": "A sound deductive argument"
+      },
+      {
+        "label": "D",
+        "text": "Abductive reasoning from observed evidence"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "An enthymeme is a syllogism with a suppressed premise. The hidden premise here is \"everyone from elite universities thinks in a particular (bad) way.\" By leaving it unstated, the speaker avoids having to defend an assumption that most listeners would reject if they heard it said plainly.",
+    "dimensionTested": "Logic / Enthymeme",
+    "id": 76
+  },
+  {
+    "section": "logic",
+    "dimension": "Argumentation",
+    "stem": "A doctor sees a patient with a fever, sore throat, and white patches on the tonsils. She diagnoses strep throat. What form of reasoning is this?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Deductive reasoning from first principles"
+      },
+      {
+        "label": "B",
+        "text": "Inductive reasoning from a large sample"
+      },
+      {
+        "label": "C",
+        "text": "Abductive reasoning (inference to the best explanation)"
+      },
+      {
+        "label": "D",
+        "text": "Analogical reasoning from a similar case"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Abductive reasoning starts with an observation and works backward to the most likely explanation. The doctor did not prove strep through deduction or survey data. She matched symptoms to the diagnosis that best explains them, then will confirm with a test.",
+    "dimensionTested": "Logic / Abductive Reasoning",
+    "id": 77
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "Abraham Lincoln, Gettysburg Address: \"...government of the people, by the people, for the people, shall not perish from the earth.\"\n\nThe repetition of \"the people\" at the end of successive phrases is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Anaphora"
+      },
+      {
+        "label": "B",
+        "text": "Epistrophe"
+      },
+      {
+        "label": "C",
+        "text": "Symploce"
+      },
+      {
+        "label": "D",
+        "text": "Polysyndeton"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Epistrophe (also called epiphora) is the repetition of a word or phrase at the end of successive clauses. While anaphora repeats at the beginning, epistrophe creates a hammering emphasis at the close of each unit. Lincoln uses it to make \"the people\" the destination of every phrase.",
+    "dimensionTested": "Rhetoric / Epistrophe",
+    "id": 78
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "\"Fear leads to anger. Anger leads to hate. Hate leads to suffering.\" (Yoda, Star Wars)\n\nThis construction, where the last word of one clause becomes the first word of the next, is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Chiasmus"
+      },
+      {
+        "label": "B",
+        "text": "Anadiplosis"
+      },
+      {
+        "label": "C",
+        "text": "Antimetabole"
+      },
+      {
+        "label": "D",
+        "text": "Epistrophe"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Anadiplosis takes the final word (or phrase) of one clause and uses it to open the next, creating a chain. The effect is a sense of inevitable escalation, as if each stage mechanically triggers the one after it. Yoda's warning uses this to make the path to the dark side feel like falling dominoes.",
+    "dimensionTested": "Rhetoric / Anadiplosis",
+    "id": 79
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "Consider a speech that begins every sentence with \"We will not\" and ends every sentence with \"in our lifetime.\"\n\nThis combination of anaphora and epistrophe in the same passage is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Antithesis"
+      },
+      {
+        "label": "B",
+        "text": "Symploce"
+      },
+      {
+        "label": "C",
+        "text": "Merism"
+      },
+      {
+        "label": "D",
+        "text": "Isocolon"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Symploce is the combination of anaphora (same beginning) and epistrophe (same ending) across successive clauses. It creates a frame effect, boxing in the variable content between two fixed anchors. The result is a feeling of relentless, structured repetition that is hard to ignore.",
+    "dimensionTested": "Rhetoric / Symploce",
+    "id": 80
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "After a catastrophic product launch that cost the company millions, the CEO tells the press: \"We had a bit of a hiccup.\"\n\nThis deliberate understatement is called:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Hyperbole"
+      },
+      {
+        "label": "B",
+        "text": "Litotes"
+      },
+      {
+        "label": "C",
+        "text": "Meiosis"
+      },
+      {
+        "label": "D",
+        "text": "Irony"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Meiosis is intentional understatement used to diminish the significance of something. While litotes specifically uses a negative to affirm a positive (\"not bad\"), meiosis is the broader category of belittling understatement. Calling a multimillion-dollar disaster \"a bit of a hiccup\" is textbook meiosis.",
+    "dimensionTested": "Rhetoric / Meiosis",
+    "id": 81
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Schemes",
+    "stem": "Oscar Wilde wrote: \"I can resist everything except temptation.\"\n\nThis line works on two levels because it is both:",
+    "options": [
+      {
+        "label": "A",
+        "text": "A metaphor and a simile"
+      },
+      {
+        "label": "B",
+        "text": "An oxymoron and an epigram"
+      },
+      {
+        "label": "C",
+        "text": "A paradox and a hyperbole"
+      },
+      {
+        "label": "D",
+        "text": "An allegory and an allusion"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The statement is an epigram, a witty, compressed observation that reveals a truth. It also contains an oxymoronic tension: claiming the ability to resist everything while naming the one category that makes resistance meaningless. Wilde built his reputation on lines that look like contradictions but land as insights.",
+    "dimensionTested": "Rhetoric / Oxymoron and Epigram",
+    "id": 82
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Style Register",
+    "stem": "A funeral eulogy includes the line: \"Dave was a total beast at closing deals and honestly crushed it every quarter.\"\n\nWhat is the primary problem?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The sentence is too long"
+      },
+      {
+        "label": "B",
+        "text": "The register is wrong for the occasion"
+      },
+      {
+        "label": "C",
+        "text": "The logic is circular"
+      },
+      {
+        "label": "D",
+        "text": "The metaphor is a cliche"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Register is the level of formality a situation demands. A funeral eulogy calls for respectful, measured language. Sales-floor slang (\"total beast,\" \"crushed it\") violates the register of the occasion, making the speaker sound either tone-deaf or disrespectful, regardless of intent.",
+    "dimensionTested": "Style / Register",
+    "id": 83
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Rhetorical Appeals",
+    "stem": "Aristotle's three rhetorical appeals are ethos, pathos, and logos. A nonprofit fundraising email reads: \"Our organization was founded in 1987 and has served over 2 million families. Last year, 4-year-old Maria arrived at our shelter with nothing but a torn backpack. With your gift of $25, we can provide a week of meals for a child like Maria.\"\n\nWhich sequence of appeals does this email deploy?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Pathos, then logos, then ethos"
+      },
+      {
+        "label": "B",
+        "text": "Logos, then pathos, then ethos"
+      },
+      {
+        "label": "C",
+        "text": "Ethos, then pathos, then logos"
+      },
+      {
+        "label": "D",
+        "text": "Ethos, then logos, then pathos"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "The email opens with credibility (ethos: founded in 1987, 2 million families served), moves to emotion (pathos: Maria's story), then closes with a rational call to action (logos: $25 equals one week of meals). This is a classic fundraising sequence that earns trust before asking for money.",
+    "dimensionTested": "Style / Aristotle's Rhetorical Triangle",
+    "id": 84
+  },
+  {
+    "section": "rhetoric",
+    "dimension": "Style Register",
+    "stem": "A lawyer writing a brief to the Supreme Court uses the phrase \"gonna have to disagree with opposing counsel on this one, Your Honor.\"\n\nThis is a failure of:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Grammar (the contraction \"gonna\" is not a real word)"
+      },
+      {
+        "label": "B",
+        "text": "Logic (the argument contains a fallacy)"
+      },
+      {
+        "label": "C",
+        "text": "Register (the diction is too casual for the forum)"
+      },
+      {
+        "label": "D",
+        "text": "Rhetoric (the sentence lacks a persuasive device)"
+      }
+    ],
+    "correctAnswer": "C",
+    "explanation": "Supreme Court briefs demand the highest formal register in American legal writing. \"Gonna\" and the conversational framing (\"on this one\") would undermine the lawyer's credibility (ethos) before the argument even reaches the merits. Register violations in high-stakes contexts signal that the communicator does not understand the room.",
+    "dimensionTested": "Style / Register",
+    "id": 85
+  },
+  {
+    "section": "voice",
+    "dimension": "Audience Frames",
+    "stem": "You are writing a sales page for a $5,000 executive coaching program. Your audience is mid-career professionals earning $150K+ who feel stuck in middle management.\n\nWhich opening line best matches this audience's frame?",
+    "options": [
+      {
+        "label": "A",
+        "text": "\"Tired of your boring job? Quit and start a business!\""
+      },
+      {
+        "label": "B",
+        "text": "\"You have built real skills over the past decade. The question is why the next promotion keeps going to someone else.\""
+      },
+      {
+        "label": "C",
+        "text": "\"Executive coaching is a $2.3 billion industry projected to grow 6.7% annually.\""
+      },
+      {
+        "label": "D",
+        "text": "\"Hey friend! Ready to level up your life and start living your dream?\""
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "This audience has invested years building a career. They do not want to quit (A), do not care about industry statistics (C), and will be repelled by casual hype (D). Option B validates their experience while naming the specific frustration (being passed over) that would drive them to spend $5,000 on coaching.",
+    "dimensionTested": "Voice and Identity / Audience Frame",
+    "id": 86
+  },
+  {
+    "section": "voice",
+    "dimension": "Audience Frames",
+    "stem": "Martin Luther King Jr.'s \"Letter from Birmingham Jail\" was written to moderate white clergymen who had called his protests \"unwise and untimely.\"\n\nKing's rhetorical strategy of citing St. Augustine, Aquinas, and Socrates in his letter is primarily an appeal to:",
+    "options": [
+      {
+        "label": "A",
+        "text": "The clergymen's emotions about racial injustice"
+      },
+      {
+        "label": "B",
+        "text": "Shared intellectual and moral authorities his audience already respected"
+      },
+      {
+        "label": "C",
+        "text": "His own credentials as a religious leader"
+      },
+      {
+        "label": "D",
+        "text": "Legal precedent in the American court system"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "King understood his audience's values. White moderate clergymen would respond to the Western philosophical and theological tradition they had studied. By grounding his argument in authorities his readers already accepted, King made it logically difficult for them to reject his conclusions without also rejecting Aquinas and Socrates.",
+    "dimensionTested": "Voice and Identity / Audience Values",
+    "id": 87
+  },
+  {
+    "section": "voice",
+    "dimension": "Personal History",
+    "stem": "A brand's \"About\" page reads: \"We started this company in a garage in 2009 after both founders were laid off during the recession. We had $400 between us and one laptop.\"\n\nWhat function does this personal history serve in brand communication?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It provides a legal disclaimer about the company's origins"
+      },
+      {
+        "label": "B",
+        "text": "It builds ethos through a vulnerability narrative that makes the brand relatable"
+      },
+      {
+        "label": "C",
+        "text": "It is a logical argument for why the product is superior"
+      },
+      {
+        "label": "D",
+        "text": "It establishes the founders' academic credentials"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "Origin stories that include struggle create identification between the brand and its audience. The garage, the layoffs, and the $400 are not product arguments. They are ethos-building details that say, \"We are not a faceless corporation; we started where you might be right now.\"",
+    "dimensionTested": "Voice and Identity / Personal History in Brand Voice",
+    "id": 88
+  },
+  {
+    "section": "voice",
+    "dimension": "Audience Frames",
+    "stem": "You are writing copy for two audiences: (1) CFOs evaluating a software purchase and (2) end-user employees who will use the software daily.\n\nThe CFO version should emphasize _______, while the employee version should emphasize _______.",
+    "options": [
+      {
+        "label": "A",
+        "text": "Ease of use; ROI and cost reduction"
+      },
+      {
+        "label": "B",
+        "text": "ROI and cost reduction; ease of use and daily workflow improvements"
+      },
+      {
+        "label": "C",
+        "text": "The company's origin story; technical specifications"
+      },
+      {
+        "label": "D",
+        "text": "Industry awards; social media reviews"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "CFOs make decisions based on financial outcomes (ROI, cost savings, time to value). End users care about how the tool affects their daily work (is it easy to learn, does it save them time, does it replace something painful). Same product, two completely different audience frames requiring different value propositions.",
+    "dimensionTested": "Voice and Identity / Audience Frame",
+    "id": 89
+  },
+  {
+    "section": "application",
+    "dimension": "Ethos",
+    "stem": "A startup founder pitches investors with the following: \"Our product is the Uber of dog walking. We have no revenue yet, but our app has a really clean UI.\"\n\nThis pitch fails across multiple dimensions. Which combination of failures is most accurate?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Grammar error + punctuation error"
+      },
+      {
+        "label": "B",
+        "text": "Weak analogy (logic) + missing proof of traction (ethos) + wrong emphasis for the audience (voice)"
+      },
+      {
+        "label": "C",
+        "text": "Excessive jargon (diction) + faulty deduction (logic)"
+      },
+      {
+        "label": "D",
+        "text": "Passive voice (grammar) + emotional manipulation (pathos)"
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "The \"Uber of X\" analogy is weak because it tells investors nothing specific about the business model or market (logic failure). Having no revenue removes the strongest credibility signal investors look for (ethos failure). Leading with UI aesthetics instead of market size, unit economics, or growth rate misreads what investors need to hear (voice and audience frame failure).",
+    "dimensionTested": "Application / Logic + Ethos + Voice",
+    "id": 90
+  },
+  {
+    "section": "application",
+    "dimension": "Application",
+    "stem": "A hospital sends the following text message to patients: \"Per our records, your hemoglobin A1c remains elevated at 9.2%. Failure to achieve glycemic control may result in nephropathy, retinopathy, or peripheral neuropathy. Schedule follow-up immediately.\"\n\nRewrite this for a general patient audience. Which version best fixes the register and audience-frame problems while preserving accuracy?",
+    "options": [
+      {
+        "label": "A",
+        "text": "\"Your blood sugar levels are still too high. Over time, this can damage your kidneys, eyes, and nerves. Please call us to schedule a follow-up appointment.\""
+      },
+      {
+        "label": "B",
+        "text": "\"Hey! Your A1c is still kinda high. You should probably come in soon, lol.\""
+      },
+      {
+        "label": "C",
+        "text": "\"URGENT: You are at risk of organ failure. Call 911 immediately.\""
+      },
+      {
+        "label": "D",
+        "text": "\"Your hemoglobin A1c is 9.2%, which is above normal. Nephropathy is kidney disease. Retinopathy is eye disease. Neuropathy is nerve disease.\""
+      }
+    ],
+    "correctAnswer": "A",
+    "explanation": "Option A translates the clinical language into plain English that a general audience can act on, while preserving medical accuracy. B is too casual for a health communication. C is alarmist and inaccurate. D just defines the jargon without changing the register or giving the patient a clear action step. This question tests the intersection of register (style), audience frame (voice), and clarity (grammar/diction).",
+    "dimensionTested": "Application / Style + Voice + Grammar",
+    "id": 91
+  },
+  {
+    "section": "application",
+    "dimension": "Application",
+    "stem": "You are ghostwriting a keynote speech for a Fortune 500 CEO addressing 3,000 employees after a difficult quarter. The CEO wants to acknowledge the struggle without sounding defeated, and rally the team without sounding out of touch.\n\nWhich combination of rhetorical and voice choices best fits this situation?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Open with industry statistics (logos), use formal academic register throughout, close with a policy announcement"
+      },
+      {
+        "label": "B",
+        "text": "Open with a personal admission of what kept the CEO up at night (ethos through vulnerability), move to specific data showing early signs of recovery (logos), close with anaphora (\"We will...\") to build collective momentum (pathos + rhetoric)"
+      },
+      {
+        "label": "C",
+        "text": "Open with a joke to lighten the mood, use casual slang throughout to seem relatable, close by blaming market conditions"
+      },
+      {
+        "label": "D",
+        "text": "Open with a quote from a celebrity, list every product the company makes, close with \"any questions?\""
+      }
+    ],
+    "correctAnswer": "B",
+    "explanation": "This answer deploys Aristotle's triangle in sequence. The personal opening builds credibility and shows the CEO is not hiding behind corporate language. The recovery data provides rational hope without empty optimism. The anaphora at the close creates collective energy. This combination acknowledges reality (ethos), provides evidence for optimism (logos), and ends with emotional momentum (pathos) through a deliberate rhetorical device.",
+    "dimensionTested": "Application / Rhetoric + Style + Voice + Logic",
+    "id": 92
+  }
+]
