@@ -1,11 +1,9 @@
-import Link from 'next/link'
-
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { Offices } from '@/components/Offices'
 
-/* Terminal CTA per the 2026-07-05 homepage copy lock. */
+/* Terminal contact block. No offer, no application, no pricing. */
 export function ContactSection() {
   return (
     <Container className="mt-24 sm:mt-32 lg:mt-40">
@@ -13,19 +11,15 @@ export function ContactSection() {
         <div className="mx-auto max-w-4xl">
           <div className="max-w-xl">
             <h2 className="font-display text-3xl font-medium text-balance text-white sm:text-4xl">
-              You&apos;ve seen the diagnostic. You&apos;ve seen the builds.
-              You know what&apos;s missing.
+              Questions about the network? Get in touch.
             </h2>
+            <p className="mt-6 text-base text-neutral-300">
+              Email reaches us directly. We read everything.
+            </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-              <Button href="/apply/" invert>
-                Apply for a build <span aria-hidden="true">&rarr;</span>
+              <Button href="mailto:brett@podcastnetwork.org" invert>
+                Email us <span aria-hidden="true">&rarr;</span>
               </Button>
-              <Link
-                href="/#report"
-                className="text-sm text-neutral-300 transition hover:text-white"
-              >
-                Or run the diagnostic on a different URL.
-              </Link>
             </div>
             <div className="mt-10 border-t border-white/10 pt-10">
               <h3 className="font-display text-base font-semibold text-white">
