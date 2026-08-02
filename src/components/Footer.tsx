@@ -7,28 +7,9 @@ import { socialMediaProfiles } from '@/components/SocialMedia'
 
 const navigation = [
   {
-    title: 'Case studies',
-    links: [
-      { title: 'AI or Die', href: '/case-studies/ai-or-die' },
-      { title: 'Michele Okimura', href: '/case-studies/michele-okimura' },
-      { title: 'Dominic Jones', href: '/case-studies/dominic-jones' },
-      {
-        title: (
-          <>
-            See all <span aria-hidden="true">&rarr;</span>
-          </>
-        ),
-        href: '/case-studies',
-      },
-    ],
-  },
-  {
     title: 'Company',
     links: [
-      { title: 'The Method', href: '/the-method' },
-      { title: 'The Package', href: '/the-package' },
       { title: 'Founders', href: '/founders' },
-      { title: 'Apply', href: '/apply' },
       { title: 'Privacy', href: '/legal/privacy' },
       { title: 'Terms', href: '/legal/terms' },
     ],
@@ -80,23 +61,23 @@ function ArrowIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-function DiagnosticCallout() {
+function ContactCallout() {
   return (
     <div className="max-w-sm">
       <h2 className="font-display text-sm font-semibold tracking-wider text-neutral-950">
-        Start with your URL
+        Get in touch
       </h2>
       <p className="mt-4 text-sm text-neutral-700">
-        The application opens with a schema scan of your public presence.
-        See what the engines read before you fill in a single form field.
+        PodcastNetwork.org runs the network and the relationship engine
+        underneath it. Questions are welcome.
       </p>
-      <Link
-        href="/apply"
+      <a
+        href="mailto:brett@podcastnetwork.org"
         className="mt-6 inline-flex items-center gap-x-3 rounded-2xl bg-neutral-950 px-6 py-4 text-sm font-semibold text-white transition hover:bg-neutral-800"
       >
-        Run the diagnostic
+        Email us
         <ArrowIcon className="w-4" />
-      </Link>
+      </a>
     </div>
   )
 }
@@ -108,7 +89,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2">
           <Navigation />
           <div className="flex lg:justify-end">
-            <DiagnosticCallout />
+            <ContactCallout />
           </div>
         </div>
         <div className="mt-24 mb-20 flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-t border-neutral-950/10 pt-12">

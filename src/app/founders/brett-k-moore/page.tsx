@@ -9,9 +9,9 @@ import { SchemaGraph } from '@/components/seo/SchemaGraph'
 import { brettProfileSchema } from '@/lib/schema-graph'
 
 export const metadata: Metadata = {
-  title: 'Brett K. Moore. Co-founder and CEO of PodcastNetwork.org',
+  title: 'Brett K. Moore. Co-Founder and CEO of PodcastNetwork.org',
   description:
-    'Brett K. Moore is the co-founder and CEO of PodcastNetwork.org, co-author of AI or Die, and a multi-business operator building entity visibility infrastructure for executives and authors.',
+    'Brett K. Moore is the Co-Founder and CEO of PodcastNetwork.org, the network and relationship-engine infrastructure behind his portfolio of businesses.',
   alternates: { canonical: '/founders/brett-k-moore/' },
 }
 
@@ -21,14 +21,14 @@ export default function BrettPage() {
       <SchemaGraph schema={brettProfileSchema()} />
 
       <PageIntro
-        eyebrow="Co-founder + CEO"
+        eyebrow="Co-Founder and CEO, PodcastNetwork.org"
         title="Brett K. Moore"
       >
         <p>
-          Co-founder and CEO of PodcastNetwork.org. Co-author of{' '}
+          Co-Founder and CEO of PodcastNetwork.org. Co-author of{' '}
           <em>AI or Die</em>. Multi-business operator based in Indianapolis
-          running a portfolio of companies across AI consulting, podcast
-          production, book publishing, and entity visibility.
+          running a portfolio of companies across AI consulting and podcast
+          production.
         </p>
       </PageIntro>
 
@@ -56,36 +56,20 @@ export default function BrettPage() {
             </p>
 
             <p>
-              PodcastNetwork.org was built to fix that gap. The company installs
-              the structured data, Knowledge Panel signals, and entity
-              infrastructure that makes Google and AI engines recognize a person
-              as a real entity. Two packages do the work: the Brand SERP Build
-              (focused on Knowledge Panel acquisition and maintenance) and the
-              Pre-Sold Author Package (a 180-day build that produces a book, a
-              podcast, and the full entity layer in parallel so the audience is
-              already there when the book ships).
-            </p>
-
-            <p>
-              Brett and Mike tested the method on themselves first. They
-              co-authored <em>AI or Die</em>, ran it through their own
-              Pre-Sold Author sequence, and used it as the live proof that the
-              system works. The book was not just a product. It was the case
-              study. Every metric, every Knowledge Graph entry, every Wikidata
-              record was seeded using the same process clients go through.
+              PodcastNetwork.org is what came out of that. It designs, builds,
+              and operates private podcast networks, plus the relationship
+              engine that sits underneath them. Shows, guests, bookings, and
+              introductions run through one system, and the network compounds
+              as more of them do.
             </p>
 
             <p>
               Outside of PodcastNetwork.org, Brett operates several businesses.
               AI Expert is the sister firm that builds the AI-native
-              architecture underneath the sequence: transcript-to-manuscript
-              pipelines, guest-booking tooling, and the structured-data
-              workflows that Google indexes fastest. Apex Podcast Co handles
-              ongoing white-glove podcast production after the initial build,
-              run as a 50/50 partnership with Randy Highsmith. Legacy
-              Publishing is the application-only publisher that can take books
-              produced through the Pre-Sold Author Package to market at 10
-              percent of net book sales with no upfront fee.
+              architecture underneath the network: guest-booking and outreach
+              tooling, and the structured data workflows the search and answer
+              engines read. Apex Podcast Co handles ongoing white-glove podcast
+              production, run as a 50/50 partnership with Randy Highsmith.
             </p>
 
             <p>
@@ -168,7 +152,8 @@ export default function BrettPage() {
               href="/founders/mike-partners/"
               className="text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
             >
-              Mike Partners, Co-founder <span aria-hidden="true">&rarr;</span>
+              Mike Partners, Co-Founder and CAIO{' '}
+              <span aria-hidden="true">&rarr;</span>
             </Link>
             <Link
               href="/founders/"

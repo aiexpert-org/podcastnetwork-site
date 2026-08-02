@@ -20,8 +20,8 @@
   "image": {
     "@id": "https://podcastnetwork.org/#logo"
   },
-  "description": "PodcastNetwork.org builds entity visibility for executives, authors, and entrepreneurs through two standalone builds: the Brand SERP Build ($24,000, 12 months) and the Pre-Sold Author Build ($36,000, 6 months). Application-only. Book publishing available in partnership with Legacy Publishing.",
-  "slogan": "Two paths to entity visibility.",
+  "description": "PodcastNetwork.org designs, builds, and operates private podcast networks and the relationship-engine infrastructure underneath them.",
+  "slogan": "The network layer behind the shows.",
   "foundingDate": "2025-01-15",
   "founder": [
     {
@@ -42,7 +42,6 @@
     "Google Knowledge Panel",
     "Wikidata entity seeding",
     "Pre-sold audience building",
-    "Ghostwriting",
     "Podcast guest booking",
     "Entity Home construction",
     "AI answer engine optimization"
@@ -58,19 +57,13 @@
     "name": "PodcastNetwork.org",
     "logo": { "@id": "https://podcastnetwork.org/#logo" }
   },
-  "makesOffer": {
-    "@id": "https://podcastnetwork.org/the-package/#offer"
-  },
-  "hasOfferCatalog": {
-    "@id": "https://podcastnetwork.org/the-package/#catalog"
-  },
   "publishingPrinciples": "https://podcastnetwork.org/legal/editorial-standards/",
   "contactPoint": [
     {
       "@type": "ContactPoint",
       "contactType": "sales",
       "email": "hello@podcastnetwork.org",
-      "url": "https://podcastnetwork.org/apply/",
+      "url": "https://podcastnetwork.org/",
       "availableLanguage": ["English"],
       "areaServed": ["US", "CA", "GB", "AU"]
     },
@@ -102,16 +95,5 @@
     "https://www.instagram.com/podcastnetworkorg/",
     "https://www.wikidata.org/wiki/{{WIKIDATA_Q_NUMBER_ORG}}"
   ],
-  "parentOrganization": null,
-  "subOrganization": [
-    {
-      "@type": "Organization",
-      "name": "Legacy Publishing",
-      "url": "https://legacypublishing.com/",
-      "description": "Elite application-only traditional publisher. JV partner on the Pre-Sold Author Package.",
-      "sameAs": [
-        "https://www.wikidata.org/wiki/{{WIKIDATA_Q_NUMBER_LEGACY}}"
-      ]
-    }
-  ]
+  "parentOrganization": null
 }

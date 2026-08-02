@@ -9,9 +9,9 @@ import { SchemaGraph } from '@/components/seo/SchemaGraph'
 import { mikeProfileSchema } from '@/lib/schema-graph'
 
 export const metadata: Metadata = {
-  title: 'Mike Partners. Co-founder and Chief AI Officer of PodcastNetwork.org',
+  title: 'Mike Partners. Co-Founder and CAIO of PodcastNetwork.org',
   description:
-    'Mike Partners is the co-founder and Chief AI Officer of PodcastNetwork.org, co-author of AI or Die, and author of The Book on How to Write a Book. He builds the AI tooling and outreach systems that power the entity visibility method.',
+    'Mike Partners is the Co-Founder and CAIO of PodcastNetwork.org. He builds the AI tooling and outreach systems that run underneath the network.',
   alternates: { canonical: '/founders/mike-partners/' },
 }
 
@@ -21,15 +21,13 @@ export default function MikePage() {
       <SchemaGraph schema={mikeProfileSchema()} />
 
       <PageIntro
-        eyebrow="Co-founder + Chief AI Officer"
+        eyebrow="Co-Founder and CAIO, PodcastNetwork.org"
         title="Mike Partners"
       >
         <p>
-          Co-founder and Chief AI Officer of PodcastNetwork.org. Co-author of{' '}
-          <em>AI or Die</em>. Author of{' '}
-          <em>The Book on How to Write a Book</em>. Career operator turned
-          author who builds the AI tooling and outreach systems that power the
-          entity visibility method.
+          Co-Founder and CAIO of PodcastNetwork.org. Co-author of{' '}
+          <em>AI or Die</em>. Career operator turned author who builds the AI
+          tooling and outreach systems that run underneath the network.
         </p>
       </PageIntro>
 
@@ -48,44 +46,26 @@ export default function MikePage() {
 
             <p>
               When Brett and Mike started PodcastNetwork.org in 2024, Mike took
-              the Chief AI Officer role because the company needed someone who
-              could build the machine, not just describe it. The entity
-              visibility method requires a stack of interconnected systems:
-              cold outreach engineering, AI-driven transcript-to-manuscript
-              pipelines, structured data workflows, Wikidata seeding sequences,
-              and multi-LLM orchestration that ties all of it together. Mike
-              designed and built that stack.
+              the CAIO role because the company needed someone who could build
+              the machine. Running a network takes a stack of interconnected
+              systems: outreach engineering, guest and booking pipelines,
+              structured data workflows, and the multi-LLM orchestration that
+              ties all of it together. Mike designed and built that stack.
             </p>
 
             <p>
               Mike is also the operational anchor across Brett&apos;s joint
               companies. He runs the AI tooling and outreach surface across
-              Create Church Media, PodcastNetwork.org, Legacy Publishing, and
-              AI Expert. That cross-company view means every improvement Mike
-              makes to one system ripples across all of them. A faster outreach
-              sequence built for one client becomes the default for the next
-              cohort. A better transcript pipeline built for AI Expert becomes
-              the production baseline at PodcastNetwork.org.
+              Create Church Media, PodcastNetwork.org, and AI Expert. That
+              cross-company view means every improvement Mike makes to one
+              system ripples across all of them. A faster outreach sequence
+              built for one show becomes the default for the next one.
             </p>
 
             <p>
-              Before <em>AI or Die</em>, Mike wrote{' '}
-              <em>The Book on How to Write a Book</em>. That project taught
-              him the publishing process from the inside. When it came time to
-              design the Pre-Sold Author Package, Mike already knew where
-              traditional publishing breaks down: the gap between finishing a
-              manuscript and having anyone care that it exists. The Pre-Sold
-              Author sequence was designed to close that gap by building the
-              audience, the podcast, and the entity layer in parallel with the
-              book itself.
-            </p>
-
-            <p>
-              <em>AI or Die</em> was the proof run. Mike and Brett co-authored
-              it, launched it through their own Pre-Sold Author sequence, and
-              used every metric as the live case study. The book was not a side
-              project. It was the test that proved the method works under real
-              conditions, with real timelines, and real stakes.
+              Mike is also a published author. He wrote{' '}
+              <em>The Book on How to Write a Book</em> and co-authored{' '}
+              <em>AI or Die</em> with Brett.
             </p>
 
             <p>
@@ -159,7 +139,8 @@ export default function MikePage() {
               href="/founders/brett-k-moore/"
               className="text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
             >
-              Brett K. Moore, Co-founder <span aria-hidden="true">&rarr;</span>
+              Brett K. Moore, Co-Founder and CEO{' '}
+              <span aria-hidden="true">&rarr;</span>
             </Link>
             <Link
               href="/founders/"

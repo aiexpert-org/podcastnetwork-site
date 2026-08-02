@@ -7,7 +7,7 @@
 export const siteConfig = {
   name: "PodcastNetwork.org",
   description:
-    "PodcastNetwork.org builds entity visibility so AI answer engines recognize you. Two paths: Brand SERP Build and Pre-Sold Author Build.",
+    "The network and relationship-engine infrastructure behind Brett K. Moore's shows and brands.",
   url: (
     process.env.NEXT_PUBLIC_SITE_URL ??
     process.env.NEXT_PUBLIC_URL ??

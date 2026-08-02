@@ -42,15 +42,12 @@ function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-/* 3-surface architecture (Brett, 2026-07-04 evening): the desktop nav is
- * anchor links into the homepage sections plus the Apply pill. Founders
- * added 2026-07-07 (the page existed but nothing linked to it). Labels
- * per the 2026-07-05 final naming lock. */
+/* The retired offer ladder (2026-08-02) took the package anchors, the
+ * homepage FAQ, and the Apply pill with it. What is left is the founders
+ * page and a direct contact link. */
 const NAV_ITEMS = [
-  { title: 'Brand SERP', href: '/#brand-serp-build' },
-  { title: 'Pre-Sold Author', href: '/#pre-sold-author-build' },
   { title: 'Founders', href: '/founders/' },
-  { title: 'FAQ', href: '/#faq' },
+  { title: 'Contact', href: 'mailto:brett@podcastnetwork.org' },
 ]
 
 function DesktopNavigation({ invert = false }: { invert?: boolean }) {
@@ -97,8 +94,8 @@ function Header({
         </Link>
         <div className="flex items-center gap-x-7">
           <DesktopNavigation invert={invert} />
-          <Button href="/apply/" invert={invert}>
-            Apply
+          <Button href="mailto:brett@podcastnetwork.org" invert={invert}>
+            Contact
           </Button>
           <button
             ref={toggleRef}
@@ -159,20 +156,10 @@ function Navigation() {
   return (
     <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
-        <NavigationItem href="/#brand-serp-build">
-          Brand SERP
-        </NavigationItem>
-        <NavigationItem href="/#pre-sold-author-build">
-          Pre-Sold Author
-        </NavigationItem>
-      </NavigationRow>
-      <NavigationRow>
         <NavigationItem href="/founders/">Founders</NavigationItem>
-        <NavigationItem href="/#faq">FAQ</NavigationItem>
-      </NavigationRow>
-      <NavigationRow>
-        <NavigationItem href="/assessment/">The Assessment</NavigationItem>
-        <NavigationItem href="/apply/">Apply</NavigationItem>
+        <NavigationItem href="mailto:brett@podcastnetwork.org">
+          Contact
+        </NavigationItem>
       </NavigationRow>
     </nav>
   )

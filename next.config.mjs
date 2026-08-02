@@ -20,37 +20,44 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
   async redirects() {
-    // 3-surface architecture (2026-07-04): Home + Apply + Legal. The
-    // killed marketing routes and every legacy path route to homepage
-    // anchors. Route files for the killed pages remain in the tree.
-    // /founders revived 2026-07-05; /case-studies (hub + studies)
-    // revived 2026-07-07 per Brett.
+    // 2026-08-02: Home + Founders + Legal are the only surfaces left.
+    // Every retired route and legacy path lands on the homepage.
     return [
-      // Killed marketing routes (2026-07-04 collapse).
-      { source: '/the-method', destination: '/#packages', permanent: false },
-      { source: '/the-method/:path*', destination: '/#packages', permanent: false },
-      { source: '/the-package', destination: '/#pre-sold-author', permanent: false },
-      { source: '/the-package/:path*', destination: '/#pre-sold-author', permanent: false },
-      { source: '/knowledge-panel-install', destination: '/#knowledge-panel', permanent: false },
-      { source: '/knowledge-panel-install/:path*', destination: '/#knowledge-panel', permanent: false },
+      // Retired offer ladder (2026-08-02). The package, method, and
+      // knowledge-panel routes are gone, along with the application and
+      // assessment funnels and the case-study hub. Everything lands on
+      // the homepage, which no longer carries offer anchors.
+      { source: '/the-method', destination: '/', permanent: false },
+      { source: '/the-method/:path*', destination: '/', permanent: false },
+      { source: '/the-package', destination: '/', permanent: false },
+      { source: '/the-package/:path*', destination: '/', permanent: false },
+      { source: '/knowledge-panel-install', destination: '/', permanent: false },
+      { source: '/knowledge-panel-install/:path*', destination: '/', permanent: false },
+      { source: '/apply', destination: '/', permanent: false },
+      { source: '/apply/:path*', destination: '/', permanent: false },
+      { source: '/assessment', destination: '/', permanent: false },
+      { source: '/assessment/:path*', destination: '/', permanent: false },
+      { source: '/case-studies', destination: '/', permanent: false },
+      { source: '/case-studies/:path*', destination: '/', permanent: false },
 
-      // Legacy paths from the pre-rebuild sitemaps.
-      { source: '/book', destination: '/#pre-sold-author', permanent: false },
-      { source: '/book/:path*', destination: '/#pre-sold-author', permanent: false },
-      { source: '/podcast', destination: '/#packages', permanent: false },
-      { source: '/podcast/:path*', destination: '/#packages', permanent: false },
-      { source: '/about', destination: '/#proof', permanent: false },
-      { source: '/about/:path*', destination: '/#proof', permanent: false },
-      { source: '/faq', destination: '/#faq', permanent: false },
-      { source: '/journal', destination: '/#packages', permanent: false },
-      { source: '/journal/:path*', destination: '/#packages', permanent: false },
-      { source: '/methodology', destination: '/#packages', permanent: false },
-      { source: '/pre-sold-author-package', destination: '/#pre-sold-author', permanent: false },
-      { source: '/pillars/:path*', destination: '/#pre-sold-author', permanent: false },
-      { source: '/knowledge-panel', destination: '/#knowledge-panel', permanent: false },
-      { source: '/contact', destination: '/apply/', permanent: false },
-      { source: '/work', destination: '/#packages', permanent: false },
-      { source: '/work/:path*', destination: '/#packages', permanent: false },
+      // Legacy paths from the pre-rebuild sitemaps. Every one of these
+      // used to target a homepage offer anchor that no longer exists.
+      { source: '/book', destination: '/', permanent: false },
+      { source: '/book/:path*', destination: '/', permanent: false },
+      { source: '/podcast', destination: '/', permanent: false },
+      { source: '/podcast/:path*', destination: '/', permanent: false },
+      { source: '/about', destination: '/', permanent: false },
+      { source: '/about/:path*', destination: '/', permanent: false },
+      { source: '/faq', destination: '/', permanent: false },
+      { source: '/journal', destination: '/', permanent: false },
+      { source: '/journal/:path*', destination: '/', permanent: false },
+      { source: '/methodology', destination: '/', permanent: false },
+      { source: '/pre-sold-author-package', destination: '/', permanent: false },
+      { source: '/pillars/:path*', destination: '/', permanent: false },
+      { source: '/knowledge-panel', destination: '/', permanent: false },
+      { source: '/contact', destination: '/', permanent: false },
+      { source: '/work', destination: '/', permanent: false },
+      { source: '/work/:path*', destination: '/', permanent: false },
       { source: '/privacy', destination: '/legal/privacy/', permanent: false },
       { source: '/terms', destination: '/legal/terms/', permanent: false },
       { source: '/cookies', destination: '/legal/privacy/', permanent: false },

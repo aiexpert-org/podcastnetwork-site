@@ -4,8 +4,8 @@
   "@id": "https://podcastnetwork.org/#website",
   "url": "https://podcastnetwork.org/",
   "name": "PodcastNetwork.org",
-  "alternateName": "Two paths to entity visibility",
-  "description": "Entity visibility for executives, authors, and entrepreneurs. Two standalone builds: the Brand SERP Build ($24,000, 12 months) and the Pre-Sold Author Build ($36,000, 6 months). Application only.",
+  "alternateName": "The network layer behind the shows",
+  "description": "The network and relationship-engine infrastructure behind Brett K. Moore's shows and brands. PodcastNetwork.org does not sell directly.",
   "inLanguage": "en-US",
   "copyrightYear": 2026,
   "copyrightHolder": {
@@ -14,29 +14,10 @@
   "publisher": {
     "@id": "https://podcastnetwork.org/#organization"
   },
-  "potentialAction": [
-    {
-      "@type": "ApplyAction",
-      "name": "Apply to PodcastNetwork.org",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://podcastnetwork.org/apply/",
-        "inLanguage": "en-US",
-        "actionPlatform": [
-          "http://schema.org/DesktopWebPlatform",
-          "http://schema.org/MobileWebPlatform"
-        ]
-      },
-      "result": {
-        "@type": "Reservation",
-        "reservationStatus": "https://schema.org/ReservationHold"
-      }
-    }
-  ],
   "isFamilyFriendly": true,
   "audience": {
     "@type": "Audience",
-    "audienceType": "Executives, authors, and entrepreneurs building a Google-recognized personal brand",
+    "audienceType": "Operators, founders, and executives interested in the PodcastNetwork.org network",
     "geographicArea": [
       { "@type": "Country", "name": "United States" },
       { "@type": "Country", "name": "Canada" },
@@ -44,5 +25,5 @@
       { "@type": "Country", "name": "Australia" }
     ]
   },
-  "keywords": "knowledge panel install, pre-sold author package, google knowledge panel, AI answer engines, book launch, podcast launch, personal brand, Wikidata, IMDb, Legacy Publishing"
+  "keywords": "podcast network, private podcast network, relationship engine, podcast production, network infrastructure"
 }

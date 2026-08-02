@@ -13,9 +13,9 @@ import { foundersSchema } from '@/lib/schema-graph'
 import foundersData from '../../../data/founders.json'
 
 export const metadata: Metadata = {
-  title: 'Founders. We ran the method on ourselves first',
+  title: 'Founders of PodcastNetwork.org',
   description:
-    'Brett K. Moore and Mike Partners, co-founders of PodcastNetwork.org. Co-authors of AI or Die. The entity visibility method tested on themselves before anyone else.',
+    'Brett K. Moore (Co-Founder and CEO) and Mike Partners (Co-Founder and CAIO) run PodcastNetwork.org, the network and relationship-engine infrastructure behind the portfolio.',
   alternates: { canonical: '/founders/' },
 }
 
@@ -29,14 +29,14 @@ export default function FoundersPage() {
 
       <PageIntro
         eyebrow="The founders"
-        title="We ran the method on ourselves first."
+        title="Two operators and one network."
       >
         <p>
-          We are Brett K. Moore and Mike Partners, co-founders of
-          PodcastNetwork.org. Fifty-fifty. That split was locked on day one and
-          it has not moved. We co-authored AI or Die, launched it through our
-          own sequence, and built the machine that pre-sold it. Then we
-          realized the machine was the product.
+          We are Brett K. Moore (Co-Founder and CEO) and Mike Partners
+          (Co-Founder and CAIO). Fifty-fifty. That split was locked on day one
+          and it has not moved. We run PodcastNetwork.org, the network and
+          relationship-engine infrastructure the rest of the portfolio draws
+          on.
         </p>
       </PageIntro>
 
@@ -81,28 +81,23 @@ export default function FoundersPage() {
 
       <SectionIntro
         eyebrow="Why we built PN.org"
-        title="Cold launches are a sequencing failure."
+        title="Every business we run needs the same infrastructure."
         className="mt-24 sm:mt-32 lg:mt-40"
       />
       <Container className="mt-10">
         <FadeIn>
           <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base text-neutral-600 lg:grid-cols-2">
             <p>
-              Most authors launch cold. They write for two to three years, they
-              land a publisher, and then the book ships into a market that has
-              no idea who they are. The retail stack is weak. The knowledge
-              panel is nonexistent. The audience is a mailing list they have
-              not tended. The book fades in 90 days.
+              PodcastNetwork.org designs, builds, and operates private podcast
+              networks, plus the relationship engine that sits underneath them.
+              Shows, guests, bookings, and introductions all run through one
+              system instead of a separate one per company.
             </p>
             <p>
-              The alternative is more coordination, earlier. A build that
-              produces the book, the podcast, the voice clone, and the entity
-              visibility in parallel, so they mature together. By the time the
-              book lists, the audience has already opted in, the podcast has
-              already been running, and Google already recognizes the author.
-              That is the Pre-Sold Author Package. Making Google recognize you
-              in the first place, and keeping it accurate for a year, is the
-              Brand SERP Build. PodcastNetwork.org runs both.
+              The network compounds over time. Every show, every guest, and
+              every introduction adds to it, and the rest of the portfolio
+              draws on that infrastructure instead of building its own from
+              scratch.
             </p>
           </div>
         </FadeIn>
@@ -110,31 +105,25 @@ export default function FoundersPage() {
 
       <SectionIntro
         eyebrow="The organizations"
-        title="One operator, three partners."
+        title="One operator, two partners."
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          PodcastNetwork.org sits in the middle. You talk to one operator, pick
-          the package that fits, and get it delivered by one team.
+          PodcastNetwork.org sits in the middle of the portfolio and runs the
+          shared infrastructure the other companies use.
         </p>
       </SectionIntro>
       <Container className="mt-16">
         <GridList>
           <GridListItem title="AI Expert">
             Sister firm. Builds the AI-native architecture underneath the
-            sequence: transcript-to-manuscript pipelines, guest-booking
-            sequencing tooling, and the structured-data workflows Google
-            indexes fastest. Same two co-founders.
-          </GridListItem>
-          <GridListItem title="Legacy Publishing">
-            Publishing partner. Application-only publisher operating at
-            10 percent of net book sales with no upfront fee. Books produced in
-            the Pre-Sold Author Package can publish through Legacy as an option.
+            network: guest-booking and outreach tooling, and the structured
+            data workflows the search and answer engines read. Same two
+            co-founders.
           </GridListItem>
           <GridListItem title="Apex Podcast Co">
-            Production partner. Ongoing white-glove podcast production after
-            Day 180, on a separate retainer, for authors who want the show to
-            keep growing. Brett is 50/50 with Randy Highsmith on Apex.
+            Production partner. Ongoing white-glove podcast production for
+            shows in the network. Brett is 50/50 with Randy Highsmith on Apex.
           </GridListItem>
         </GridList>
       </Container>
