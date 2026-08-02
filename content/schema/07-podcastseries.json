@@ -4,8 +4,7 @@
   "@id": "https://podcastnetwork.org/podcast/#series",
   "url": "https://podcastnetwork.org/podcast/",
   "name": "{{PODCAST_NAME}}",
-  "alternateName": "The AI or Die Podcast",
-  "description": "The anchor podcast for the AI or Die book launch and the PodcastNetwork.org network. Weekly episodes with the operators, authors, and executives rebuilding their businesses as AI-native.",
+  "description": "The flagship podcast series of the PodcastNetwork.org network. Weekly episodes with the operators, founders, and executives rebuilding their businesses as AI-native.",
   "image": [
     "https://podcastnetwork.org/podcast/cover-3000x3000.jpg",
     "https://podcastnetwork.org/podcast/cover-1400x1400.jpg"
@@ -41,7 +40,7 @@
     "Entrepreneurship",
     "Artificial Intelligence"
   ],
-  "keywords": "AI-native business, operator, founder, portfolio operator, Pre-Sold Author Package, book launch, knowledge panel",
+  "keywords": "podcast network, private podcast network, AI-native business, operator, founder, portfolio operator, podcast production",
   "audience": {
     "@type": "Audience",
     "audienceType": "Founders, executives, and operators building or rebuilding businesses as AI-native"
@@ -76,7 +75,7 @@
         {
           "@type": "Person",
           "name": "Michele Okimura",
-          "@id": "https://podcastnetwork.org/case-studies/michele-okimura/#person"
+          "@id": "https://podcastnetwork.org/network/in-a-moment/#michele-okimura"
         },
         {
           "@id": "https://podcastnetwork.org/about/#brett-k-moore"
